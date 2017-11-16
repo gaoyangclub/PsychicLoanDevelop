@@ -1,0 +1,371 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8476496D1FBD6E7500E9B4F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8476496C1FBD6E7500E9B4F2 /* main.m */; };
+		847649701FBD6E7500E9B4F2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8476496F1FBD6E7500E9B4F2 /* AppDelegate.m */; };
+		847649731FBD6E7500E9B4F2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 847649721FBD6E7500E9B4F2 /* ViewController.m */; };
+		847649781FBD6E7500E9B4F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 847649771FBD6E7500E9B4F2 /* Assets.xcassets */; };
+		8476497B1FBD6E7500E9B4F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 847649791FBD6E7500E9B4F2 /* LaunchScreen.storyboard */; };
+		9BE58829F8B34BE780DB324C /* libPods-PsychicLoan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC1525BC4E9F08DE81E84B09 /* libPods-PsychicLoan.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		847649681FBD6E7500E9B4F2 /* PsychicLoan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PsychicLoan.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8476496C1FBD6E7500E9B4F2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8476496E1FBD6E7500E9B4F2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		8476496F1FBD6E7500E9B4F2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		847649711FBD6E7500E9B4F2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		847649721FBD6E7500E9B4F2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		847649771FBD6E7500E9B4F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8476497A1FBD6E7500E9B4F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8476497C1FBD6E7500E9B4F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B81875451C42493159916A45 /* Pods-PsychicLoan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PsychicLoan.release.xcconfig"; path = "Pods/Target Support Files/Pods-PsychicLoan/Pods-PsychicLoan.release.xcconfig"; sourceTree = "<group>"; };
+		BC1525BC4E9F08DE81E84B09 /* libPods-PsychicLoan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PsychicLoan.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5F10849F3A1CA29359BC6CD /* Pods-PsychicLoan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PsychicLoan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PsychicLoan/Pods-PsychicLoan.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		847649651FBD6E7500E9B4F2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9BE58829F8B34BE780DB324C /* libPods-PsychicLoan.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		054B86C18E01C799F31CF573 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F5F10849F3A1CA29359BC6CD /* Pods-PsychicLoan.debug.xcconfig */,
+				B81875451C42493159916A45 /* Pods-PsychicLoan.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		8476495F1FBD6E7500E9B4F2 = {
+			isa = PBXGroup;
+			children = (
+				8476496A1FBD6E7500E9B4F2 /* PsychicLoan */,
+				847649691FBD6E7500E9B4F2 /* Products */,
+				054B86C18E01C799F31CF573 /* Pods */,
+				A8614B8FE3BAAECEB35F2D85 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		847649691FBD6E7500E9B4F2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				847649681FBD6E7500E9B4F2 /* PsychicLoan.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8476496A1FBD6E7500E9B4F2 /* PsychicLoan */ = {
+			isa = PBXGroup;
+			children = (
+				8476496E1FBD6E7500E9B4F2 /* AppDelegate.h */,
+				8476496F1FBD6E7500E9B4F2 /* AppDelegate.m */,
+				847649711FBD6E7500E9B4F2 /* ViewController.h */,
+				847649721FBD6E7500E9B4F2 /* ViewController.m */,
+				847649771FBD6E7500E9B4F2 /* Assets.xcassets */,
+				847649791FBD6E7500E9B4F2 /* LaunchScreen.storyboard */,
+				8476497C1FBD6E7500E9B4F2 /* Info.plist */,
+				8476496B1FBD6E7500E9B4F2 /* Supporting Files */,
+			);
+			path = PsychicLoan;
+			sourceTree = "<group>";
+		};
+		8476496B1FBD6E7500E9B4F2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8476496C1FBD6E7500E9B4F2 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A8614B8FE3BAAECEB35F2D85 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BC1525BC4E9F08DE81E84B09 /* libPods-PsychicLoan.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		847649671FBD6E7500E9B4F2 /* PsychicLoan */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8476497F1FBD6E7500E9B4F2 /* Build configuration list for PBXNativeTarget "PsychicLoan" */;
+			buildPhases = (
+				AD9D587EC190D71D11155FAC /* [CP] Check Pods Manifest.lock */,
+				847649641FBD6E7500E9B4F2 /* Sources */,
+				847649651FBD6E7500E9B4F2 /* Frameworks */,
+				847649661FBD6E7500E9B4F2 /* Resources */,
+				8A72002F8AD1FCE7DD03D9C5 /* [CP] Embed Pods Frameworks */,
+				204FB03F5A8EE0D0EC13FF73 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PsychicLoan;
+			productName = PsychicLoan;
+			productReference = 847649681FBD6E7500E9B4F2 /* PsychicLoan.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		847649601FBD6E7500E9B4F2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = GaoYang;
+				TargetAttributes = {
+					847649671FBD6E7500E9B4F2 = {
+						CreatedOnToolsVersion = 7.1.1;
+					};
+				};
+			};
+			buildConfigurationList = 847649631FBD6E7500E9B4F2 /* Build configuration list for PBXProject "PsychicLoan" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8476495F1FBD6E7500E9B4F2;
+			productRefGroup = 847649691FBD6E7500E9B4F2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				847649671FBD6E7500E9B4F2 /* PsychicLoan */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		847649661FBD6E7500E9B4F2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8476497B1FBD6E7500E9B4F2 /* LaunchScreen.storyboard in Resources */,
+				847649781FBD6E7500E9B4F2 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		204FB03F5A8EE0D0EC13FF73 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PsychicLoan/Pods-PsychicLoan-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8A72002F8AD1FCE7DD03D9C5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PsychicLoan/Pods-PsychicLoan-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AD9D587EC190D71D11155FAC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		847649641FBD6E7500E9B4F2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				847649731FBD6E7500E9B4F2 /* ViewController.m in Sources */,
+				847649701FBD6E7500E9B4F2 /* AppDelegate.m in Sources */,
+				8476496D1FBD6E7500E9B4F2 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		847649791FBD6E7500E9B4F2 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8476497A1FBD6E7500E9B4F2 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8476497D1FBD6E7500E9B4F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		8476497E1FBD6E7500E9B4F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		847649801FBD6E7500E9B4F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F5F10849F3A1CA29359BC6CD /* Pods-PsychicLoan.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = PsychicLoan/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.loan.psychicloan;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		847649811FBD6E7500E9B4F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B81875451C42493159916A45 /* Pods-PsychicLoan.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = PsychicLoan/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.loan.psychicloan;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		847649631FBD6E7500E9B4F2 /* Build configuration list for PBXProject "PsychicLoan" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8476497D1FBD6E7500E9B4F2 /* Debug */,
+				8476497E1FBD6E7500E9B4F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8476497F1FBD6E7500E9B4F2 /* Build configuration list for PBXNativeTarget "PsychicLoan" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				847649801FBD6E7500E9B4F2 /* Debug */,
+				847649811FBD6E7500E9B4F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 847649601FBD6E7500E9B4F2 /* Project object */;
+}
