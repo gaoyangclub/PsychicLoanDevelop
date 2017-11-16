@@ -17,6 +17,8 @@ pod "AsyncDisplayKit", ’1.9.5’
 
 pod 'DZNEmptyDataSet'#空白填充指引页
 
+pod 'SDCycleScrollView'
+
 pod 'pop', '~> 1.0'
 #pod 'MLeaksFinder'
 

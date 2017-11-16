@@ -1,0 +1,40 @@
+//
+//  PrefixHeader.pch
+//  PsychicLoan
+//
+//  Created by admin on 2017/11/16.
+//  Copyright © 2017年 GaoYang. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import <AsyncDisplayKit/AsyncDisplayKit.h>
+#import <pop/POP.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
+
+#import "AFNetworking.h"
+//#import "UIKit+AFNetworking.h"
+#import "Config.h"
+
+#import "NetRequestClass.h"
+#import "SVProgressHUD.h"
+#import "MBProgressHUD.h"
+#import "NSString+YCI.h"
+#import "Chameleon.h"
+
+#import "UICreationUtils.h"
+#import "UIControl+TouchEffect.h"
+#import "UIColor+HexExchange.h"
+#import "ASDisplayNode+GY.h"
+#import "UIVIew+GY.h"
+#import "NSObject+YYModel.h"
+
+//#import "PopAnimateManager.h"
+//#import "UIButton+Style.h"
+#import "NSObject+MethodSwizzlingCategory.h"
+#import "ZXPUnicode.h"
+
+#import "JKNavigationController.h"
+
+#endif /* PrefixHeader_pch */

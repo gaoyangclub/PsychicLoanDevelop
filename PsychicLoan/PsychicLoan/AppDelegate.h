@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GYTabBarController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
+@property(nonatomic,retain)GYTabBarController* rootTabBarController;
+
++ (UINavigationController *)getCurrentNavigationController;
 
 @end
 
