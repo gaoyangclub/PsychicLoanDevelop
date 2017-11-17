@@ -8,6 +8,7 @@
 
 #import "HomeViewController.h"
 #import "HomeBannerCell.h"
+#import "HomeFastCell.h"
 
 @interface TestTableViewCell : MJTableViewCell
 
@@ -79,6 +80,10 @@
         
         SourceVo* svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:0 headerClass:nil headerData:NULL];
         [svo.data addObject:[CellVo initWithParams:HOME_BANNER_CELL_HEIGHT cellClass:[HomeBannerCell class] cellData:imageArr cellTag:CELL_TAG_NORMAL isUnique:YES]];
+        [self.tableView addSource:svo];
+        
+        svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:0 headerClass:nil headerData:NULL];
+        [svo.data addObject:[CellVo initWithParams:HOME_FAST_CELL_HEIGHT cellClass:[HomeFastCell class] cellData:NULL cellTag:CELL_TAG_NORMAL isUnique:YES]];
         [self.tableView addSource:svo];
         
         svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:0 headerClass:nil headerData:NULL];

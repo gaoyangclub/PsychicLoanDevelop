@@ -6,6 +6,7 @@
 //  Copyright © 2017年 GaoYang. All rights reserved.
 //
 #import "LocalBundleManager.h"
+#import "MathUtils.h"
 
 #define COLOR_BLACK_ORIGINAL rgba(95,95,95,1)
 #define COLOR_NAVI_TITLE COLOR_BLACK_ORIGINAL
@@ -55,9 +56,10 @@
 #define IPHONE_6_WIDTH 750.0
 
 //以iphone6为基础 坐标都以iphone6为基准 进行代码的适配
-#define rpx(px) px * SCREEN_WIDTH / 320.0// IPHONE_5S_WIDTH * 2
+#define rpx(px) px * SCREEN_WIDTH / SYSTEM_SCALE / 320.0// IPHONE_5S_WIDTH
 
-#define HOME_BANNER_CELL_HEIGHT 180//rpx(80)
+#define HOME_BANNER_CELL_HEIGHT rpx(180)
+#define HOME_FAST_CELL_HEIGHT rpx(50)
 
 
 @interface Config : NSObject

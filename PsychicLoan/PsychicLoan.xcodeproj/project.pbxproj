@@ -98,6 +98,7 @@
 		8483F1781FBD848500EFD7EB /* OpenUrlUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8483F1721FBD848500EFD7EB /* OpenUrlUtils.m */; };
 		8483F1791FBD848500EFD7EB /* UserDefaultsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8483F1741FBD848500EFD7EB /* UserDefaultsUtils.m */; };
 		8483F17D1FBD867400EFD7EB /* EmptyDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8483F17C1FBD867400EFD7EB /* EmptyDataSource.m */; };
+		848B68931FBF0135008D38C0 /* HomeFastCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 848B68921FBF0135008D38C0 /* HomeFastCell.m */; };
 		84B8C9D11FBD8B3B00C362CA /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8C9D01FBD8B3B00C362CA /* HomeViewController.m */; };
 		9BE58829F8B34BE780DB324C /* libPods-PsychicLoan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC1525BC4E9F08DE81E84B09 /* libPods-PsychicLoan.a */; };
 /* End PBXBuildFile section */
@@ -292,6 +293,8 @@
 		8483F1741FBD848500EFD7EB /* UserDefaultsUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaultsUtils.m; sourceTree = "<group>"; };
 		8483F17B1FBD867400EFD7EB /* EmptyDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyDataSource.h; sourceTree = "<group>"; };
 		8483F17C1FBD867400EFD7EB /* EmptyDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyDataSource.m; sourceTree = "<group>"; };
+		848B68911FBF0135008D38C0 /* HomeFastCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeFastCell.h; sourceTree = "<group>"; };
+		848B68921FBF0135008D38C0 /* HomeFastCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeFastCell.m; sourceTree = "<group>"; };
 		84B8C9CF1FBD8B3B00C362CA /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		84B8C9D01FBD8B3B00C362CA /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		B81875451C42493159916A45 /* Pods-PsychicLoan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PsychicLoan.release.xcconfig"; path = "Pods/Target Support Files/Pods-PsychicLoan/Pods-PsychicLoan.release.xcconfig"; sourceTree = "<group>"; };
@@ -798,6 +801,8 @@
 				84B8C9D01FBD8B3B00C362CA /* HomeViewController.m */,
 				84649CA11FBD9A2B003CA624 /* HomeBannerCell.h */,
 				84649CA21FBD9A2B003CA624 /* HomeBannerCell.m */,
+				848B68911FBF0135008D38C0 /* HomeFastCell.h */,
+				848B68921FBF0135008D38C0 /* HomeFastCell.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -971,6 +976,7 @@
 				8483F09A1FBD73A400EFD7EB /* QBAssetsViewController.m in Sources */,
 				8483F0E51FBD76E600EFD7EB /* UIViewController+JKNavigationController.m in Sources */,
 				8483F14D1FBD7D5F00EFD7EB /* SplashSourceDaDa.m in Sources */,
+				848B68931FBF0135008D38C0 /* HomeFastCell.m in Sources */,
 				8483F0AF1FBD73A400EFD7EB /* MJRefreshGifHeader.m in Sources */,
 				8483F0E31FBD76E600EFD7EB /* JKRootNavigationController.m in Sources */,
 				8483F0E41FBD76E600EFD7EB /* UINavigationBar+JKTransparentize.m in Sources */,
