@@ -76,10 +76,10 @@
     
     GYTabBarController* tabBarCtl = [[GYTabBarController alloc] init];
     tabBarCtl.itemClass = [DIYTabBarItem class];
-    tabBarCtl.dataArray = @[[TabData initWithParams:[DIYBarData initWithParams:TABBAR_TITLE_HOME image:@"\U00003605"] controller:itemCtrl1],
-                            [TabData initWithParams:[DIYBarData initWithParams:TABBAR_TITLE_LOAN image:@"\U0000346c"] controller:itemCtrl2],
-//                            [TabData initWithParams:[DIYBarData initWithParams:@"付款" image:@"\U0000346e"] controller:itemCtrl3],
-                            [TabData initWithParams:[DIYBarData initWithParams:TABBAR_TITLE_USER image:@"\U000035ec"] controller:itemCtrl4],
+    tabBarCtl.dataArray = @[[TabData initWithParams:[DIYBarData initWithParams:TABBAR_TITLE_HOME image:ICON_DING_DAN selectedImage:ICON_DING_DAN_SELECTED] controller:itemCtrl1],
+                            [TabData initWithParams:[DIYBarData initWithParams:TABBAR_TITLE_LOAN image:ICON_DAI_FU_KUAN selectedImage:ICON_DAI_FU_KUAN_SELECTED] controller:itemCtrl2],
+//                            [TabData initWithParams:[DIYBarData initWithParams:TABBAR_TITLE_LOAN image:ICON_XIAO_XI selectedImage:ICON_XIAO_XI_SELECTED] controller:itemCtrl3],
+                            [TabData initWithParams:[DIYBarData initWithParams:TABBAR_TITLE_USER image:ICON_WO_DE selectedImage:ICON_WO_DE_SELECTED] controller:itemCtrl4],
                             ];
 //    [tabBarCtl setItemBadge:20 atIndex:0];
 //    [tabBarCtl setItemBadge:5 atIndex:1];

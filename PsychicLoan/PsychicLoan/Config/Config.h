@@ -8,17 +8,25 @@
 #import "LocalBundleManager.h"
 #import "MathUtils.h"
 
-#define COLOR_BLACK_ORIGINAL rgba(95,95,95,1)
-#define COLOR_NAVI_TITLE COLOR_BLACK_ORIGINAL
-
-#define COLOR_PRIMARY FlatMint//FlatSkyBlue//COLOR_YI_WAN_CHENG//rgba(23,182,46,1)//[Config getPrimaryColor]
-#define COLOR_ACCENT rgb(120,196,112)
-
-#define COLOR_BACKGROUND FlatWhite//rgba(226,226,226,1)
+#define COLOR_BACKGROUND rgb(243,243,243)//FlatWhite
 #define COLOR_LINE rgba(218,218,218,1)
 //#define COLOR_YI_WAN_CHENG FlatGrayDark//COLOR_PRIMARY //rgb(67,152,216)//rgba(21,178,168,1)
 //#define COLOR_DAI_WAN_CHENG COLOR_PRIMARY//FlatWatermelon//[UIColor flatSandColorDark]//rgb(250,83,44)//rgba(240,129,69,1)
 #define LINE_WIDTH 0.5
+
+#define COLOR_TEXT_PRIMARY FlatBlack
+#define COLOR_TEXT_SECONDARY rgba(95,95,95,1)
+#define COLOR_TEXT_THIRD COLOR_LINE
+
+#define SIZE_TEXT_PRIMARY rpx(12)
+#define SIZE_TEXT_SECONDARY rpx(10)
+#define SIZE_NAVI_TITLE rpx(16)
+
+//#define COLOR_BLACK_ORIGINAL rgba(95,95,95,1)
+#define COLOR_NAVI_TITLE COLOR_TEXT_SECONDARY
+
+#define COLOR_PRIMARY rgb(23,182,46)//FlatMint//FlatSkyBlue//COLOR_YI_WAN_CHENG//rgba(23,182,46,1)//[Config getPrimaryColor]
+#define COLOR_ACCENT rgb(120,196,112)
 
 #define APPLICATION_NAME [LocalBundleManager getAppName]//@"百世通"
 #define APPLICATION_NAME_EN @"Psychic Loan"
@@ -36,10 +44,14 @@
 #define NAVIGATION_TITLE_HOME @"主页"//APPLICATION_NAME
 #define NAVIGATION_TITLE_LOAN @"贷款超市"
 #define NAVIGATION_TITLE_USER @"我的"
+#define NAVIGATION_TITLE_WEB @"注册"
 
 #define NAVIGATION_TITLE_MESSAGE @"消息提醒"
 #define NAVIGATION_TITLE_VERSION @"版本信息"
 #define NAVIGATION_TITLE_ADMIN @"管理员大帝"
+
+#define HOME_MOER_BUTTON_NAME @"查看更多贷款►"
+#define HOME_MOER_TIPS @"合理贷款，让生活过得宽裕些"
 
 #define ICON_FAN_HUI @"\U0000e730"//@"\U0000e614"
 #define ICON_SHE_ZHI @"\U0000e628"
@@ -59,11 +71,44 @@
 #define rpx(px) px * SCREEN_WIDTH / SYSTEM_SCALE / 320.0// IPHONE_5S_WIDTH
 
 #define HOME_BANNER_CELL_HEIGHT rpx(180)
-#define HOME_FAST_CELL_HEIGHT rpx(50)
+#define HOME_FAST_CELL_HEIGHT rpx(80)
+#define HOME_LOAN_NORMAL_CELL_HEIGHT rpx(70)
+#define HOME_LOCATION_SECTION_HEIGHT rpx(30)
+#define HOME_MORE_TIPS_CELL_HEIGHT rpx(80)
+
+#define LOAN_TYPE_HOT @"hot" //热门贷款
+#define LOAN_TYPE_RECOMMEND @"recommend" //推荐
+#define LOAN_TYPE_NEW @"new" //新品专区
+#define LOAN_TYPE_FAST @"fast" //极速借钱
+#define LOAN_TYPE_PASS @"pass" //高通过率
+
+#define ICON_DING_DAN @"\U0000e60b"
+#define ICON_DING_DAN_SELECTED @"\U0000e63d"
+#define ICON_DAI_FU_KUAN @"\U0000e744"
+#define ICON_DAI_FU_KUAN_SELECTED @"\U0000e619"
+#define ICON_XIAO_XI @"\U0000e6c8"
+#define ICON_XIAO_XI_SELECTED @"\U0000e853"
+#define ICON_WO_DE @"\U0000e646"
+#define ICON_WO_DE_SELECTED @"\U0000e629"
+
+
+#define ICON_HUO_LIANG @"\U0000e636"//@"\U0000e644"
+#define ICON_SHOU_ZHI @"\U0000e63a"
+#define ICON_QIAN_DAO @"\U0000e611"//@"\U0000e608"
+#define ICON_LI_CHENG @"\U0000e687"
+#define ICON_FEN_XIANG @"\U0000e645"//@"\U0000e602"
+#define ICON_FAN_KUI @"\U0000e610"//@"\U0000e635"
+#define ICON_BAN_BEN @"\U0000e61e"//@"\U0000e60e"
 
 
 @interface Config : NSObject
 
++(NSString*)getLoanTypeNameByCode:(NSString*)code;
+
+
 +(NSString*)getVersionDescription;
+
+
+
 
 @end

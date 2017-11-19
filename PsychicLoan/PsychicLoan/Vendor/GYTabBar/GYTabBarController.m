@@ -156,6 +156,10 @@
     self.selectedIndex = index;
 }
 
+-(void)valueCommit:(NSInteger)selectedIndex{
+    [self.tabBarView setSelectedIndex:selectedIndex];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    self.tabBar.hidden = YES; //直接忽略原先的

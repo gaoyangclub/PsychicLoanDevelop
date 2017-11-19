@@ -36,7 +36,10 @@
 
 
 + (NSAttributedString *)simpleAttributedString:(UIColor*)color size:(CGFloat)size content:(NSString*)content{
-    
+     return [NSString simpleAttributedString:color size:size content:content isBold:NO];
+}
+
++ (NSAttributedString *)simpleAttributedString:(UIColor*)color size:(CGFloat)size content:(NSString*)content isBold:(BOOL)isBold{
     if(!content)return nil;
     
     NSMutableParagraphStyle* style = [[NSMutableParagraphStyle alloc]init];
@@ -44,16 +47,12 @@
     
     NSMutableAttributedString* attrString =
     //[NSMutableAttributedString alloc]initWithString:context];
-        [[NSMutableAttributedString alloc]initWithString:content attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                                color,NSForegroundColorAttributeName,
-                                                                [UIFont systemFontOfSize:size],NSFontAttributeName,
-                                                                             style,NSParagraphStyleAttributeName,
-                                                                             nil]];
-    
-//    [attrString addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange(0, context.length)];
-//    [attrString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:size] range:NSMakeRange(0, context.length)];
-//    [UIFont fontWithName:<#(nonnull NSString *)#> size:<#(CGFloat)#>]
-     return attrString;
+    [[NSMutableAttributedString alloc]initWithString:content attributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                         color,NSForegroundColorAttributeName,
+                                                                         isBold ? [UIFont boldSystemFontOfSize:size] : [UIFont systemFontOfSize:size],NSFontAttributeName,
+                                                                         style,NSParagraphStyleAttributeName,
+                                                                         nil]];
+    return attrString;
 }
 
 + (NSAttributedString *)simpleAttributedString:(NSString*)face color:(UIColor*)color size:(CGFloat)size content:(NSString*)content{

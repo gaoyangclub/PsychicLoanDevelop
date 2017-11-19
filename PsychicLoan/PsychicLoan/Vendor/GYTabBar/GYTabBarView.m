@@ -55,13 +55,13 @@
     }
     [self removeAllSubViews];
     NSInteger count = _dataArray.count;
-//    CGFloat subW = CGRectGetWidth(self.bounds) / (CGFloat)count;
+    //    CGFloat subW = CGRectGetWidth(self.bounds) / (CGFloat)count;
     
     GYTabBarItem *selectItem = nil;
     for (NSInteger i = 0; i < count; i++) {
         GYTabBarItem *itemView = [[self.itemClass alloc]init];
         itemView.itemIndex = i;
-//        itemView.selected = i == self.selectedIndex;//直接选中
+        //        itemView.selected = i == self.selectedIndex;//直接选中
         if (i == self.selectedIndex) {
             selectItem = itemView;
         }
@@ -84,9 +84,14 @@
 }
 
 -(void)tabSelectHandler:(GYTabBarItem*)itemView{
-    self.selectedIndex = itemView.itemIndex;
+    [self setSelectedIndex:itemView.itemIndex];
+}
+
+-(void)setSelectedIndex:(NSInteger)selectedIndex{
+    _selectedIndex = selectedIndex;
+    
     for (GYTabBarItem* itemView in self.subviews) {
-        itemView.selected = self.selectedIndex == itemView.itemIndex;//直接选中
+        itemView.selected = selectedIndex == itemView.itemIndex;//直接选中
     }
     if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectItem:tabData:index:)]) {
         [self.delegate didSelectItem:self tabData:_dataArray[self.selectedIndex] index:self.selectedIndex];
@@ -111,7 +116,7 @@
     CGFloat subW = CGRectGetWidth(self.bounds) / (CGFloat)count;//[NSNumber numberWithInteger:count].floatValue;
     for (NSInteger i = 0; i < count; i++) {
         GYTabBarItem *itemView = self.subviews[i];
-//        itemView.backgroundColor = [UIColor blackColor];
+        //        itemView.backgroundColor = [UIColor blackColor];
         itemView.frame = CGRectMake(i * subW, 0, subW, CGRectGetHeight(self.bounds));
     }
 }
@@ -120,6 +125,13 @@
     if (index < _dataArray.count) {
         _dataArray[index].badge = badge;
     }
+    if (index < self.subviews.count) {
+        GYTabBarItem *itemView = self.subviews[index];
+        if (itemView) {
+            itemView.badgeValue = [self getBadgeValue:badge];
+        }
+    }
+    
 }
 
 @end

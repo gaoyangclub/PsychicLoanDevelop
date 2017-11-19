@@ -101,6 +101,15 @@
 		848B68931FBF0135008D38C0 /* HomeFastCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 848B68921FBF0135008D38C0 /* HomeFastCell.m */; };
 		84B8C9D11FBD8B3B00C362CA /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8C9D01FBD8B3B00C362CA /* HomeViewController.m */; };
 		9BE58829F8B34BE780DB324C /* libPods-PsychicLoan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC1525BC4E9F08DE81E84B09 /* libPods-PsychicLoan.a */; };
+		A9D8EF7A1FC14BA2000CCEBC /* LoanTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D8EF791FC14BA2000CCEBC /* LoanTypeViewController.m */; };
+		A9D934DA1FBFD20200FAC005 /* demo_unicode.html in Resources */ = {isa = PBXBuildFile; fileRef = A9D934D81FBFD20200FAC005 /* demo_unicode.html */; };
+		A9D934DB1FBFD20200FAC005 /* iconfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9D934D91FBFD20200FAC005 /* iconfont.ttf */; };
+		A9D934DE1FBFFC3000FAC005 /* HomeLoanTitleSection.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D934DD1FBFFC3000FAC005 /* HomeLoanTitleSection.m */; };
+		A9D934E21FC0072A00FAC005 /* LoanModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D934E11FC0072A00FAC005 /* LoanModel.m */; };
+		A9D934E51FC0115A00FAC005 /* LoanNormalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D934E41FC0115A00FAC005 /* LoanNormalCell.m */; };
+		A9D934EA1FC0304100FAC005 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D934E91FC0304100FAC005 /* WebViewController.m */; };
+		A9D934EC1FC03F3D00FAC005 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D934EB1FC03F3D00FAC005 /* WebKit.framework */; };
+		A9D9F5D21FC0796200927976 /* HomeMoreTipsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D9F5D11FC0796200927976 /* HomeMoreTipsCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -297,6 +306,21 @@
 		848B68921FBF0135008D38C0 /* HomeFastCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeFastCell.m; sourceTree = "<group>"; };
 		84B8C9CF1FBD8B3B00C362CA /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		84B8C9D01FBD8B3B00C362CA /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		A9D8EF781FC14BA2000CCEBC /* LoanTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanTypeViewController.h; sourceTree = "<group>"; };
+		A9D8EF791FC14BA2000CCEBC /* LoanTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanTypeViewController.m; sourceTree = "<group>"; };
+		A9D934D81FBFD20200FAC005 /* demo_unicode.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = demo_unicode.html; sourceTree = "<group>"; };
+		A9D934D91FBFD20200FAC005 /* iconfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = iconfont.ttf; sourceTree = "<group>"; };
+		A9D934DC1FBFFC3000FAC005 /* HomeLoanTitleSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeLoanTitleSection.h; sourceTree = "<group>"; };
+		A9D934DD1FBFFC3000FAC005 /* HomeLoanTitleSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeLoanTitleSection.m; sourceTree = "<group>"; };
+		A9D934E01FC0072A00FAC005 /* LoanModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanModel.h; sourceTree = "<group>"; };
+		A9D934E11FC0072A00FAC005 /* LoanModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanModel.m; sourceTree = "<group>"; };
+		A9D934E31FC0115A00FAC005 /* LoanNormalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanNormalCell.h; sourceTree = "<group>"; };
+		A9D934E41FC0115A00FAC005 /* LoanNormalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanNormalCell.m; sourceTree = "<group>"; };
+		A9D934E81FC0304100FAC005 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		A9D934E91FC0304100FAC005 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		A9D934EB1FC03F3D00FAC005 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		A9D9F5D01FC0796200927976 /* HomeMoreTipsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeMoreTipsCell.h; sourceTree = "<group>"; };
+		A9D9F5D11FC0796200927976 /* HomeMoreTipsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeMoreTipsCell.m; sourceTree = "<group>"; };
 		B81875451C42493159916A45 /* Pods-PsychicLoan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PsychicLoan.release.xcconfig"; path = "Pods/Target Support Files/Pods-PsychicLoan/Pods-PsychicLoan.release.xcconfig"; sourceTree = "<group>"; };
 		BC1525BC4E9F08DE81E84B09 /* libPods-PsychicLoan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PsychicLoan.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5F10849F3A1CA29359BC6CD /* Pods-PsychicLoan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PsychicLoan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PsychicLoan/Pods-PsychicLoan.debug.xcconfig"; sourceTree = "<group>"; };
@@ -307,6 +331,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9D934EC1FC03F3D00FAC005 /* WebKit.framework in Frameworks */,
 				9BE58829F8B34BE780DB324C /* libPods-PsychicLoan.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -344,7 +369,9 @@
 		8476496A1FBD6E7500E9B4F2 /* PsychicLoan */ = {
 			isa = PBXGroup;
 			children = (
+				A9D934DF1FC0070E00FAC005 /* Model */,
 				8483F1521FBD837400EFD7EB /* Utils */,
+				A9D934D61FBFD20200FAC005 /* Resource */,
 				8483F14E1FBD7DCD00EFD7EB /* Config */,
 				8483F1161FBD7D5F00EFD7EB /* Component */,
 				8483EFE21FBD73A400EFD7EB /* Vendor */,
@@ -789,6 +816,9 @@
 		84B8C9CD1FBD8AE800C362CA /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				A9D8EF761FC14B81000CCEBC /* Detail */,
+				A9D8EF771FC14B81000CCEBC /* Loan */,
+				A9D934E71FC0303000FAC005 /* Web */,
 				84B8C9CE1FBD8B2A00C362CA /* Home */,
 			);
 			path = ViewController;
@@ -803,6 +833,12 @@
 				84649CA21FBD9A2B003CA624 /* HomeBannerCell.m */,
 				848B68911FBF0135008D38C0 /* HomeFastCell.h */,
 				848B68921FBF0135008D38C0 /* HomeFastCell.m */,
+				A9D934DC1FBFFC3000FAC005 /* HomeLoanTitleSection.h */,
+				A9D934DD1FBFFC3000FAC005 /* HomeLoanTitleSection.m */,
+				A9D934E31FC0115A00FAC005 /* LoanNormalCell.h */,
+				A9D934E41FC0115A00FAC005 /* LoanNormalCell.m */,
+				A9D9F5D01FC0796200927976 /* HomeMoreTipsCell.h */,
+				A9D9F5D11FC0796200927976 /* HomeMoreTipsCell.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -810,9 +846,61 @@
 		A8614B8FE3BAAECEB35F2D85 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A9D934EB1FC03F3D00FAC005 /* WebKit.framework */,
 				BC1525BC4E9F08DE81E84B09 /* libPods-PsychicLoan.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A9D8EF761FC14B81000CCEBC /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		A9D8EF771FC14B81000CCEBC /* Loan */ = {
+			isa = PBXGroup;
+			children = (
+				A9D8EF781FC14BA2000CCEBC /* LoanTypeViewController.h */,
+				A9D8EF791FC14BA2000CCEBC /* LoanTypeViewController.m */,
+			);
+			path = Loan;
+			sourceTree = "<group>";
+		};
+		A9D934D61FBFD20200FAC005 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				A9D934D71FBFD20200FAC005 /* iconfont */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		A9D934D71FBFD20200FAC005 /* iconfont */ = {
+			isa = PBXGroup;
+			children = (
+				A9D934D81FBFD20200FAC005 /* demo_unicode.html */,
+				A9D934D91FBFD20200FAC005 /* iconfont.ttf */,
+			);
+			path = iconfont;
+			sourceTree = "<group>";
+		};
+		A9D934DF1FC0070E00FAC005 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A9D934E01FC0072A00FAC005 /* LoanModel.h */,
+				A9D934E11FC0072A00FAC005 /* LoanModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A9D934E71FC0303000FAC005 /* Web */ = {
+			isa = PBXGroup;
+			children = (
+				A9D934E81FC0304100FAC005 /* WebViewController.h */,
+				A9D934E91FC0304100FAC005 /* WebViewController.m */,
+			);
+			path = Web;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -884,9 +972,11 @@
 				8483F0951FBD73A400EFD7EB /* QBImagePicker.strings in Resources */,
 				8483F0E11FBD76E600EFD7EB /* jk_icon_system_backIndicator.png in Resources */,
 				8483F0B21FBD73A400EFD7EB /* MJRefresh.bundle in Resources */,
+				A9D934DA1FBFD20200FAC005 /* demo_unicode.html in Resources */,
 				8483F0E61FBD76E600EFD7EB /* ico_make.png in Resources */,
 				8483F0961FBD73A400EFD7EB /* Info.plist in Resources */,
 				847649781FBD6E7500E9B4F2 /* Assets.xcassets in Resources */,
+				A9D934DB1FBFD20200FAC005 /* iconfont.ttf in Resources */,
 				8483F09C1FBD73A400EFD7EB /* QBImagePicker.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -957,6 +1047,7 @@
 				8483F0B71FBD73A400EFD7EB /* UIView+MJExtension.m in Sources */,
 				8483F13E1FBD7D5F00EFD7EB /* DiyNumberAddView.m in Sources */,
 				84649CA31FBD9A2B003CA624 /* HomeBannerCell.m in Sources */,
+				A9D9F5D21FC0796200927976 /* HomeMoreTipsCell.m in Sources */,
 				8483F0C51FBD73A400EFD7EB /* YYFPSLabel.m in Sources */,
 				8483F0A61FBD73A400EFD7EB /* MJRefreshComponent.m in Sources */,
 				8483F0A71FBD73A400EFD7EB /* MJRefreshFooter.m in Sources */,
@@ -999,13 +1090,16 @@
 				8483F14B1FBD7D5F00EFD7EB /* RoundBackView.m in Sources */,
 				8483F0891FBD73A400EFD7EB /* LCTabBarBadge.m in Sources */,
 				8483F0971FBD73A400EFD7EB /* QBAlbumCell.m in Sources */,
+				A9D934DE1FBFFC3000FAC005 /* HomeLoanTitleSection.m in Sources */,
 				8483F10E1FBD787F00EFD7EB /* ASDisplayNode+GY.m in Sources */,
 				8483F1771FBD848500EFD7EB /* MathUtils.m in Sources */,
 				8483F0B01FBD73A400EFD7EB /* MJRefreshNormalHeader.m in Sources */,
 				8483F13C1FBD7D5F00EFD7EB /* CircleNode.m in Sources */,
 				8483F0B41FBD73A400EFD7EB /* NSBundle+MJRefresh.m in Sources */,
+				A9D934E21FC0072A00FAC005 /* LoanModel.m in Sources */,
 				8483F1691FBD83A500EFD7EB /* PopAnimateManager.m in Sources */,
 				8483F1421FBD7D5F00EFD7EB /* NormalSelectItem.m in Sources */,
+				A9D934E51FC0115A00FAC005 /* LoanNormalCell.m in Sources */,
 				8483F1151FBD79ED00EFD7EB /* NSObject+MethodSwizzlingCategory.m in Sources */,
 				8483F0BA1FBD73A400EFD7EB /* MJTableViewController.m in Sources */,
 				8483F0AA1FBD73A400EFD7EB /* MJRefreshAutoNormalFooter.m in Sources */,
@@ -1019,6 +1113,7 @@
 				8483F10F1FBD787F00EFD7EB /* NSString+YCI.m in Sources */,
 				8483F1431FBD7D5F00EFD7EB /* PageListViewController.m in Sources */,
 				8483F0A81FBD73A400EFD7EB /* MJRefreshHeader.m in Sources */,
+				A9D934EA1FC0304100FAC005 /* WebViewController.m in Sources */,
 				8483F1411FBD7D5F00EFD7EB /* HotMarkView.m in Sources */,
 				8483F0AC1FBD73A400EFD7EB /* MJRefreshBackGifFooter.m in Sources */,
 				8483F0D11FBD758B00EFD7EB /* GYTabBarView.m in Sources */,
@@ -1030,6 +1125,7 @@
 				8483F0C41FBD73A400EFD7EB /* UICreationUtils.m in Sources */,
 				8483F0E21FBD76E600EFD7EB /* JKBackIndicatorButton.m in Sources */,
 				8483F0BC1FBD73A400EFD7EB /* MJTableViewSection.m in Sources */,
+				A9D8EF7A1FC14BA2000CCEBC /* LoanTypeViewController.m in Sources */,
 				8483F0A51FBD73A400EFD7EB /* MJRefreshBackFooter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,6 +9,11 @@
 #import "HomeViewController.h"
 #import "HomeBannerCell.h"
 #import "HomeFastCell.h"
+#import "HomeLoanTitleSection.h"
+#import "LoanModel.h"
+#import "LoanNormalCell.h"
+#import "HomeMoreTipsCell.h"
+#import "LoanTypeViewController.h"
 
 @interface TestTableViewCell : MJTableViewCell
 
@@ -16,7 +21,7 @@
 @implementation TestTableViewCell
 
 -(void)showSubviews{
-    self.backgroundColor = [UIColor whiteColor];
+//    self.backgroundColor = [UIColor whiteColor];
     self.textLabel.text = (NSString*)self.data;
 }
 
@@ -36,7 +41,7 @@
 
 -(UILabel *)titleLabel{
     if (!_titleLabel) {
-        _titleLabel = [UICreationUtils createNavigationTitleLabel:20 color:COLOR_NAVI_TITLE text:NAVIGATION_TITLE_HOME superView:nil];
+        _titleLabel = [UICreationUtils createNavigationTitleLabel:SIZE_NAVI_TITLE color:COLOR_NAVI_TITLE text:NAVIGATION_TITLE_HOME superView:nil];
     }
     return _titleLabel;
 }
@@ -86,13 +91,48 @@
         [svo.data addObject:[CellVo initWithParams:HOME_FAST_CELL_HEIGHT cellClass:[HomeFastCell class] cellData:NULL cellTag:CELL_TAG_NORMAL isUnique:YES]];
         [self.tableView addSource:svo];
         
-        svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:0 headerClass:nil headerData:NULL];
-        for (NSInteger i = 0; i < 20; i ++) {
-            [svo.data addObject:[CellVo initWithParams:50 cellClass:[TestTableViewCell class] cellData:ConcatStrings(@"数据",@(i + 1))]];
+        svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:HOME_LOCATION_SECTION_HEIGHT headerClass:[HomeLoanTitleSection class] headerData:LOAN_TYPE_HOT];
+        NSMutableArray<LoanModel*>* loanModels = [self generateTempLoanModels];
+        for (LoanModel* loanModel in loanModels) {
+             [svo.data addObject:[CellVo initWithParams:HOME_LOAN_NORMAL_CELL_HEIGHT cellClass:[LoanNormalCell class] cellData:loanModel]];
         }
         [self.tableView addSource:svo];
+        svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:HOME_LOCATION_SECTION_HEIGHT headerClass:[HomeLoanTitleSection class] headerData:LOAN_TYPE_RECOMMEND];
+        loanModels = [self generateTempLoanModels];
+        for (LoanModel* loanModel in loanModels) {
+            [svo.data addObject:[CellVo initWithParams:HOME_LOAN_NORMAL_CELL_HEIGHT cellClass:[LoanNormalCell class] cellData:loanModel]];
+        }
+        [self.tableView addSource:svo];
+        
+        svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:0 headerClass:nil headerData:NULL];
+        [svo.data addObject:[CellVo initWithParams:HOME_MORE_TIPS_CELL_HEIGHT cellClass:[HomeMoreTipsCell class] cellData:NULL cellTag:CELL_TAG_NORMAL isUnique:YES]];
+        [self.tableView addSource:svo];
+        
+        
         handler(YES);
     });
+}
+
+
+-(void)didSelectRow:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+}
+
+-(NSMutableArray<LoanModel*>*)generateTempLoanModels{
+    NSInteger count = (arc4random() % 5) + 3;
+    
+    NSMutableArray<LoanModel*>* loanModels = [NSMutableArray<LoanModel*> array];
+    for (NSInteger i = 0; i < count; i++) {
+        LoanModel* loanModel = [[LoanModel alloc]init];
+        loanModel.loanname = @"牛逼贷";
+        loanModel.loandes = @"绝对牛逼的贷款";
+        loanModel.maxamount = @"￥10000";
+        loanModel.loanlogo = @"http://3.pic.paopaoche.net/up/2015-7/201579103655.png";
+        loanModel.loanurl = @"https://www.baidu.com";
+        [loanModels addObject:loanModel];
+    }
+    
+    return loanModels;
 }
 
 //-(void)footerLoadMore:(FooterLoadMoreHandler)handler{
@@ -112,6 +152,7 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = COLOR_BACKGROUND;
+    self.tableView.cellGap = rpx(10);
     
     [self initNavigationItem];
 }

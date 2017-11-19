@@ -7,18 +7,28 @@
 //
 
 #import "HomeFastCell.h"
+#import "FlatButton.h"
+#import "LoanTypeViewController.h"
+#import "AppDelegate.h"
 
 @interface HomeFastItem : UIControl
 
 @property(nonatomic,retain) ASTextNode* titleNode;
-@property(nonatomic,retain) ASTextNode* imageNode;//图片文本
+@property(nonatomic,retain) FlatButton* imageNode;//图片文本
 
 @property(nonatomic,copy) NSString* title;
 @property(nonatomic,copy) NSString* image;
 @property(nonatomic,retain) UIColor* imageColor;
 
 @end
+
+static NSArray<NSString*>* loanTpyes;
+
 @implementation HomeFastItem
+
++(void)load{
+    loanTpyes = @[LOAN_TYPE_NEW,LOAN_TYPE_FAST,LOAN_TYPE_PASS];
+}
 
 -(ASTextNode *)titleNode{
     if (!_titleNode) {
@@ -29,11 +39,15 @@
     return _titleNode;
 }
 
--(ASTextNode *)imageNode{
+-(FlatButton *)imageNode{
     if (!_imageNode) {
-        _imageNode = [[ASTextNode alloc]init];
-        _imageNode.layerBacked = YES;
-        [self.layer addSublayer:_imageNode.layer];
+        _imageNode = [[FlatButton alloc]init];
+        _imageNode.titleFontName = ICON_FONT_NAME;
+        _imageNode.titleColor = [UIColor whiteColor];
+        _imageNode.titleSize = rpx(30);
+        _imageNode.cornerRadius = rpx(10);
+        _imageNode.userInteractionEnabled = NO;
+        [self addSubview:_imageNode];
     }
     return _imageNode;
 }
@@ -58,18 +72,23 @@
     
     self.showTouch = YES;
     
-    self.titleNode.attributedString = [NSString simpleAttributedString:COLOR_BLACK_ORIGINAL size:rpx(12) content:self.title];
+    self.titleNode.attributedString = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_SECONDARY content:self.title isBold:YES];
     self.titleNode.size = [self.titleNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
 
-    self.imageNode.attributedString = [NSString simpleAttributedString:self.imageColor size:36 content:self.image];
-    self.imageNode.size = [self.imageNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];//:ICON_FONT_NAME color
+    self.imageNode.title = self.image;
+    self.imageNode.fillColor = self.imageColor;
+    CGFloat const nodeSizeWidth = self.height - rpx(36);
+    self.imageNode.size = CGSizeMake(nodeSizeWidth,nodeSizeWidth);
+    
+//    self.imageNode.attributedString = [NSString simpleAttributedString:ICON_FONT_NAME color:self.imageColor size:36 content:self.image];
+//    self.imageNode.size = [self.imageNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
 
     self.titleNode.centerX = self.imageNode.centerX = self.width / 2.;
-    CGFloat baseY = (self.height - self.titleNode.height - self.imageNode.height) / 2;
+    CGFloat const gap = rpx(5);
+    CGFloat const baseY = (self.height - self.titleNode.height - self.imageNode.height - gap) / 2;
     self.imageNode.y = baseY;
-    self.titleNode.y = self.imageNode.maxY;
+    self.titleNode.y = self.imageNode.maxY + gap;
 }
-
 
 @end
 
@@ -77,20 +96,28 @@
 @implementation HomeFastCell
 
 -(void)showSubviews{
-    NSArray<NSString*>* itemTitles = @[@"新品专区",@"极速赚钱",@"高通过率"];
-    NSArray<UIColor*>* itemImageColors = @[FlatMint,FlatOrange,FlatSkyBlue];
-    NSArray<NSString*>* itemImages = @[@"\U00003605",@"\U00003605",@"\U00003605"];
+    NSArray<UIColor*>* itemImageColors = @[FlatWatermelon,FlatOrange,FlatSkyBlue];
+    NSArray<NSString*>* itemImages = @[ICON_FEN_XIANG,ICON_SHOU_ZHI,ICON_QIAN_DAO];
     
-    CGFloat const itemWidth = self.contentView.width / itemTitles.count;
+    CGFloat const itemWidth = self.contentView.width / loanTpyes.count;
     
-    for (NSInteger i = 0; i < itemTitles.count; i++) {
+    for (NSInteger i = 0; i < loanTpyes.count; i++) {
         HomeFastItem* item = [[HomeFastItem alloc]init];
-        item.title = itemTitles[i];
+        item.title = [Config getLoanTypeNameByCode:loanTpyes[i]];
         item.imageColor = itemImageColors[i];
         item.image = itemImages[i];
         [self.contentView addSubview:item];
         item.frame = CGRectMake(i * itemWidth, 0, itemWidth, self.contentView.height);
+        item.tag = i;
+        [item addTarget:self action:@selector(fastItemClick:) forControlEvents:UIControlEventTouchUpInside];
     }
+}
+
+-(void)fastItemClick:(UIView*)sender{
+    LoanTypeViewController* viewController = [[LoanTypeViewController alloc]init];
+    viewController.hidesBottomBarWhenPushed = YES;
+    viewController.loanType = loanTpyes[sender.tag];
+    [[AppDelegate getCurrentNavigationController]pushViewController:viewController animated:YES];
 }
 
 @end
