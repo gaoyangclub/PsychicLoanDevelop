@@ -5,17 +5,18 @@
 //  Created by admin on 2017/11/16.
 //  Copyright © 2017年 GaoYang. All rights reserved.
 //
+#import "NetConfig.h"
 #import "LocalBundleManager.h"
 #import "MathUtils.h"
 
 #define COLOR_BACKGROUND rgb(243,243,243)//FlatWhite
-#define COLOR_LINE rgba(218,218,218,1)
+#define COLOR_LINE rgb(218,218,218)
 //#define COLOR_YI_WAN_CHENG FlatGrayDark//COLOR_PRIMARY //rgb(67,152,216)//rgba(21,178,168,1)
 //#define COLOR_DAI_WAN_CHENG COLOR_PRIMARY//FlatWatermelon//[UIColor flatSandColorDark]//rgb(250,83,44)//rgba(240,129,69,1)
 #define LINE_WIDTH 0.5
 
 #define COLOR_TEXT_PRIMARY FlatBlack
-#define COLOR_TEXT_SECONDARY rgba(95,95,95,1)
+#define COLOR_TEXT_SECONDARY rgb(95,95,95)
 #define COLOR_TEXT_THIRD COLOR_LINE
 
 #define SIZE_TEXT_PRIMARY rpx(12)
@@ -25,7 +26,7 @@
 //#define COLOR_BLACK_ORIGINAL rgba(95,95,95,1)
 #define COLOR_NAVI_TITLE COLOR_TEXT_SECONDARY
 
-#define COLOR_PRIMARY rgb(23,182,46)//FlatMint//FlatSkyBlue//COLOR_YI_WAN_CHENG//rgba(23,182,46,1)//[Config getPrimaryColor]
+#define COLOR_PRIMARY FlatSkyBlue//rgb(23,182,46)//FlatMint//COLOR_YI_WAN_CHENG//rgba(23,182,46,1)//[Config getPrimaryColor]
 #define COLOR_ACCENT rgb(120,196,112)
 
 #define APPLICATION_NAME [LocalBundleManager getAppName]//@"百世通"
@@ -76,11 +77,12 @@
 #define HOME_LOCATION_SECTION_HEIGHT rpx(30)
 #define HOME_MORE_TIPS_CELL_HEIGHT rpx(80)
 
-#define LOAN_TYPE_HOT @"hot" //热门贷款
-#define LOAN_TYPE_RECOMMEND @"recommend" //推荐
-#define LOAN_TYPE_NEW @"new" //新品专区
-#define LOAN_TYPE_FAST @"fast" //极速借钱
-#define LOAN_TYPE_PASS @"pass" //高通过率
+//1为左侧按钮，2为中间按钮，3为右侧按钮，4为热门贷款，5为编辑推荐
+#define LOAN_TYPE_HOT 4 //热门贷款
+#define LOAN_TYPE_RECOMMEND 5 //推荐
+#define LOAN_TYPE_NEW 1 //新品专区
+#define LOAN_TYPE_FAST 2 //极速借钱
+#define LOAN_TYPE_PASS 3 //高通过率
 
 #define ICON_DING_DAN @"\U0000e60b"
 #define ICON_DING_DAN_SELECTED @"\U0000e63d"
@@ -103,7 +105,7 @@
 
 @interface Config : NSObject
 
-+(NSString*)getLoanTypeNameByCode:(NSString*)code;
++(NSString*)getLoanTypeNameByCode:(int)code;
 
 
 +(NSString*)getVersionDescription;

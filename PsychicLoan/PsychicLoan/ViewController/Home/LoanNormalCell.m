@@ -115,7 +115,7 @@
     self.titleNode.attributedString = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_PRIMARY content:loanModel.loanname isBold:YES];
     self.titleNode.size = [self.titleNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
     
-    self.amountNode.attributedString = [NSString simpleAttributedString:COLOR_TEXT_SECONDARY size:SIZE_TEXT_SECONDARY content:loanModel.maxamount];
+    self.amountNode.attributedString = [NSString simpleAttributedString:COLOR_TEXT_SECONDARY size:SIZE_TEXT_SECONDARY content:[NSString stringWithFormat:@"%ld",loanModel.maxamount]];
     self.amountNode.size = [self.amountNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
     
     self.describeNode.attributedString = [NSString simpleAttributedString:COLOR_TEXT_THIRD size:SIZE_TEXT_SECONDARY content:loanModel.loandes];

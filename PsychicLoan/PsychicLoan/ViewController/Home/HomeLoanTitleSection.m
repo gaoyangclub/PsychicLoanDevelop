@@ -30,7 +30,9 @@
     
     self.backgroundColor = COLOR_BACKGROUND;
     
-    NSString* title = [Config getLoanTypeNameByCode:self.data];
+    NSNumber* typeNumber = self.data;
+    
+    NSString* title = [Config getLoanTypeNameByCode:[typeNumber intValue]];
     self.titleNode.attributedString = [NSString simpleAttributedString:COLOR_TEXT_SECONDARY size:SIZE_TEXT_PRIMARY content:title];
     self.titleNode.size = [self.titleNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
     self.titleNode.centerY = self.height / 2.;

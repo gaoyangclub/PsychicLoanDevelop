@@ -10,6 +10,6 @@
 
 @interface LoanTypeViewController : MJTableViewController
 
-@property(nonatomic,retain)NSString* loanType;
+@property(nonatomic,assign)int loanType;
 
 @end

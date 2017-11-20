@@ -13,7 +13,7 @@
 @property(nonatomic,assign)long loanid;
 @property(nonatomic,copy)NSString* loanname;
 @property(nonatomic,copy)NSString* loanlogo;
-@property(nonatomic,copy)NSString* maxamount;//最大金额
+@property(nonatomic,assign)long maxamount;//最大金额
 @property(nonatomic,copy)NSString* loandes;//推荐语
 @property(nonatomic,copy)NSString* loanurl;//贷款H5页面链接
 

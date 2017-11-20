@@ -12,7 +12,7 @@
 @interface MJTableViewController : UIViewController<MJTableBaseViewDelegate>
 
 @property(nonatomic,retain)MJTableBaseView* tableView;
-@property(nonatomic,assign)BOOL contentOffsetRest;
+//@property(nonatomic,assign)BOOL contentOffsetRest;
 @property(nonatomic,assign)BOOL autoRefreshHeader;
 
 @property(nonatomic,retain)NSIndexPath* selectedIndexPath;
@@ -22,7 +22,7 @@
 -(BOOL)getShowHeader;
 -(BOOL)getShowFooter;
 -(BOOL)getUseCellIdentifer;
--(BOOL)getNeedRestOffset;
+-(BOOL)getNeedRestOffset;//滚轮是否恢复原位
 -(MJRefreshHeader*)getHeader;
 
 @end

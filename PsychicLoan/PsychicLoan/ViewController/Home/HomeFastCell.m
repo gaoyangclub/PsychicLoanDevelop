@@ -22,12 +22,12 @@
 
 @end
 
-static NSArray<NSString*>* loanTpyes;
+static NSArray<NSNumber*>* loanTpyes;
 
 @implementation HomeFastItem
 
 +(void)load{
-    loanTpyes = @[LOAN_TYPE_NEW,LOAN_TYPE_FAST,LOAN_TYPE_PASS];
+    loanTpyes = @[@(LOAN_TYPE_NEW),@(LOAN_TYPE_FAST),@(LOAN_TYPE_PASS)];
 }
 
 -(ASTextNode *)titleNode{
@@ -103,7 +103,7 @@ static NSArray<NSString*>* loanTpyes;
     
     for (NSInteger i = 0; i < loanTpyes.count; i++) {
         HomeFastItem* item = [[HomeFastItem alloc]init];
-        item.title = [Config getLoanTypeNameByCode:loanTpyes[i]];
+        item.title = [Config getLoanTypeNameByCode:[loanTpyes[i] intValue]];
         item.imageColor = itemImageColors[i];
         item.image = itemImages[i];
         [self.contentView addSubview:item];
@@ -116,7 +116,7 @@ static NSArray<NSString*>* loanTpyes;
 -(void)fastItemClick:(UIView*)sender{
     LoanTypeViewController* viewController = [[LoanTypeViewController alloc]init];
     viewController.hidesBottomBarWhenPushed = YES;
-    viewController.loanType = loanTpyes[sender.tag];
+    viewController.loanType = [loanTpyes[sender.tag] intValue];
     [[AppDelegate getCurrentNavigationController]pushViewController:viewController animated:YES];
 }
 

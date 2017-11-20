@@ -14,22 +14,25 @@
 #import "LoanNormalCell.h"
 #import "HomeMoreTipsCell.h"
 #import "LoanTypeViewController.h"
+#import "HomeViewModel.h"
+#import "HomeModel.h"
 
-@interface TestTableViewCell : MJTableViewCell
-
-@end
-@implementation TestTableViewCell
-
--(void)showSubviews{
-//    self.backgroundColor = [UIColor whiteColor];
-    self.textLabel.text = (NSString*)self.data;
-}
-
-@end
+//@interface TestTableViewCell : MJTableViewCell
+//
+//@end
+//@implementation TestTableViewCell
+//
+//-(void)showSubviews{
+////    self.backgroundColor = [UIColor whiteColor];
+//    self.textLabel.text = (NSString*)self.data;
+//}
+//
+//@end
 
 @interface HomeViewController ()
 
 @property(nonatomic,retain)UILabel* titleLabel;
+@property(nonatomic,retain)HomeViewModel* viewModel;
 
 @end
 
@@ -44,6 +47,13 @@
         _titleLabel = [UICreationUtils createNavigationTitleLabel:SIZE_NAVI_TITLE color:COLOR_NAVI_TITLE text:NAVIGATION_TITLE_HOME superView:nil];
     }
     return _titleLabel;
+}
+
+-(HomeViewModel *)viewModel{
+    if (!_viewModel) {
+        _viewModel = [[HomeViewModel alloc]init];
+    }
+    return _viewModel;
 }
 
 //-(CGRect)getTableViewFrame{
@@ -64,53 +74,41 @@
 }
 
 -(void)headerRefresh:(HeaderRefreshHandler)handler{
-    double delayInSeconds = 1.0;
     __weak __typeof(self) weakSelf = self;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC); dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [self.tableView clearSource];
-        
-        NSInteger hi = (arc4random() % 2); //生成0-1范围的随机数
-        NSArray<NSString*>* imageArr;
-        if (hi > 0) {
-            imageArr = @[
-                         @"http://imgsrc.baidu.com/image/c0%3Dshijue1%2C0%2C0%2C294%2C40/sign=cfb53f93c3177f3e0439f44e18a651b2/6609c93d70cf3bc7814060c9db00baa1cd112a56.jpg",
-                         @"http://imgsrc.baidu.com/image/c0%3Dshijue1%2C0%2C0%2C294%2C40/sign=c55331232c9759ee5e5d6888da922963/3c6d55fbb2fb4316a08b2f542aa4462309f7d30c.jpg",
-                         @"http://pic.58pic.com/58pic/13/71/22/35T58PICrEk_1024.jpg"];
-        }else{
-            imageArr = @[
-                         @"http://img.juimg.com/tuku/yulantu/140313/330457-14031320362254.jpg",
-                         @"http://img.taopic.com/uploads/allimg/130331/240460-13033106243430.jpg"
-                         ];
-        }
+    [self.viewModel getHomeLoans:^(HomeModel* homeModel) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        [strongSelf.tableView clearSource];
         
         SourceVo* svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:0 headerClass:nil headerData:NULL];
-        [svo.data addObject:[CellVo initWithParams:HOME_BANNER_CELL_HEIGHT cellClass:[HomeBannerCell class] cellData:imageArr cellTag:CELL_TAG_NORMAL isUnique:YES]];
-        [self.tableView addSource:svo];
+        [svo.data addObject:[CellVo initWithParams:HOME_BANNER_CELL_HEIGHT cellClass:[HomeBannerCell class] cellData:homeModel.banner cellTag:CELL_TAG_NORMAL isUnique:YES]];
+        [strongSelf.tableView addSource:svo];
         
         svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:0 headerClass:nil headerData:NULL];
         [svo.data addObject:[CellVo initWithParams:HOME_FAST_CELL_HEIGHT cellClass:[HomeFastCell class] cellData:NULL cellTag:CELL_TAG_NORMAL isUnique:YES]];
-        [self.tableView addSource:svo];
+        [strongSelf.tableView addSource:svo];
         
-        svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:HOME_LOCATION_SECTION_HEIGHT headerClass:[HomeLoanTitleSection class] headerData:LOAN_TYPE_HOT];
-        NSMutableArray<LoanModel*>* loanModels = [self generateTempLoanModels];
-        for (LoanModel* loanModel in loanModels) {
-             [svo.data addObject:[CellVo initWithParams:HOME_LOAN_NORMAL_CELL_HEIGHT cellClass:[LoanNormalCell class] cellData:loanModel]];
-        }
-        [self.tableView addSource:svo];
-        svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:HOME_LOCATION_SECTION_HEIGHT headerClass:[HomeLoanTitleSection class] headerData:LOAN_TYPE_RECOMMEND];
-        loanModels = [self generateTempLoanModels];
-        for (LoanModel* loanModel in loanModels) {
+        svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:HOME_LOCATION_SECTION_HEIGHT headerClass:[HomeLoanTitleSection class] headerData:@(LOAN_TYPE_HOT)];
+//        NSMutableArray<LoanModel*>* loanModels = [self generateTempLoanModels];
+        for (LoanModel* loanModel in homeModel.hotloan) {
             [svo.data addObject:[CellVo initWithParams:HOME_LOAN_NORMAL_CELL_HEIGHT cellClass:[LoanNormalCell class] cellData:loanModel]];
         }
-        [self.tableView addSource:svo];
+        [strongSelf.tableView addSource:svo];
+        svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:HOME_LOCATION_SECTION_HEIGHT headerClass:[HomeLoanTitleSection class] headerData:@(LOAN_TYPE_RECOMMEND)];
+//        loanModels = [self generateTempLoanModels];
+        for (LoanModel* loanModel in homeModel.recommend) {
+            [svo.data addObject:[CellVo initWithParams:HOME_LOAN_NORMAL_CELL_HEIGHT cellClass:[LoanNormalCell class] cellData:loanModel]];
+        }
+        [strongSelf.tableView addSource:svo];
         
         svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:0 headerClass:nil headerData:NULL];
         [svo.data addObject:[CellVo initWithParams:HOME_MORE_TIPS_CELL_HEIGHT cellClass:[HomeMoreTipsCell class] cellData:NULL cellTag:CELL_TAG_NORMAL isUnique:YES]];
-        [self.tableView addSource:svo];
-        
+        [strongSelf.tableView addSource:svo];
         
         handler(YES);
-    });
+        
+    } failureBlock:^(NSString *errorCode, NSString *errorMsg) {
+        
+    }];
 }
 
 
@@ -118,22 +116,21 @@
     
 }
 
--(NSMutableArray<LoanModel*>*)generateTempLoanModels{
-    NSInteger count = (arc4random() % 5) + 3;
-    
-    NSMutableArray<LoanModel*>* loanModels = [NSMutableArray<LoanModel*> array];
-    for (NSInteger i = 0; i < count; i++) {
-        LoanModel* loanModel = [[LoanModel alloc]init];
-        loanModel.loanname = @"牛逼贷";
-        loanModel.loandes = @"绝对牛逼的贷款";
-        loanModel.maxamount = @"￥10000";
-        loanModel.loanlogo = @"http://3.pic.paopaoche.net/up/2015-7/201579103655.png";
-        loanModel.loanurl = @"https://www.baidu.com";
-        [loanModels addObject:loanModel];
-    }
-    
-    return loanModels;
-}
+//-(NSMutableArray<LoanModel*>*)generateTempLoanModels{
+//    NSInteger count = (arc4random() % 5) + 3;
+//    NSMutableArray<LoanModel*>* loanModels = [NSMutableArray<LoanModel*> array];
+//    for (NSInteger i = 0; i < count; i++) {
+//        LoanModel* loanModel = [[LoanModel alloc]init];
+//        loanModel.loanname = @"牛逼贷";
+//        loanModel.loandes = @"绝对牛逼的贷款";
+//        loanModel.maxamount = 10000;
+//        loanModel.loanlogo = @"http://3.pic.paopaoche.net/up/2015-7/201579103655.png";
+//        loanModel.loanurl = @"https://www.baidu.com";
+//        [loanModels addObject:loanModel];
+//    }
+//    
+//    return loanModels;
+//}
 
 //-(void)footerLoadMore:(FooterLoadMoreHandler)handler{
 //    double delayInSeconds = 1.0;

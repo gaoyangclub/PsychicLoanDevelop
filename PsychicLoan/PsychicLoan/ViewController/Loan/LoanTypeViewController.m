@@ -10,14 +10,32 @@
 #import "FlatButton.h"
 #import "LoanModel.h"
 #import "LoanNormalCell.h"
+#import "AppDelegate.h"
+#import "LoanViewModel.h"
 
 @interface LoanTypeViewController()
 
 @property(nonatomic,retain)FlatButton* noticeArea;
+@property(nonatomic,retain)UILabel* titleLabel;
+@property(nonatomic,retain)LoanViewModel* viewModel;
 
 @end
 
 @implementation LoanTypeViewController
+
+-(UILabel *)titleLabel{
+    if (!_titleLabel) {
+        _titleLabel = [UICreationUtils createNavigationTitleLabel:SIZE_NAVI_TITLE color:COLOR_NAVI_TITLE text:@"" superView:nil];
+    }
+    return _titleLabel;
+}
+
+-(LoanViewModel *)viewModel{
+    if (!_viewModel) {
+        _viewModel = [[LoanViewModel alloc]init];
+    }
+    return _viewModel;
+}
 
 -(FlatButton *)noticeArea{
     if (!_noticeArea) {
@@ -36,58 +54,87 @@
     CGFloat const noticeHeight = rpx(30);
     self.noticeArea.frame = CGRectMake(0, 0, self.view.width, noticeHeight);
     
-    return CGRectMake(0, noticeHeight, self.view.width, self.view.height);
+    return CGRectMake(0, noticeHeight, self.view.width, self.view.height - noticeHeight);
 }
 
 -(BOOL)getShowFooter{
     return NO;
 }
 
+-(void)initNavigationItem{
+    self.navigationItem.leftBarButtonItem =
+    [UICreationUtils createNavigationNormalButtonItem:COLOR_NAVI_TITLE font:[UIFont fontWithName:ICON_FONT_NAME size:25] text:ICON_FAN_HUI target:self action:@selector(leftClick)];
+    self.titleLabel.text = [Config getLoanTypeNameByCode:self.loanType];//self.shipmentBean.code;//标题显示TO号
+    [self.titleLabel sizeToFit];
+    self.navigationItem.titleView = self.titleLabel;
+    //    self.navigationController.navigationBar.jk_barBackgroundColor = [UIColor whiteColor];
+    
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+//                                              initWithTitle:@"下一个"
+//                                              style:UIBarButtonItemStylePlain
+//                                              target:self
+//                                              action:@selector(openNextController:)];
+}
+
+//-(void)openNextController:(UIView*)sender{//测试点击下一个
+//    LoanTypeViewController* vc = [[LoanTypeViewController alloc]init];
+//    vc.loanType = self.loanType;
+//    vc.hidesBottomBarWhenPushed = YES;
+//    //    [self.navigationController pushViewController:vc animated:YES];
+//    [[AppDelegate getCurrentNavigationController] pushViewController:vc animated:YES];
+//}
+
+//返回上层
+-(void)leftClick{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 -(void)headerRefresh:(HeaderRefreshHandler)handler{
-    double delayInSeconds = 1.0;
+//    double delayInSeconds = 1.0;
     __weak __typeof(self) weakSelf = self;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC); dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [self.tableView clearSource];
+    [self.viewModel getLoansByType:self.loanType returnBlock:^(NSArray<LoanModel*>* loanModels) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        [strongSelf.tableView clearSource];
         SourceVo* svo = svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:0 headerClass:nil headerData:nil];
-        NSMutableArray<LoanModel*>* loanModels = [self generateTempLoanModels];
         for (LoanModel* loanModel in loanModels) {
             [svo.data addObject:[CellVo initWithParams:HOME_LOAN_NORMAL_CELL_HEIGHT cellClass:[LoanNormalCell class] cellData:loanModel]];
         }
-        [self.tableView addSource:svo];
+        [strongSelf.tableView addSource:svo];
         
         handler(YES);
-    });
+    } failureBlock:^(NSString *errorCode, NSString *errorMsg) {
+        
+    }];
 }
 
 
--(NSMutableArray<LoanModel*>*)generateTempLoanModels{
-    NSInteger count = (arc4random() % 5) + 32;
-    
-    NSMutableArray<LoanModel*>* loanModels = [NSMutableArray<LoanModel*> array];
-    for (NSInteger i = 0; i < count; i++) {
-        LoanModel* loanModel = [[LoanModel alloc]init];
-        loanModel.loanname = @"牛逼贷";
-        loanModel.loandes = @"绝对牛逼的贷款";
-        loanModel.maxamount = @"￥10000";
-        loanModel.loanlogo = @"http://3.pic.paopaoche.net/up/2015-7/201579103655.png";
-        loanModel.loanurl = @"https://www.baidu.com";
-        [loanModels addObject:loanModel];
-    }
-    
-    return loanModels;
-}
+//-(NSMutableArray<LoanModel*>*)generateTempLoanModels{
+//    NSInteger count = (arc4random() % 5) + 32;
+//    
+//    NSMutableArray<LoanModel*>* loanModels = [NSMutableArray<LoanModel*> array];
+//    for (NSInteger i = 0; i < count; i++) {
+//        LoanModel* loanModel = [[LoanModel alloc]init];
+//        loanModel.loanname = @"牛逼贷";
+//        loanModel.loandes = @"绝对牛逼的贷款";
+//        loanModel.maxamount = @"￥10000";
+//        loanModel.loanlogo = @"http://3.pic.paopaoche.net/up/2015-7/201579103655.png";
+//        loanModel.loanurl = @"https://www.baidu.com";
+//        [loanModels addObject:loanModel];
+//    }
+//    
+//    return loanModels;
+//}
 
 -(void)viewDidLoad{
     [super viewDidLoad];
+    [self initNavigationItem];
     
     self.view.backgroundColor = COLOR_BACKGROUND;
-    
-    self.automaticallyAdjustsScrollViewInsets = NO;
     
     CGFloat const gap = rpx(10);
     
     self.tableView.cellGap = gap;
-//    self.tableView.contentInset = UIEdgeInsetsMake(gap, 0, -gap, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(gap, 0, gap, 0);
     
 //    self.edgesForExtendedLayout = UIRectEdgeNone;
 }

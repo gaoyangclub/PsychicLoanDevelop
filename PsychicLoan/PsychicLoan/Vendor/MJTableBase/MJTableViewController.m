@@ -22,7 +22,7 @@
 -(void)loadView{
     [super loadView];
     self.autoRefreshHeader = YES;
-    self.contentOffsetRest = YES;
+//    self.contentOffsetRest = YES;
     
 //    self.automaticallyAdjustsScrollViewInsets = NO;//YES表示自动测量导航栏高度占用的Insets偏移
 //    self.navigationController.navigationBar.translucent = NO;//    Bar的高斯模糊效果，默认为YES
@@ -57,7 +57,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    if([self getNeedRestOffset] && self.contentOffsetRest){
+    if([self getNeedRestOffset]){// && self.contentOffsetRest
         CGPoint contentOffset = self.tableView.contentOffset;
         contentOffset.y = 0;//滚轮位置恢复
         self.tableView.contentOffset = contentOffset;
@@ -75,6 +75,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if (self.hidesBottomBarWhenPushed) {
+//        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
     self.tableView.frame = [self getTableViewFrame];
 //    self.tableView.backgroundColor = [UIColor brownColor];
     if (self.autoRefreshHeader) {

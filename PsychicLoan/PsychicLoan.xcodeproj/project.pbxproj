@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		843A9FB91FC2AF26006C27F7 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 843A9FB81FC2AF26006C27F7 /* DetailViewController.m */; };
+		843A9FBC1FC2B451006C27F7 /* DetailLogoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 843A9FBB1FC2B451006C27F7 /* DetailLogoCell.m */; };
+		843A9FBF1FC2B73D006C27F7 /* LoanDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 843A9FBE1FC2B73D006C27F7 /* LoanDetailModel.m */; };
+		843A9FC71FC2BE74006C27F7 /* HomeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 843A9FC61FC2BE74006C27F7 /* HomeViewModel.m */; };
+		843A9FCA1FC2C18D006C27F7 /* NetConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 843A9FC91FC2C18D006C27F7 /* NetConfig.m */; };
+		843A9FCD1FC2C577006C27F7 /* HomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 843A9FCC1FC2C577006C27F7 /* HomeModel.m */; };
+		843A9FD01FC2CC5C006C27F7 /* BannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 843A9FCF1FC2CC5C006C27F7 /* BannerModel.m */; };
+		843A9FD31FC2D7B8006C27F7 /* LoanViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 843A9FD21FC2D7B8006C27F7 /* LoanViewModel.m */; };
+		843A9FD61FC2E82A006C27F7 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 843A9FD51FC2E82A006C27F7 /* BaseModel.m */; };
+		843A9FD91FC2EBD5006C27F7 /* MarketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 843A9FD81FC2EBD5006C27F7 /* MarketModel.m */; };
 		84649CA31FBD9A2B003CA624 /* HomeBannerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84649CA21FBD9A2B003CA624 /* HomeBannerCell.m */; };
 		8476496D1FBD6E7500E9B4F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8476496C1FBD6E7500E9B4F2 /* main.m */; };
 		847649701FBD6E7500E9B4F2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8476496F1FBD6E7500E9B4F2 /* AppDelegate.m */; };
@@ -113,6 +123,26 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		843A9FB71FC2AF26006C27F7 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		843A9FB81FC2AF26006C27F7 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		843A9FBA1FC2B451006C27F7 /* DetailLogoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailLogoCell.h; sourceTree = "<group>"; };
+		843A9FBB1FC2B451006C27F7 /* DetailLogoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailLogoCell.m; sourceTree = "<group>"; };
+		843A9FBD1FC2B73D006C27F7 /* LoanDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanDetailModel.h; sourceTree = "<group>"; };
+		843A9FBE1FC2B73D006C27F7 /* LoanDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanDetailModel.m; sourceTree = "<group>"; };
+		843A9FC51FC2BE74006C27F7 /* HomeViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewModel.h; sourceTree = "<group>"; };
+		843A9FC61FC2BE74006C27F7 /* HomeViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewModel.m; sourceTree = "<group>"; };
+		843A9FC81FC2C18D006C27F7 /* NetConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetConfig.h; sourceTree = "<group>"; };
+		843A9FC91FC2C18D006C27F7 /* NetConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetConfig.m; sourceTree = "<group>"; };
+		843A9FCB1FC2C577006C27F7 /* HomeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeModel.h; sourceTree = "<group>"; };
+		843A9FCC1FC2C577006C27F7 /* HomeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeModel.m; sourceTree = "<group>"; };
+		843A9FCE1FC2CC5C006C27F7 /* BannerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerModel.h; sourceTree = "<group>"; };
+		843A9FCF1FC2CC5C006C27F7 /* BannerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerModel.m; sourceTree = "<group>"; };
+		843A9FD11FC2D7B8006C27F7 /* LoanViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanViewModel.h; sourceTree = "<group>"; };
+		843A9FD21FC2D7B8006C27F7 /* LoanViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanViewModel.m; sourceTree = "<group>"; };
+		843A9FD41FC2E82A006C27F7 /* BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
+		843A9FD51FC2E82A006C27F7 /* BaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
+		843A9FD71FC2EBD5006C27F7 /* MarketModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketModel.h; sourceTree = "<group>"; };
+		843A9FD81FC2EBD5006C27F7 /* MarketModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketModel.m; sourceTree = "<group>"; };
 		84649CA11FBD9A2B003CA624 /* HomeBannerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeBannerCell.h; sourceTree = "<group>"; };
 		84649CA21FBD9A2B003CA624 /* HomeBannerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeBannerCell.m; sourceTree = "<group>"; };
 		847649681FBD6E7500E9B4F2 /* PsychicLoan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PsychicLoan.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -348,6 +378,36 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		843A9FB61FC2AF26006C27F7 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				843A9FB71FC2AF26006C27F7 /* DetailViewController.h */,
+				843A9FB81FC2AF26006C27F7 /* DetailViewController.m */,
+				843A9FBA1FC2B451006C27F7 /* DetailLogoCell.h */,
+				843A9FBB1FC2B451006C27F7 /* DetailLogoCell.m */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		843A9FC01FC2BD28006C27F7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				843A9FC41FC2BE62006C27F7 /* Home */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		843A9FC41FC2BE62006C27F7 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				843A9FC51FC2BE74006C27F7 /* HomeViewModel.h */,
+				843A9FC61FC2BE74006C27F7 /* HomeViewModel.m */,
+				843A9FD11FC2D7B8006C27F7 /* LoanViewModel.h */,
+				843A9FD21FC2D7B8006C27F7 /* LoanViewModel.m */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		8476495F1FBD6E7500E9B4F2 = {
 			isa = PBXGroup;
 			children = (
@@ -369,6 +429,7 @@
 		8476496A1FBD6E7500E9B4F2 /* PsychicLoan */ = {
 			isa = PBXGroup;
 			children = (
+				843A9FC01FC2BD28006C27F7 /* ViewModel */,
 				A9D934DF1FC0070E00FAC005 /* Model */,
 				8483F1521FBD837400EFD7EB /* Utils */,
 				A9D934D61FBFD20200FAC005 /* Resource */,
@@ -788,6 +849,8 @@
 			children = (
 				8483F14F1FBD7DF800EFD7EB /* Config.h */,
 				8483F1501FBD7DF800EFD7EB /* Config.m */,
+				843A9FC81FC2C18D006C27F7 /* NetConfig.h */,
+				843A9FC91FC2C18D006C27F7 /* NetConfig.m */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -816,7 +879,7 @@
 		84B8C9CD1FBD8AE800C362CA /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				A9D8EF761FC14B81000CCEBC /* Detail */,
+				843A9FB61FC2AF26006C27F7 /* Detail */,
 				A9D8EF771FC14B81000CCEBC /* Loan */,
 				A9D934E71FC0303000FAC005 /* Web */,
 				84B8C9CE1FBD8B2A00C362CA /* Home */,
@@ -852,13 +915,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		A9D8EF761FC14B81000CCEBC /* Detail */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Detail;
-			sourceTree = "<group>";
-		};
 		A9D8EF771FC14B81000CCEBC /* Loan */ = {
 			isa = PBXGroup;
 			children = (
@@ -890,6 +946,16 @@
 			children = (
 				A9D934E01FC0072A00FAC005 /* LoanModel.h */,
 				A9D934E11FC0072A00FAC005 /* LoanModel.m */,
+				843A9FBD1FC2B73D006C27F7 /* LoanDetailModel.h */,
+				843A9FBE1FC2B73D006C27F7 /* LoanDetailModel.m */,
+				843A9FCB1FC2C577006C27F7 /* HomeModel.h */,
+				843A9FCC1FC2C577006C27F7 /* HomeModel.m */,
+				843A9FCE1FC2CC5C006C27F7 /* BannerModel.h */,
+				843A9FCF1FC2CC5C006C27F7 /* BannerModel.m */,
+				843A9FD41FC2E82A006C27F7 /* BaseModel.h */,
+				843A9FD51FC2E82A006C27F7 /* BaseModel.m */,
+				843A9FD71FC2EBD5006C27F7 /* MarketModel.h */,
+				843A9FD81FC2EBD5006C27F7 /* MarketModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1048,9 +1114,11 @@
 				8483F13E1FBD7D5F00EFD7EB /* DiyNumberAddView.m in Sources */,
 				84649CA31FBD9A2B003CA624 /* HomeBannerCell.m in Sources */,
 				A9D9F5D21FC0796200927976 /* HomeMoreTipsCell.m in Sources */,
+				843A9FCD1FC2C577006C27F7 /* HomeModel.m in Sources */,
 				8483F0C51FBD73A400EFD7EB /* YYFPSLabel.m in Sources */,
 				8483F0A61FBD73A400EFD7EB /* MJRefreshComponent.m in Sources */,
 				8483F0A71FBD73A400EFD7EB /* MJRefreshFooter.m in Sources */,
+				843A9FD01FC2CC5C006C27F7 /* BannerModel.m in Sources */,
 				8483F1401FBD7D5F00EFD7EB /* FlatButton.m in Sources */,
 				8483F0CF1FBD758B00EFD7EB /* GYTabBarController.m in Sources */,
 				8483F08A1FBD73A400EFD7EB /* UIColor+HexExchange.m in Sources */,
@@ -1058,6 +1126,7 @@
 				8483F09F1FBD73A400EFD7EB /* QBVideoIconView.m in Sources */,
 				8483F1111FBD787F00EFD7EB /* UIControl+TouchEffect.m in Sources */,
 				8483F0B51FBD73A400EFD7EB /* UIScrollView+MJExtension.m in Sources */,
+				843A9FBF1FC2B73D006C27F7 /* LoanDetailModel.m in Sources */,
 				8483F09B1FBD73A400EFD7EB /* QBCheckmarkView.m in Sources */,
 				84B8C9D11FBD8B3B00C362CA /* HomeViewController.m in Sources */,
 				8483F13F1FBD7D5F00EFD7EB /* DIYTabBarItem.m in Sources */,
@@ -1065,11 +1134,13 @@
 				847649731FBD6E7500E9B4F2 /* ViewController.m in Sources */,
 				8483F1761FBD848500EFD7EB /* LocalBundleManager.m in Sources */,
 				8483F09A1FBD73A400EFD7EB /* QBAssetsViewController.m in Sources */,
+				843A9FD91FC2EBD5006C27F7 /* MarketModel.m in Sources */,
 				8483F0E51FBD76E600EFD7EB /* UIViewController+JKNavigationController.m in Sources */,
 				8483F14D1FBD7D5F00EFD7EB /* SplashSourceDaDa.m in Sources */,
 				848B68931FBF0135008D38C0 /* HomeFastCell.m in Sources */,
 				8483F0AF1FBD73A400EFD7EB /* MJRefreshGifHeader.m in Sources */,
 				8483F0E31FBD76E600EFD7EB /* JKRootNavigationController.m in Sources */,
+				843A9FD31FC2D7B8006C27F7 /* LoanViewModel.m in Sources */,
 				8483F0E41FBD76E600EFD7EB /* UINavigationBar+JKTransparentize.m in Sources */,
 				8483F0C21FBD73A400EFD7EB /* ZXPUnicode.m in Sources */,
 				8483F17D1FBD867400EFD7EB /* EmptyDataSource.m in Sources */,
@@ -1084,6 +1155,7 @@
 				8483F0E71FBD76E600EFD7EB /* JSDropDownMenu.m in Sources */,
 				8483F0A11FBD73A400EFD7EB /* STImageVIew.m in Sources */,
 				8483F1791FBD848500EFD7EB /* UserDefaultsUtils.m in Sources */,
+				843A9FBC1FC2B451006C27F7 /* DetailLogoCell.m in Sources */,
 				8483F0B61FBD73A400EFD7EB /* UIScrollView+MJRefresh.m in Sources */,
 				8483F14C1FBD7D5F00EFD7EB /* RoundRectNode.m in Sources */,
 				847649701FBD6E7500E9B4F2 /* AppDelegate.m in Sources */,
@@ -1092,11 +1164,13 @@
 				8483F0971FBD73A400EFD7EB /* QBAlbumCell.m in Sources */,
 				A9D934DE1FBFFC3000FAC005 /* HomeLoanTitleSection.m in Sources */,
 				8483F10E1FBD787F00EFD7EB /* ASDisplayNode+GY.m in Sources */,
+				843A9FCA1FC2C18D006C27F7 /* NetConfig.m in Sources */,
 				8483F1771FBD848500EFD7EB /* MathUtils.m in Sources */,
 				8483F0B01FBD73A400EFD7EB /* MJRefreshNormalHeader.m in Sources */,
 				8483F13C1FBD7D5F00EFD7EB /* CircleNode.m in Sources */,
 				8483F0B41FBD73A400EFD7EB /* NSBundle+MJRefresh.m in Sources */,
 				A9D934E21FC0072A00FAC005 /* LoanModel.m in Sources */,
+				843A9FC71FC2BE74006C27F7 /* HomeViewModel.m in Sources */,
 				8483F1691FBD83A500EFD7EB /* PopAnimateManager.m in Sources */,
 				8483F1421FBD7D5F00EFD7EB /* NormalSelectItem.m in Sources */,
 				A9D934E51FC0115A00FAC005 /* LoanNormalCell.m in Sources */,
@@ -1107,6 +1181,7 @@
 				8483F0A41FBD73A400EFD7EB /* MJRefreshAutoFooter.m in Sources */,
 				8483F0A01FBD73A400EFD7EB /* QBVideoIndicatorView.m in Sources */,
 				8483F0C11FBD73A400EFD7EB /* SplashViewController.m in Sources */,
+				843A9FB91FC2AF26006C27F7 /* DetailViewController.m in Sources */,
 				8483F0AE1FBD73A400EFD7EB /* MJRefreshBackStateFooter.m in Sources */,
 				8476496D1FBD6E7500E9B4F2 /* main.m in Sources */,
 				8483F0BD1FBD73A400EFD7EB /* CAPSPageMenu.m in Sources */,
@@ -1126,6 +1201,7 @@
 				8483F0E21FBD76E600EFD7EB /* JKBackIndicatorButton.m in Sources */,
 				8483F0BC1FBD73A400EFD7EB /* MJTableViewSection.m in Sources */,
 				A9D8EF7A1FC14BA2000CCEBC /* LoanTypeViewController.m in Sources */,
+				843A9FD61FC2E82A006C27F7 /* BaseModel.m in Sources */,
 				8483F0A51FBD73A400EFD7EB /* MJRefreshBackFooter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

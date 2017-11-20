@@ -10,17 +10,20 @@
 
 @implementation Config
 
-+(NSString *)getLoanTypeNameByCode:(NSString *)code{
-    if ([LOAN_TYPE_HOT isEqual:code]) {
-        return @"热门贷款";
-    }else if([LOAN_TYPE_RECOMMEND isEqual:code]){
-        return @"编辑推荐";
-    }else if([LOAN_TYPE_NEW isEqual:code]){
-        return @"新品专区";
-    }else if([LOAN_TYPE_FAST isEqual:code]){
-        return @"极速赚钱";
-    }else if([LOAN_TYPE_PASS isEqual:code]){
-        return @"高通过率";
++(NSString *)getLoanTypeNameByCode:(int)code{
+    switch (code) {
+        case LOAN_TYPE_HOT:
+            return @"热门贷款";
+        case LOAN_TYPE_RECOMMEND:
+            return @"编辑推荐";
+        case LOAN_TYPE_NEW:
+            return @"新品专区";
+        case LOAN_TYPE_FAST:
+            return @"极速赚钱";
+        case LOAN_TYPE_PASS:
+            return @"高通过率";
+        default:
+            break;
     }
     return nil;
 }
