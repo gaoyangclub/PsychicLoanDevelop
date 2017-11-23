@@ -8,9 +8,10 @@
 
 #import "JSDropDownMenu.h"
 
-#define BackColor [UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0]
+//#define BackColor [UIColor whiteColor]//[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0]
 // 选中颜色加深
-#define SelectColor [UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0]
+//#define SelectColor [UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0]
+//#define SelectTextColor [UIColor blueColor]
 
 @interface NSString (Size)
 
@@ -91,64 +92,69 @@
 
 
 
-@interface JSTableViewCell : UITableViewCell
+//@interface JSTableViewCell : UITableViewCell
+//
+//@property(nonatomic,readonly) UILabel *cellTextLabel;
+//@property(nonatomic,strong) UIImageView *cellAccessoryView;
+//
+//-(void)setCellText:(NSString *)text align:(NSString*)align;
+//
+//@end
+//
+//@implementation JSTableViewCell
+//
+//- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+//{
+//    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+//    if (self) {
+//        // Initialization code
+//        _cellTextLabel = [[UILabel alloc] init];
+//        _cellTextLabel.textAlignment = NSTextAlignmentCenter;
+//        _cellTextLabel.font = [UIFont systemFontOfSize:14.0f];
+//        [self addSubview:_cellTextLabel];
+//    }
+//    return self;
+//}
+//
+//-(void)setCellText:(NSString *)text align:(NSString*)align{
+//    
+//    _cellTextLabel.text = text;
+//    // 只取宽度
+//    CGSize textSize = [text textSizeWithFont:[UIFont systemFontOfSize:14.0f] constrainedToSize:CGSizeMake(MAXFLOAT, 14) lineBreakMode:NSLineBreakByWordWrapping];
+////    CGSize textSize = [text sizeWithFont:[UIFont systemFontOfSize:14.0f] constrainedToSize:CGSizeMake(MAXFLOAT, 14)];
+//    
+//    CGFloat marginX = 20;
+//    
+//    if (![@"left" isEqualToString:align]) {
+//        marginX = (self.frame.size.width-textSize.width)/2;
+//    }
+//    
+//    _cellTextLabel.frame = CGRectMake(marginX, 0, textSize.width, self.frame.size.height);
+//    
+//    if(_cellAccessoryView){
+//        _cellAccessoryView.frame = CGRectMake(_cellTextLabel.frame.origin.x+_cellTextLabel.frame.size.width+10, (self.frame.size.height-12)/2, 16, 12);
+//    }
+//}
+//
+////-(void)setSelected:(BOOL)selected
+//
+//-(void)setCellAccessoryView:(UIImageView *)accessoryView{
+//    
+//    if (_cellAccessoryView) {
+//        [_cellAccessoryView removeFromSuperview];
+//    }
+//    
+//    _cellAccessoryView = accessoryView;
+//    
+//    _cellAccessoryView.frame = CGRectMake(_cellTextLabel.frame.origin.x+_cellTextLabel.frame.size.width+10, (self.frame.size.height-12)/2, 16, 12);
+//    
+//    [self addSubview:_cellAccessoryView];
+//}
+//
+//@end
 
-@property(nonatomic,readonly) UILabel *cellTextLabel;
-@property(nonatomic,strong) UIImageView *cellAccessoryView;
 
--(void)setCellText:(NSString *)text align:(NSString*)align;
 
-@end
-
-@implementation JSTableViewCell
-
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-        _cellTextLabel = [[UILabel alloc] init];
-        _cellTextLabel.textAlignment = NSTextAlignmentCenter;
-        _cellTextLabel.font = [UIFont systemFontOfSize:14.0f];
-        [self addSubview:_cellTextLabel];
-    }
-    return self;
-}
-
--(void)setCellText:(NSString *)text align:(NSString*)align{
-    
-    _cellTextLabel.text = text;
-    // 只取宽度
-    CGSize textSize = [text textSizeWithFont:[UIFont systemFontOfSize:14.0f] constrainedToSize:CGSizeMake(MAXFLOAT, 14) lineBreakMode:NSLineBreakByWordWrapping];
-//    CGSize textSize = [text sizeWithFont:[UIFont systemFontOfSize:14.0f] constrainedToSize:CGSizeMake(MAXFLOAT, 14)];
-    
-    CGFloat marginX = 20;
-    
-    if (![@"left" isEqualToString:align]) {
-        marginX = (self.frame.size.width-textSize.width)/2;
-    }
-    
-    _cellTextLabel.frame = CGRectMake(marginX, 0, textSize.width, self.frame.size.height);
-    
-    if(_cellAccessoryView){
-        _cellAccessoryView.frame = CGRectMake(_cellTextLabel.frame.origin.x+_cellTextLabel.frame.size.width+10, (self.frame.size.height-12)/2, 16, 12);
-    }
-}
-
--(void)setCellAccessoryView:(UIImageView *)accessoryView{
-    
-    if (_cellAccessoryView) {
-        [_cellAccessoryView removeFromSuperview];
-    }
-    
-    _cellAccessoryView = accessoryView;
-    
-    _cellAccessoryView.frame = CGRectMake(_cellTextLabel.frame.origin.x+_cellTextLabel.frame.size.width+10, (self.frame.size.height-12)/2, 16, 12);
-    
-    [self addSubview:_cellAccessoryView];
-}
-
-@end
 
 @implementation JSIndexPath
 - (instancetype)initWithColumn:(NSInteger)column leftOrRight:(NSInteger)leftOrRight  leftRow:(NSInteger)leftRow row:(NSInteger)row {
@@ -195,25 +201,60 @@
 @implementation JSDropDownMenu
 
 #pragma mark - getter
-- (UIColor *)indicatorColor {
-    if (!_indicatorColor) {
-        _indicatorColor = [UIColor blackColor];
+//- (UIColor *)indicatorColor {
+//    if (!_indicatorColor) {
+//        _indicatorColor = [UIColor blackColor];
+//    }
+//    return _indicatorColor;
+//}
+
+-(UIColor *)selectedTextColor{
+    if (!_selectedTextColor) {
+        _selectedTextColor = [UIColor blueColor];
     }
-    return _indicatorColor;
+    return _selectedTextColor;
 }
 
-- (UIColor *)textColor {
-    if (!_textColor) {
-        _textColor = [UIColor blackColor];
+- (UIColor *)normalTextColor {
+    if (!_normalTextColor) {
+        _normalTextColor = [UIColor blackColor];
     }
-    return _textColor;
+    return _normalTextColor;
 }
 
-- (UIColor *)separatorColor {
-    if (!_separatorColor) {
-        _separatorColor = [UIColor blackColor];
+-(UIColor *)menuBackColor{
+    if (!_menuBackColor) {
+        _menuBackColor = [UIColor whiteColor];
     }
-    return _separatorColor;
+    return _menuBackColor;
+}
+
+-(UIColor *)itemBackColor{
+    if (!_itemBackColor) {
+        _itemBackColor = [UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0];
+    }
+    return _itemBackColor;
+}
+
+//- (UIColor *)separatorColor {
+//    if (!_separatorColor) {
+//        _separatorColor = [UIColor blackColor];
+//    }
+//    return _separatorColor;
+//}
+
+-(CGFloat)menuFontSize{
+    if (!_menuFontSize) {
+        _menuFontSize = 14;
+    }
+    return _menuFontSize;
+}
+
+-(CGFloat)itemFontSize{
+    if (!_itemFontSize) {
+        _itemFontSize = 12;
+    }
+    return _itemFontSize;
 }
 
 - (NSString *)titleForRowAtIndexPath:(JSIndexPath *)indexPath {
@@ -233,7 +274,7 @@
     
     CGFloat textLayerInterval = self.frame.size.width / ( _numOfMenu * 2);
     
-    CGFloat separatorLineInterval = self.frame.size.width / _numOfMenu;
+//    CGFloat separatorLineInterval = self.frame.size.width / _numOfMenu;
     
     CGFloat bgLayerInterval = self.frame.size.width / _numOfMenu;
     
@@ -244,29 +285,29 @@
     for (int i = 0; i < _numOfMenu; i++) {
         //bgLayer
         CGPoint bgLayerPosition = CGPointMake((i+0.5)*bgLayerInterval, self.frame.size.height/2);
-        CALayer *bgLayer = [self createBgLayerWithColor:BackColor andPosition:bgLayerPosition];
+        CALayer *bgLayer = [self createBgLayerWithColor:self.menuBackColor andPosition:bgLayerPosition];
         [self.layer addSublayer:bgLayer];
         [tempBgLayers addObject:bgLayer];
         //title
         CGPoint titlePosition = CGPointMake( (i * 2 + 1) * textLayerInterval , self.frame.size.height / 2);
         NSString *titleString = [_dataSource menu:self titleForColumn:i];
-        CATextLayer *title = [self createTextLayerWithNSString:titleString withColor:self.textColor andPosition:titlePosition];
+        CATextLayer *title = [self createTextLayerWithNSString:titleString withColor:self.normalTextColor andPosition:titlePosition];
         [self.layer addSublayer:title];
         [tempTitles addObject:title];
         //indicator
-        CAShapeLayer *indicator = [self createIndicatorWithColor:self.indicatorColor andPosition:CGPointMake(titlePosition.x + title.bounds.size.width / 2 + 8, self.frame.size.height / 2)];
+        CAShapeLayer *indicator = [self createIndicatorWithColor:self.normalTextColor andPosition:CGPointMake(titlePosition.x + title.bounds.size.width / 2 + 8, self.frame.size.height / 2)];
         [self.layer addSublayer:indicator];
         [tempIndicators addObject:indicator];
         
         //separator
-         if (i != _numOfMenu - 1) {
-             CGPoint separatorPosition = CGPointMake((i + 1) * separatorLineInterval, self.frame.size.height/2);
-             CAShapeLayer *separator = [self createSeparatorLineWithColor:self.separatorColor andPosition:separatorPosition];
-             [self.layer addSublayer:separator];
-         }
+//         if (i != _numOfMenu - 1) {
+//             CGPoint separatorPosition = CGPointMake((i + 1) * separatorLineInterval, self.frame.size.height/2);
+//             CAShapeLayer *separator = [self createSeparatorLineWithColor:self.separatorColor andPosition:separatorPosition];
+//             [self.layer addSublayer:separator];
+//         }
     }
     
-    _bottomShadow.backgroundColor = self.separatorColor;
+//    _bottomShadow.backgroundColor = self.separatorColor;
     
     _titles = [tempTitles copy];
     _indicators = [tempIndicators copy];
@@ -287,15 +328,17 @@
         //tableView init
         _leftTableView = [[UITableView alloc] initWithFrame:CGRectMake(origin.x, self.frame.origin.y + self.frame.size.height, 0, 0) style:UITableViewStyleGrouped];
         _leftTableView.rowHeight = 38;
-        _leftTableView.separatorColor = [UIColor colorWithRed:220.f/255.0f green:220.f/255.0f blue:220.f/255.0f alpha:1.0];
+//        _leftTableView.separatorColor = [UIColor colorWithRed:220.f/255.0f green:220.f/255.0f blue:220.f/255.0f alpha:1.0];
         _leftTableView.dataSource = self;
         _leftTableView.delegate = self;
+        _leftTableView.separatorStyle = UITableViewCellSeparatorStyleNone;//去掉cell底部细线
         
         _rightTableView = [[UITableView alloc] initWithFrame:CGRectMake(self.frame.size.width, self.frame.origin.y + self.frame.size.height, 0, 0) style:UITableViewStyleGrouped];
         _rightTableView.rowHeight = 38;
-        _rightTableView.separatorColor = [UIColor colorWithRed:220.f/255.0f green:220.f/255.0f blue:220.f/255.0f alpha:1.0];
+//        _rightTableView.separatorColor = [UIColor colorWithRed:220.f/255.0f green:220.f/255.0f blue:220.f/255.0f alpha:1.0];
         _rightTableView.dataSource = self;
         _rightTableView.delegate = self;
+        _rightTableView.separatorStyle = UITableViewCellSeparatorStyleNone;//去掉cell底部细线
         
         UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
         flowLayout.minimumInteritemSpacing = 0;
@@ -325,8 +368,8 @@
         [_backGroundView addGestureRecognizer:gesture];
         
         //add bottom shadow
-        _bottomShadow = [[UIView alloc] initWithFrame:CGRectMake(0, self.frame.size.height-0.5, screenSize.width, 0.5)];
-        [self addSubview:_bottomShadow];
+//        _bottomShadow = [[UIView alloc] initWithFrame:CGRectMake(0, self.frame.size.height-0.5, screenSize.width, 0.5)];
+//        [self addSubview:_bottomShadow];
     }
     return self;
 }
@@ -394,7 +437,7 @@
     CGFloat sizeWidth = (size.width < (self.frame.size.width / _numOfMenu) - 25) ? size.width : self.frame.size.width / _numOfMenu - 25;
     layer.bounds = CGRectMake(0, 0, sizeWidth, size.height);
     layer.string = string;
-    layer.fontSize = 14.0;
+    layer.fontSize = self.menuFontSize;
     layer.alignmentMode = kCAAlignmentCenter;
     layer.foregroundColor = color.CGColor;
     
@@ -407,7 +450,7 @@
 
 - (CGSize)calculateTitleSizeWithString:(NSString *)string
 {
-    CGFloat fontSize = 14.0;
+    CGFloat fontSize = self.menuFontSize;
     NSDictionary *dic = @{NSFontAttributeName: [UIFont systemFontOfSize:fontSize]};
     CGSize size = [string boundingRectWithSize:CGSizeMake(280, 0) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
     return size;
@@ -426,7 +469,8 @@
                     
                 }];
             }];
-            [(CALayer *)self.bgLayers[i] setBackgroundColor:BackColor.CGColor];
+            ((CATextLayer*)self.titles[i]).foregroundColor = ((CAShapeLayer*)self.indicators[i]).fillColor = self.normalTextColor.CGColor;
+//            [(CALayer *)self.bgLayers[i] setBackgroundColor:BackColor.CGColor];
         }
     }
     
@@ -446,8 +490,8 @@
                 _currentSelectedMenudIndex = tapIndex;
                 _show = NO;
             }];
-            
-            [(CALayer *)self.bgLayers[tapIndex] setBackgroundColor:BackColor.CGColor];
+            ((CATextLayer*)self.titles[tapIndex]).foregroundColor = ((CAShapeLayer*)self.indicators[tapIndex]).fillColor = self.normalTextColor.CGColor;
+//            [(CALayer *)self.bgLayers[tapIndex] setBackgroundColor:BackColor.CGColor];
         } else {
             
             _currentSelectedMenudIndex = tapIndex;
@@ -467,7 +511,8 @@
                     _show = YES;
                 }];
             }
-            [(CALayer *)self.bgLayers[tapIndex] setBackgroundColor:SelectColor.CGColor];
+            ((CATextLayer*)self.titles[tapIndex]).foregroundColor = ((CAShapeLayer*)self.indicators[tapIndex]).fillColor = self.selectedTextColor.CGColor;
+//            [(CALayer *)self.bgLayers[tapIndex] setBackgroundColor:SelectColor.CGColor];
         }
         
     } else{
@@ -488,8 +533,8 @@
                 _currentSelectedMenudIndex = tapIndex;
                 _show = NO;
             }];
-            
-            [(CALayer *)self.bgLayers[tapIndex] setBackgroundColor:BackColor.CGColor];
+            ((CATextLayer*)self.titles[tapIndex]).foregroundColor = ((CAShapeLayer*)self.indicators[tapIndex]).fillColor = self.normalTextColor.CGColor;
+//            [(CALayer *)self.bgLayers[tapIndex] setBackgroundColor:BackColor.CGColor];
         } else {
             
             _hadSelected = NO;
@@ -531,7 +576,8 @@
                     _show = YES;
                 }];
             }
-            [(CALayer *)self.bgLayers[tapIndex] setBackgroundColor:SelectColor.CGColor];
+            ((CATextLayer*)self.titles[tapIndex]).foregroundColor = ((CAShapeLayer*)self.indicators[tapIndex]).fillColor = self.selectedTextColor.CGColor;
+//            [(CALayer *)self.bgLayers[tapIndex] setBackgroundColor:SelectColor.CGColor];
         }
     }
 }
@@ -555,8 +601,8 @@
             _show = NO;
         }];
     }
-    
-    [(CALayer *)self.bgLayers[_currentSelectedMenudIndex] setBackgroundColor:BackColor.CGColor];
+    ((CATextLayer*)self.titles[_currentSelectedMenudIndex]).foregroundColor = ((CAShapeLayer*)self.indicators[_currentSelectedMenudIndex]).fillColor = self.normalTextColor.CGColor;
+//    [(CALayer *)self.bgLayers[_currentSelectedMenudIndex] setBackgroundColor:BackColor.CGColor];
 }
 
 #pragma mark - animation method
@@ -770,15 +816,16 @@
 
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         
-    cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
-    cell.selectedBackgroundView.backgroundColor = BackColor;
-        
-    UILabel *titleLabel = [[UILabel alloc] init];
-    titleLabel.textColor = self.textColor;
+//    cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
+//    cell.selectedBackgroundView.backgroundColor = BackColor;
+    
+//    UILabel *titleLabel = [[UILabel alloc] init];
+    UILabel *titleLabel = cell.textLabel;
+    titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.tag = 1;
-    titleLabel.font = [UIFont systemFontOfSize:14.0];
-        
-    [cell addSubview:titleLabel];
+    titleLabel.font = [UIFont boldSystemFontOfSize:self.itemFontSize];
+//
+//    [cell addSubview:titleLabel];
     
     
     NSInteger leftOrRight = 0;
@@ -790,60 +837,64 @@
     
 //    UILabel *titleLabel = (UILabel*)[cell viewWithTag:1];
     
-    CGSize textSize;
+//    CGSize textSize;
     
     if ([self.dataSource respondsToSelector:@selector(menu:titleForRowAtIndexPath:)]) {
         
         titleLabel.text = [self.dataSource menu:self titleForRowAtIndexPath:[JSIndexPath indexPathWithCol:self.currentSelectedMenudIndex leftOrRight:leftOrRight leftRow:_leftSelectedRow row:indexPath.row]];
         // 只取宽度
-        textSize = [titleLabel.text textSizeWithFont:[UIFont systemFontOfSize:14.0f] constrainedToSize:CGSizeMake(MAXFLOAT, 14) lineBreakMode:NSLineBreakByWordWrapping];
+//        textSize = [titleLabel.text textSizeWithFont:[UIFont systemFontOfSize:self.itemFontSize] constrainedToSize:CGSizeMake(MAXFLOAT, self.itemFontSize) lineBreakMode:NSLineBreakByWordWrapping];
         
     }
     
-    cell.backgroundColor = [UIColor whiteColor];
-    cell.textLabel.font = [UIFont systemFontOfSize:14.0];
+    cell.backgroundColor = self.itemBackColor;//[UIColor whiteColor];
+//    cell.textLabel.font = [UIFont systemFontOfSize:self.fontSize];
     cell.separatorInset = UIEdgeInsetsZero;
-    
+//    titleLabel.centerX = cell.width / 2.;
     
     if (leftOrRight == 1) {
         
-        CGFloat marginX = 20;
+//        CGFloat marginX = 20;
         
-        titleLabel.frame = CGRectMake(marginX, 0, textSize.width, cell.frame.size.height);
+//        titleLabel.frame = CGRectMake(marginX, 0, textSize.width, cell.frame.size.height);
         //右边tableview
-        cell.backgroundColor = BackColor;
+//        cell.backgroundColor = BackColor;
         
         if ([titleLabel.text isEqualToString:[(CATextLayer *)[_titles objectAtIndex:_currentSelectedMenudIndex] string]]) {
             
-            UIImageView *accessoryImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ico_make"]];
+//            UIImageView *accessoryImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ico_make"]];
+//            
+//            accessoryImageView.frame = CGRectMake(titleLabel.frame.origin.x+titleLabel.frame.size.width+10, (self.frame.size.height-12)/2, 16, 12);
+//            
+//            [cell addSubview:accessoryImageView];
+            titleLabel.textColor = self.selectedTextColor;
             
-            accessoryImageView.frame = CGRectMake(titleLabel.frame.origin.x+titleLabel.frame.size.width+10, (self.frame.size.height-12)/2, 16, 12);
-            
-            [cell addSubview:accessoryImageView];
         } else{
             
-            
+            titleLabel.textColor = self.normalTextColor;
         }
     } else{
         
-        CGFloat ratio = [_dataSource widthRatioOfLeftColumn:_currentSelectedMenudIndex];
-        
-        CGFloat marginX = (self.frame.size.width*ratio-textSize.width)/2;
-        
-        titleLabel.frame = CGRectMake(marginX, 0, textSize.width, cell.frame.size.height);
+//        CGFloat ratio = [_dataSource widthRatioOfLeftColumn:_currentSelectedMenudIndex];
+//        
+//        CGFloat marginX = (self.frame.size.width*ratio-textSize.width)/2;
+//        
+//        titleLabel.frame = CGRectMake(marginX, 0, textSize.width, cell.frame.size.height);
         
         if (!_hadSelected && _leftSelectedRow == indexPath.row) {
-            cell.backgroundColor = BackColor;
-            BOOL haveRightTableView = [_dataSource haveRightTableViewInColumn:_currentSelectedMenudIndex];
-            if(!haveRightTableView){
-                UIImageView *accessoryImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ico_make"]];
-                
-                accessoryImageView.frame = CGRectMake(titleLabel.frame.origin.x+titleLabel.frame.size.width+10, (self.frame.size.height-12)/2, 16, 12);
-                
-                [cell addSubview:accessoryImageView];
-            }
+//            cell.backgroundColor = BackColor;
+//            BOOL haveRightTableView = [_dataSource haveRightTableViewInColumn:_currentSelectedMenudIndex];
+//            if(!haveRightTableView){
+////                UIImageView *accessoryImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ico_make"]];
+////                
+////                accessoryImageView.frame = CGRectMake(titleLabel.frame.origin.x+titleLabel.frame.size.width+10, (self.frame.size.height-12)/2, 16, 12);
+////                
+////                [cell addSubview:accessoryImageView];
+//                titleLabel.textColor = SelectTextColor;
+//            }
+            titleLabel.textColor = self.selectedTextColor;
         } else{
-            
+            titleLabel.textColor = self.normalTextColor;
         }
     }
     
@@ -852,6 +903,11 @@
 
 #pragma mark - tableview delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+    if (cell) {
+        cell.textLabel.textColor = self.selectedTextColor;
+    }
     
     NSInteger leftOrRight = 0;
     if (_rightTableView==tableView) {
@@ -874,9 +930,8 @@
             if (!_hadSelected) {
                 _hadSelected = YES;
                 [_leftTableView reloadData];
-                NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForRow:_leftSelectedRow inSection:0];
-                
-                [_leftTableView selectRowAtIndexPath:selectedIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+//                NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForRow:_leftSelectedRow inSection:0];
+//                [_leftTableView selectRowAtIndexPath:selectedIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
             }
             
             [_rightTableView reloadData];
@@ -894,7 +949,9 @@
     [self animateIdicator:_indicators[_currentSelectedMenudIndex] background:_backGroundView leftTableView:_leftTableView rightTableView:_rightTableView title:_titles[_currentSelectedMenudIndex] forward:NO complecte:^{
         _show = NO;
     }];
-    [(CALayer *)self.bgLayers[_currentSelectedMenudIndex] setBackgroundColor:BackColor.CGColor];
+    ((CATextLayer*)self.titles[_currentSelectedMenudIndex]).foregroundColor = ((CAShapeLayer*)self.indicators[_currentSelectedMenudIndex]).fillColor = self.normalTextColor.CGColor;
+//    [(CALayer *)self.bgLayers[_currentSelectedMenudIndex] setBackgroundColor:BackColor.CGColor];
+    
     
     CAShapeLayer *indicator = (CAShapeLayer *)_indicators[_currentSelectedMenudIndex];
     indicator.position = CGPointMake(title.position.x + title.frame.size.width / 2 + 8, indicator.position.y);
@@ -928,12 +985,12 @@
         NSAssert(0 == 1, @"dataSource method needs to be implemented");
     }
     cell.backgroundColor = [UIColor whiteColor];
-    cell.selectedBackgroundView.backgroundColor = BackColor;
-    cell.textLabel.font = [UIFont systemFontOfSize:14.0];
-    cell.textLabel.textColor = self.textColor;
+    cell.selectedBackgroundView.backgroundColor = self.itemBackColor;
+    cell.textLabel.font = [UIFont systemFontOfSize:self.itemFontSize];
+    cell.textLabel.textColor = self.normalTextColor;
     
     if ([cell.textLabel.text isEqualToString:[(CATextLayer *)[_titles objectAtIndex:_currentSelectedMenudIndex] string]]) {
-        cell.backgroundColor = BackColor;
+        cell.backgroundColor = self.itemBackColor;
         cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ico_make"]];
     } else{
         
@@ -974,8 +1031,8 @@
     [self animateIdicator:_indicators[_currentSelectedMenudIndex] background:_backGroundView collectionView:_collectionView title:_titles[_currentSelectedMenudIndex] forward:NO complecte:^{
         _show = NO;
     }];
-
-    [(CALayer *)self.bgLayers[_currentSelectedMenudIndex] setBackgroundColor:BackColor.CGColor];
+    ((CATextLayer*)self.titles[_currentSelectedMenudIndex]).foregroundColor = ((CAShapeLayer*)self.indicators[_currentSelectedMenudIndex]).fillColor = self.normalTextColor.CGColor;
+//    [(CALayer *)self.bgLayers[_currentSelectedMenudIndex] setBackgroundColor:BackColor.CGColor];
     
     CAShapeLayer *indicator = (CAShapeLayer *)_indicators[_currentSelectedMenudIndex];
     indicator.position = CGPointMake(title.position.x + title.frame.size.width / 2 + 8, indicator.position.y);

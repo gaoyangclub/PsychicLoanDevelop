@@ -71,9 +71,15 @@
 @property (nonatomic, weak) id <JSDropDownMenuDataSource> dataSource;
 @property (nonatomic, weak) id <JSDropDownMenuDelegate> delegate;
 
-@property (nonatomic, strong) UIColor *indicatorColor;
-@property (nonatomic, strong) UIColor *textColor;
-@property (nonatomic, strong) UIColor *separatorColor;
+//@property (nonatomic, strong) UIColor *indicatorColor;
+@property (nonatomic, strong) UIColor *selectedTextColor;
+@property (nonatomic, strong) UIColor *normalTextColor;
+@property (nonatomic, strong) UIColor *menuBackColor;
+@property (nonatomic, strong) UIColor *itemBackColor;
+//@property (nonatomic, strong) UIColor *separatorColor;
+@property (nonatomic, assign) CGFloat menuFontSize;
+@property (nonatomic, assign) CGFloat itemFontSize;
+
 /**
  *  the width of menu will be set to screen width defaultly
  *

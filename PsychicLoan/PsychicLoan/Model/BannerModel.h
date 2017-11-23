@@ -11,6 +11,7 @@
 @interface BannerModel : NSObject
 
 @property(nonatomic,assign)long loanid;
+@property(nonatomic,copy)NSString* loanname;
 @property(nonatomic,copy)NSString* loanimg;
 
 @end

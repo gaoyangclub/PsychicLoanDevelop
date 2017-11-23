@@ -16,6 +16,7 @@
 #import "LoanTypeViewController.h"
 #import "HomeViewModel.h"
 #import "HomeModel.h"
+#import "DetailViewController.h"
 
 //@interface TestTableViewCell : MJTableViewCell
 //
@@ -113,7 +114,14 @@
 
 
 -(void)didSelectRow:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    CellVo* cvo = [self.tableView getCellVoByIndexPath:indexPath];
+    if ([cvo.cellData isKindOfClass:[LoanModel class]]) {
+        DetailViewController* viewController = [[DetailViewController alloc]init];
+        viewController.loanId = ((LoanModel*)cvo.cellData).loanid;
+        viewController.loanName = ((LoanModel*)cvo.cellData).loanname;
+        viewController.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:viewController animated:YES];
+    }
 }
 
 //-(NSMutableArray<LoanModel*>*)generateTempLoanModels{

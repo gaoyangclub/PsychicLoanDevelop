@@ -77,6 +77,11 @@
 #define HOME_LOCATION_SECTION_HEIGHT rpx(30)
 #define HOME_MORE_TIPS_CELL_HEIGHT rpx(80)
 
+#define DETAIL_LOGO_CELL_HEIGHT rpx(200)
+#define DETAIL_BASIC_CELL_HEIGHT rpx(50)
+#define DETAIL_VIEW_SECTION_HEIGHT rpx(30)
+#define CUSTOM_SERVICE_HEIGHT rpx(50)
+
 //1为左侧按钮，2为中间按钮，3为右侧按钮，4为热门贷款，5为编辑推荐
 #define LOAN_TYPE_HOT 4 //热门贷款
 #define LOAN_TYPE_RECOMMEND 5 //推荐

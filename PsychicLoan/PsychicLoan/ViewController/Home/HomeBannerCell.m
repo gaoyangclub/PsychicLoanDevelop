@@ -9,6 +9,8 @@
 #import "HomeBannerCell.h"
 #import "SDCycleScrollView.h"
 #import "BannerModel.h"
+#import "DetailViewController.h"
+#import "AppDelegate.h"
 
 @interface HomeBannerCell()<SDCycleScrollViewDelegate>
 
@@ -31,9 +33,16 @@
 
 //点击选中后回调
 -(void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
-//    NSArray<BannerModel*>* banners = self.data;
+    NSArray<BannerModel*>* banners = self.data;
     //跳转到对应的数据id
-    NSLog(@"选中banner index:%ld",(long)index);
+//    NSLog(@"选中banner index:%ld",(long)index);
+    if (index < banners.count) {
+        DetailViewController* viewController = [[DetailViewController alloc]init];
+        viewController.loanId = banners[index].loanid;
+        viewController.loanName = banners[index].loanname;
+        viewController.hidesBottomBarWhenPushed = YES;
+        [[AppDelegate getCurrentNavigationController] pushViewController:viewController animated:YES];
+    }
 }
 
 -(void)showSubviews{

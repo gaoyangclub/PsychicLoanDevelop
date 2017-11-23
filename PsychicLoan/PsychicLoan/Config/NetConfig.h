@@ -14,6 +14,7 @@
 
 #define HOME_LOAN_URL ConcatStrings(SERVER_DRIVER_URL,@"/loan-api/home/gethome")
 #define LOAN_TYPE_URL(type) ConcatStrings(SERVER_DRIVER_URL,@"/loan-api/loanlist/getloanlist?type=",@(type))
+#define LOAN_DETAIL_URL(loanid) ConcatStrings(SERVER_DRIVER_URL,@"/loan-api/loaninfo/getloanbyid?loanid=",@(loanid))
 
 
 @interface NetConfig : NSObject

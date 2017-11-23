@@ -10,4 +10,7 @@
 
 @interface DetailViewController : MJTableViewController
 
+@property(nonatomic,assign)long loanId;
+@property(nonatomic,assign)NSString* loanName;
+
 @end

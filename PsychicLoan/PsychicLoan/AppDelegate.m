@@ -14,6 +14,7 @@
 #import "UMMobClick/MobClick.h"
 #import "DIYTabBarItem.h"
 #import "HomeViewController.h"
+#import "LoanMarketViewController.h"
 
 
 @interface AppDelegate ()
@@ -65,7 +66,7 @@
 
 -(GYTabBarController*)createNormalTabBar{
     UINavigationController* itemCtrl1 = [self createNavigationController:[[HomeViewController alloc] init]];
-    UINavigationController* itemCtrl2 = [self createNavigationController:[[ViewController alloc] init]];
+    UINavigationController* itemCtrl2 = [self createNavigationController:[[LoanMarketViewController alloc] init]];
     itemCtrl2.title = @"测试标题2";
     
 //    UINavigationController* itemCtrl3 = [self createNavigationController:[[SortViewController alloc] init]];
