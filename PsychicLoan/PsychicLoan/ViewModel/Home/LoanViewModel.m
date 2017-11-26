@@ -23,4 +23,16 @@
      } WithFailureBlock:failureBlock];
 }
 
+-(void)getLoansByFilter:(int)mintime maxtime:(int)maxtime search:(int)search minamount:(int)minamount maxamount:(int)maxamount returnBlock:(ReturnValueBlock)returnBlock failureBlock:(FailureBlock)failureBlock{
+    [NetRequestClass NetRequestGETWithRequestURL:LOAN_FILTER_URL(mintime, maxtime, search, minamount, maxamount) WithParameter:nil headers:nil WithReturnValeuBlock:
+     ^(id returnValue) {
+         MarketModel* marketModel = [MarketModel yy_modelWithJSON:returnValue];
+         if (marketModel.resultcode > 0) {//请求成功
+             returnBlock(marketModel.data);
+         }else{
+             failureBlock(nil,marketModel.msg);//请求失败描述
+         }
+     } WithFailureBlock:failureBlock];
+}
+
 @end

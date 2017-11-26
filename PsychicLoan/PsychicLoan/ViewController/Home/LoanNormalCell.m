@@ -16,11 +16,12 @@
 @interface LoanNormalCell()
 
 @property(nonatomic,retain) UIImageView* iconView;
-@property(nonatomic,retain) ASDisplayNode* backNode;
+//@property(nonatomic,retain) ASDisplayNode* backNode;
 @property(nonatomic,retain) ASTextNode* titleNode;
 @property(nonatomic,retain) ASTextNode* amountNode;
 @property(nonatomic,retain) ASTextNode* describeNode;
 @property(nonatomic,retain) FlatButton* linkButton;//跳转链接
+@property(nonatomic,retain) ASDisplayNode* lineBottomY;
 
 @end
 
@@ -35,15 +36,15 @@
     return _iconView;
 }
 
--(ASDisplayNode *)backNode{
-    if (!_backNode) {
-        _backNode = [[ASDisplayNode alloc]init];
-        _backNode.backgroundColor = [UIColor whiteColor];
-        _backNode.layerBacked = YES;
-        [self.contentView.layer addSublayer:_backNode.layer];
-    }
-    return _backNode;
-}
+//-(ASDisplayNode *)backNode{
+//    if (!_backNode) {
+//        _backNode = [[ASDisplayNode alloc]init];
+//        _backNode.backgroundColor = [UIColor whiteColor];
+//        _backNode.layerBacked = YES;
+//        [self.contentView.layer addSublayer:_backNode.layer];
+//    }
+//    return _backNode;
+//}
 
 -(ASTextNode *)titleNode{
     if (!_titleNode) {
@@ -75,18 +76,28 @@
 -(FlatButton *)linkButton{
     if (!_linkButton) {
         _linkButton = [[FlatButton alloc]init];
-        _linkButton.strokeColor = COLOR_LINE;
+        _linkButton.strokeColor = COLOR_PRIMARY;
         _linkButton.strokeWidth = LINE_WIDTH;
         _linkButton.cornerRadius = rpx(5);
         _linkButton.fillColor = [UIColor whiteColor];
-        _linkButton.titleColor = COLOR_TEXT_PRIMARY;
-        _linkButton.title = @"借钱";
+        _linkButton.titleColor = COLOR_PRIMARY;
+        _linkButton.title = @"马上借钱";
         _linkButton.titleSize = SIZE_TEXT_PRIMARY;
-        _linkButton.size = CGSizeMake(rpx(60), rpx(26));
+        _linkButton.size = CGSizeMake(rpx(70), rpx(26));
         [self.contentView addSubview:_linkButton];
         [_linkButton addTarget:self action:@selector(clickLinkButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _linkButton;
+}
+
+-(ASDisplayNode *)lineBottomY{
+    if(!_lineBottomY){
+        _lineBottomY = [[ASDisplayNode alloc]init];
+        _lineBottomY.backgroundColor = COLOR_LINE;
+        _lineBottomY.layerBacked = YES;
+        [self.layer addSublayer:_lineBottomY.layer];
+    }
+    return _lineBottomY;
 }
 
 -(void)clickLinkButton:(UIView*)sender{
@@ -98,16 +109,18 @@
 
 -(void)showSubviews{
     
+    self.contentView.backgroundColor = [UIColor whiteColor];
+    
     LoanModel* loanModel = self.data;
     
     CGFloat const leftMargin = rpx(10);
     
-    self.backNode.frame = CGRectMake(leftMargin, 0, self.contentView.width - leftMargin * 2, self.contentView.height);
+//    self.backNode.frame = CGRectMake(leftMargin, 0, self.contentView.width - leftMargin * 2, self.contentView.height);
     
     CGFloat const iconWidth = self.contentView.height - leftMargin * 2;
     self.iconView.size = CGSizeMake(iconWidth, iconWidth);
     self.iconView.centerY = self.contentView.height / 2.;
-    self.iconView.x = leftMargin * 2;
+    self.iconView.x = leftMargin;
     [self.iconView sd_setImageWithURL:[NSURL URLWithString:loanModel.loanlogo]];
     
     CGFloat const textGap = rpx(3);
@@ -129,13 +142,20 @@
     self.describeNode.y = self.amountNode.maxY + textGap;
     
     self.linkButton.centerY = self.contentView.height / 2.;
-    self.linkButton.maxX = self.contentView.width - leftMargin * 2;
+    self.linkButton.maxX = self.contentView.width - leftMargin;
+    
+    if (!self.isLast) {
+        self.lineBottomY.frame = CGRectMake(0, self.height - LINE_WIDTH, self.width, LINE_WIDTH);
+        self.lineBottomY.hidden = NO;
+    }else if(self->_lineBottomY){
+        self.lineBottomY.hidden = YES;
+    }
     
 }
 
--(BOOL)showSelectionStyle{
-    return NO;
-}
+//-(BOOL)showSelectionStyle{
+//    return NO;
+//}
 
 
 @end

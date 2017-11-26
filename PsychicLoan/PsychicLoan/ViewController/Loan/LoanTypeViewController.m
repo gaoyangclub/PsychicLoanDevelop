@@ -131,10 +131,9 @@
     
     self.view.backgroundColor = COLOR_BACKGROUND;
     
-    CGFloat const gap = rpx(10);
-    
-    self.tableView.cellGap = gap;
-    self.tableView.contentInset = UIEdgeInsetsMake(gap, 0, gap, 0);
+//    CGFloat const gap = rpx(10);
+//    self.tableView.cellGap = gap;
+//    self.tableView.contentInset = UIEdgeInsetsMake(gap, 0, gap, 0);
     
 //    self.edgesForExtendedLayout = UIRectEdgeNone;
 }

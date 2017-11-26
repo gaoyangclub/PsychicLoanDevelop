@@ -10,7 +10,7 @@
 #import "LCTabBarBadge.h"
 
 #define selectColor COLOR_PRIMARY
-#define normalColor COLOR_NAVI_TITLE
+#define normalColor COLOR_TEXT_SECONDARY
 
 @interface DIYTabBarItem(){
     BOOL badgeChange;
@@ -129,21 +129,21 @@
 //        self.customBadge.hidden = YES;
 //    }
     self.backgroundColor = [UIColor clearColor];
-    [self setNeedsDisplay];
+//    [self setNeedsDisplay];
 }
 
--(void)drawRect:(CGRect)rect{
-    if(self.selected){
-        //设置圆角矩形范围
-        CGFloat toppadding = 2;
-        CGFloat leftpadding = 5;
-        CGRect pathRect = CGRectMake(leftpadding, toppadding, CGRectGetWidth(rect) - leftpadding * 2, CGRectGetHeight(rect) - toppadding * 2);
-        UIBezierPath* path = [UIBezierPath bezierPathWithRoundedRect:pathRect cornerRadius:3.];
-        
-        [[selectColor colorWithAlphaComponent:0.3] setFill];
-        [path fill];
-    }
-}
+//-(void)drawRect:(CGRect)rect{
+//    if(self.selected){
+//        //设置圆角矩形范围
+//        CGFloat toppadding = 2;
+//        CGFloat leftpadding = 5;
+//        CGRect pathRect = CGRectMake(leftpadding, toppadding, CGRectGetWidth(rect) - leftpadding * 2, CGRectGetHeight(rect) - toppadding * 2);
+//        UIBezierPath* path = [UIBezierPath bezierPathWithRoundedRect:pathRect cornerRadius:3.];
+//        
+//        [[selectColor colorWithAlphaComponent:0.3] setFill];
+//        [path fill];
+//    }
+//}
 
 @end
 

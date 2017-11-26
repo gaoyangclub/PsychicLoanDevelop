@@ -10,12 +10,11 @@
 #import "FlatButton.h"
 #import "DetailViewModel.h"
 #import "LoanDetailModel.h"
-#import "HomeLoanTitleSection.h"
 #import "DetailBasicCell.h"
 #import "DetailLogoCell.h"
-#import "DetailTitleSection.h"
 #import "DetailMaterialCell.h"
 #import "CustomerServiceCell.h"
+#import "LoanTitleSection.h"
 
 @interface DetailViewController ()
 
@@ -101,15 +100,15 @@
         [svo.data addObject:[CellVo initWithParams:DETAIL_LOGO_CELL_HEIGHT cellClass:[DetailLogoCell class] cellData:loanDetailModel cellTag:CELL_TAG_NORMAL isUnique:YES]];
         [strongSelf.tableView addSource:svo];
         
-        svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:DETAIL_VIEW_SECTION_HEIGHT headerClass:[DetailTitleSection class] headerData:@"基本信息"];
+        svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:LOAN_SECTION_HEIGHT headerClass:[LoanTitleSection class] headerData:@"基本信息"];
         [svo.data addObject:[CellVo initWithParams:DETAIL_BASIC_CELL_HEIGHT cellClass:[DetailBasicCell class] cellData:loanDetailModel cellTag:CELL_TAG_NORMAL isUnique:YES]];
         [strongSelf.tableView addSource:svo];
         
-        svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:DETAIL_VIEW_SECTION_HEIGHT headerClass:[DetailTitleSection class] headerData:@"申请资料"];
+        svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:LOAN_SECTION_HEIGHT headerClass:[LoanTitleSection class] headerData:@"申请资料"];
         [svo.data addObject:[CellVo initWithParams:1 cellClass:[DetailMaterialCell class] cellData:loanDetailModel cellTag:CELL_TAG_NORMAL isUnique:YES]];
         [strongSelf.tableView addSource:svo];
         
-        svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:DETAIL_VIEW_SECTION_HEIGHT headerClass:[DetailTitleSection class] headerData:@"客服信息"];
+        svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:LOAN_SECTION_HEIGHT headerClass:[LoanTitleSection class] headerData:@"客服信息"];
         [svo.data addObject:[CellVo initWithParams:CUSTOM_SERVICE_HEIGHT cellClass:[CustomerServiceCell class] cellData:nil cellTag:CELL_TAG_NORMAL isUnique:YES]];
         [strongSelf.tableView addSource:svo];
         

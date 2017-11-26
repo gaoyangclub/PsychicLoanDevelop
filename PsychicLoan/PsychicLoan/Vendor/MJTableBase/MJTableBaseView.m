@@ -522,7 +522,7 @@
             //            var preCellVo:CellVo? = nil
             if(svo && svo.data != nil && svo.data.count > 0){
                 for (NSInteger j = svo.data.count - 1; j >= 0; j --) {
-                    if(self.sectionGap > 0 && j == svo.data.count - 1 && i != self.dataArray.count - 1){//非最后一节 且最后一个实体存到最后
+                    if(self.sectionGap > 0 && j == svo.data.count - 1 && i != self.dataArray.count - 1 && [self getSourceByIndex:i + 1].headerHeight > 0){//非最后一节 且最后一个实体存到最后 且下一个section有高度
                         [svo.data addObject:[self getSectionGapCellVo]];
                     }else if(self.cellGap > 0 && j != svo.data.count - 1){//不是最后一个直接插入
                         [svo.data insertObject:[self getCellGapCellVo] atIndex:j + 1];

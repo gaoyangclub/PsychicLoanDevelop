@@ -43,9 +43,10 @@ static NSArray<NSNumber*>* loanTpyes;
     if (!_imageNode) {
         _imageNode = [[FlatButton alloc]init];
         _imageNode.titleFontName = ICON_FONT_NAME;
-        _imageNode.titleColor = [UIColor whiteColor];
+        _imageNode.titleColor = COLOR_PRIMARY;
         _imageNode.titleSize = rpx(30);
-        _imageNode.cornerRadius = rpx(10);
+        _imageNode.fillColor = [UIColor clearColor];
+//        _imageNode.cornerRadius = rpx(10);
         _imageNode.userInteractionEnabled = NO;
         [self addSubview:_imageNode];
     }
@@ -76,7 +77,7 @@ static NSArray<NSNumber*>* loanTpyes;
     self.titleNode.size = [self.titleNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
 
     self.imageNode.title = self.image;
-    self.imageNode.fillColor = self.imageColor;
+//    self.imageNode.fillColor = self.imageColor;
     CGFloat const nodeSizeWidth = self.height - rpx(36);
     self.imageNode.size = CGSizeMake(nodeSizeWidth,nodeSizeWidth);
     
@@ -96,7 +97,9 @@ static NSArray<NSNumber*>* loanTpyes;
 @implementation HomeFastCell
 
 -(void)showSubviews{
-    NSArray<UIColor*>* itemImageColors = @[FlatWatermelon,FlatOrange,FlatSkyBlue];
+    self.backgroundColor = [UIColor whiteColor];
+    
+//    NSArray<UIColor*>* itemImageColors = @[FlatWatermelon,FlatOrange,FlatSkyBlue];
     NSArray<NSString*>* itemImages = @[ICON_FEN_XIANG,ICON_SHOU_ZHI,ICON_QIAN_DAO];
     
     CGFloat const itemWidth = self.contentView.width / loanTpyes.count;
@@ -104,7 +107,7 @@ static NSArray<NSNumber*>* loanTpyes;
     for (NSInteger i = 0; i < loanTpyes.count; i++) {
         HomeFastItem* item = [[HomeFastItem alloc]init];
         item.title = [Config getLoanTypeNameByCode:[loanTpyes[i] intValue]];
-        item.imageColor = itemImageColors[i];
+//        item.imageColor = itemImageColors[i];
         item.image = itemImages[i];
         [self.contentView addSubview:item];
         item.frame = CGRectMake(i * itemWidth, 0, itemWidth, self.contentView.height);

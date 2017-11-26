@@ -24,7 +24,7 @@
 #define SIZE_NAVI_TITLE rpx(16)
 
 //#define COLOR_BLACK_ORIGINAL rgba(95,95,95,1)
-#define COLOR_NAVI_TITLE COLOR_TEXT_SECONDARY
+#define COLOR_NAVI_TITLE [UIColor whiteColor]//COLOR_TEXT_SECONDARY
 
 #define COLOR_PRIMARY FlatSkyBlue//rgb(23,182,46)//FlatMint//COLOR_YI_WAN_CHENG//rgba(23,182,46,1)//[Config getPrimaryColor]
 #define COLOR_ACCENT rgb(120,196,112)
@@ -74,12 +74,12 @@
 #define HOME_BANNER_CELL_HEIGHT rpx(180)
 #define HOME_FAST_CELL_HEIGHT rpx(80)
 #define HOME_LOAN_NORMAL_CELL_HEIGHT rpx(70)
-#define HOME_LOCATION_SECTION_HEIGHT rpx(30)
+#define LOAN_SECTION_HEIGHT rpx(30)
 #define HOME_MORE_TIPS_CELL_HEIGHT rpx(80)
 
 #define DETAIL_LOGO_CELL_HEIGHT rpx(200)
 #define DETAIL_BASIC_CELL_HEIGHT rpx(50)
-#define DETAIL_VIEW_SECTION_HEIGHT rpx(30)
+//#define DETAIL_VIEW_SECTION_HEIGHT rpx(30)
 #define CUSTOM_SERVICE_HEIGHT rpx(50)
 
 //1为左侧按钮，2为中间按钮，3为右侧按钮，4为热门贷款，5为编辑推荐

@@ -117,16 +117,15 @@
 		84E7B19E1FC57BD700F19C20 /* DetailBasicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E7B19D1FC57BD700F19C20 /* DetailBasicCell.m */; };
 		84E7B1A11FC5948400F19C20 /* DetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E7B1A01FC5948400F19C20 /* DetailViewModel.m */; };
 		84E7B1A41FC5A32A00F19C20 /* DetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E7B1A31FC5A32A00F19C20 /* DetailModel.m */; };
-		84E7B1A71FC5A54E00F19C20 /* DetailTitleSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E7B1A61FC5A54E00F19C20 /* DetailTitleSection.m */; };
 		9BE58829F8B34BE780DB324C /* libPods-PsychicLoan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC1525BC4E9F08DE81E84B09 /* libPods-PsychicLoan.a */; };
 		A9D8EF7A1FC14BA2000CCEBC /* LoanTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D8EF791FC14BA2000CCEBC /* LoanTypeViewController.m */; };
 		A9D934DA1FBFD20200FAC005 /* demo_unicode.html in Resources */ = {isa = PBXBuildFile; fileRef = A9D934D81FBFD20200FAC005 /* demo_unicode.html */; };
 		A9D934DB1FBFD20200FAC005 /* iconfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9D934D91FBFD20200FAC005 /* iconfont.ttf */; };
-		A9D934DE1FBFFC3000FAC005 /* HomeLoanTitleSection.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D934DD1FBFFC3000FAC005 /* HomeLoanTitleSection.m */; };
 		A9D934E21FC0072A00FAC005 /* LoanModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D934E11FC0072A00FAC005 /* LoanModel.m */; };
 		A9D934E51FC0115A00FAC005 /* LoanNormalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D934E41FC0115A00FAC005 /* LoanNormalCell.m */; };
 		A9D934EA1FC0304100FAC005 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D934E91FC0304100FAC005 /* WebViewController.m */; };
 		A9D934EC1FC03F3D00FAC005 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D934EB1FC03F3D00FAC005 /* WebKit.framework */; };
+		A9D960641FCA75AE00629E9F /* LoanTitleSection.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D960631FCA75AE00629E9F /* LoanTitleSection.m */; };
 		A9D9F5D21FC0796200927976 /* HomeMoreTipsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D9F5D11FC0796200927976 /* HomeMoreTipsCell.m */; };
 /* End PBXBuildFile section */
 
@@ -358,14 +357,10 @@
 		84E7B1A01FC5948400F19C20 /* DetailViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewModel.m; sourceTree = "<group>"; };
 		84E7B1A21FC5A32A00F19C20 /* DetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailModel.h; sourceTree = "<group>"; };
 		84E7B1A31FC5A32A00F19C20 /* DetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailModel.m; sourceTree = "<group>"; };
-		84E7B1A51FC5A54E00F19C20 /* DetailTitleSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailTitleSection.h; sourceTree = "<group>"; };
-		84E7B1A61FC5A54E00F19C20 /* DetailTitleSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailTitleSection.m; sourceTree = "<group>"; };
 		A9D8EF781FC14BA2000CCEBC /* LoanTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanTypeViewController.h; sourceTree = "<group>"; };
 		A9D8EF791FC14BA2000CCEBC /* LoanTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanTypeViewController.m; sourceTree = "<group>"; };
 		A9D934D81FBFD20200FAC005 /* demo_unicode.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = demo_unicode.html; sourceTree = "<group>"; };
 		A9D934D91FBFD20200FAC005 /* iconfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = iconfont.ttf; sourceTree = "<group>"; };
-		A9D934DC1FBFFC3000FAC005 /* HomeLoanTitleSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeLoanTitleSection.h; sourceTree = "<group>"; };
-		A9D934DD1FBFFC3000FAC005 /* HomeLoanTitleSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeLoanTitleSection.m; sourceTree = "<group>"; };
 		A9D934E01FC0072A00FAC005 /* LoanModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanModel.h; sourceTree = "<group>"; };
 		A9D934E11FC0072A00FAC005 /* LoanModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanModel.m; sourceTree = "<group>"; };
 		A9D934E31FC0115A00FAC005 /* LoanNormalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanNormalCell.h; sourceTree = "<group>"; };
@@ -373,6 +368,8 @@
 		A9D934E81FC0304100FAC005 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		A9D934E91FC0304100FAC005 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		A9D934EB1FC03F3D00FAC005 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		A9D960621FCA75AE00629E9F /* LoanTitleSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanTitleSection.h; sourceTree = "<group>"; };
+		A9D960631FCA75AE00629E9F /* LoanTitleSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanTitleSection.m; sourceTree = "<group>"; };
 		A9D9F5D01FC0796200927976 /* HomeMoreTipsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeMoreTipsCell.h; sourceTree = "<group>"; };
 		A9D9F5D11FC0796200927976 /* HomeMoreTipsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeMoreTipsCell.m; sourceTree = "<group>"; };
 		B81875451C42493159916A45 /* Pods-PsychicLoan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PsychicLoan.release.xcconfig"; path = "Pods/Target Support Files/Pods-PsychicLoan/Pods-PsychicLoan.release.xcconfig"; sourceTree = "<group>"; };
@@ -411,8 +408,6 @@
 				843A9FBB1FC2B451006C27F7 /* DetailLogoCell.m */,
 				84E7B19C1FC57BD700F19C20 /* DetailBasicCell.h */,
 				84E7B19D1FC57BD700F19C20 /* DetailBasicCell.m */,
-				84E7B1A51FC5A54E00F19C20 /* DetailTitleSection.h */,
-				84E7B1A61FC5A54E00F19C20 /* DetailTitleSection.m */,
 				84796EE91FC66A150040E2A7 /* DetailMaterialCell.h */,
 				84796EEA1FC66A150040E2A7 /* DetailMaterialCell.m */,
 				84796EEC1FC670B30040E2A7 /* CustomerServiceCell.h */,
@@ -930,10 +925,10 @@
 				84649CA21FBD9A2B003CA624 /* HomeBannerCell.m */,
 				848B68911FBF0135008D38C0 /* HomeFastCell.h */,
 				848B68921FBF0135008D38C0 /* HomeFastCell.m */,
-				A9D934DC1FBFFC3000FAC005 /* HomeLoanTitleSection.h */,
-				A9D934DD1FBFFC3000FAC005 /* HomeLoanTitleSection.m */,
 				A9D934E31FC0115A00FAC005 /* LoanNormalCell.h */,
 				A9D934E41FC0115A00FAC005 /* LoanNormalCell.m */,
+				A9D960621FCA75AE00629E9F /* LoanTitleSection.h */,
+				A9D960631FCA75AE00629E9F /* LoanTitleSection.m */,
 				A9D9F5D01FC0796200927976 /* HomeMoreTipsCell.h */,
 				A9D9F5D11FC0796200927976 /* HomeMoreTipsCell.m */,
 			);
@@ -1206,7 +1201,6 @@
 				8483F14B1FBD7D5F00EFD7EB /* RoundBackView.m in Sources */,
 				8483F0891FBD73A400EFD7EB /* LCTabBarBadge.m in Sources */,
 				8483F0971FBD73A400EFD7EB /* QBAlbumCell.m in Sources */,
-				A9D934DE1FBFFC3000FAC005 /* HomeLoanTitleSection.m in Sources */,
 				8483F10E1FBD787F00EFD7EB /* ASDisplayNode+GY.m in Sources */,
 				843A9FCA1FC2C18D006C27F7 /* NetConfig.m in Sources */,
 				84796EF11FC677660040E2A7 /* LoanMarketViewController.m in Sources */,
@@ -1216,6 +1210,7 @@
 				8483F0B41FBD73A400EFD7EB /* NSBundle+MJRefresh.m in Sources */,
 				A9D934E21FC0072A00FAC005 /* LoanModel.m in Sources */,
 				843A9FC71FC2BE74006C27F7 /* HomeViewModel.m in Sources */,
+				A9D960641FCA75AE00629E9F /* LoanTitleSection.m in Sources */,
 				8483F1691FBD83A500EFD7EB /* PopAnimateManager.m in Sources */,
 				8483F1421FBD7D5F00EFD7EB /* NormalSelectItem.m in Sources */,
 				A9D934E51FC0115A00FAC005 /* LoanNormalCell.m in Sources */,
@@ -1247,7 +1242,6 @@
 				8483F0C41FBD73A400EFD7EB /* UICreationUtils.m in Sources */,
 				8483F0E21FBD76E600EFD7EB /* JKBackIndicatorButton.m in Sources */,
 				8483F0BC1FBD73A400EFD7EB /* MJTableViewSection.m in Sources */,
-				84E7B1A71FC5A54E00F19C20 /* DetailTitleSection.m in Sources */,
 				A9D8EF7A1FC14BA2000CCEBC /* LoanTypeViewController.m in Sources */,
 				843A9FD61FC2E82A006C27F7 /* BaseModel.m in Sources */,
 				8483F0A51FBD73A400EFD7EB /* MJRefreshBackFooter.m in Sources */,

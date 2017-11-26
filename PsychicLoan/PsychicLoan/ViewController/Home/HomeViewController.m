@@ -9,7 +9,6 @@
 #import "HomeViewController.h"
 #import "HomeBannerCell.h"
 #import "HomeFastCell.h"
-#import "HomeLoanTitleSection.h"
 #import "LoanModel.h"
 #import "LoanNormalCell.h"
 #import "HomeMoreTipsCell.h"
@@ -17,6 +16,7 @@
 #import "HomeViewModel.h"
 #import "HomeModel.h"
 #import "DetailViewController.h"
+#import "LoanTitleSection.h"
 
 //@interface TestTableViewCell : MJTableViewCell
 //
@@ -68,7 +68,7 @@
     self.titleLabel.text = NAVIGATION_TITLE_HOME;//self.shipmentBean.code;//标题显示TO号
     [self.titleLabel sizeToFit];
     self.navigationItem.titleView = self.titleLabel;
-    self.navigationController.navigationBar.jk_barBackgroundColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.jk_barBackgroundColor = COLOR_PRIMARY;//[UIColor whiteColor];
 //    if (!self.hidesBottomBarWhenPushed) {
 //        self.edgesForExtendedLayout = UIRectEdgeNone;
 //    }
@@ -88,13 +88,13 @@
         [svo.data addObject:[CellVo initWithParams:HOME_FAST_CELL_HEIGHT cellClass:[HomeFastCell class] cellData:NULL cellTag:CELL_TAG_NORMAL isUnique:YES]];
         [strongSelf.tableView addSource:svo];
         
-        svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:HOME_LOCATION_SECTION_HEIGHT headerClass:[HomeLoanTitleSection class] headerData:@(LOAN_TYPE_HOT)];
+        svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:LOAN_SECTION_HEIGHT headerClass:[LoanTitleSection class] headerData:[Config getLoanTypeNameByCode:LOAN_TYPE_HOT]];
 //        NSMutableArray<LoanModel*>* loanModels = [self generateTempLoanModels];
         for (LoanModel* loanModel in homeModel.hotloan) {
             [svo.data addObject:[CellVo initWithParams:HOME_LOAN_NORMAL_CELL_HEIGHT cellClass:[LoanNormalCell class] cellData:loanModel]];
         }
         [strongSelf.tableView addSource:svo];
-        svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:HOME_LOCATION_SECTION_HEIGHT headerClass:[HomeLoanTitleSection class] headerData:@(LOAN_TYPE_RECOMMEND)];
+        svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:LOAN_SECTION_HEIGHT headerClass:[LoanTitleSection class] headerData:[Config getLoanTypeNameByCode:LOAN_TYPE_HOT]];
 //        loanModels = [self generateTempLoanModels];
         for (LoanModel* loanModel in homeModel.recommend) {
             [svo.data addObject:[CellVo initWithParams:HOME_LOAN_NORMAL_CELL_HEIGHT cellClass:[LoanNormalCell class] cellData:loanModel]];
@@ -157,7 +157,7 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = COLOR_BACKGROUND;
-    self.tableView.cellGap = rpx(10);
+    self.tableView.sectionGap = rpx(5);
     
     [self initNavigationItem];
 }
