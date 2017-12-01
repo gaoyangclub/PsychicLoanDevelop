@@ -15,13 +15,18 @@
 #import "DetailMaterialCell.h"
 #import "CustomerServiceCell.h"
 #import "LoanTitleSection.h"
+#import "HudManager.h"
+#import "UserDefaultsUtils.h"
+#import "AppDelegate.h"
+#import "WebViewController.h"
 
-@interface DetailViewController ()
+@interface DetailViewController (){
+    LoanDetailModel* loanDetailResult;
+}
 
 @property(nonatomic,retain)UILabel* titleLabel;
 @property(nonatomic,retain)FlatButton* submitButton;
 @property(nonatomic,retain)DetailViewModel* viewModel;
-
 
 @end
 
@@ -74,7 +79,24 @@
 }
 
 -(void)clickSubmitButton:(UIView*)sender{
-    
+    if (![UserDefaultsUtils getObject:PHONE_KEY]) {//重新登录
+        [((AppDelegate*)[UIApplication sharedApplication].delegate) popLoginViewController];
+        __weak __typeof(self) weakSelf = self;
+        [[[NSNotificationCenter defaultCenter] rac_addObserverForName:EVENT_LOGIN_COMPLETE object:nil] subscribeNext:^(id x) {
+            [weakSelf gotoWebViewController:NO];
+        }];
+    }else{
+        [self gotoWebViewController:YES];
+    }
+}
+
+-(void)gotoWebViewController:(BOOL)animated{
+    if (self->loanDetailResult) {
+        WebViewController* viewController = [[WebViewController alloc]init];
+        //    viewController.hidesBottomBarWhenPushed = YES;
+        viewController.linkUrl = self->loanDetailResult.loanurl;
+        [self.navigationController pushViewController:viewController animated:animated];
+    }
 }
 
 -(CGRect)getTableViewFrame{
@@ -94,6 +116,11 @@
     __weak __typeof(self) weakSelf = self;
     [self.viewModel getLoanDetailById:self.loanId returnBlock:^(LoanDetailModel* loanDetailModel) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
+        if(!strongSelf){//界面销毁了
+            return;
+        }
+        strongSelf->loanDetailResult = loanDetailModel;
+        
         [strongSelf.tableView clearSource];
         
         SourceVo* svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:0 headerClass:nil headerData:nil];
@@ -114,7 +141,10 @@
         
         handler(YES);
     } failureBlock:^(NSString *errorCode, NSString *errorMsg) {
-        
+        [HudManager showToast:errorMsg];
+//        self.emptyDataSource.netError = YES;
+//        [self.tableView clearSource];
+        handler(NO);
     }];
 }
 

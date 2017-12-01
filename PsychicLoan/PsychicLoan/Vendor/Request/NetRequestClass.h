@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define GetBody(bean) [NSJSONSerialization dataWithJSONObject:[bean yy_modelToJSONObject] options:kNilOptions error:NULL]
+
 typedef void (^ReturnValueBlock) (id returnValue);
 typedef void (^FailureBlock) (NSString* errorCode,NSString* errorMsg);
 typedef void (^ProgressValueBlock) (float completed,float total,NSString* title);

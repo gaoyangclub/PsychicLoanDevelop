@@ -238,6 +238,11 @@ static BOOL netState;
 //        NSLog(@"key: %@ value: %@", key, headers[key]);
         [manager.requestSerializer setValue:headers[key] forHTTPHeaderField:key];
     }
+    [manager.requestSerializer setValue:@"multipart/form-data" forHTTPHeaderField:@"Content-Type"];
+    
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];//设置服务器允许的请求格式内容
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain", @"multipart/form-data", @"application/json", @"text/html", @"image/jpeg", @"image/png", @"application/octet-stream", @"text/json", nil];
+    
     [manager POST:requestURLString parameters:parameter constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         //        if (body) {
         //            [formData appendPartWithHeaders:headers body:body];

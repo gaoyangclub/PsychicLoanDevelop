@@ -11,11 +11,13 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
+@property(nonatomic,strong) UIWindow *window;
 
-@property(nonatomic,retain)GYTabBarController* rootTabBarController;
+@property(nonatomic,retain) GYTabBarController* rootTabBarController;
 
-+ (UINavigationController *)getCurrentNavigationController;
+-(void)popLoginViewController;//全局弹出登录界面
+
++(UINavigationController *)getCurrentNavigationController;
 
 @end
 

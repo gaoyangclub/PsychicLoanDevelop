@@ -12,10 +12,14 @@
 #import "LoanNormalCell.h"
 #import "AppDelegate.h"
 #import "LoanViewModel.h"
+#import "DetailViewController.h"
 
 @interface LoanTypeViewController()
 
-@property(nonatomic,retain)FlatButton* noticeArea;
+//@property(nonatomic,retain)FlatButton* noticeArea;
+@property(nonatomic,retain)ASDisplayNode* noticeBack;
+@property(nonatomic,retain)ASTextNode* noticeLabel;
+@property(nonatomic,retain)ASTextNode* noticeIcon;
 @property(nonatomic,retain)UILabel* titleLabel;
 @property(nonatomic,retain)LoanViewModel* viewModel;
 
@@ -37,24 +41,56 @@
     return _viewModel;
 }
 
--(FlatButton *)noticeArea{
-    if (!_noticeArea) {
-        _noticeArea = [[FlatButton alloc]init];
-        _noticeArea.titleSize = SIZE_TEXT_SECONDARY;
-        _noticeArea.titleColor = COLOR_TEXT_PRIMARY;
-        _noticeArea.title = @"公告:审核防水，要借速度";
-        _noticeArea.fillColor = [FlatSkyBlue colorWithAlphaComponent:0.3];
-        _noticeArea.cornerRadius = 0;
-        [self.view addSubview:_noticeArea];
+-(ASDisplayNode *)noticeBack{
+    if (!_noticeBack) {
+        _noticeBack = [[ASDisplayNode alloc]init];
+        _noticeBack.backgroundColor = COLOR_NOTICE_BACK;
+        _noticeBack.layerBacked = YES;
+        [self.view.layer addSublayer:_noticeBack.layer];
     }
-    return _noticeArea;
+    return _noticeBack;
 }
 
+-(ASTextNode *)noticeIcon{
+    if (!_noticeIcon) {
+        _noticeIcon = [[ASTextNode alloc]init];
+        _noticeIcon.layerBacked = YES;
+        _noticeIcon.attributedString = [NSString simpleAttributedString:ICON_FONT_NAME color:[UIColor whiteColor] size:rpx(18) content:ICON_GONG_GAO];
+        _noticeIcon.size = [_noticeIcon measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+        [self.noticeBack addSubnode:_noticeIcon];
+    }
+    return _noticeIcon;
+}
+
+-(ASTextNode *)noticeLabel{
+    if (!_noticeLabel) {
+        _noticeLabel = [[ASTextNode alloc]init];
+        _noticeLabel.layerBacked = YES;
+        _noticeLabel.attributedString = [NSString simpleAttributedString:[UIColor whiteColor] size:SIZE_TEXT_PRIMARY content:LOAN_TYPE_PAGE_NOTICE_TEXT];
+        _noticeLabel.size = [_noticeLabel measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+        [self.noticeBack addSubnode:_noticeLabel];
+    }
+    return _noticeLabel;
+}
+
+//-(FlatButton *)noticeArea{
+//    if (!_noticeArea) {
+//        _noticeArea = [[FlatButton alloc]init];
+//        _noticeArea.titleSize = SIZE_TEXT_SECONDARY;
+//        _noticeArea.titleColor = COLOR_TEXT_PRIMARY;
+//        _noticeArea.title = @"公告:审核防水，要借速度";
+//        _noticeArea.fillColor = [FlatSkyBlue colorWithAlphaComponent:0.3];
+//        _noticeArea.cornerRadius = 0;
+//        [self.view addSubview:_noticeArea];
+//    }
+//    return _noticeArea;
+//}
+
 -(CGRect)getTableViewFrame{
-    CGFloat const noticeHeight = rpx(30);
-    self.noticeArea.frame = CGRectMake(0, 0, self.view.width, noticeHeight);
+//    CGFloat const noticeHeight = rpx(30);
+    self.noticeBack.frame = CGRectMake(0, 0, self.view.width, NOTICE_BACK_HEIGHT);
     
-    return CGRectMake(0, noticeHeight, self.view.width, self.view.height - noticeHeight);
+    return CGRectMake(0, NOTICE_BACK_HEIGHT, self.view.width, self.view.height - NOTICE_BACK_HEIGHT);
 }
 
 -(BOOL)getShowFooter{
@@ -136,6 +172,20 @@
 //    self.tableView.contentInset = UIEdgeInsetsMake(gap, 0, gap, 0);
     
 //    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
+    CGFloat const leftMargin = rpx(10);
+    self.noticeLabel.centerY = self.noticeIcon.centerY = NOTICE_BACK_HEIGHT / 2.;
+    self.noticeIcon.x = leftMargin;
+    self.noticeLabel.x = self.noticeIcon.maxX + leftMargin;
+}
+
+-(void)didSelectRow:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    CellVo* cvo = [self.tableView getCellVoByIndexPath:indexPath];
+    DetailViewController* viewController = [[DetailViewController alloc]init];
+    viewController.loanId = ((LoanModel*)cvo.cellData).loanid;
+    viewController.loanName = ((LoanModel*)cvo.cellData).loanname;
+    viewController.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 @end

@@ -9,16 +9,21 @@
 #import "NormalSelectItem.h"
 #import "RoundRectNode.h"
 #import "UIArrowView.h"
+#import "FlatButton.h"
 
 @interface NormalSelectItem()
 
 @property(nonatomic,retain)ASDisplayNode* topLine;
 @property(nonatomic,retain)ASDisplayNode* bottomLine;
-@property(nonatomic,retain)RoundRectNode* iconArea;
-@property(nonatomic,retain)ASTextNode* iconText;
+//@property(nonatomic,retain)RoundRectNode* iconArea;
+//@property(nonatomic,retain)ASTextNode* iconText;
+@property(nonatomic,retain)FlatButton* iconArea;
+
 @property(nonatomic,retain)UIArrowView* rightArrow;
 
 @property(nonatomic,retain)ASTextNode* labelText;
+
+@property(nonatomic,retain)UIImageView* iconImage;
 
 @end
 
@@ -69,22 +74,32 @@
     return _bottomLine;
 }
 
--(RoundRectNode *)iconArea{
+-(FlatButton *)iconArea{
     if (!_iconArea) {
-        _iconArea = [[RoundRectNode alloc]init];
-        _iconArea.layerBacked = YES;
-        [self.layer addSublayer:_iconArea.layer];
+        _iconArea = [[FlatButton alloc]init];
+        _iconArea.titleFontName = ICON_FONT_NAME;
+//        _iconArea.layerBacked = YES;
+        [self addSubview:_iconArea];
     }
     return _iconArea;
 }
 
--(ASTextNode *)iconText{
-    if (!_iconText) {
-        _iconText = [[ASTextNode alloc]init];
-        _iconText.layerBacked = YES;
-        [self.iconArea addSubnode:_iconText];
+//-(ASTextNode *)iconText{
+//    if (!_iconText) {
+//        _iconText = [[ASTextNode alloc]init];
+//        _iconText.layerBacked = YES;
+//        [self.iconArea addSubnode:_iconText];
+//    }
+//    return _iconText;
+//}
+
+-(UIImageView *)iconImage{
+    if (!_iconImage) {
+        _iconImage = [[UIImageView alloc]init];
+        _iconImage.contentMode = UIViewContentModeScaleAspectFit;
+        [self addSubview:_iconImage];
     }
-    return _iconText;
+    return _iconImage;
 }
 
 -(ASTextNode *)labelText{
@@ -121,6 +136,11 @@
     [self setNeedsLayout];
 }
 
+-(void)setIconName:(NSString *)iconName{
+    _iconName = iconName;
+    [self setNeedsLayout];
+}
+
 //-(void)setFrame:(CGRect)frame{
 //    [super setFrame:frame];
 //    //重新布局
@@ -146,26 +166,36 @@
     
     CGFloat iconHeight = viewHeight - self.iconMargin * 2;
     
-    if(self.showIconLine){
-        self.iconArea.strokeColor = self.strokeColor;
-        self.iconArea.strokeWidth = self.strokeWidth;
+    if (self.showIconImage) {
+        
+        if(_iconArea)_iconArea.hidden = YES;
+        
+        self.iconImage.hidden = NO;
+        
+        self.iconImage.image = [UIImage imageNamed:self.iconName];
+        
+        self.iconImage.frame = CGRectMake(self.iconMargin, self.iconMargin, iconHeight, iconHeight);
     }else{
-        self.iconArea.strokeWidth = 0;
-        self.iconArea.strokeColor = [UIColor clearColor];
+        if(_iconImage)_iconImage.hidden = YES;
+        
+        self.iconArea.hidden = NO;
+        
+        if(self.showIconLine){
+            self.iconArea.strokeColor = self.strokeColor;
+            self.iconArea.strokeWidth = self.strokeWidth;
+        }else{
+            self.iconArea.strokeWidth = 0;
+            self.iconArea.strokeColor = [UIColor clearColor];
+        }
+        self.iconArea.cornerRadius = self.iconCornerRadius;
+        self.iconArea.fillColor = self.iconBackColor;
+        
+        self.iconArea.titleColor = self.iconColor;
+        self.iconArea.titleSize = self.iconSize;
+        self.iconArea.title = self.iconName;
+        
+        self.iconArea.frame = CGRectMake(self.iconMargin, self.iconMargin, iconHeight, iconHeight);
     }
-    self.iconArea.cornerRadius = self.iconCornerRadius;
-    self.iconArea.fillColor = self.iconBackColor;
-    
-    
-    self.iconArea.frame = CGRectMake(self.iconMargin, self.iconMargin, iconHeight, iconHeight);
-    
-    self.iconText.attributedString = [NSString simpleAttributedString:ICON_FONT_NAME color:self.iconColor size:self.iconSize content:self.iconName];
-    CGSize iconSize = [self.iconText measure:CGSizeMake(FLT_MAX, FLT_MAX)];
-    
-    self.iconText.frame = (CGRect){
-        CGPointMake((iconHeight - iconSize.width) / 2., (iconHeight - iconSize.height) / 2.),
-        iconSize
-    };
     
     self.labelText.hidden = !self.showLabel;
     if (self.showLabel) {

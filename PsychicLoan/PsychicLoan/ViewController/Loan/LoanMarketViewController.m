@@ -11,12 +11,17 @@
 #import "LoanViewModel.h"
 #import "LoanModel.h"
 #import "LoanNormalCell.h"
+#import "DetailViewController.h"
 
 @interface LoanMarketViewController()<LoanMarketFilterDelegate>
 
 @property(nonatomic,retain)LoanMarketFilterView* filterView;
 @property(nonatomic,retain)UILabel* titleLabel;
 @property(nonatomic,retain)LoanViewModel* viewModel;
+
+@property(nonatomic,retain)ASDisplayNode* noticeBack;
+@property(nonatomic,retain)ASTextNode* noticeLabel;
+@property(nonatomic,retain)ASTextNode* noticeIcon;
 
 @end
 
@@ -53,9 +58,42 @@
     return _filterView;
 }
 
+-(ASDisplayNode *)noticeBack{
+    if (!_noticeBack) {
+        _noticeBack = [[ASDisplayNode alloc]init];
+        _noticeBack.backgroundColor = COLOR_NOTICE_BACK;
+        _noticeBack.layerBacked = YES;
+        [self.view.layer addSublayer:_noticeBack.layer];
+    }
+    return _noticeBack;
+}
+
+-(ASTextNode *)noticeIcon{
+    if (!_noticeIcon) {
+        _noticeIcon = [[ASTextNode alloc]init];
+        _noticeIcon.layerBacked = YES;
+        _noticeIcon.attributedString = [NSString simpleAttributedString:ICON_FONT_NAME color:[UIColor whiteColor] size:rpx(18) content:ICON_GONG_GAO];
+        _noticeIcon.size = [_noticeIcon measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+        [self.noticeBack addSubnode:_noticeIcon];
+    }
+    return _noticeIcon;
+}
+
+-(ASTextNode *)noticeLabel{
+    if (!_noticeLabel) {
+        _noticeLabel = [[ASTextNode alloc]init];
+        _noticeLabel.layerBacked = YES;
+        _noticeLabel.attributedString = [NSString simpleAttributedString:[UIColor whiteColor] size:SIZE_TEXT_PRIMARY content:LOAN_MARKET_PAGE_NOTICE_TEXT];
+        _noticeLabel.size = [_noticeLabel measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+        [self.noticeBack addSubnode:_noticeLabel];
+    }
+    return _noticeLabel;
+}
+
 -(CGRect)getTableViewFrame{
-//    self.filterView.width = self.view.width;
-    return CGRectMake(0, self.filterView.height, self.view.width, self.view.height - self.filterView.height);
+    self.noticeBack.frame = CGRectMake(0, self.filterView.maxY, self.view.width, NOTICE_BACK_HEIGHT);
+    
+    return CGRectMake(0, self.noticeBack.maxY, self.view.width, self.view.height - self.noticeBack.maxY);
 }
 
 -(void)initNavigationItem{
@@ -69,6 +107,11 @@
     [super viewDidLoad];
     [self initNavigationItem];
     self.view.backgroundColor = COLOR_BACKGROUND;
+    
+    CGFloat const leftMargin = rpx(10);
+    self.noticeLabel.centerY = self.noticeIcon.centerY = NOTICE_BACK_HEIGHT / 2.;
+    self.noticeIcon.x = leftMargin;
+    self.noticeLabel.x = self.noticeIcon.maxX + leftMargin;
 }
 
 -(void)headerRefresh:(HeaderRefreshHandler)handler{
@@ -90,6 +133,15 @@
 
 -(void)loanFilterSelected:(LoanMarketFilterView *)view{
     [self.tableView headerBeginRefresh];//继续刷新
+}
+
+-(void)didSelectRow:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    CellVo* cvo = [self.tableView getCellVoByIndexPath:indexPath];
+    DetailViewController* viewController = [[DetailViewController alloc]init];
+    viewController.loanId = ((LoanModel*)cvo.cellData).loanid;
+    viewController.loanName = ((LoanModel*)cvo.cellData).loanname;
+    viewController.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 //- (void)didReceiveMemoryWarning {

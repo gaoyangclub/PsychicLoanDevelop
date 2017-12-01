@@ -100,7 +100,7 @@ static NSArray<NSNumber*>* loanTpyes;
     self.backgroundColor = [UIColor whiteColor];
     
 //    NSArray<UIColor*>* itemImageColors = @[FlatWatermelon,FlatOrange,FlatSkyBlue];
-    NSArray<NSString*>* itemImages = @[ICON_FEN_XIANG,ICON_SHOU_ZHI,ICON_QIAN_DAO];
+    NSArray<NSString*>* itemImages = @[ICON_XIN_PIN_ZHUAN_QU,ICON_JI_SU_JIE_QIAN,ICON_GAO_TONG_GUO_LV];
     
     CGFloat const itemWidth = self.contentView.width / loanTpyes.count;
     

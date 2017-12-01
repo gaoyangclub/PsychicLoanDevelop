@@ -26,6 +26,8 @@
 
 @property(nonatomic,assign)CGFloat iconMargin;
 
+@property(nonatomic,assign)BOOL showIconImage;
+
 @property(nonatomic,copy)NSString* iconName;
 @property(nonatomic,assign)CGFloat iconSize;
 @property(nonatomic,retain)UIColor* iconColor;

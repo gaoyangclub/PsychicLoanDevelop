@@ -15,6 +15,8 @@
 #import "DIYTabBarItem.h"
 #import "HomeViewController.h"
 #import "LoanMarketViewController.h"
+#import "UserHomeController.h"
+#import "LoginViewController.h"
 
 
 @interface AppDelegate ()
@@ -52,6 +54,13 @@
     return currentNaviVC;
 }
 
+-(void)popLoginViewController{
+    LoginViewController* loginViewController = [[LoginViewController alloc]init];
+    JKRootNavigationController* navigationController = [[JKRootNavigationController alloc]initWithRootViewController:loginViewController];
+    navigationController.automaticallyAdjustsScrollViewInsets = navigationController.navigationBar.translucent = NO;
+    [self.rootTabBarController presentViewController:navigationController animated:YES completion:nil];
+}
+
 -(JKRootNavigationController*)createNavigationController:(UIViewController*)viewController{
     JKRootNavigationController* navigationController = [[JKRootNavigationController alloc]initWithRootViewController:viewController];
     navigationController.automaticallyAdjustsScrollViewInsets = navigationController.navigationBar.translucent = NO;
@@ -72,13 +81,13 @@
 //    UINavigationController* itemCtrl3 = [self createNavigationController:[[SortViewController alloc] init]];
 //    itemCtrl3.title = @"测试标题3";
     
-    UINavigationController* itemCtrl4 = [self createNavigationController:[[ViewController alloc] init]];
+    UINavigationController* itemCtrl4 = [self createNavigationController:[[UserHomeController alloc] init]];
     itemCtrl4.title = @"测试标题4";
     
     GYTabBarController* tabBarCtl = [[GYTabBarController alloc] init];
     tabBarCtl.itemClass = [DIYTabBarItem class];
-    tabBarCtl.dataArray = @[[TabData initWithParams:[DIYBarData initWithParams:TABBAR_TITLE_HOME image:ICON_DING_DAN selectedImage:ICON_DING_DAN_SELECTED] controller:itemCtrl1],
-                            [TabData initWithParams:[DIYBarData initWithParams:TABBAR_TITLE_LOAN image:ICON_DAI_FU_KUAN selectedImage:ICON_DAI_FU_KUAN_SELECTED] controller:itemCtrl2],
+    tabBarCtl.dataArray = @[[TabData initWithParams:[DIYBarData initWithParams:TABBAR_TITLE_HOME image:ICON_SHOU_YE selectedImage:ICON_SHOU_YE_SELECTED] controller:itemCtrl1],
+                            [TabData initWithParams:[DIYBarData initWithParams:TABBAR_TITLE_LOAN image:ICON_DAI_KUAN selectedImage:ICON_DAI_KUAN_SELECTED] controller:itemCtrl2],
 //                            [TabData initWithParams:[DIYBarData initWithParams:TABBAR_TITLE_LOAN image:ICON_XIAO_XI selectedImage:ICON_XIAO_XI_SELECTED] controller:itemCtrl3],
                             [TabData initWithParams:[DIYBarData initWithParams:TABBAR_TITLE_USER image:ICON_WO_DE selectedImage:ICON_WO_DE_SELECTED] controller:itemCtrl4],
                             ];

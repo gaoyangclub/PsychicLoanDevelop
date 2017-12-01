@@ -17,6 +17,11 @@
 #define LOAN_DETAIL_URL(loanid) ConcatStrings(SERVER_DRIVER_URL,@"/loan-api/loaninfo/getloanbyid?loanid=",@(loanid))
 #define LOAN_FILTER_URL(mintime,maxtime,search,minamount,maxamount) ConcatStrings(SERVER_DRIVER_URL,@"/loan-api/loanlist/getsearchlist?mintime=",@(mintime),@"&maxtime=",@(maxtime),@"&search=",@(search),@"&minamount=",@(minamount),@"&maxamount=",@(maxamount))
 
+#define LOGIN_AUTH_CODE_URL ConcatStrings(SERVER_DRIVER_URL,@"/loan-api/loanuser/sendsms")
+
+#define LOGIN_VALIDATA_URL ConcatStrings(SERVER_DRIVER_URL,@"/loan-api/loanuser/validataNum")
+#define LOGIN_PASSWORD_URL ConcatStrings(SERVER_DRIVER_URL,@"/loan-api/loanuser/loginbypassword")
+
 @interface NetConfig : NSObject
 
 @end

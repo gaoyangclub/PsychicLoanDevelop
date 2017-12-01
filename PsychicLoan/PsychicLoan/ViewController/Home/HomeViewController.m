@@ -17,6 +17,8 @@
 #import "HomeModel.h"
 #import "DetailViewController.h"
 #import "LoanTitleSection.h"
+#import "UserDefaultsUtils.h"
+#import "AppDelegate.h"
 
 //@interface TestTableViewCell : MJTableViewCell
 //
@@ -160,12 +162,40 @@
     self.tableView.sectionGap = rpx(5);
     
     [self initNavigationItem];
+    
+    [self checkLoginItem];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(checkLoginItem)
+                                                 name:EVENT_LOGOUT
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(checkLoginItem)
+                                                 name:EVENT_LOGIN_COMPLETE
+                                               object:nil];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)checkLoginItem{
+    if (![UserDefaultsUtils getObject:PHONE_KEY]) {
+        self.navigationItem.rightBarButtonItem = [UICreationUtils createNavigationNormalButtonItem:[UIColor whiteColor] font:[UIFont boldSystemFontOfSize:SIZE_TEXT_LARGE] text:@"登录" target:self action:@selector(clickLogin)];
+    }else{
+        self.navigationItem.rightBarButtonItem = nil;
+    }
 }
+
+-(void)clickLogin{
+    [((AppDelegate*)[UIApplication sharedApplication].delegate) popLoginViewController];
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:EVENT_LOGIN_COMPLETE object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:EVENT_LOGOUT object:nil];
+}
+
+//- (void)didReceiveMemoryWarning {
+//    [super didReceiveMemoryWarning];
+//    // Dispose of any resources that can be recreated.
+//}
 
 
 @end

@@ -331,14 +331,22 @@
 //        _leftTableView.separatorColor = [UIColor colorWithRed:220.f/255.0f green:220.f/255.0f blue:220.f/255.0f alpha:1.0];
         _leftTableView.dataSource = self;
         _leftTableView.delegate = self;
-        _leftTableView.separatorStyle = UITableViewCellSeparatorStyleNone;//去掉cell底部细线
+//        _leftTableView.separatorStyle = UITableViewCellSeparatorStyleNone;//去掉cell底部细线
+        if ([_leftTableView respondsToSelector:@selector(setSeparatorInset:)]) {
+            [_leftTableView setSeparatorInset:UIEdgeInsetsZero];
+        }
+        _leftTableView.scrollEnabled = NO;//无法滚动 只能显示
         
         _rightTableView = [[UITableView alloc] initWithFrame:CGRectMake(self.frame.size.width, self.frame.origin.y + self.frame.size.height, 0, 0) style:UITableViewStyleGrouped];
         _rightTableView.rowHeight = 38;
 //        _rightTableView.separatorColor = [UIColor colorWithRed:220.f/255.0f green:220.f/255.0f blue:220.f/255.0f alpha:1.0];
         _rightTableView.dataSource = self;
         _rightTableView.delegate = self;
-        _rightTableView.separatorStyle = UITableViewCellSeparatorStyleNone;//去掉cell底部细线
+//        _rightTableView.separatorStyle = UITableViewCellSeparatorStyleNone;//去掉cell底部细线
+        if ([_rightTableView respondsToSelector:@selector(setSeparatorInset:)]) {
+            [_rightTableView setSeparatorInset:UIEdgeInsetsZero];
+        }
+        _rightTableView.scrollEnabled = NO;//无法滚动 只能显示
         
         UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
         flowLayout.minimumInteritemSpacing = 0;
@@ -851,6 +859,13 @@
 //    cell.textLabel.font = [UIFont systemFontOfSize:self.fontSize];
     cell.separatorInset = UIEdgeInsetsZero;
 //    titleLabel.centerX = cell.width / 2.;
+    if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
+        [cell setPreservesSuperviewLayoutMargins:NO];
+    }
+    // Explictly set your cell's layout margins
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
     
     if (leftOrRight == 1) {
         
