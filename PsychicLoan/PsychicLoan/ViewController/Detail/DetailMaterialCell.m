@@ -42,7 +42,7 @@
     
     NSArray *array = [detailModel.information componentsSeparatedByString:@";"];//--分隔符
     NSString* detailInfo = [array componentsJoinedByString:@"\n"];
-    NSMutableAttributedString* textString = (NSMutableAttributedString*)[NSString simpleAttributedString:COLOR_TEXT_SECONDARY size:SIZE_TEXT_SECONDARY content:detailInfo];
+    NSMutableAttributedString* textString = (NSMutableAttributedString*)[NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_PRIMARY content:detailInfo];
     NSMutableParagraphStyle* style = [[NSMutableParagraphStyle alloc]init];
     style.alignment = NSTextAlignmentLeft;
     style.lineSpacing = rpx(5);

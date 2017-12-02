@@ -13,6 +13,7 @@
 #import "AppDelegate.h"
 #import "LoanViewModel.h"
 #import "DetailViewController.h"
+#import "HudManager.h"
 
 @interface LoanTypeViewController()
 
@@ -55,7 +56,7 @@
     if (!_noticeIcon) {
         _noticeIcon = [[ASTextNode alloc]init];
         _noticeIcon.layerBacked = YES;
-        _noticeIcon.attributedString = [NSString simpleAttributedString:ICON_FONT_NAME color:[UIColor whiteColor] size:rpx(18) content:ICON_GONG_GAO];
+        _noticeIcon.attributedString = [NSString simpleAttributedString:ICON_FONT_NAME color:[UIColor whiteColor] size:rpx(16) content:ICON_GONG_GAO];
         _noticeIcon.size = [_noticeIcon measure:CGSizeMake(FLT_MAX, FLT_MAX)];
         [self.noticeBack addSubnode:_noticeIcon];
     }
@@ -66,7 +67,7 @@
     if (!_noticeLabel) {
         _noticeLabel = [[ASTextNode alloc]init];
         _noticeLabel.layerBacked = YES;
-        _noticeLabel.attributedString = [NSString simpleAttributedString:[UIColor whiteColor] size:SIZE_TEXT_PRIMARY content:LOAN_TYPE_PAGE_NOTICE_TEXT];
+        _noticeLabel.attributedString = [NSString simpleAttributedString:[UIColor whiteColor] size:SIZE_TEXT_SECONDARY content:LOAN_TYPE_PAGE_NOTICE_TEXT];
         _noticeLabel.size = [_noticeLabel measure:CGSizeMake(FLT_MAX, FLT_MAX)];
         [self.noticeBack addSubnode:_noticeLabel];
     }
@@ -99,7 +100,7 @@
 
 -(void)initNavigationItem{
     self.navigationItem.leftBarButtonItem =
-    [UICreationUtils createNavigationNormalButtonItem:COLOR_NAVI_TITLE font:[UIFont fontWithName:ICON_FONT_NAME size:25] text:ICON_FAN_HUI target:self action:@selector(leftClick)];
+    [UICreationUtils createNavigationNormalButtonItem:COLOR_NAVI_TITLE font:[UIFont fontWithName:ICON_FONT_NAME size:SIZE_LEFT_BACK_ICON] text:ICON_FAN_HUI target:self action:@selector(leftClick)];
     self.titleLabel.text = [Config getLoanTypeNameByCode:self.loanType];//self.shipmentBean.code;//标题显示TO号
     [self.titleLabel sizeToFit];
     self.navigationItem.titleView = self.titleLabel;
@@ -130,6 +131,9 @@
     __weak __typeof(self) weakSelf = self;
     [self.viewModel getLoansByType:self.loanType returnBlock:^(NSArray<LoanModel*>* loanModels) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
+        if(!strongSelf){//界面销毁了
+            return;
+        }
         [strongSelf.tableView clearSource];
         SourceVo* svo = svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:0 headerClass:nil headerData:nil];
         for (LoanModel* loanModel in loanModels) {
@@ -139,7 +143,10 @@
         
         handler(YES);
     } failureBlock:^(NSString *errorCode, NSString *errorMsg) {
-        
+        [HudManager showToast:errorMsg];
+        //        self.emptyDataSource.netError = YES;
+        //        [self.tableView clearSource];
+        handler(NO);
     }];
 }
 

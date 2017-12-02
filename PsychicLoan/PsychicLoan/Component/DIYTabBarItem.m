@@ -38,7 +38,7 @@
 -(UILabel *)imageLabel{
     if (!_imageLabel) {
         _imageLabel = [[UILabel alloc] init];
-        _imageLabel.font = [UIFont fontWithName:ICON_FONT_NAME size: 25];
+        _imageLabel.font = [UIFont fontWithName:ICON_FONT_NAME size:22];
         [self addSubview:_imageLabel];
     }
     return _imageLabel;

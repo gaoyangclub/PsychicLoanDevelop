@@ -12,6 +12,8 @@
 #import "NormalSelectItem.h"
 #import "AppDelegate.h"
 #import "UserDefaultsUtils.h"
+#import "CustomerServiceController.h"
+#import "WebViewController.h"
 
 typedef NS_ENUM(NSInteger,ItemPostion){
     ItemPostionNormal = 1,
@@ -52,11 +54,11 @@ typedef NS_ENUM(NSInteger,ItemPostion){
 -(FlatButton *)logoutButton{
     if (!_logoutButton) {
         _logoutButton = [[FlatButton alloc]init];
-        _logoutButton.titleFontName = ICON_FONT_NAME;
+//        _logoutButton.titleFontName = ICON_FONT_NAME;
         _logoutButton.titleColor = COLOR_PRIMARY;
         _logoutButton.fillColor = [UIColor whiteColor];
-        _logoutButton.titleSize = rpx(16);
-        _logoutButton.title = @"退出账号";
+        _logoutButton.titleSize = SIZE_TEXT_PRIMARY;
+        _logoutButton.title = @"退出登录";
         _logoutButton.cornerRadius = 0;
         [_logoutButton addTarget:self action:@selector(clickLogoutButton:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_logoutButton];
@@ -72,8 +74,9 @@ typedef NS_ENUM(NSInteger,ItemPostion){
         //        _userBack.arrowSize = CGSizeMake(10, 22);
         _userBack.showIconImage = YES;
         _userBack.labelName = @"点击请登录";
-        _userBack.labelSize = SIZE_TEXT_PRIMARY;
-        _userBack.labelColor = COLOR_TEXT_SECONDARY;
+        _userBack.labelSize = SIZE_NAVI_TITLE;
+        _userBack.labelColor = COLOR_TEXT_PRIMARY;
+        _userBack.iconMargin = rpx(15);
 //        _userBack.iconName = ICON_WO_DE_SELECTED;
 //        _userBack.iconSize = 36;
 //        _userBack.iconBackColor = COLOR_PRIMARY;
@@ -147,14 +150,14 @@ typedef NS_ENUM(NSInteger,ItemPostion){
 
 -(void)measure{
     CGFloat viewWidth = CGRectGetWidth(self.view.bounds);
-    CGFloat gap = rpx(10);
+    CGFloat gap = rpx(5);
     
     CGFloat bottomY = gap;
     bottomY = [self initUserItem:bottomY];
     bottomY += gap;
     
     bottomY = [self initNormalItem:bottomY icon:ICON_LIAN_XI_KE_FU labal:@"联系客服" iconBackColor:COLOR_PRIMARY handler:@selector(clickContactCustomerHandler) itemPostion:ItemPostionTop];
-    bottomY = [self initNormalItem:bottomY icon:ICON_WEN_TI_FAN_KUI labal:@"问题反馈" iconBackColor:COLOR_PRIMARY handler:@selector(clickContactCustomerHandler)];
+    bottomY = [self initNormalItem:bottomY icon:ICON_WEN_TI_FAN_KUI labal:@"问题反馈" iconBackColor:COLOR_PRIMARY handler:@selector(clickQuestionFeedbackHandler)];
     bottomY = [self initNormalItem:bottomY icon:ICON_GUAN_YU_WO_MEN labal:@"关于我们" iconBackColor:COLOR_PRIMARY handler:@selector(clickAboutUsHandler) itemPostion:ItemPostionBottom];
     
     bottomY += gap;
@@ -171,14 +174,15 @@ typedef NS_ENUM(NSInteger,ItemPostion){
         self.userBack.iconName = @"login_avatar";
         self.logoutButton.hidden = NO;
     }else{
-        self.userBack.labelName = @"点击请登录";
+        self.userBack.labelName = @"登录体验更多";
         self.userBack.iconName = @"logout_avatar";
         self.logoutButton.hidden = YES;
     }
 }
 
 -(void)clickContactCustomerHandler{//联系客服
-    
+    CustomerServiceController* customerServiceController = [[CustomerServiceController alloc]init];
+    [self.navigationController pushViewController:customerServiceController animated:YES];
 }
 
 -(void)clickQuestionFeedbackHandler{//问题反馈
@@ -186,11 +190,15 @@ typedef NS_ENUM(NSInteger,ItemPostion){
 }
 
 -(void)clickAboutUsHandler{//关于我们
-    
+    WebViewController* viewController = [[WebViewController alloc]init];
+    //    viewController.hidesBottomBarWhenPushed = YES;
+    viewController.linkUrl = LINK_URL_ABOUT_US;
+    viewController.navigationTitle = @"关于我们";
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 -(CGFloat)initLogoutButton:(CGFloat)bottomY{
-    CGFloat buttonHeight = rpx(40);
+    CGFloat buttonHeight = rpx(45);
     
     CGFloat viewWidth = CGRectGetWidth(self.view.bounds);
     CGFloat padding = 0;
@@ -201,13 +209,13 @@ typedef NS_ENUM(NSInteger,ItemPostion){
 }
 
 -(CGFloat)initUserItem:(CGFloat)bottomY{//用户数据条目
-    CGFloat backHeight = rpx(80);
+    CGFloat backHeight = rpx(100);
     self.userBack.frame = CGRectMake(0, bottomY, CGRectGetWidth(self.view.bounds), backHeight);
     return bottomY + backHeight;
 }
 
 -(CGFloat)initNormalItem:(CGFloat)bottomY icon:(NSString*)icon labal:(NSString*)label iconBackColor:(UIColor*)iconBackColor handler:(SEL)handler itemPostion:(ItemPostion)itemPostion{//用户数据条目
-    CGFloat normalHeight = rpx(45);
+    CGFloat normalHeight = rpx(55);
     
     NormalSelectItem* normalItem = [[NormalSelectItem alloc]init];
     normalItem.backgroundColor = [UIColor whiteColor];
@@ -220,7 +228,7 @@ typedef NS_ENUM(NSInteger,ItemPostion){
     normalItem.showIconLine = NO;
     
     normalItem.labelName = label;
-    normalItem.labelSize = rpx(14);
+    normalItem.labelSize = SIZE_TEXT_PRIMARY;
     normalItem.labelColor = handler ? COLOR_TEXT_PRIMARY : COLOR_LINE;
     //    normalItem.lineLeftMargin = 50;
     if (itemPostion == ItemPostionTop) {

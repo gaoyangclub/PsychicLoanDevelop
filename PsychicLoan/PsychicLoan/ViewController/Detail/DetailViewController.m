@@ -50,9 +50,9 @@
 -(FlatButton *)submitButton{
     if (!_submitButton) {
         _submitButton = [[FlatButton alloc]init];
-        _submitButton.titleFontName = ICON_FONT_NAME;
+//        _submitButton.titleFontName = ICON_FONT_NAME;
         _submitButton.fillColor = COLOR_PRIMARY;
-        _submitButton.titleSize = rpx(16);
+        _submitButton.titleSize = SIZE_TEXT_LARGE;
         _submitButton.title = @"申请贷款";
         _submitButton.cornerRadius = 0;
         [_submitButton addTarget:self action:@selector(clickSubmitButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -72,7 +72,7 @@
 
 -(void)initNavigationItem{
     self.navigationItem.leftBarButtonItem =
-    [UICreationUtils createNavigationNormalButtonItem:COLOR_NAVI_TITLE font:[UIFont fontWithName:ICON_FONT_NAME size:25] text:ICON_FAN_HUI target:self action:@selector(leftClick)];
+    [UICreationUtils createNavigationNormalButtonItem:COLOR_NAVI_TITLE font:[UIFont fontWithName:ICON_FONT_NAME size:SIZE_LEFT_BACK_ICON] text:ICON_FAN_HUI target:self action:@selector(leftClick)];
     self.titleLabel.text = self.loanName;//self.shipmentBean.code;//标题显示TO号
     [self.titleLabel sizeToFit];
     self.navigationItem.titleView = self.titleLabel;
@@ -93,6 +93,8 @@
 -(void)gotoWebViewController:(BOOL)animated{
     if (self->loanDetailResult) {
         WebViewController* viewController = [[WebViewController alloc]init];
+        viewController.isLoanRegister = YES;
+        viewController.navigationTitle = self.loanName;
         //    viewController.hidesBottomBarWhenPushed = YES;
         viewController.linkUrl = self->loanDetailResult.loanurl;
         [self.navigationController pushViewController:viewController animated:animated];
@@ -100,16 +102,15 @@
 }
 
 -(CGRect)getTableViewFrame{
-    CGFloat const BUTTON_AREA_HEIGHT = rpx(35);
-    CGFloat const margin = 0;//rpx(4);
+    CGFloat const BUTTON_AREA_HEIGHT = rpx(50);
     
     CGFloat const viewWidth = self.view.width;
     CGFloat const viewHeight = self.view.height;
     CGFloat const viewGap = rpx(5);
     
-    self.submitButton.frame = CGRectMake(margin, viewHeight - BUTTON_AREA_HEIGHT + margin, viewWidth - margin * 2, BUTTON_AREA_HEIGHT - margin * 2);
+    self.submitButton.frame = CGRectMake(0, viewHeight - BUTTON_AREA_HEIGHT, viewWidth, BUTTON_AREA_HEIGHT);
     
-    return CGRectMake(margin, 0, viewWidth - margin * 2, viewHeight - BUTTON_AREA_HEIGHT - viewGap);
+    return CGRectMake(0, viewGap, viewWidth, viewHeight - BUTTON_AREA_HEIGHT - viewGap * 2);
 }
 
 -(void)headerRefresh:(HeaderRefreshHandler)handler{

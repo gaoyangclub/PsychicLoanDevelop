@@ -17,4 +17,6 @@
 @property(nonatomic,copy)NSString* loandes;//推荐语
 @property(nonatomic,copy)NSString* loanurl;//贷款H5页面链接
 
+@property(nonatomic,assign)double time;//放款时间
+
 @end

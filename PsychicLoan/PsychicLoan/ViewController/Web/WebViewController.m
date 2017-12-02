@@ -21,7 +21,7 @@
 
 -(UILabel *)titleLabel{
     if (!_titleLabel) {
-        _titleLabel = [UICreationUtils createNavigationTitleLabel:SIZE_NAVI_TITLE color:COLOR_NAVI_TITLE text:NAVIGATION_TITLE_WEB superView:nil];
+        _titleLabel = [UICreationUtils createNavigationTitleLabel:SIZE_NAVI_TITLE color:COLOR_NAVI_TITLE text:@"" superView:nil];
     }
     return _titleLabel;
 }
@@ -53,11 +53,10 @@
     self.progressView.frame = CGRectMake(0, 0, self.view.width, rpx(3));
 }
 
-
 -(void)initNavigationItem{
     self.navigationItem.leftBarButtonItem =
-        [UICreationUtils createNavigationNormalButtonItem:COLOR_NAVI_TITLE font:[UIFont fontWithName:ICON_FONT_NAME size:25] text:ICON_FAN_HUI target:self action:@selector(leftClick)];
-    self.titleLabel.text = NAVIGATION_TITLE_WEB;//self.shipmentBean.code;//标题显示TO号
+        [UICreationUtils createNavigationNormalButtonItem:COLOR_NAVI_TITLE font:[UIFont fontWithName:ICON_FONT_NAME size:SIZE_LEFT_BACK_ICON] text:ICON_FAN_HUI target:self action:@selector(leftClick)];
+    self.titleLabel.text = self.navigationTitle ? self.navigationTitle : @"";//self.shipmentBean.code;//标题显示TO号
     [self.titleLabel sizeToFit];
     self.navigationItem.titleView = self.titleLabel;
 //    self.navigationController.navigationBar.jk_barBackgroundColor = [UIColor whiteColor];
@@ -65,13 +64,17 @@
 
 //返回上层
 -(void)leftClick{
-    __weak __typeof(self) weakSelf = self;
-    UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"您确定注册了吗？" preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"继续注册" style:UIAlertActionStyleCancel handler:nil]];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [weakSelf popToPrevController];
-    }]];
-    [self presentViewController:alertController animated:YES completion:nil];
+    if (self.isLoanRegister) {
+        __weak __typeof(self) weakSelf = self;
+        UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"您确定注册了吗？" preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"继续注册" style:UIAlertActionStyleCancel handler:nil]];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [weakSelf popToPrevController];
+        }]];
+        [self presentViewController:alertController animated:YES completion:nil];
+    }else{
+        [self popToPrevController];
+    }
 }
 
 -(void)popToPrevController{

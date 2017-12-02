@@ -52,11 +52,11 @@
     
     self.backgroundColor = [UIColor whiteColor];
     
-    CGFloat const titleGap = rpx(4);
+    CGFloat const titleGap = rpx(9);
     
-    self.square.frame = CGRectMake(0, 0, rpx(4), self.height);
+    self.square.frame = CGRectMake(0, 0, rpx(6), self.height);
     
-    self.titleNode.attributedString = [NSString simpleAttributedString:COLOR_TEXT_SECONDARY size:SIZE_TEXT_SECONDARY content:title];
+    self.titleNode.attributedString = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_PRIMARY content:title isBold:YES];
     self.titleNode.size = [self.titleNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
     self.titleNode.centerY = self.height / 2.;
     self.titleNode.x = self.square.maxX + titleGap;

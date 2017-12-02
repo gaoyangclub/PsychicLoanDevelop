@@ -12,6 +12,8 @@
 
 #define SERVER_DRIVER_URL SERVER_URL_TEST//[NetConfig getDriverNetUrl:NET_MODE]
 
+#define HOME_POP_VIEW_URL ConcatStrings(SERVER_DRIVER_URL,@"/loan-api/home/getview")
+
 #define HOME_LOAN_URL ConcatStrings(SERVER_DRIVER_URL,@"/loan-api/home/gethome")
 #define LOAN_TYPE_URL(type) ConcatStrings(SERVER_DRIVER_URL,@"/loan-api/loanlist/getloanlist?type=",@(type))
 #define LOAN_DETAIL_URL(loanid) ConcatStrings(SERVER_DRIVER_URL,@"/loan-api/loaninfo/getloanbyid?loanid=",@(loanid))
@@ -21,6 +23,8 @@
 
 #define LOGIN_VALIDATA_URL ConcatStrings(SERVER_DRIVER_URL,@"/loan-api/loanuser/validataNum")
 #define LOGIN_PASSWORD_URL ConcatStrings(SERVER_DRIVER_URL,@"/loan-api/loanuser/loginbypassword")
+
+
 
 @interface NetConfig : NSObject
 

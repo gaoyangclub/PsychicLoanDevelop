@@ -10,6 +10,8 @@
 
 @interface WebViewController : UIViewController
 
-@property(nonatomic,retain)NSString* linkUrl;
+@property(nonatomic,copy)NSString* linkUrl;
+@property(nonatomic,copy)NSString* navigationTitle;
+@property(nonatomic,assign)BOOL isLoanRegister;
 
 @end

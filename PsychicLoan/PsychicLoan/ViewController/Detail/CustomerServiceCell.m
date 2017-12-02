@@ -30,7 +30,7 @@
     if (!_publicLabel) {
         _publicLabel = [[ASTextNode alloc]init];
         _publicLabel.layerBacked = YES;
-        _publicLabel.attributedString = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_PRIMARY content:@"客服公众号:" isBold:YES];
+        _publicLabel.attributedString = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_PRIMARY content:@"客服公众号"];
         _publicLabel.size = [_publicLabel measure:CGSizeMake(FLT_MAX, FLT_MAX)];
         [self.contentView.layer addSublayer:_publicLabel.layer];
     }
@@ -41,7 +41,7 @@
     if (!_wechatLabel) {
         _wechatLabel = [[ASTextNode alloc]init];
         _wechatLabel.layerBacked = YES;
-        _wechatLabel.attributedString = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_PRIMARY content:@"客服微信号:" isBold:YES];
+        _wechatLabel.attributedString = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_PRIMARY content:@"客服微信号"];
         _wechatLabel.size = [_wechatLabel measure:CGSizeMake(FLT_MAX, FLT_MAX)];
         [self.contentView.layer addSublayer:_wechatLabel.layer];
     }
@@ -59,6 +59,17 @@
     return _publicNode;
 }
 
+-(ASTextNode *)wechatNode{
+    if (!_wechatNode) {
+        _wechatNode = [[ASTextNode alloc]init];
+        _wechatNode.layerBacked = YES;
+        _wechatNode.attributedString = [NSString simpleAttributedString:COLOR_PRIMARY size:SIZE_TEXT_PRIMARY content:CUSTOMER_SERVICE_WECHAT_TEXT];
+        _wechatNode.size = [_wechatNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+        [self.contentView.layer addSublayer:_wechatNode.layer];
+    }
+    return _wechatNode;
+}
+
 -(FlatButton *)publicCopyButton{
     if (!_publicCopyButton) {
         _publicCopyButton = [[FlatButton alloc]init];
@@ -68,20 +79,46 @@
         _publicCopyButton.iconGap = rpx(3);
         _publicCopyButton.title = @"复制";
         _publicCopyButton.titleSize = SIZE_TEXT_SECONDARY;
-        _publicCopyButton.size = CGSizeMake(rpx(56), rpx(22));
+        _publicCopyButton.size = CGSizeMake(rpx(56), rpx(25));
         _publicCopyButton.fillColor = COLOR_PRIMARY;
         [self.contentView addSubview:_publicCopyButton];
         
-        [_publicCopyButton addTarget:self action:@selector(clickPublicButton) forControlEvents:UIControlEventTouchUpInside];
+        [_publicCopyButton addTarget:self action:@selector(clickCopyButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _publicCopyButton;
 }
 
--(void)clickPublicButton{
+-(FlatButton *)wechatCopyButton{
+    if (!_wechatCopyButton) {
+        _wechatCopyButton = [[FlatButton alloc]init];
+        _wechatCopyButton.icon = ICON_FU_ZHI;
+        _wechatCopyButton.iconSize = rpx(16);
+        _wechatCopyButton.iconColor = _publicCopyButton.titleColor = [UIColor whiteColor];
+        _wechatCopyButton.iconGap = rpx(3);
+        _wechatCopyButton.title = @"复制";
+        _wechatCopyButton.titleSize = SIZE_TEXT_SECONDARY;
+        _wechatCopyButton.size = CGSizeMake(rpx(56), rpx(25));
+        _wechatCopyButton.fillColor = COLOR_PRIMARY;
+        [self.contentView addSubview:_wechatCopyButton];
+        
+        [_wechatCopyButton addTarget:self action:@selector(clickCopyButton:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _wechatCopyButton;
+}
+
+-(void)clickCopyButton:(UIView*)sender{
+    if (sender == self.publicCopyButton) {
+        [self showCopyAlert:CUSTOMER_SERVICE_PUBLIC_TEXT alertMessage:@"已复制微信公众号，去微信搜索加关注更多贷款新口子每天更新！"];
+    }else{
+        [self showCopyAlert:CUSTOMER_SERVICE_WECHAT_TEXT alertMessage:@"已复制客服微信号，去微信添加客服好友！"];
+    }
+}
+
+-(void)showCopyAlert:(NSString*)copyString alertMessage:(NSString*)alertMessage{
     //  通用的粘贴板
     UIPasteboard *pBoard = [UIPasteboard generalPasteboard];
-    pBoard.string = CUSTOMER_SERVICE_PUBLIC_TEXT;
-    UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"已复制微信公众号，去微信搜索加关注更多贷款新口子每天更新！" preferredStyle:UIAlertControllerStyleAlert];
+    pBoard.string = copyString;
+    UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"" message:alertMessage preferredStyle:UIAlertControllerStyleAlert];
     [alertController addAction:[UIAlertAction actionWithTitle:@"去微信" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         [OpenUrlUtils openUrlByString:@"weixin://"];
     }]];
@@ -93,7 +130,7 @@
     self.contentView.backgroundColor = [UIColor whiteColor];
     
     CGFloat const leftMargin = rpx(20);
-    CGFloat const nodeGap = rpx(5);
+    CGFloat const nodeGap = rpx(20);
     
     CGFloat const baseY = (self.height - self.publicLabel.height - self.wechatLabel.height - nodeGap) / 2.;
     
@@ -104,6 +141,10 @@
     self.publicNode.x = self.publicLabel.maxX + leftMargin;
     self.publicCopyButton.x = self.publicNode.maxX + leftMargin;
     self.publicNode.centerY = self.publicCopyButton.centerY = self.publicLabel.centerY;
+    
+    self.wechatNode.x = self.wechatLabel.maxX + leftMargin;
+    self.wechatCopyButton.x = self.wechatNode.maxX + leftMargin;
+    self.wechatNode.centerY = self.wechatCopyButton.centerY = self.wechatLabel.centerY;
 }
 
 -(BOOL)showSelectionStyle{

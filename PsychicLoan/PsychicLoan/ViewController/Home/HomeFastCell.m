@@ -44,7 +44,7 @@ static NSArray<NSNumber*>* loanTpyes;
         _imageNode = [[FlatButton alloc]init];
         _imageNode.titleFontName = ICON_FONT_NAME;
         _imageNode.titleColor = COLOR_PRIMARY;
-        _imageNode.titleSize = rpx(30);
+        _imageNode.titleSize = rpx(40);
         _imageNode.fillColor = [UIColor clearColor];
 //        _imageNode.cornerRadius = rpx(10);
         _imageNode.userInteractionEnabled = NO;
@@ -73,19 +73,19 @@ static NSArray<NSNumber*>* loanTpyes;
     
     self.showTouch = YES;
     
-    self.titleNode.attributedString = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_SECONDARY content:self.title isBold:YES];
+    self.titleNode.attributedString = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_LARGE content:self.title];
     self.titleNode.size = [self.titleNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
 
     self.imageNode.title = self.image;
 //    self.imageNode.fillColor = self.imageColor;
-    CGFloat const nodeSizeWidth = self.height - rpx(36);
+    CGFloat const nodeSizeWidth = rpx(40);
     self.imageNode.size = CGSizeMake(nodeSizeWidth,nodeSizeWidth);
     
 //    self.imageNode.attributedString = [NSString simpleAttributedString:ICON_FONT_NAME color:self.imageColor size:36 content:self.image];
 //    self.imageNode.size = [self.imageNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
 
     self.titleNode.centerX = self.imageNode.centerX = self.width / 2.;
-    CGFloat const gap = rpx(5);
+    CGFloat const gap = rpx(10);
     CGFloat const baseY = (self.height - self.titleNode.height - self.imageNode.height - gap) / 2;
     self.imageNode.y = baseY;
     self.titleNode.y = self.imageNode.maxY + gap;

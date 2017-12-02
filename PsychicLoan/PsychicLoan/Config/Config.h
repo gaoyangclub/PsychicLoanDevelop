@@ -16,18 +16,20 @@
 #define LINE_WIDTH rpx(0.5)
 
 #define COLOR_TEXT_PRIMARY FlatBlack
-#define COLOR_TEXT_SECONDARY rgb(95,95,95)
-#define COLOR_TEXT_THIRD COLOR_LINE
+#define COLOR_TEXT_SECONDARY rgb(155,155,155)//rgb(95,95,95)
+//#define COLOR_TEXT_THIRD COLOR_LINE
 
-#define SIZE_TEXT_LARGE rpx(14)
-#define SIZE_TEXT_PRIMARY rpx(12)
-#define SIZE_TEXT_SECONDARY rpx(10)
-#define SIZE_NAVI_TITLE rpx(16)
+#define SIZE_TEXT_LARGE rpx(16)
+#define SIZE_TEXT_PRIMARY rpx(14)
+#define SIZE_TEXT_SECONDARY rpx(12)
+#define SIZE_NAVI_TITLE rpx(18)
+
+#define SIZE_LEFT_BACK_ICON rpx(22)
 
 //#define COLOR_BLACK_ORIGINAL rgba(95,95,95,1)
 #define COLOR_NAVI_TITLE [UIColor whiteColor]//COLOR_TEXT_SECONDARY
 
-#define COLOR_PRIMARY rgb(58,155,233)//FlatSkyBlue//rgb(23,182,46)//FlatMint//COLOR_YI_WAN_CHENG//rgba(23,182,46,1)//[Config getPrimaryColor]
+#define COLOR_PRIMARY rgb(45,155,235)//FlatSkyBlue//rgb(23,182,46)//FlatMint//COLOR_YI_WAN_CHENG//rgba(23,182,46,1)//[Config getPrimaryColor]
 #define COLOR_ACCENT rgb(120,196,112)
 
 #define COLOR_NOTICE_BACK rgb(108,179,233)
@@ -49,27 +51,31 @@
 #define TABBAR_TITLE_LOAN @"贷款"
 #define TABBAR_TITLE_USER @"我的"
 
-#define NAVIGATION_TITLE_HOME @"主页"//APPLICATION_NAME
+#define NAVIGATION_TITLE_HOME APPLICATION_NAME
 #define NAVIGATION_TITLE_LOAN @"贷款超市"
 #define NAVIGATION_TITLE_USER @"我的"
-#define NAVIGATION_TITLE_WEB @"注册"
+//#define NAVIGATION_TITLE_WEB @"注册"
 
 #define NAVIGATION_TITLE_LOGIN @"登录"
 #define NAVIGATION_TITLE_REGISTER @"注册"
+
+#define NAVIGATION_TITLE_CUSTOMER_SERVICE @"联系客服"
 
 #define NAVIGATION_TITLE_MESSAGE @"消息提醒"
 #define NAVIGATION_TITLE_VERSION @"版本信息"
 #define NAVIGATION_TITLE_ADMIN @"管理员大帝"
 
-#define HOME_MOER_BUTTON_NAME @"查看更多贷款►"
+#define HOME_MOER_BUTTON_NAME @"查看更多贷款"
 #define HOME_MOER_TIPS @"合理贷款，让生活过得宽裕些"
 
-#define LOAN_TYPE_PAGE_NOTICE_TEXT @"公告:审核放水，要借速度"
-#define LOAN_MARKET_PAGE_NOTICE_TEXT @"公告:多多益善"
+#define LOAN_TYPE_PAGE_NOTICE_TEXT @"公告:冲量阶段，审核放水，要借速度"
+#define LOAN_MARKET_PAGE_NOTICE_TEXT @"公告:经统计申请3个以上贷款产品，90%以上可以借款成功！"
 
-#define CUSTOMER_SERVICE_PUBLIC_TEXT @"牛逼的号" //客服公众号
+#define CUSTOMER_SERVICE_PUBLIC_TEXT @"牛逼的公众号" //客服公众号
+#define CUSTOMER_SERVICE_WECHAT_TEXT @"牛逼的微信号" //wechat
 
-
+#define LINK_URL_AGREEMENT @"http://www.baidu.com" //注册协议跳转H5
+#define LINK_URL_ABOUT_US @"http://www.baidu.com" //关于我们跳转H5
 
 #define SYSTEM_SCALE [UIScreen mainScreen].scale
 #define SCREEN_WIDTH [UIScreen mainScreen].nativeBounds.size.width
@@ -79,18 +85,18 @@
 #define IPHONE_6_WIDTH 750.0
 
 //以iphone6为基础 坐标都以iphone6为基准 进行代码的适配
-#define rpx(px) px * SCREEN_WIDTH / SYSTEM_SCALE / 320.0// IPHONE_5S_WIDTH
+#define rpx(px) px * SCREEN_WIDTH / SYSTEM_SCALE / 375.0// IPHONE_6_WIDTH / 2
 
-#define HOME_BANNER_CELL_HEIGHT rpx(180)
-#define HOME_FAST_CELL_HEIGHT rpx(80)
-#define HOME_LOAN_NORMAL_CELL_HEIGHT rpx(70)
+#define HOME_BANNER_CELL_HEIGHT rpx(140)
+#define HOME_FAST_CELL_HEIGHT rpx(90)
+#define HOME_LOAN_NORMAL_CELL_HEIGHT rpx(80)
 #define LOAN_SECTION_HEIGHT rpx(30)
 #define HOME_MORE_TIPS_CELL_HEIGHT rpx(80)
 
-#define DETAIL_LOGO_CELL_HEIGHT rpx(100)
-#define DETAIL_BASIC_CELL_HEIGHT rpx(50)
+#define DETAIL_LOGO_CELL_HEIGHT rpx(120)
+#define DETAIL_BASIC_CELL_HEIGHT rpx(60)
 //#define DETAIL_VIEW_SECTION_HEIGHT rpx(30)
-#define CUSTOM_SERVICE_HEIGHT rpx(50)
+#define CUSTOM_SERVICE_HEIGHT rpx(80)
 
 #define NOTICE_BACK_HEIGHT rpx(30)
 
@@ -102,6 +108,7 @@
 #define LOAN_TYPE_PASS 3 //高通过率
 
 #define ICON_FAN_HUI @"\U0000e60f"//@"\U0000e614"
+#define ICON_QIAN_JIN @"\U0000e612"
 //#define ICON_SHE_ZHI @"\U0000e628"
 
 #define ICON_EMPTY_WAN_CHENG @"\U0000e60c"
@@ -131,6 +138,8 @@
 #define ICON_GONG_GAO @"\U0000e608"
 #define ICON_FU_ZHI @"\U0000e611"
 #define ICON_DA_GOU @"\U0000e61c"
+
+#define ICON_CLOSE @"\U0000e60c"
 
 #define EVENT_LOGIN_COMPLETE @"EVENT_LOGIN_COMPLETE"
 #define EVENT_LOGOUT @"EVENT_LOGOUT"

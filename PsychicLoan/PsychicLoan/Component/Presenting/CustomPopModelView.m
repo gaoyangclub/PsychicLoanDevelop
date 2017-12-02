@@ -99,8 +99,10 @@
     
     if (self.popFromDirection == CustomPopDirectionBottom) {
         contentCenterY = CGRectGetHeight(self.bounds);// + self.view.center.y;
-    }else{
+    }else if(self.popFromDirection == CustomPopDirectionTop){
         contentCenterY = 0;//-self.view.center.y;
+    }else{
+        contentCenterY = CGRectGetHeight(self.bounds) / 2.;
     }
     CGPoint center = self.center;
     center.y = contentCenterY;
@@ -143,8 +145,10 @@
     CGFloat contentCenterY;
     if (self.popToDirection == CustomPopDirectionBottom) {
         contentCenterY = CGRectGetHeight(self.bounds) + self.center.y;
-    }else{
+    }else if(self.popToDirection == CustomPopDirectionTop){
         contentCenterY = -self.center.y;
+    }else{
+        contentCenterY = CGRectGetHeight(self.bounds) / 2.;
     }
     
     POPBasicAnimation *closeAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerPositionY];

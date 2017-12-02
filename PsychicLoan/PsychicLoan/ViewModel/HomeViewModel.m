@@ -24,4 +24,18 @@
 //    [NetRequestClass NetRequestPOSTWithRequestURL:PGY_VERSION_GROUP_URL WithParameter:@{@"aId":PGY_APPID,@"_api_key":PGY_APIKEY} headers:nil WithReturnValeuBlock:returnBlock WithFailureBlock:nil];
 }
 
+-(void)getHomePopView:(ReturnValueBlock)returnBlock failureBlock:(FailureBlock)failureBlock{
+    [NetRequestClass NetRequestGETWithRequestURL:HOME_POP_VIEW_URL WithParameter:nil headers:nil WithReturnValeuBlock:
+     ^(id returnValue) {
+         NSString* resultcode = [returnValue valueForKey:@"resultcode"];
+         if (resultcode > 0) {//请求成功
+             BannerModel* bannerModel = [BannerModel yy_modelWithJSON:[returnValue valueForKey:@"data"]];
+             returnBlock(bannerModel);
+         }else{
+             NSString* msg = [returnValue valueForKey:@"msg"];
+             failureBlock(nil,msg);//请求失败描述
+         }
+     } WithFailureBlock:failureBlock];
+}
+
 @end

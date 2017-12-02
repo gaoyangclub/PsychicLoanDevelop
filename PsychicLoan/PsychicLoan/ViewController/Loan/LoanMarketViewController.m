@@ -12,6 +12,7 @@
 #import "LoanModel.h"
 #import "LoanNormalCell.h"
 #import "DetailViewController.h"
+#import "HudManager.h"
 
 @interface LoanMarketViewController()<LoanMarketFilterDelegate>
 
@@ -72,7 +73,7 @@
     if (!_noticeIcon) {
         _noticeIcon = [[ASTextNode alloc]init];
         _noticeIcon.layerBacked = YES;
-        _noticeIcon.attributedString = [NSString simpleAttributedString:ICON_FONT_NAME color:[UIColor whiteColor] size:rpx(18) content:ICON_GONG_GAO];
+        _noticeIcon.attributedString = [NSString simpleAttributedString:ICON_FONT_NAME color:[UIColor whiteColor] size:rpx(16) content:ICON_GONG_GAO];
         _noticeIcon.size = [_noticeIcon measure:CGSizeMake(FLT_MAX, FLT_MAX)];
         [self.noticeBack addSubnode:_noticeIcon];
     }
@@ -83,7 +84,7 @@
     if (!_noticeLabel) {
         _noticeLabel = [[ASTextNode alloc]init];
         _noticeLabel.layerBacked = YES;
-        _noticeLabel.attributedString = [NSString simpleAttributedString:[UIColor whiteColor] size:SIZE_TEXT_PRIMARY content:LOAN_MARKET_PAGE_NOTICE_TEXT];
+        _noticeLabel.attributedString = [NSString simpleAttributedString:[UIColor whiteColor] size:SIZE_TEXT_SECONDARY content:LOAN_MARKET_PAGE_NOTICE_TEXT];
         _noticeLabel.size = [_noticeLabel measure:CGSizeMake(FLT_MAX, FLT_MAX)];
         [self.noticeBack addSubnode:_noticeLabel];
     }
@@ -118,6 +119,9 @@
     __weak __typeof(self) weakSelf = self;
     [self.viewModel getLoansByFilter:self.filterView.mintime maxtime:self.filterView.maxtime search:self.filterView.search minamount:self.filterView.minamount maxamount:self.filterView.maxamount returnBlock:^(NSArray<LoanModel*>* loanModels) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
+        if(!strongSelf){//界面已经被销毁
+            return;
+        }
         [strongSelf.tableView clearSource];
         SourceVo* svo = svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:0 headerClass:nil headerData:nil];
         for (LoanModel* loanModel in loanModels) {
@@ -127,7 +131,10 @@
         
         handler(YES);
     } failureBlock:^(NSString *errorCode, NSString *errorMsg) {
-        
+        [HudManager showToast:errorMsg];
+        //        self.emptyDataSource.netError = YES;
+        //        [self.tableView clearSource];
+        handler(NO);
     }];
 }
 

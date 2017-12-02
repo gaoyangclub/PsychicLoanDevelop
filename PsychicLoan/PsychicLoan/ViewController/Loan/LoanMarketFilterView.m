@@ -42,9 +42,9 @@
                    @{@"mintime":@(360),@"maxtime":@(0),@"title":@"12月以上"}];
         
         self.selectedTextColor = COLOR_PRIMARY;
-        self.normalTextColor = COLOR_TEXT_SECONDARY;
-        self.menuFontSize = rpx(14);
-        self.itemFontSize = rpx(12);
+        self.normalTextColor = COLOR_TEXT_PRIMARY;
+        self.menuFontSize = SIZE_TEXT_PRIMARY;
+        self.itemFontSize = SIZE_TEXT_SECONDARY;
         
         self.dataSource = self;
         self.delegate = self;

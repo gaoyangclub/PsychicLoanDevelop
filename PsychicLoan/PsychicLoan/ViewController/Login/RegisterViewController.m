@@ -16,9 +16,9 @@
 #import "UserDefaultsUtils.h"
 #import "TimerUtils.h"
 
-#define LEFT_MARGIN rpx(20)
-#define INPUT_AREA_HEIGHT rpx(150)
-#define INPUT_AREA_PADDING rpx(10)
+#define LEFT_MARGIN rpx(40)
+#define INPUT_AREA_HEIGHT rpx(165)
+#define INPUT_AREA_PADDING rpx(14)
 
 @interface RegisterViewController (){
     AuthCodeModel* authCodeResult;
@@ -62,7 +62,7 @@
     if (!_inputArea) {
         _inputArea = [[UIView alloc]init];
         _inputArea.backgroundColor = [UIColor whiteColor];
-        _inputArea.layer.cornerRadius = rpx(5);
+        _inputArea.layer.cornerRadius = rpx(4);
         _inputArea.layer.masksToBounds = YES;
         
         [self.view addSubview:_inputArea];
@@ -74,8 +74,8 @@
     if (!_usernameText) {
         _usernameText = [[UITextField alloc]init];
         _usernameText.clearButtonMode = UITextFieldViewModeWhileEditing;//输入的时候显示close按钮
-        _usernameText.font = [UIFont systemFontOfSize:SIZE_TEXT_LARGE];
-        _usernameText.textColor = COLOR_TEXT_SECONDARY;
+        _usernameText.font = [UIFont systemFontOfSize:SIZE_TEXT_PRIMARY];
+        _usernameText.textColor = COLOR_TEXT_PRIMARY;
         //        _usernameText.delegate = self; //文本交互代理
         _usernameText.placeholder = @"请输入手机号";
         _usernameText.keyboardType = UIKeyboardTypePhonePad;
@@ -89,8 +89,8 @@
     if (!_passwordText) {
         _passwordText = [[UITextField alloc]init];
         _passwordText.clearButtonMode = UITextFieldViewModeWhileEditing;//输入的时候显示close按钮
-        _passwordText.font = [UIFont systemFontOfSize:SIZE_TEXT_LARGE];
-        _passwordText.textColor = COLOR_TEXT_SECONDARY;
+        _passwordText.font = [UIFont systemFontOfSize:SIZE_TEXT_PRIMARY];
+        _passwordText.textColor = COLOR_TEXT_PRIMARY;
         //        _usernameText.delegate = self; //文本交互代理
         _passwordText.placeholder = @"请设置登录密码(不少于六位)";
 //        _passwordText.keyboardType = UIKeyboardTypePhonePad;
@@ -123,8 +123,8 @@
     if (!_authcodeText) {
         _authcodeText = [[UITextField alloc]init];
         _authcodeText.clearButtonMode = UITextFieldViewModeWhileEditing;//输入的时候显示close按钮
-        _authcodeText.font = [UIFont systemFontOfSize:SIZE_TEXT_LARGE];
-        _authcodeText.textColor = COLOR_TEXT_SECONDARY;
+        _authcodeText.font = [UIFont systemFontOfSize:SIZE_TEXT_PRIMARY];
+        _authcodeText.textColor = COLOR_TEXT_PRIMARY;
         //        _authcodeText.delegate = self; //文本交互代理
         _authcodeText.placeholder = @"请输入验证码";
         _authcodeText.keyboardType = UIKeyboardTypeNumberPad;
@@ -141,7 +141,7 @@
         _authcodeButton.titleSize = SIZE_TEXT_PRIMARY;
         _authcodeButton.titleColor = COLOR_PRIMARY;
         _authcodeButton.fillColor = [UIColor clearColor];
-        _authcodeButton.width = rpx(80);
+        _authcodeButton.width = rpx(90);
         _authcodeButton.y = _authcodeButton.height = INPUT_AREA_HEIGHT / 3.;
         
         UIView* leftLine = [[UIView alloc]init];
@@ -165,7 +165,7 @@
         _submitButton.fillColor = COLOR_PRIMARY;
         _submitButton.titleSize = SIZE_TEXT_LARGE;
         _submitButton.title = @"注    册";
-        _submitButton.cornerRadius = rpx(5);
+        _submitButton.cornerRadius = rpx(4);
         [_submitButton addTarget:self action:@selector(clickSubmitButton:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_submitButton];
     }
@@ -177,11 +177,11 @@
         _agreementButton = [[FlatButton alloc]init];
         _agreementButton.fillColor = [UIColor clearColor];
         _agreementButton.titleSize = SIZE_TEXT_PRIMARY;
-        _agreementButton.title = @"同意 <<超能贷注册协议>>";
+        _agreementButton.title = ConcatStrings(@"同意 <<",APPLICATION_NAME,@"注册协议>>");
         _agreementButton.icon = ICON_DA_GOU;
         _agreementButton.iconColor = [UIColor whiteColor];
-        _agreementButton.iconSize = rpx(18);
-        _agreementButton.iconGap = rpx(5);
+        _agreementButton.iconSize = rpx(16);
+        _agreementButton.iconGap = rpx(8);
         [_agreementButton addTarget:self action:@selector(clickAgreementButton:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_agreementButton];
     }
@@ -206,8 +206,8 @@
     self.navigationItem.titleView = self.titleLabel;
     self.navigationController.navigationBar.jk_barBackgroundColor = COLOR_PRIMARY;
     self.navigationItem.leftBarButtonItem =
-    [UICreationUtils createNavigationNormalButtonItem:COLOR_NAVI_TITLE font:[UIFont fontWithName:ICON_FONT_NAME size:25] text:ICON_FAN_HUI target:self action:@selector(leftClick)];
-    self.navigationItem.rightBarButtonItem = [UICreationUtils createNavigationNormalButtonItem:[UIColor whiteColor] font:[UIFont boldSystemFontOfSize:SIZE_TEXT_LARGE] text:@"关闭" target:self action:@selector(clickClose)];
+    [UICreationUtils createNavigationNormalButtonItem:COLOR_NAVI_TITLE font:[UIFont fontWithName:ICON_FONT_NAME size:SIZE_LEFT_BACK_ICON] text:ICON_FAN_HUI target:self action:@selector(leftClick)];
+    self.navigationItem.rightBarButtonItem = [UICreationUtils createNavigationNormalButtonItem:[UIColor whiteColor] font:[UIFont boldSystemFontOfSize:SIZE_TEXT_PRIMARY] text:@"关闭" target:self action:@selector(clickClose)];
 }
 
 //返回上层
@@ -274,9 +274,9 @@
 }
 
 -(void)initButtonArea{
-    CGFloat const inputGap = rpx(35);
+    CGFloat const inputGap = rpx(39);
     
-    CGFloat const submitHeight = rpx(35);
+    CGFloat const submitHeight = rpx(40);
     
     self.submitButton.frame = CGRectMake(LEFT_MARGIN, self.inputArea.maxY + inputGap, self.view.width - LEFT_MARGIN * 2, submitHeight);
     
@@ -284,7 +284,7 @@
     
     self.agreementButton.centerX = self.loginButton.centerX = self.view.width / 2.;
     self.loginButton.maxY = self.view.height - inputGap;
-    self.agreementButton.maxY = self.loginButton.y - inputGap;
+    self.agreementButton.maxY = self.loginButton.y - rpx(70);
 }
 
 -(void)clickSubmitButton:(UIView*)sender{
@@ -314,6 +314,10 @@
     
     __weak __typeof(self) weakSelf = self;
     [self.viewModel registerAccount:phone password:password authCode:authcode authCodeBean:self->authCodeResult returnBlock:^(id returnValue) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        if(!strongSelf){//界面已经被销毁
+            return;
+        }
         [SVProgressHUD dismiss];
         
         [UserDefaultsUtils setObject:phone forKey:PHONE_KEY];//注册成功
@@ -333,7 +337,8 @@
 -(void)clickAgreementButton:(UIView*)sender{
     WebViewController* viewController = [[WebViewController alloc]init];
 //    viewController.hidesBottomBarWhenPushed = YES;
-    viewController.linkUrl = @"http://www.baidu.com";
+    viewController.linkUrl = LINK_URL_AGREEMENT;
+    viewController.navigationTitle = ConcatStrings(APPLICATION_NAME,@"注册协议");
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
@@ -372,7 +377,10 @@
     [self startCountDown];
     __weak __typeof(self) weakSelf = self;
     [self.viewModel getAuthCode:phone type:AuthCodeTypeRegister returnBlock:^(AuthCodeModel* authCodeModel){
-        typeof(self) strongSelf = weakSelf;
+        __strong typeof(self) strongSelf = weakSelf;
+        if(!strongSelf){//界面已经被销毁
+            return;
+        }
         strongSelf->authCodeResult = authCodeModel;
     } failureBlock:^(NSString *errorCode, NSString *errorMsg) {
         [HudManager showToast:errorMsg];

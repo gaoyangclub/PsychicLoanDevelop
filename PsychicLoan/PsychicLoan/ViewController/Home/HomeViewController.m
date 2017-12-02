@@ -19,6 +19,9 @@
 #import "LoanTitleSection.h"
 #import "UserDefaultsUtils.h"
 #import "AppDelegate.h"
+#import "HomePopModelView.h"
+#import "BannerModel.h"
+#import "HudManager.h"
 
 //@interface TestTableViewCell : MJTableViewCell
 //
@@ -32,10 +35,13 @@
 //
 //@end
 
-@interface HomeViewController ()
+@interface HomeViewController (){
+    BOOL isPopView;
+}
 
 @property(nonatomic,retain)UILabel* titleLabel;
 @property(nonatomic,retain)HomeViewModel* viewModel;
+@property(nonatomic,retain)HomePopModelView* homePopView;
 
 @end
 
@@ -59,6 +65,13 @@
     return _viewModel;
 }
 
+-(HomePopModelView *)homePopView{
+    if (!_homePopView) {
+        _homePopView = [[HomePopModelView alloc]init];
+    }
+    return _homePopView;
+}
+
 //-(CGRect)getTableViewFrame{
 //    return CGRectMake(0, 0, self.view.width, self.view.height - 10);
 //}
@@ -80,6 +93,9 @@
     __weak __typeof(self) weakSelf = self;
     [self.viewModel getHomeLoans:^(HomeModel* homeModel) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
+        if(!strongSelf){//界面已经被销毁
+            return;
+        }
         [strongSelf.tableView clearSource];
         
         SourceVo* svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:0 headerClass:nil headerData:NULL];
@@ -109,8 +125,22 @@
         
         handler(YES);
         
+        if (!strongSelf->isPopView) {
+            strongSelf->isPopView = YES;
+            NSTimeInterval period = 1; //设置时间间隔
+            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, period * NSEC_PER_SEC);
+            dispatch_after(popTime, queue, ^(void){
+                [strongSelf getHomePopInfo];
+            });
+        }
+        
     } failureBlock:^(NSString *errorCode, NSString *errorMsg) {
         
+        [HudManager showToast:errorMsg];
+//        self.emptyDataSource.netError = YES;
+//        [self.tableView clearSource];
+        handler(NO);
     }];
 }
 
@@ -175,9 +205,22 @@
                                                object:nil];
 }
 
+-(void)getHomePopInfo{
+    __weak __typeof(self) weakSelf = self;
+    [self.viewModel getHomePopView:^(BannerModel* bannerModel) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        if(!strongSelf){//界面已经被销毁
+            return;
+        }
+        strongSelf.homePopView.bannerModel = bannerModel;
+        [strongSelf.homePopView show];
+        
+    } failureBlock:nil];
+}
+
 -(void)checkLoginItem{
     if (![UserDefaultsUtils getObject:PHONE_KEY]) {
-        self.navigationItem.rightBarButtonItem = [UICreationUtils createNavigationNormalButtonItem:[UIColor whiteColor] font:[UIFont boldSystemFontOfSize:SIZE_TEXT_LARGE] text:@"登录" target:self action:@selector(clickLogin)];
+        self.navigationItem.rightBarButtonItem = [UICreationUtils createNavigationNormalButtonItem:[UIColor whiteColor] font:[UIFont boldSystemFontOfSize:SIZE_TEXT_PRIMARY] text:@"登录" target:self action:@selector(clickLogin)];
     }else{
         self.navigationItem.rightBarButtonItem = nil;
     }

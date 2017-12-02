@@ -78,12 +78,12 @@
         _linkButton = [[FlatButton alloc]init];
         _linkButton.strokeColor = COLOR_PRIMARY;
         _linkButton.strokeWidth = LINE_WIDTH;
-        _linkButton.cornerRadius = rpx(5);
+        _linkButton.cornerRadius = rpx(4);
         _linkButton.fillColor = [UIColor whiteColor];
         _linkButton.titleColor = COLOR_PRIMARY;
         _linkButton.title = @"马上借钱";
         _linkButton.titleSize = SIZE_TEXT_PRIMARY;
-        _linkButton.size = CGSizeMake(rpx(70), rpx(26));
+        _linkButton.size = CGSizeMake(rpx(78), rpx(30));
         [self.contentView addSubview:_linkButton];
         [_linkButton addTarget:self action:@selector(clickLinkButton:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -101,7 +101,10 @@
 }
 
 -(void)clickLinkButton:(UIView*)sender{
+    LoanModel* loanModel = self.data;
     WebViewController* viewController = [[WebViewController alloc]init];
+    viewController.navigationTitle = loanModel.loanname;
+    viewController.isLoanRegister = YES;
     viewController.hidesBottomBarWhenPushed = YES;
     viewController.linkUrl = ((LoanModel*)self.data).loanurl;
     [[AppDelegate getCurrentNavigationController]pushViewController:viewController animated:YES];
@@ -125,13 +128,15 @@
     
     CGFloat const textGap = rpx(3);
     
-    self.titleNode.attributedString = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_PRIMARY content:loanModel.loanname isBold:YES];
+    self.titleNode.attributedString = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_LARGE content:loanModel.loanname];
     self.titleNode.size = [self.titleNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
     
-    self.amountNode.attributedString = [NSString simpleAttributedString:COLOR_TEXT_SECONDARY size:SIZE_TEXT_SECONDARY content:[NSString stringWithFormat:@"%ld",loanModel.maxamount]];
+    self.amountNode.attributedString = [NSString simpleAttributedString:COLOR_TEXT_SECONDARY size:SIZE_TEXT_SECONDARY content:
+                                        ConcatStrings(@"",@(loanModel.maxamount),@"元 | ",@(loanModel.time),@"分钟")];
+//                                        [NSString stringWithFormat:@"%ld",loanModel.maxamount]];
     self.amountNode.size = [self.amountNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
     
-    self.describeNode.attributedString = [NSString simpleAttributedString:COLOR_TEXT_THIRD size:SIZE_TEXT_SECONDARY content:loanModel.loandes];
+    self.describeNode.attributedString = [NSString simpleAttributedString:COLOR_PRIMARY size:SIZE_TEXT_SECONDARY content:loanModel.loandes];
     self.describeNode.size = [self.describeNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
     
     self.titleNode.x = self.amountNode.x = self.describeNode.x = self.iconView.maxX + leftMargin;

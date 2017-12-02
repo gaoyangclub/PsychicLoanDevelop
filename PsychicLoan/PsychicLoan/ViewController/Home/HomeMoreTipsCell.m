@@ -23,9 +23,14 @@
     if (!_titleButton) {
         _titleButton = [[FlatButton alloc]init];
         _titleButton.title = HOME_MOER_BUTTON_NAME;
-        _titleButton.titleColor = FlatBlue;
+        _titleButton.titleColor = COLOR_PRIMARY;
         _titleButton.titleSize = SIZE_TEXT_SECONDARY;
         _titleButton.fillColor = [UIColor clearColor];
+        _titleButton.icon = ICON_QIAN_JIN;
+        _titleButton.iconSize = SIZE_TEXT_SECONDARY;
+        _titleButton.iconColor = COLOR_PRIMARY;
+        _titleButton.iconAlignment = IconAlignmentRight;
+        _titleButton.iconGap = rpx(6);
         [self.contentView addSubview:_titleButton];
         [_titleButton addTarget:self action:@selector(clickMoreButton:) forControlEvents:UIControlEventTouchUpInside];
     }

@@ -19,6 +19,9 @@
 @property(nonatomic,retain) ASTextNode* describeNode;
 //@property(nonatomic,retain) FlatButton* linkButton;//跳转链接
 
+@property(nonatomic,retain) ASTextNode* passRateLabel;//通过率
+@property(nonatomic,retain) ASTextNode* passRateNode;
+
 @end
 
 @implementation DetailLogoCell
@@ -69,6 +72,26 @@
     return _describeNode;
 }
 
+-(ASTextNode *)passRateLabel{
+    if (!_passRateLabel) {
+        _passRateLabel = [[ASTextNode alloc]init];
+        _passRateLabel.layerBacked = YES;
+        _passRateLabel.attributedString = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_PRIMARY content:@"通过率"];
+        _passRateLabel.size = [_passRateLabel measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+        [self.contentView.layer addSublayer:_passRateLabel.layer];
+    }
+    return _passRateLabel;
+}
+
+-(ASTextNode *)passRateNode{
+    if (!_passRateNode) {
+        _passRateNode = [[ASTextNode alloc]init];
+        _passRateNode.layerBacked = YES;
+        [self.contentView.layer addSublayer:_passRateNode.layer];
+    }
+    return _passRateNode;
+}
+
 -(void)showSubviews{
     self.contentView.backgroundColor = [UIColor whiteColor];
     
@@ -77,21 +100,23 @@
     CGFloat const leftMargin = rpx(20);
 //    self.backNode.frame = CGRectMake(leftMargin, 0, self.contentView.width - leftMargin * 2, self.contentView.height);
     
-    CGFloat const iconWidth = self.contentView.height - leftMargin;
+    CGFloat const iconWidth = self.contentView.height - leftMargin * 2;
     self.iconView.size = CGSizeMake(iconWidth, iconWidth);
     self.iconView.centerY = self.contentView.height / 2.;
     self.iconView.x = leftMargin;
     [self.iconView sd_setImageWithURL:[NSURL URLWithString:loanModel.loanlogo]];
     
-    CGFloat const textGap = rpx(3);
+    CGFloat const textGap = rpx(12);
     
-    self.titleNode.attributedString = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_PRIMARY content:loanModel.loanname isBold:YES];
+    self.titleNode.attributedString = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_LARGE content:loanModel.loanname];
     self.titleNode.size = [self.titleNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
     
-    self.amountNode.attributedString = [NSString simpleAttributedString:COLOR_TEXT_SECONDARY size:SIZE_TEXT_SECONDARY content:[NSString stringWithFormat:@"%ld",loanModel.maxamount]];
+    self.amountNode.attributedString = [NSString simpleAttributedString:COLOR_TEXT_SECONDARY size:SIZE_TEXT_PRIMARY content:
+                                        ConcatStrings(@"放款时间:",@(loanModel.time),@"分钟")];
+//                                        [NSString stringWithFormat:@"%ld",loanModel.maxamount]];
     self.amountNode.size = [self.amountNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
     
-    self.describeNode.attributedString = [NSString simpleAttributedString:COLOR_TEXT_THIRD size:SIZE_TEXT_SECONDARY content:loanModel.loandes];
+    self.describeNode.attributedString = [NSString simpleAttributedString:COLOR_PRIMARY size:SIZE_TEXT_PRIMARY content:loanModel.loandes];
     self.describeNode.size = [self.describeNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
     
     self.titleNode.x = self.amountNode.x = self.describeNode.x = self.iconView.maxX + leftMargin;
@@ -101,6 +126,14 @@
     self.amountNode.y = self.titleNode.maxY + textGap;
     self.describeNode.y = self.amountNode.maxY + textGap;
     
+    self.passRateNode.attributedString = [NSString simpleAttributedString:FlatRed size:rpx(24) content:ConcatStrings(loanModel.passrate,@"%")];
+    self.passRateNode.size = [self.passRateNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+    
+    CGFloat const passY = (self.height - self.passRateLabel.height - self.passRateNode.height - textGap) / 2.;
+    
+    self.passRateLabel.x = self.passRateNode.x = self.contentView.width - rpx(83);
+    self.passRateLabel.y = passY;
+    self.passRateNode.y = self.passRateLabel.maxY + textGap;
 }
 
 -(BOOL)showSelectionStyle{

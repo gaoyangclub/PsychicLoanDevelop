@@ -17,7 +17,6 @@
 
 @property(nonatomic,assign)long minamount;//最小金额
 @property(nonatomic,copy)NSString* rate;//日利率
-@property(nonatomic,assign)double time;//放款时间
 @property(nonatomic,copy)NSString* information;//申请材料
 
 @end

@@ -29,7 +29,7 @@
         _amountLabel = [[ASTextNode alloc]init];
         _amountLabel.layerBacked = YES;
         [self.contentView.layer addSublayer:_amountLabel.layer];
-        _amountLabel.attributedString = [NSString simpleAttributedString:COLOR_TEXT_SECONDARY size:SIZE_TEXT_SECONDARY content:@"借款额度"];
+        _amountLabel.attributedString = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_PRIMARY content:@"借款额度"];
         _amountLabel.size = [_amountLabel measure:CGSizeMake(FLT_MAX, FLT_MAX)];
     }
     return _amountLabel;
@@ -49,7 +49,7 @@
         _rateLabel = [[ASTextNode alloc]init];
         _rateLabel.layerBacked = YES;
         [self.contentView.layer addSublayer:_rateLabel.layer];
-        _rateLabel.attributedString = [NSString simpleAttributedString:COLOR_TEXT_SECONDARY size:SIZE_TEXT_SECONDARY content:@"日利率(%)"];
+        _rateLabel.attributedString = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_PRIMARY content:@"日利率(%)"];
         _rateLabel.size = [_rateLabel measure:CGSizeMake(FLT_MAX, FLT_MAX)];
     }
     return _rateLabel;
@@ -69,7 +69,7 @@
         _timeLabel = [[ASTextNode alloc]init];
         _timeLabel.layerBacked = YES;
         [self.contentView.layer addSublayer:_timeLabel.layer];
-        _timeLabel.attributedString = [NSString simpleAttributedString:COLOR_TEXT_SECONDARY size:SIZE_TEXT_SECONDARY content:@"借款期限"];
+        _timeLabel.attributedString = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_PRIMARY content:@"借款期限"];
         _timeLabel.size = [_timeLabel measure:CGSizeMake(FLT_MAX, FLT_MAX)];
     }
     return _timeLabel;
@@ -123,21 +123,21 @@
                                       ConcatStrings(@"",@(detailModel.mintime),@"~",@(detailModel.maxtime),@"天")];
     self.timeNode.size = [self.timeNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
     
-    CGFloat const leftMargin = rpx(20);
+//    CGFloat const topMargin = 0;
     CGFloat const nodeGap = rpx(5);
     CGFloat const amountBaseY = (self.height - self.amountLabel.height - self.amountNode.height - nodeGap) / 2.;
     self.amountLabel.centerX = self.amountNode.centerX = areaWidth / 2.;
     self.amountLabel.y = amountBaseY;
     self.amountNode.y = self.amountLabel.maxY + nodeGap;
     
-    self.centerLineX1.frame = CGRectMake(areaWidth, leftMargin / 2., LINE_WIDTH, self.height - leftMargin);
+    self.centerLineX1.frame = CGRectMake(areaWidth, 0, LINE_WIDTH, self.height);
     
     CGFloat const rateBaseY = (self.height - self.rateLabel.height - self.rateNode.height - nodeGap) / 2.;
     self.rateLabel.centerX = self.rateNode.centerX = areaWidth + areaWidth / 2.;
     self.rateLabel.y = rateBaseY;
     self.rateNode.y = self.rateLabel.maxY + nodeGap;
     
-    self.centerLineX2.frame = CGRectMake(areaWidth * 2, leftMargin / 2., LINE_WIDTH, self.height - leftMargin);
+    self.centerLineX2.frame = CGRectMake(areaWidth * 2, 0, LINE_WIDTH, self.height);
     
     CGFloat const timeBaseY = (self.height - self.timeLabel.height - self.timeNode.height - nodeGap) / 2.;
     self.timeLabel.centerX = self.timeNode.centerX = areaWidth * 2 + areaWidth / 2.;

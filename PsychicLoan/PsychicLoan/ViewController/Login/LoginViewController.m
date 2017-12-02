@@ -19,9 +19,9 @@
 #import "TimerUtils.h"
 #import "PasswordViewController.h"
 
-#define LEFT_MARGIN rpx(20)
-#define INPUT_AREA_HEIGHT rpx(100)
-#define INPUT_AREA_PADDING rpx(10)
+#define LEFT_MARGIN rpx(40)
+#define INPUT_AREA_HEIGHT rpx(110)
+#define INPUT_AREA_PADDING rpx(14)
 
 @interface LoginViewController (){
 //    NSTimer* timer;
@@ -73,7 +73,7 @@
         _segmentedControl = [[PPiFlatSegmentedControl alloc]initWithFrame:CGRectZero items:items iconPosition:IconPositionRight iconSeparation:0 target:self andSelection:@selector(segmentedControlSelected:)];
         [self.view addSubview:_segmentedControl];
         
-        _segmentedControl.cornerRadius = rpx(5);
+        _segmentedControl.cornerRadius = rpx(4);
         _segmentedControl.borderWidth = LINE_WIDTH;
         _segmentedControl.borderColor = [UIColor whiteColor];
         _segmentedControl.selectedColor = [UIColor whiteColor];
@@ -90,7 +90,7 @@
     if (!_inputArea) {
         _inputArea = [[UIView alloc]init];
         _inputArea.backgroundColor = [UIColor whiteColor];
-        _inputArea.layer.cornerRadius = rpx(5);
+        _inputArea.layer.cornerRadius = rpx(4);
         _inputArea.layer.masksToBounds = YES;
         
         [self.view addSubview:_inputArea];
@@ -113,8 +113,8 @@
     if (!_usernameText) {
         _usernameText = [[UITextField alloc]init];
         _usernameText.clearButtonMode = UITextFieldViewModeWhileEditing;//输入的时候显示close按钮
-        _usernameText.font = [UIFont systemFontOfSize:rpx(14)];
-        _usernameText.textColor = COLOR_TEXT_SECONDARY;
+        _usernameText.font = [UIFont systemFontOfSize:SIZE_TEXT_PRIMARY];
+        _usernameText.textColor = COLOR_TEXT_PRIMARY;
         //        _usernameText.delegate = self; //文本交互代理
         _usernameText.placeholder = @"请输入手机号";
         _usernameText.keyboardType = UIKeyboardTypePhonePad;
@@ -148,8 +148,8 @@
     if (!_authcodeText) {
         _authcodeText = [[UITextField alloc]init];
         _authcodeText.clearButtonMode = UITextFieldViewModeWhileEditing;//输入的时候显示close按钮
-        _authcodeText.font = [UIFont systemFontOfSize:rpx(14)];
-        _authcodeText.textColor = COLOR_TEXT_SECONDARY;
+        _authcodeText.font = [UIFont systemFontOfSize:SIZE_TEXT_PRIMARY];
+        _authcodeText.textColor = COLOR_TEXT_PRIMARY;
         //        _authcodeText.delegate = self; //文本交互代理
         _authcodeText.placeholder = @"请输入验证码";
         _authcodeText.keyboardType = UIKeyboardTypeNumberPad;
@@ -166,7 +166,7 @@
         _authcodeButton.titleSize = SIZE_TEXT_PRIMARY;
         _authcodeButton.titleColor = COLOR_PRIMARY;
         _authcodeButton.fillColor = [UIColor clearColor];
-        _authcodeButton.width = rpx(80);
+        _authcodeButton.width = rpx(90);
         _authcodeButton.y = _authcodeButton.height = INPUT_AREA_HEIGHT / 2.;
         
         UIView* leftLine = [[UIView alloc]init];
@@ -235,6 +235,9 @@
     self.authcodeText.text = @"";//清除掉
     self.authcodeText.keyboardType = indexValue.integerValue == 0 ? UIKeyboardTypeNumberPad : UIKeyboardTypeDefault;
     
+    CGFloat const areaWidth = self.view.width - LEFT_MARGIN * 2;
+    self.authcodeText.width = areaWidth - rpx(50) - INPUT_AREA_PADDING - (indexValue.integerValue == 0 ? self.authcodeButton.width : 0);
+    
     [self.view endEditing:YES];//结束编辑回收键盘
 }
 
@@ -244,7 +247,7 @@
     [self.titleLabel sizeToFit];
     self.navigationItem.titleView = self.titleLabel;
     self.navigationController.navigationBar.jk_barBackgroundColor = COLOR_PRIMARY;
-    self.navigationItem.rightBarButtonItem = [UICreationUtils createNavigationNormalButtonItem:[UIColor whiteColor] font:[UIFont boldSystemFontOfSize:SIZE_TEXT_LARGE] text:@"关闭" target:self action:@selector(clickClose)];
+    self.navigationItem.rightBarButtonItem = [UICreationUtils createNavigationNormalButtonItem:[UIColor whiteColor] font:[UIFont boldSystemFontOfSize:SIZE_TEXT_PRIMARY] text:@"关闭" target:self action:@selector(clickClose)];
 }
 
 -(void)clickClose{
@@ -274,8 +277,8 @@
 }
 
 -(void)initSegmentedControl{
-    CGFloat const inputGap = rpx(35);
-    CGFloat const segmentedHeight = rpx(30);
+    CGFloat const inputGap = rpx(50);
+    CGFloat const segmentedHeight = rpx(40);
     
     self.segmentedControl.frame = CGRectMake(LEFT_MARGIN, self.inputArea.y - inputGap - segmentedHeight, self.view.width - LEFT_MARGIN * 2, segmentedHeight);
 }
@@ -295,7 +298,7 @@
     self.usernameIcon.centerX = iconWidth / 2.;
     self.usernameIcon.centerY = inputHeight / 2.;
     
-    self.usernameText.frame = CGRectMake(iconWidth + padding, 0, areaWidth - iconWidth - padding * 2, inputHeight);
+    self.usernameText.frame = CGRectMake(iconWidth, 0, areaWidth - iconWidth - padding, inputHeight);
     
     self.inputLineCenterY.frame = CGRectMake(0, inputHeight, areaWidth, LINE_WIDTH);
     
@@ -304,14 +307,14 @@
     
     self.authcodeButton.maxX = areaWidth;
     
-    self.authcodeText.frame = CGRectMake(iconWidth + padding, inputHeight, areaWidth - iconWidth - self.authcodeButton.width, inputHeight);
+    self.authcodeText.frame = CGRectMake(iconWidth, inputHeight, areaWidth - iconWidth - self.authcodeButton.width - padding, inputHeight);
     
 }
 
 -(void)initButtonArea{
-    CGFloat const inputGap = rpx(35);
+    CGFloat const inputGap = rpx(39);
     
-    CGFloat const submitHeight = rpx(35);
+    CGFloat const submitHeight = rpx(40);
     
     self.submitButton.frame = CGRectMake(LEFT_MARGIN, self.inputArea.maxY + inputGap, self.view.width - LEFT_MARGIN * 2, submitHeight);
     
@@ -342,6 +345,10 @@
         [SVProgressHUD showWithStatus:@"登陆中..."];// maskType:SVProgressHUDMaskTypeBlack
         __weak __typeof(self) weakSelf = self;
         [self.viewModel loginWithAuthCode:phone authCode:authcode authCodeBean:self->authCodeResult returnBlock:^(id returnValue) {
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            if(!strongSelf){//界面已经被销毁
+                return;
+            }
             [SVProgressHUD dismiss];
             
             [UserDefaultsUtils setObject:phone forKey:PHONE_KEY];//登录成功
@@ -349,7 +356,7 @@
             
             [HudManager showToast:@"登录成功"];
             
-            [weakSelf closeWindow];
+            [strongSelf closeWindow];
             
         } failureBlock:^(NSString *errorCode, NSString *errorMsg) {
             [SVProgressHUD dismiss];
@@ -367,6 +374,10 @@
         [SVProgressHUD showWithStatus:@"登陆中..."];// maskType:SVProgressHUDMaskTypeBlack
         __weak __typeof(self) weakSelf = self;
         [self.viewModel loginWithPassword:phone password:authcode returnBlock:^(id returnValue) {
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            if(!strongSelf){//界面已经被销毁
+                return;
+            }
             [SVProgressHUD dismiss];
             
             [UserDefaultsUtils setObject:phone forKey:PHONE_KEY];//登录成功
@@ -374,7 +385,8 @@
             
             [HudManager showToast:@"登录成功"];
             
-            [weakSelf closeWindow];
+            [strongSelf closeWindow];
+            
         } failureBlock:^(NSString *errorCode, NSString *errorMsg) {
             [SVProgressHUD dismiss];
             
@@ -407,7 +419,10 @@
     [self startCountDown];
     __weak __typeof(self) weakSelf = self;
     [self.viewModel getAuthCode:phone type:AuthCodeTypeNormal returnBlock:^(AuthCodeModel* authCodeModel) {
-        typeof(self) strongSelf = weakSelf;
+        __strong typeof(self) strongSelf = weakSelf;
+        if(!strongSelf){//界面已经被销毁
+            return;
+        }
         strongSelf->authCodeResult = authCodeModel;
     } failureBlock:^(NSString *errorCode, NSString *errorMsg) {
         [HudManager showToast:errorMsg];

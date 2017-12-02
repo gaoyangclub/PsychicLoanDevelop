@@ -11,5 +11,6 @@
 @interface HomeViewModel : NSObject
 
 -(void)getHomeLoans:(ReturnValueBlock)returnBlock failureBlock:(FailureBlock)failureBlock;
+-(void)getHomePopView:(ReturnValueBlock)returnBlock failureBlock:(FailureBlock)failureBlock;
 
 @end
