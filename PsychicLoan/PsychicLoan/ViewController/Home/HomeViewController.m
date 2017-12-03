@@ -112,7 +112,7 @@
             [svo.data addObject:[CellVo initWithParams:HOME_LOAN_NORMAL_CELL_HEIGHT cellClass:[LoanNormalCell class] cellData:loanModel]];
         }
         [strongSelf.tableView addSource:svo];
-        svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:LOAN_SECTION_HEIGHT headerClass:[LoanTitleSection class] headerData:[Config getLoanTypeNameByCode:LOAN_TYPE_HOT]];
+        svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:LOAN_SECTION_HEIGHT headerClass:[LoanTitleSection class] headerData:[Config getLoanTypeNameByCode:LOAN_TYPE_RECOMMEND]];
 //        loanModels = [self generateTempLoanModels];
         for (LoanModel* loanModel in homeModel.recommend) {
             [svo.data addObject:[CellVo initWithParams:HOME_LOAN_NORMAL_CELL_HEIGHT cellClass:[LoanNormalCell class] cellData:loanModel]];

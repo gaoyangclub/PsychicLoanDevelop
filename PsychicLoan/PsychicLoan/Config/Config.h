@@ -13,7 +13,7 @@
 #define COLOR_LINE rgb(218,218,218)
 //#define COLOR_YI_WAN_CHENG FlatGrayDark//COLOR_PRIMARY //rgb(67,152,216)//rgba(21,178,168,1)
 //#define COLOR_DAI_WAN_CHENG COLOR_PRIMARY//FlatWatermelon//[UIColor flatSandColorDark]//rgb(250,83,44)//rgba(240,129,69,1)
-#define LINE_WIDTH rpx(0.5)
+#define LINE_WIDTH 0.5//rpx
 
 #define COLOR_TEXT_PRIMARY FlatBlack
 #define COLOR_TEXT_SECONDARY rgb(155,155,155)//rgb(95,95,95)
