@@ -18,6 +18,7 @@
 #import "UserDefaultsUtils.h"
 #import "TimerUtils.h"
 #import "PasswordViewController.h"
+#import "MobClickEventManager.h"
 
 #define LEFT_MARGIN rpx(40)
 #define INPUT_AREA_HEIGHT rpx(110)
@@ -274,6 +275,8 @@
     self.view.backgroundColor = COLOR_PRIMARY;
     
     [self initNavigationItem];
+    
+    [MobClickEventManager loginViewControllerDidLoad];
 }
 
 -(void)initSegmentedControl{
@@ -357,6 +360,8 @@
             [HudManager showToast:@"登录成功"];
             
             [strongSelf closeWindow];
+            
+            [MobClickEventManager loginComplete];
             
         } failureBlock:^(NSString *errorCode, NSString *errorMsg) {
             [SVProgressHUD dismiss];

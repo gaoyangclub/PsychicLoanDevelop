@@ -14,6 +14,7 @@
 #import "LoanViewModel.h"
 #import "DetailViewController.h"
 #import "HudManager.h"
+#import "MobClickEventManager.h"
 
 @interface LoanTypeViewController()
 
@@ -137,7 +138,9 @@
         [strongSelf.tableView clearSource];
         SourceVo* svo = svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:0 headerClass:nil headerData:nil];
         for (LoanModel* loanModel in loanModels) {
-            [svo.data addObject:[CellVo initWithParams:HOME_LOAN_NORMAL_CELL_HEIGHT cellClass:[LoanNormalCell class] cellData:loanModel]];
+            CellVo* cvo = [CellVo initWithParams:HOME_LOAN_NORMAL_CELL_HEIGHT cellClass:[LoanNormalCell class] cellData:loanModel];
+            cvo.cellName = MOBCLICK_EVENT_FAST;
+            [svo.data addObject:cvo];
         }
         [strongSelf.tableView addSource:svo];
         
@@ -189,10 +192,13 @@
 -(void)didSelectRow:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     CellVo* cvo = [self.tableView getCellVoByIndexPath:indexPath];
     DetailViewController* viewController = [[DetailViewController alloc]init];
-    viewController.loanId = ((LoanModel*)cvo.cellData).loanid;
+    long loanId = ((LoanModel*)cvo.cellData).loanid;
+    viewController.loanId = loanId;
     viewController.loanName = ((LoanModel*)cvo.cellData).loanname;
     viewController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:viewController animated:YES];
+    
+    [MobClickEventManager loanTypeClickByEvent:cvo.cellName loanid:loanId isLink:NO];
 }
 
 @end

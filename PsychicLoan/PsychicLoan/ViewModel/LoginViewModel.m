@@ -27,7 +27,11 @@
 }
 
 -(void)registerAccount:(NSString *)telephone password:(NSString*)password authCode:(NSString *)authCode authCodeBean:(AuthCodeModel *)authCodeBean returnBlock:(ReturnValueBlock)returnBlock failureBlock:(FailureBlock)failureBlock{
-    NSDictionary* bodyData = @{@"phonenumber":telephone,@"type":@(AuthCodeTypeRegister),@"password":password,@"tamp":authCodeBean.tamp,@"hashcode":authCodeBean.hashcode,@"code":authCode};
+    if(!authCodeBean){
+        failureBlock(nil,@"请先获取验证码");//请求失败描述
+        return;
+    }
+    NSDictionary* bodyData = @{@"phonenumber":telephone,@"type":@(AuthCodeTypeRegister),@"password":password,@"tamp":authCodeBean.tamp,@"hashcode":authCodeBean.hashcode,@"code":authCode,@"channel":@"appstore",@"platform":@"ios"};
     [NetRequestClass NetRequestPOSTWithRequestURL:LOGIN_VALIDATA_URL WithParameter:nil headers:nil body:GetBody(bodyData) WithReturnValeuBlock:
      ^(id returnValue) {
          NSString* resultcode = [returnValue valueForKey:@"resultcode"];
@@ -41,7 +45,11 @@
 }
 
 -(void)updatePassword:(NSString *)telephone password:(NSString *)password authCode:(NSString *)authCode authCodeBean:(AuthCodeModel *)authCodeBean returnBlock:(ReturnValueBlock)returnBlock failureBlock:(FailureBlock)failureBlock{
-    NSDictionary* bodyData = @{@"phonenumber":telephone,@"type":@(AuthCodeTypePassword),@"password":password,@"tamp":authCodeBean.tamp,@"hashcode":authCodeBean.hashcode,@"code":authCode};
+    if(!authCodeBean){
+        failureBlock(nil,@"请先获取验证码");//请求失败描述
+        return;
+    }
+    NSDictionary* bodyData = @{@"phonenumber":telephone,@"type":@(AuthCodeTypePassword),@"password":password,@"tamp":authCodeBean.tamp,@"hashcode":authCodeBean.hashcode,@"code":authCode,@"channel":@"appstore",@"platform":@"ios"};
     [NetRequestClass NetRequestPOSTWithRequestURL:LOGIN_VALIDATA_URL WithParameter:nil headers:nil body:GetBody(bodyData) WithReturnValeuBlock:
      ^(id returnValue) {
          NSString* resultcode = [returnValue valueForKey:@"resultcode"];
@@ -55,7 +63,11 @@
 }
 
 -(void)loginWithAuthCode:(NSString *)telephone authCode:(NSString *)authCode authCodeBean:(AuthCodeModel *)authCodeBean returnBlock:(ReturnValueBlock)returnBlock failureBlock:(FailureBlock)failureBlock{
-    NSDictionary* bodyData = @{@"phonenumber":telephone,@"type":@(AuthCodeTypeNormal),@"tamp":authCodeBean.tamp,@"hashcode":authCodeBean.hashcode,@"code":authCode};
+    if(!authCodeBean){
+        failureBlock(nil,@"请先获取验证码");//请求失败描述
+        return;
+    }
+    NSDictionary* bodyData = @{@"phonenumber":telephone,@"type":@(AuthCodeTypeNormal),@"tamp":authCodeBean.tamp,@"hashcode":authCodeBean.hashcode,@"code":authCode,@"channel":@"appstore",@"platform":@"ios"};
     [NetRequestClass NetRequestPOSTWithRequestURL:LOGIN_VALIDATA_URL WithParameter:nil headers:nil body:GetBody(bodyData) WithReturnValeuBlock:
      ^(id returnValue) {
          NSString* resultcode = [returnValue valueForKey:@"resultcode"];

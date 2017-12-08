@@ -10,10 +10,11 @@
 #import "FlatButton.h"
 #import "PopAnimateManager.h"
 #import "NormalSelectItem.h"
-#import "AppDelegate.h"
 #import "UserDefaultsUtils.h"
 #import "CustomerServiceController.h"
 #import "WebViewController.h"
+#import "AppViewManager.h"
+#import "MobClickEventManager.h"
 
 typedef NS_ENUM(NSInteger,ItemPostion){
     ItemPostionNormal = 1,
@@ -29,6 +30,8 @@ typedef NS_ENUM(NSInteger,ItemPostion){
 @property(nonatomic,retain)UIScrollView* scrollView;
 
 @property(nonatomic,retain)NormalSelectItem* userBack;
+
+@property(nonatomic,retain)ASTextNode* versionLabel;
 
 @property(nonatomic,retain)FlatButton* logoutButton;
 
@@ -51,6 +54,17 @@ typedef NS_ENUM(NSInteger,ItemPostion){
     return _scrollView;
 }
 
+-(ASTextNode *)versionLabel{
+    if (!_versionLabel) {
+        _versionLabel = [[ASTextNode alloc]init];
+        _versionLabel.layerBacked = YES;
+        _versionLabel.attributedString = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_PRIMARY content:[Config getVersionDescription]];
+        _versionLabel.size = [_versionLabel measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+        [self.view.layer addSublayer:_versionLabel.layer];
+    }
+    return _versionLabel;
+}
+
 -(FlatButton *)logoutButton{
     if (!_logoutButton) {
         _logoutButton = [[FlatButton alloc]init];
@@ -61,7 +75,7 @@ typedef NS_ENUM(NSInteger,ItemPostion){
         _logoutButton.title = @"退出登录";
         _logoutButton.cornerRadius = 0;
         [_logoutButton addTarget:self action:@selector(clickLogoutButton:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:_logoutButton];
+        [self.scrollView addSubview:_logoutButton];
     }
     return _logoutButton;
 }
@@ -93,7 +107,7 @@ typedef NS_ENUM(NSInteger,ItemPostion){
 
 -(void)clickUserArea:(UIView*)sender{
     if (![UserDefaultsUtils getObject:PHONE_KEY]) {//说明未登录
-        [((AppDelegate*)[UIApplication sharedApplication].delegate) popLoginViewController];
+        [AppViewManager popLoginViewController];
     }
 }
 
@@ -110,6 +124,7 @@ typedef NS_ENUM(NSInteger,ItemPostion){
 //        [[OwnerViewController sharedInstance]logout:^{
 //            [(GYTabBarController*)weakSelf.tabBarController valueCommit:0];//自动回到主页
 //        }];
+        [MobClickEventManager userLogoutClick];
     }]];
     [self presentViewController:alertController animated:YES completion:nil];
 }
@@ -123,12 +138,21 @@ typedef NS_ENUM(NSInteger,ItemPostion){
 
 #pragma 坑爹!!! 必须时时跟随主view的frame
 -(void)viewDidLayoutSubviews{
-    self.scrollView.frame = self.view.bounds;
     [super viewDidLayoutSubviews];
+    
+    self.scrollView.frame = self.view.bounds;
+    
+    CGFloat viewHeight = self.view.height;
+    
+    self.versionLabel.centerX = self.view.width / 2.;
+    self.versionLabel.maxY = viewHeight - rpx(5);
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+//    self.automaticallyAdjustsScrollViewInsets = NO;
     
     self.view.backgroundColor = COLOR_BACKGROUND;
     
@@ -146,6 +170,8 @@ typedef NS_ENUM(NSInteger,ItemPostion){
                                              selector:@selector(checkLoginData)
                                                  name:EVENT_LOGIN_COMPLETE
                                                object:nil];
+    
+    [MobClickEventManager userViewControllerDidLoad];
 }
 
 -(void)measure{
@@ -182,16 +208,18 @@ typedef NS_ENUM(NSInteger,ItemPostion){
 
 -(void)clickContactCustomerHandler{//联系客服
     CustomerServiceController* customerServiceController = [[CustomerServiceController alloc]init];
+    customerServiceController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:customerServiceController animated:YES];
 }
 
 -(void)clickQuestionFeedbackHandler{//问题反馈
-
+    [AppViewManager openFeedbackViewController:self.navigationController];
+    [MobClickEventManager userFeedbackClick];
 }
 
 -(void)clickAboutUsHandler{//关于我们
     WebViewController* viewController = [[WebViewController alloc]init];
-    //    viewController.hidesBottomBarWhenPushed = YES;
+    viewController.hidesBottomBarWhenPushed = YES;
     viewController.linkUrl = LINK_URL_ABOUT_US;
     viewController.navigationTitle = @"关于我们";
     [self.navigationController pushViewController:viewController animated:YES];

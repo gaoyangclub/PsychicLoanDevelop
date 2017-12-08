@@ -347,7 +347,7 @@
         }
         cell.backgroundColor = [UIColor clearColor];//无色
     }
-    if (isCreate || cell.cellVo != cellVo) {
+    if (isCreate || !cell.isSubviewShow || cell.cellVo != cellVo) {//创建 或 cell处于视图窗口外还未显示 或 数据已经变化
         cell.needRefresh = YES; //需要刷新
     }else{
         cell.needRefresh = NO; //不需要刷新

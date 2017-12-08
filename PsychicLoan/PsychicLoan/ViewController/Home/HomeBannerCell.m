@@ -11,6 +11,8 @@
 #import "BannerModel.h"
 #import "DetailViewController.h"
 #import "AppDelegate.h"
+#import "AppViewManager.h"
+#import "MobClickEventManager.h"
 
 @interface HomeBannerCell()<SDCycleScrollViewDelegate>
 
@@ -37,11 +39,13 @@
     //跳转到对应的数据id
 //    NSLog(@"选中banner index:%ld",(long)index);
     if (index < banners.count) {
+        long loanid = banners[index].loanid;
         DetailViewController* viewController = [[DetailViewController alloc]init];
-        viewController.loanId = banners[index].loanid;
+        viewController.loanId = loanid;
         viewController.loanName = banners[index].loanname;
         viewController.hidesBottomBarWhenPushed = YES;
-        [[AppDelegate getCurrentNavigationController] pushViewController:viewController animated:YES];
+        [[AppViewManager getCurrentNavigationController] pushViewController:viewController animated:YES];
+        [MobClickEventManager homeBannerClick:loanid];
     }
 }
 

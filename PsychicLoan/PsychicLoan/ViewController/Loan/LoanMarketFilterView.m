@@ -32,9 +32,9 @@
                    @{@"minamount":@(5000),@"maxamount":@(10000),@"title":@"5000~10000"},
                    @{@"minamount":@(10000),@"maxamount":@(0),@"title":@"10000以上"}];
         _data2 = @[@{@"search":@(0),@"title":@"不限资质"},
-                   @{@"search":@(1),@"title":@"信用卡"},
+                   @{@"search":@(1),@"title":@"身份证"},
                    @{@"search":@(2),@"title":@"芝麻分"},
-                   @{@"search":@(3),@"title":@"公积金"}];
+                   @{@"search":@(3),@"title":@"信用卡"}];
         _data3 = @[@{@"mintime":@(0),@"maxtime":@(0),@"title":@"不限期限"},
                    @{@"mintime":@(1),@"maxtime":@(30),@"title":@"1~30天"},
                    @{@"mintime":@(30),@"maxtime":@(180),@"title":@"1月~6月"},

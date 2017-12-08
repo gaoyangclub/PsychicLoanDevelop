@@ -8,6 +8,7 @@
 
 #import "WebViewController.h"
 #import <WebKit/WebKit.h>
+#import "MobClickEventManager.h"
 
 @interface WebViewController()
 
@@ -64,12 +65,16 @@
 
 //返回上层
 -(void)leftClick{
-    if (self.isLoanRegister) {
+    if (self.loanId) {
         __weak __typeof(self) weakSelf = self;
         UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"您确定注册了吗？" preferredStyle:UIAlertControllerStyleAlert];
-        [alertController addAction:[UIAlertAction actionWithTitle:@"继续注册" style:UIAlertActionStyleCancel handler:nil]];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"继续注册" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            [MobClickEventManager webViewAlertClick:weakSelf.loanId isCancel:NO];
+        }]];
         [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [weakSelf popToPrevController];
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            [strongSelf popToPrevController];
+            [MobClickEventManager webViewAlertClick:strongSelf.loanId isCancel:YES];
         }]];
         [self presentViewController:alertController animated:YES completion:nil];
     }else{
@@ -89,6 +94,9 @@
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.linkUrl]]];
     
 //    [self.webView loadRequest:[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:self.linkUrl]]];
+    if (self.loanId) {
+        [MobClickEventManager webViewControllerDidLoad:self.loanId];
+    }
 }
 
 @end

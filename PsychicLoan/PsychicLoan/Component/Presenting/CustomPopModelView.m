@@ -43,6 +43,17 @@
 }
 
 -(UIView*)getParentView{
+    NSEnumerator *frontToBackWindows = [UIApplication.sharedApplication.windows reverseObjectEnumerator];
+    for (UIWindow *window in frontToBackWindows) {
+        BOOL windowOnMainScreen = window.screen == UIScreen.mainScreen;
+        BOOL windowIsVisible = !window.hidden && window.alpha > 0;
+        BOOL windowLevelNormal = window.windowLevel == UIWindowLevelNormal;
+        
+        if(windowOnMainScreen && windowIsVisible && windowLevelNormal) {
+            return window;
+            break;
+        }
+    }
     return [[UIApplication sharedApplication].windows lastObject];
 }
 

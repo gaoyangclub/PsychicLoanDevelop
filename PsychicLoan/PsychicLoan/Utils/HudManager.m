@@ -27,7 +27,7 @@
 }
 
 +(void)showToast:(NSString *)value delay:(CGFloat)delay{
-    UIWindow *window = [[UIApplication sharedApplication].windows lastObject];
+    UIView *window = [HudManager getParentView];
     // 添加到窗口
     MBProgressHUD* hud = [[MBProgressHUD alloc]initWithView:window];
     hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
@@ -41,6 +41,21 @@
     hud.bezelView.color = [[UIColor blackColor]colorWithAlphaComponent:0.7];
     [hud showAnimated:YES];
     [hud hideAnimated:YES afterDelay:delay];
+}
+
++(UIView*)getParentView{
+    NSEnumerator *frontToBackWindows = [UIApplication.sharedApplication.windows reverseObjectEnumerator];
+    for (UIWindow *window in frontToBackWindows) {
+        BOOL windowOnMainScreen = window.screen == UIScreen.mainScreen;
+        BOOL windowIsVisible = !window.hidden && window.alpha > 0;
+        BOOL windowLevelNormal = window.windowLevel == UIWindowLevelNormal;
+        
+        if(windowOnMainScreen && windowIsVisible && windowLevelNormal) {
+            return window;
+            break;
+        }
+    }
+    return [[UIApplication sharedApplication].windows lastObject];
 }
 
 @end

@@ -18,10 +18,11 @@
 #import "DetailViewController.h"
 #import "LoanTitleSection.h"
 #import "UserDefaultsUtils.h"
-#import "AppDelegate.h"
 #import "HomePopModelView.h"
 #import "BannerModel.h"
 #import "HudManager.h"
+#import "AppViewManager.h"
+#import "MobClickEventManager.h"
 
 //@interface TestTableViewCell : MJTableViewCell
 //
@@ -109,13 +110,17 @@
         svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:LOAN_SECTION_HEIGHT headerClass:[LoanTitleSection class] headerData:[Config getLoanTypeNameByCode:LOAN_TYPE_HOT]];
 //        NSMutableArray<LoanModel*>* loanModels = [self generateTempLoanModels];
         for (LoanModel* loanModel in homeModel.hotloan) {
-            [svo.data addObject:[CellVo initWithParams:HOME_LOAN_NORMAL_CELL_HEIGHT cellClass:[LoanNormalCell class] cellData:loanModel]];
+            CellVo* cvo = [CellVo initWithParams:HOME_LOAN_NORMAL_CELL_HEIGHT cellClass:[LoanNormalCell class] cellData:loanModel];
+            cvo.cellName = MOBCLICK_EVENT_HOT;
+            [svo.data addObject:cvo];
         }
         [strongSelf.tableView addSource:svo];
         svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:LOAN_SECTION_HEIGHT headerClass:[LoanTitleSection class] headerData:[Config getLoanTypeNameByCode:LOAN_TYPE_RECOMMEND]];
 //        loanModels = [self generateTempLoanModels];
         for (LoanModel* loanModel in homeModel.recommend) {
-            [svo.data addObject:[CellVo initWithParams:HOME_LOAN_NORMAL_CELL_HEIGHT cellClass:[LoanNormalCell class] cellData:loanModel]];
+            CellVo* cvo = [CellVo initWithParams:HOME_LOAN_NORMAL_CELL_HEIGHT cellClass:[LoanNormalCell class] cellData:loanModel];
+            cvo.cellName = MOBCLICK_EVENT_RECOMMEND;
+            [svo.data addObject:cvo];
         }
         [strongSelf.tableView addSource:svo];
         
@@ -149,10 +154,13 @@
     CellVo* cvo = [self.tableView getCellVoByIndexPath:indexPath];
     if ([cvo.cellData isKindOfClass:[LoanModel class]]) {
         DetailViewController* viewController = [[DetailViewController alloc]init];
-        viewController.loanId = ((LoanModel*)cvo.cellData).loanid;
+        long loanId = ((LoanModel*)cvo.cellData).loanid;
+        viewController.loanId = loanId;
         viewController.loanName = ((LoanModel*)cvo.cellData).loanname;
         viewController.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:viewController animated:YES];
+        
+        [MobClickEventManager loanTypeClickByEvent:cvo.cellName loanid:loanId isLink:NO];
     }
 }
 
@@ -203,6 +211,8 @@
                                              selector:@selector(checkLoginItem)
                                                  name:EVENT_LOGIN_COMPLETE
                                                object:nil];
+    
+    [MobClickEventManager homeViewControllerDidLoad];
 }
 
 -(void)getHomePopInfo{
@@ -214,6 +224,7 @@
         }
         strongSelf.homePopView.bannerModel = bannerModel;
         [strongSelf.homePopView show];
+        [MobClickEventManager homePopWillShow];
         
     } failureBlock:nil];
 }
@@ -227,7 +238,7 @@
 }
 
 -(void)clickLogin{
-    [((AppDelegate*)[UIApplication sharedApplication].delegate) popLoginViewController];
+    [AppViewManager popLoginViewController];
 }
 
 -(void)dealloc{

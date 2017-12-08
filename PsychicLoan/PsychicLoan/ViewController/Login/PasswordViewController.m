@@ -18,6 +18,7 @@
 #import "HudManager.h"
 #import "PopAnimateManager.h"
 #import "TimerUtils.h"
+#import "MobClickEventManager.h"
 
 @interface PasswordViewController (){
     AuthCodeModel* authCodeResult;
@@ -286,6 +287,8 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_LOGIN_COMPLETE object:nil];
         
         [strongSelf closeWindow];
+        
+        [MobClickEventManager loginComplete];
         
     } failureBlock:^(NSString *errorCode, NSString *errorMsg) {
         [SVProgressHUD dismiss];

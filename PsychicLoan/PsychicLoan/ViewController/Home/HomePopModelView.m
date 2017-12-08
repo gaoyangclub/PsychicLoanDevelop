@@ -10,7 +10,7 @@
 #import "UIImageView+WebCache.h"
 #import "FlatButton.h"
 #import "DetailViewController.h"
-#import "AppDelegate.h"
+#import "AppViewManager.h"
 
 @interface HomePopModelView()
 
@@ -79,7 +79,7 @@
     viewController.loanId = self.bannerModel.loanid;
     viewController.loanName = self.bannerModel.loanname;
     viewController.hidesBottomBarWhenPushed = YES;
-    [[AppDelegate getCurrentNavigationController] pushViewController:viewController animated:YES];
+    [[AppViewManager getCurrentNavigationController] pushViewController:viewController animated:YES];
 }
 
 @end

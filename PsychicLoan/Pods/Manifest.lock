@@ -14,6 +14,15 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - AlicloudFeedback (3.2.2):
+    - AlicloudUT
+    - AlicloudUtils
+  - AlicloudUT (5.2.0.1):
+    - AlicloudUTDID
+  - AlicloudUTDID (1.1.0.16)
+  - AlicloudUtils (1.2.2):
+    - AlicloudUT
+    - AlicloudUTDID
   - AsyncDisplayKit (1.9.5):
     - AsyncDisplayKit/ASDealloc2MainObject (= 1.9.5)
   - AsyncDisplayKit/ASDealloc2MainObject (1.9.5)
@@ -55,6 +64,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
+  - AlicloudFeedback (~> 3.2.0)
   - AsyncDisplayKit (= 1.9.5)
   - ChameleonFramework
   - DZNEmptyDataSet
@@ -72,6 +82,10 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  AlicloudFeedback: 0887b49a73d6fc172f4a986cae1f92ae4100341e
+  AlicloudUT: 9f20dcfd2753de09261b6c279245da1650a34932
+  AlicloudUTDID: f5a7bc1420c5f83e3bd40296e5ab2e5a804a12f8
+  AlicloudUtils: 2437ae7fd2b39343539e8f48aa1f7bf6f5a6cff1
   AsyncDisplayKit: 9c55f1aadf4edc3eab9e27812171f500c13882c7
   ChameleonFramework: 5abe69b1f2a6cc79c3c435fcd9d3d855748225ee
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
@@ -87,6 +101,6 @@ SPEC CHECKSUMS:
   UMengAnalytics: 8d95752776c32f5b954d40edc7f23944882a7c14
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: fbe836c58ea4dee22c249208f35eb39e40dfa346
+PODFILE CHECKSUM: 1fe8c120587af083d2a0fcbe18d0ae577097461a
 
 COCOAPODS: 1.1.1

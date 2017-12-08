@@ -15,6 +15,7 @@
 #import "AuthCodeModel.h"
 #import "UserDefaultsUtils.h"
 #import "TimerUtils.h"
+#import "MobClickEventManager.h"
 
 #define LEFT_MARGIN rpx(40)
 #define INPUT_AREA_HEIGHT rpx(165)
@@ -246,8 +247,9 @@
     self.view.backgroundColor = COLOR_PRIMARY;
     
     [self initNavigationItem];
+    
+    [MobClickEventManager registerViewControllerDidLoad];
 }
-
 
 -(void)initInputArea{
     CGFloat const padding = INPUT_AREA_PADDING;
@@ -322,6 +324,9 @@
         
         [UserDefaultsUtils setObject:phone forKey:PHONE_KEY];//注册成功
         [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_LOGIN_COMPLETE object:nil];
+        
+        [MobClickEventManager registerComplete];
+        [MobClickEventManager loginComplete];
         
         [weakSelf closeWindow];
         

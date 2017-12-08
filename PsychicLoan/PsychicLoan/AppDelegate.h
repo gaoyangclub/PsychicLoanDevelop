@@ -13,11 +13,5 @@
 
 @property(nonatomic,strong) UIWindow *window;
 
-@property(nonatomic,retain) GYTabBarController* rootTabBarController;
-
--(void)popLoginViewController;//全局弹出登录界面
-
-+(UINavigationController *)getCurrentNavigationController;
-
 @end
 

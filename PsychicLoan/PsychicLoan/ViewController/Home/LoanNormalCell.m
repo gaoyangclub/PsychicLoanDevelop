@@ -10,8 +10,10 @@
 #import "FlatButton.h"
 #import "LoanModel.h"
 #import "UIImageView+WebCache.h"
-#import "AppDelegate.h"
 #import "WebViewController.h"
+#import "AppViewManager.h"
+#import "MobClickEventManager.h"
+#import "MeasureUnitConvert.h"
 
 @interface LoanNormalCell()
 
@@ -50,6 +52,8 @@
     if (!_titleNode) {
         _titleNode = [[ASTextNode alloc]init];
         _titleNode.layerBacked = YES;
+        _titleNode.maximumNumberOfLines = 1;
+        _titleNode.truncationMode = NSLineBreakByTruncatingTail;
         [self.contentView.layer addSublayer:_titleNode.layer];
     }
     return _titleNode;
@@ -68,6 +72,8 @@
     if (!_describeNode) {
         _describeNode = [[ASTextNode alloc]init];
         _describeNode.layerBacked = YES;
+        _describeNode.maximumNumberOfLines = 1;
+        _describeNode.truncationMode = NSLineBreakByTruncatingTail;
         [self.contentView.layer addSublayer:_describeNode.layer];
     }
     return _describeNode;
@@ -102,12 +108,16 @@
 
 -(void)clickLinkButton:(UIView*)sender{
     LoanModel* loanModel = self.data;
-    WebViewController* viewController = [[WebViewController alloc]init];
-    viewController.navigationTitle = loanModel.loanname;
-    viewController.isLoanRegister = YES;
-    viewController.hidesBottomBarWhenPushed = YES;
-    viewController.linkUrl = ((LoanModel*)self.data).loanurl;
-    [[AppDelegate getCurrentNavigationController]pushViewController:viewController animated:YES];
+//    WebViewController* viewController = [[WebViewController alloc\]init];
+//    viewController.navigationTitle = loanModel.loanname;
+//    viewController.isLoanRegister = YES;
+//    viewController.hidesBottomBarWhenPushed = YES;
+//    viewController.linkUrl = ((LoanModel*)self.data).loanurl;
+//    [[AppViewManager getCurrentNavigationController]pushViewController:viewController animated:YES];
+    
+    [AppViewManager popLoginNextWebController:loanModel navigationController:[AppViewManager getCurrentNavigationController]];
+    
+    [MobClickEventManager loanTypeClickByEvent:self.cellVo.cellName loanid:loanModel.loanid isLink:YES];
 }
 
 -(void)showSubviews{
@@ -126,28 +136,42 @@
     self.iconView.x = leftMargin;
     [self.iconView sd_setImageWithURL:[NSURL URLWithString:loanModel.loanlogo]];
     
+    self.linkButton.centerY = self.contentView.height / 2.;
+    self.linkButton.maxX = self.contentView.width - leftMargin;
+    
     CGFloat const textGap = rpx(3);
     
-    self.titleNode.attributedString = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_LARGE content:loanModel.loanname];
-    self.titleNode.size = [self.titleNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+    CGFloat const baseX = self.iconView.maxX + leftMargin;
+    CGFloat const maxRightWidth = self.contentView.width - self.linkButton.x;
+    CGFloat const maxTitleWidth = self.contentView.width - baseX - maxRightWidth - leftMargin;
+    
+    NSMutableAttributedString* textString = (NSMutableAttributedString*)[NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_LARGE content:loanModel.loanname];
+    NSMutableParagraphStyle* style = [[NSMutableParagraphStyle alloc]init];
+    style.alignment = NSTextAlignmentLeft;//左对齐
+    [textString addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, loanModel.loanname.length)];
+    self.titleNode.attributedString = textString;
+    
+    self.titleNode.size = [self.titleNode measure:CGSizeMake(maxTitleWidth, FLT_MAX)];
+    
+    NSString* timeStr = [MeasureUnitConvert timeConvert:loanModel.time];
     
     self.amountNode.attributedString = [NSString simpleAttributedString:COLOR_TEXT_SECONDARY size:SIZE_TEXT_SECONDARY content:
-                                        ConcatStrings(@"",@(loanModel.maxamount),@"元 | ",@(loanModel.time),@"分钟")];
+                                        ConcatStrings([MeasureUnitConvert amountConvert:loanModel.maxamount],@" | ",timeStr)
+                                        ];
 //                                        [NSString stringWithFormat:@"%ld",loanModel.maxamount]];
     self.amountNode.size = [self.amountNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
     
-    self.describeNode.attributedString = [NSString simpleAttributedString:COLOR_PRIMARY size:SIZE_TEXT_SECONDARY content:loanModel.loandes];
-    self.describeNode.size = [self.describeNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+    textString = (NSMutableAttributedString*)[NSString simpleAttributedString:COLOR_PRIMARY size:SIZE_TEXT_SECONDARY content:loanModel.loandes];
+    [textString addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, loanModel.loandes.length)];
+    self.describeNode.attributedString = textString;
+    self.describeNode.size = [self.describeNode measure:CGSizeMake(maxTitleWidth, FLT_MAX)];
     
-    self.titleNode.x = self.amountNode.x = self.describeNode.x = self.iconView.maxX + leftMargin;
+    self.titleNode.x = self.amountNode.x = self.describeNode.x = baseX;
     
     CGFloat const baseY = (self.height - self.titleNode.height - self.amountNode.height - self.describeNode.height - textGap * 2) / 2.;
     self.titleNode.y = baseY;
     self.amountNode.y = self.titleNode.maxY + textGap;
     self.describeNode.y = self.amountNode.maxY + textGap;
-    
-    self.linkButton.centerY = self.contentView.height / 2.;
-    self.linkButton.maxX = self.contentView.width - leftMargin;
     
     if (!self.isLast) {
         self.lineBottomY.frame = CGRectMake(0, self.height - LINE_WIDTH, self.width, LINE_WIDTH);

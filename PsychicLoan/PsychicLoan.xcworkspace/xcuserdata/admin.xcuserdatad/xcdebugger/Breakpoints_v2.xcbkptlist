@@ -15,7 +15,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "81"
             endingLineNumber = "81"
-            landmarkName = "-headerRefresh:"
+            landmarkName = "-initNavigationItem"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PsychicLoan/ViewController/Loan/LoanMarketViewController.m"
-            timestampString = "533813027.45273"
+            timestampString = "534339780.420349"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
             landmarkName = "-getShowFooter"
             landmarkType = "5">
          </BreakpointContent>
@@ -70,15 +70,47 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PsychicLoan/ViewController/Login/LoginViewController.m"
+            timestampString = "534414025.010709"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "378"
+            endingLineNumber = "378"
+            landmarkName = "-clickSubmitButton:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PsychicLoan/ViewController/Login/LoginViewController.m"
+            timestampString = "534414025.010709"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "372"
+            endingLineNumber = "372"
+            landmarkName = "-clickSubmitButton:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PsychicLoan/ViewController/Login/RegisterViewController.m"
-            timestampString = "533821246.054006"
+            timestampString = "534414025.010709"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "325"
-            endingLineNumber = "325"
+            startingLineNumber = "319"
+            endingLineNumber = "319"
             landmarkName = "-clickSubmitButton:"
             landmarkType = "5">
          </BreakpointContent>
@@ -89,12 +121,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PsychicLoan/ViewController/Login/LoginViewController.m"
-            timestampString = "533803624.05441"
+            filePath = "PsychicLoan/ViewController/Login/RegisterViewController.m"
+            timestampString = "534414025.010709"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "373"
-            endingLineNumber = "373"
+            startingLineNumber = "334"
+            endingLineNumber = "334"
             landmarkName = "-clickSubmitButton:"
             landmarkType = "5">
          </BreakpointContent>
@@ -105,13 +137,29 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PsychicLoan/ViewController/Login/LoginViewController.m"
-            timestampString = "533803759.982413"
+            filePath = "PsychicLoan/ViewController/Home/LoanNormalCell.m"
+            timestampString = "534417075.066689"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "367"
-            endingLineNumber = "367"
-            landmarkName = "-clickSubmitButton:"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
+            landmarkName = "-showSubviews"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PsychicLoan/Vendor/MJTableBase/MJTableViewCell.m"
+            timestampString = "534426571.087122"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "-layoutSubviews"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

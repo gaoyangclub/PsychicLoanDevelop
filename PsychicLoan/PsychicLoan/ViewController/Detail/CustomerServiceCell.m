@@ -8,8 +8,9 @@
 
 #import "CustomerServiceCell.h"
 #import "FlatButton.h"
-#import "AppDelegate.h"
 #import "OpenUrlUtils.h"
+#import "AppViewManager.h"
+#import "MobClickEventManager.h"
 
 @interface CustomerServiceCell()
 
@@ -112,6 +113,11 @@
     }else{
         [self showCopyAlert:CUSTOMER_SERVICE_WECHAT_TEXT alertMessage:@"已复制客服微信号，去微信添加客服好友！"];
     }
+    if (self.data && [MOBCLICK_EVENT_DETAIL_CUSTOMER isEqual:self.data]) {
+        [MobClickEventManager detailCustomerClick];
+    }else if(self.data && [MOBCLICK_EVENT_USER_CUSTOMER isEqual:self.data]){
+        [MobClickEventManager userCustomerClick];
+    }
 }
 
 -(void)showCopyAlert:(NSString*)copyString alertMessage:(NSString*)alertMessage{
@@ -123,7 +129,7 @@
         [OpenUrlUtils openUrlByString:@"weixin://"];
     }]];
     [alertController addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:nil]];
-    [((AppDelegate*)[UIApplication sharedApplication].delegate).rootTabBarController presentViewController:alertController animated:YES completion:nil];
+    [[AppViewManager getRootTabBarController] presentViewController:alertController animated:YES completion:nil];
 }
 
 -(void)showSubviews{

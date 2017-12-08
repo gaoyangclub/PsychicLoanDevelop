@@ -16,6 +16,7 @@
 @property(nonatomic,assign) BOOL isLast;
 @property(nonatomic,assign) BOOL isSingle;//只有一个条目数据
 @property(nonatomic,assign) BOOL needRefresh;
+@property(nonatomic,assign) BOOL isSubviewShow;
 @property(nonatomic,weak) UITableView *tableView;
 @property(nonatomic,retain) NSIndexPath *indexPath;
 @property(nonatomic,retain) CellVo *cellVo;

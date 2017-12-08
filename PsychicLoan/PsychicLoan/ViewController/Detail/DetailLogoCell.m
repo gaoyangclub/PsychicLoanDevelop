@@ -9,6 +9,7 @@
 #import "DetailLogoCell.h"
 #import "LoanDetailModel.h"
 #import "UIImageView+WebCache.h"
+#import "MeasureUnitConvert.h"
 
 @interface DetailLogoCell()
 
@@ -49,6 +50,8 @@
     if (!_titleNode) {
         _titleNode = [[ASTextNode alloc]init];
         _titleNode.layerBacked = YES;
+        _titleNode.maximumNumberOfLines = 1;
+        _titleNode.truncationMode = NSLineBreakByTruncatingTail;
         [self.contentView.layer addSublayer:_titleNode.layer];
     }
     return _titleNode;
@@ -67,6 +70,8 @@
     if (!_describeNode) {
         _describeNode = [[ASTextNode alloc]init];
         _describeNode.layerBacked = YES;
+        _describeNode.maximumNumberOfLines = 1;
+        _describeNode.truncationMode = NSLineBreakByTruncatingTail;
         [self.contentView.layer addSublayer:_describeNode.layer];
     }
     return _describeNode;
@@ -108,18 +113,29 @@
     
     CGFloat const textGap = rpx(12);
     
-    self.titleNode.attributedString = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_LARGE content:loanModel.loanname];
-    self.titleNode.size = [self.titleNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+    CGFloat const baseX = self.iconView.maxX + leftMargin;
+    CGFloat const maxRightWidth = rpx(83);
+    CGFloat const maxTitleWidth = self.contentView.width - baseX - maxRightWidth - leftMargin;
+    
+    NSMutableAttributedString* textString = (NSMutableAttributedString*)[NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_LARGE content:loanModel.loanname];
+    NSMutableParagraphStyle* style = [[NSMutableParagraphStyle alloc]init];
+    style.alignment = NSTextAlignmentLeft;//左对齐
+    [textString addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, loanModel.loanname.length)];
+    
+    self.titleNode.attributedString = textString;
+    self.titleNode.size = [self.titleNode measure:CGSizeMake(maxTitleWidth, FLT_MAX)];
     
     self.amountNode.attributedString = [NSString simpleAttributedString:COLOR_TEXT_SECONDARY size:SIZE_TEXT_PRIMARY content:
-                                        ConcatStrings(@"放款时间:",@(loanModel.time),@"分钟")];
+                                        ConcatStrings(@"放款时间:",[MeasureUnitConvert timeConvert:loanModel.time])];
 //                                        [NSString stringWithFormat:@"%ld",loanModel.maxamount]];
     self.amountNode.size = [self.amountNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
     
-    self.describeNode.attributedString = [NSString simpleAttributedString:COLOR_PRIMARY size:SIZE_TEXT_PRIMARY content:loanModel.loandes];
-    self.describeNode.size = [self.describeNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+    textString = (NSMutableAttributedString*)[NSString simpleAttributedString:COLOR_PRIMARY size:SIZE_TEXT_PRIMARY content:loanModel.loandes];
+    [textString addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, loanModel.loanname.length)];
+    self.describeNode.attributedString = textString;
+    self.describeNode.size = [self.describeNode measure:CGSizeMake(maxTitleWidth, FLT_MAX)];
     
-    self.titleNode.x = self.amountNode.x = self.describeNode.x = self.iconView.maxX + leftMargin;
+    self.titleNode.x = self.amountNode.x = self.describeNode.x = baseX;
     
     CGFloat const baseY = (self.height - self.titleNode.height - self.amountNode.height - self.describeNode.height - textGap * 2) / 2.;
     self.titleNode.y = baseY;
@@ -131,7 +147,7 @@
     
     CGFloat const passY = (self.height - self.passRateLabel.height - self.passRateNode.height - textGap) / 2.;
     
-    self.passRateLabel.x = self.passRateNode.x = self.contentView.width - rpx(83);
+    self.passRateLabel.x = self.passRateNode.x = self.contentView.width - maxRightWidth;
     self.passRateLabel.y = passY;
     self.passRateNode.y = self.passRateLabel.maxY + textGap;
 }

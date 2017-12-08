@@ -13,6 +13,7 @@
 #import "LoanNormalCell.h"
 #import "DetailViewController.h"
 #import "HudManager.h"
+#import "MobClickEventManager.h"
 
 @interface LoanMarketViewController()<LoanMarketFilterDelegate>
 
@@ -113,6 +114,8 @@
     self.noticeLabel.centerY = self.noticeIcon.centerY = NOTICE_BACK_HEIGHT / 2.;
     self.noticeIcon.x = leftMargin;
     self.noticeLabel.x = self.noticeIcon.maxX + leftMargin;
+    
+    [MobClickEventManager loanMarketControllerDidLoad];
 }
 
 -(void)headerRefresh:(HeaderRefreshHandler)handler{
@@ -125,7 +128,9 @@
         [strongSelf.tableView clearSource];
         SourceVo* svo = svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:0 headerClass:nil headerData:nil];
         for (LoanModel* loanModel in loanModels) {
-            [svo.data addObject:[CellVo initWithParams:HOME_LOAN_NORMAL_CELL_HEIGHT cellClass:[LoanNormalCell class] cellData:loanModel]];
+            CellVo* cvo = [CellVo initWithParams:HOME_LOAN_NORMAL_CELL_HEIGHT cellClass:[LoanNormalCell class] cellData:loanModel];
+            cvo.cellName = MOBCLICK_EVENT_MARKET;
+            [svo.data addObject:cvo];
         }
         [strongSelf.tableView addSource:svo];
         
@@ -140,15 +145,20 @@
 
 -(void)loanFilterSelected:(LoanMarketFilterView *)view{
     [self.tableView headerBeginRefresh];//继续刷新
+    
+    [MobClickEventManager loanMarketFilterSelected:ConcatStrings(@"",@(view.minamount),@"-",@(view.maxamount)) search:[NSString stringWithFormat:@"%d",view.search] time:ConcatStrings(@"",@(view.mintime),@"-",@(view.maxtime))];
 }
 
 -(void)didSelectRow:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     CellVo* cvo = [self.tableView getCellVoByIndexPath:indexPath];
     DetailViewController* viewController = [[DetailViewController alloc]init];
-    viewController.loanId = ((LoanModel*)cvo.cellData).loanid;
+    long loanId = ((LoanModel*)cvo.cellData).loanid;
+    viewController.loanId = loanId;
     viewController.loanName = ((LoanModel*)cvo.cellData).loanname;
     viewController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:viewController animated:YES];
+    
+    [MobClickEventManager loanTypeClickByEvent:cvo.cellName loanid:loanId isLink:NO];
 }
 
 //- (void)didReceiveMemoryWarning {

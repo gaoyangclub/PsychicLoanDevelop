@@ -8,6 +8,7 @@
 
 #import "CustomerServiceController.h"
 #import "CustomerServiceCell.h"
+#import "MobClickEventManager.h"
 
 @interface CustomerServiceController()
 
@@ -28,6 +29,7 @@
 -(CustomerServiceCell *)customerServiceCell{
     if (!_customerServiceCell) {
         _customerServiceCell = [[CustomerServiceCell alloc]init];
+        _customerServiceCell.data = MOBCLICK_EVENT_USER_CUSTOMER;
         [self.view addSubview:_customerServiceCell];
     }
     return _customerServiceCell;

@@ -9,7 +9,8 @@
 #import "HomeFastCell.h"
 #import "FlatButton.h"
 #import "LoanTypeViewController.h"
-#import "AppDelegate.h"
+#import "AppViewManager.h"
+#import "MobClickEventManager.h"
 
 @interface HomeFastItem : UIControl
 
@@ -73,7 +74,7 @@ static NSArray<NSNumber*>* loanTpyes;
     
     self.showTouch = YES;
     
-    self.titleNode.attributedString = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_LARGE content:self.title];
+    self.titleNode.attributedString = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_PRIMARY content:self.title];
     self.titleNode.size = [self.titleNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
 
     self.imageNode.title = self.image;
@@ -117,10 +118,13 @@ static NSArray<NSNumber*>* loanTpyes;
 }
 
 -(void)fastItemClick:(UIView*)sender{
+    int loanType = [loanTpyes[sender.tag] intValue];
     LoanTypeViewController* viewController = [[LoanTypeViewController alloc]init];
     viewController.hidesBottomBarWhenPushed = YES;
-    viewController.loanType = [loanTpyes[sender.tag] intValue];
-    [[AppDelegate getCurrentNavigationController]pushViewController:viewController animated:YES];
+    viewController.loanType = loanType;
+    [[AppViewManager getCurrentNavigationController]pushViewController:viewController animated:YES];
+    
+    [MobClickEventManager homeFastClick:loanType];
 }
 
 @end

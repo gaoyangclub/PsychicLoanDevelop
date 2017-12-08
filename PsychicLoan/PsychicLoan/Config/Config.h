@@ -47,6 +47,11 @@
 
 //#define PER_PAGE_COUNT 20 //每一页数据个数
 
+#define UM_APPID @"5a257747a40fa346790005bb"//[Config getUMengAppID]//友盟
+
+#define FEEDBACK_APPSECRET @"f305e8b6515fd6b67830f7b0bf55eeaf"
+#define FEEDBACK_APPKEY @"24724689"
+
 #define TABBAR_TITLE_HOME @"主页"
 #define TABBAR_TITLE_LOAN @"贷款"
 #define TABBAR_TITLE_USER @"我的"
@@ -87,7 +92,7 @@
 //以iphone6为基础 坐标都以iphone6为基准 进行代码的适配
 #define rpx(px) px * SCREEN_WIDTH / SYSTEM_SCALE / 375.0// IPHONE_6_WIDTH / 2
 
-#define HOME_BANNER_CELL_HEIGHT rpx(140)
+#define HOME_BANNER_CELL_HEIGHT rpx(168)
 #define HOME_FAST_CELL_HEIGHT rpx(90)
 #define HOME_LOAN_NORMAL_CELL_HEIGHT rpx(80)
 #define LOAN_SECTION_HEIGHT rpx(30)

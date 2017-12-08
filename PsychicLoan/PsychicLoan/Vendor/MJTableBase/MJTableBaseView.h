@@ -159,6 +159,7 @@ typedef void(^FooterLoadMoreHandler)(BOOL hasData);
 @property (nonatomic,assign)NSInteger cellTag;
 @property (nonatomic,assign)BOOL isUnique;
 @property (nonatomic,assign)BOOL isSelect;
+@property (nonatomic,copy)NSString* cellName;//自定义保留字段
 
 -(BOOL)isRealCell;
 

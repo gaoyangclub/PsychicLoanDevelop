@@ -9,6 +9,7 @@
 #import "HomeMoreTipsCell.h"
 #import "FlatButton.h"
 #import "AppDelegate.h"
+#import "AppViewManager.h"
 
 @interface HomeMoreTipsCell()
 
@@ -38,8 +39,7 @@
 }
 
 -(void)clickMoreButton:(UIView*)sender{
-    AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    [appDelegate.rootTabBarController valueCommit:1];//选中理财超市
+    [[AppViewManager getRootTabBarController] valueCommit:1];//选中理财超市
 }
 
 -(ASTextNode *)tipsNode{

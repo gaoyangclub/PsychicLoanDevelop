@@ -57,6 +57,7 @@
     [super layoutSubviews];
     if (self.needRefresh) {
         [self showSubviews];
+        self.isSubviewShow = YES;
     }
 }
 

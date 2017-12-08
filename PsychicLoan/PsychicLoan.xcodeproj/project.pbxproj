@@ -15,6 +15,7 @@
 		843A9FD01FC2CC5C006C27F7 /* BannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 843A9FCF1FC2CC5C006C27F7 /* BannerModel.m */; };
 		843A9FD61FC2E82A006C27F7 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 843A9FD51FC2E82A006C27F7 /* BaseModel.m */; };
 		843A9FD91FC2EBD5006C27F7 /* MarketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 843A9FD81FC2EBD5006C27F7 /* MarketModel.m */; };
+		845D78D31FD7902700485530 /* MobClickEventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 845D78D21FD7902700485530 /* MobClickEventManager.m */; };
 		84649CA31FBD9A2B003CA624 /* HomeBannerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84649CA21FBD9A2B003CA624 /* HomeBannerCell.m */; };
 		8469948C1FCEA7EB00D9F116 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8469948B1FCEA7EB00D9F116 /* RegisterViewController.m */; };
 		846994931FCED0D800D9F116 /* DetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8469948E1FCED0D800D9F116 /* DetailViewModel.m */; };
@@ -26,6 +27,7 @@
 		846F4DA11FCFF0C50015BBAA /* login_avatar@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 846F4D9D1FCFF0C50015BBAA /* login_avatar@3x.png */; };
 		846F4DA21FCFF0C50015BBAA /* logout_avatar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 846F4D9E1FCFF0C50015BBAA /* logout_avatar@2x.png */; };
 		846F4DA31FCFF0C50015BBAA /* logout_avatar@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 846F4D9F1FCFF0C50015BBAA /* logout_avatar@3x.png */; };
+		8470AE4B1FD54FEF00410058 /* AppViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8470AE4A1FD54FEF00410058 /* AppViewManager.m */; };
 		8476496D1FBD6E7500E9B4F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8476496C1FBD6E7500E9B4F2 /* main.m */; };
 		847649701FBD6E7500E9B4F2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8476496F1FBD6E7500E9B4F2 /* AppDelegate.m */; };
 		847649731FBD6E7500E9B4F2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 847649721FBD6E7500E9B4F2 /* ViewController.m */; };
@@ -43,6 +45,7 @@
 		847A2D5B1FCD7F0700ABB430 /* UIAwesomeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 847A2D541FCD7F0700ABB430 /* UIAwesomeButton.m */; };
 		847A2D5C1FCD7F0700ABB430 /* UIButton+PPiAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 847A2D561FCD7F0700ABB430 /* UIButton+PPiAwesome.m */; };
 		847A2D5F1FCD7F3A00ABB430 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 847A2D5E1FCD7F3A00ABB430 /* LoginViewController.m */; };
+		848133811FDA882A00EC41F8 /* MeasureUnitConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = 848133801FDA882A00EC41F8 /* MeasureUnitConvert.m */; };
 		8483F0881FBD73A400EFD7EB /* UIArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8483EFE51FBD73A400EFD7EB /* UIArrowView.m */; };
 		8483F0891FBD73A400EFD7EB /* LCTabBarBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 8483EFE91FBD73A400EFD7EB /* LCTabBarBadge.m */; };
 		8483F08A1FBD73A400EFD7EB /* UIColor+HexExchange.m in Sources */ = {isa = PBXBuildFile; fileRef = 8483EFF21FBD73A400EFD7EB /* UIColor+HexExchange.m */; };
@@ -170,6 +173,8 @@
 		843A9FD51FC2E82A006C27F7 /* BaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
 		843A9FD71FC2EBD5006C27F7 /* MarketModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketModel.h; sourceTree = "<group>"; };
 		843A9FD81FC2EBD5006C27F7 /* MarketModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketModel.m; sourceTree = "<group>"; };
+		845D78D11FD7902700485530 /* MobClickEventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickEventManager.h; sourceTree = "<group>"; };
+		845D78D21FD7902700485530 /* MobClickEventManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobClickEventManager.m; sourceTree = "<group>"; };
 		84649CA11FBD9A2B003CA624 /* HomeBannerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeBannerCell.h; sourceTree = "<group>"; };
 		84649CA21FBD9A2B003CA624 /* HomeBannerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeBannerCell.m; sourceTree = "<group>"; };
 		8469948A1FCEA7EB00D9F116 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
@@ -188,6 +193,8 @@
 		846F4D9D1FCFF0C50015BBAA /* login_avatar@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_avatar@3x.png"; sourceTree = "<group>"; };
 		846F4D9E1FCFF0C50015BBAA /* logout_avatar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logout_avatar@2x.png"; sourceTree = "<group>"; };
 		846F4D9F1FCFF0C50015BBAA /* logout_avatar@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logout_avatar@3x.png"; sourceTree = "<group>"; };
+		8470AE491FD54FEF00410058 /* AppViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppViewManager.h; sourceTree = "<group>"; };
+		8470AE4A1FD54FEF00410058 /* AppViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppViewManager.m; sourceTree = "<group>"; };
 		847649681FBD6E7500E9B4F2 /* PsychicLoan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PsychicLoan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8476496C1FBD6E7500E9B4F2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8476496E1FBD6E7500E9B4F2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -220,6 +227,8 @@
 		847A2D561FCD7F0700ABB430 /* UIButton+PPiAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+PPiAwesome.m"; sourceTree = "<group>"; };
 		847A2D5D1FCD7F3A00ABB430 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		847A2D5E1FCD7F3A00ABB430 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		8481337F1FDA882A00EC41F8 /* MeasureUnitConvert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeasureUnitConvert.h; sourceTree = "<group>"; };
+		848133801FDA882A00EC41F8 /* MeasureUnitConvert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeasureUnitConvert.m; sourceTree = "<group>"; };
 		8483EFE41FBD73A400EFD7EB /* UIArrowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIArrowView.h; sourceTree = "<group>"; };
 		8483EFE51FBD73A400EFD7EB /* UIArrowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIArrowView.m; sourceTree = "<group>"; };
 		8483EFE81FBD73A400EFD7EB /* LCTabBarBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCTabBarBadge.h; sourceTree = "<group>"; };
@@ -1010,6 +1019,12 @@
 				8483F1581FBD83A500EFD7EB /* HudManager.m */,
 				8483F15F1FBD83A500EFD7EB /* PopAnimateManager.h */,
 				8483F1601FBD83A500EFD7EB /* PopAnimateManager.m */,
+				8470AE491FD54FEF00410058 /* AppViewManager.h */,
+				8470AE4A1FD54FEF00410058 /* AppViewManager.m */,
+				845D78D11FD7902700485530 /* MobClickEventManager.h */,
+				845D78D21FD7902700485530 /* MobClickEventManager.m */,
+				8481337F1FDA882A00EC41F8 /* MeasureUnitConvert.h */,
+				848133801FDA882A00EC41F8 /* MeasureUnitConvert.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1318,6 +1333,7 @@
 				8483F0C01FBD73A400EFD7EB /* SplashSourceView.m in Sources */,
 				8483F09F1FBD73A400EFD7EB /* QBVideoIconView.m in Sources */,
 				8483F1111FBD787F00EFD7EB /* UIControl+TouchEffect.m in Sources */,
+				8470AE4B1FD54FEF00410058 /* AppViewManager.m in Sources */,
 				8483F0B51FBD73A400EFD7EB /* UIScrollView+MJExtension.m in Sources */,
 				843A9FBF1FC2B73D006C27F7 /* LoanDetailModel.m in Sources */,
 				8483F09B1FBD73A400EFD7EB /* QBCheckmarkView.m in Sources */,
@@ -1325,6 +1341,7 @@
 				8483F13F1FBD7D5F00EFD7EB /* DIYTabBarItem.m in Sources */,
 				A9D78E251FD26E25005C87E1 /* CustomerServiceController.m in Sources */,
 				8483F0881FBD73A400EFD7EB /* UIArrowView.m in Sources */,
+				848133811FDA882A00EC41F8 /* MeasureUnitConvert.m in Sources */,
 				847649731FBD6E7500E9B4F2 /* ViewController.m in Sources */,
 				8483F1761FBD848500EFD7EB /* LocalBundleManager.m in Sources */,
 				8483F09A1FBD73A400EFD7EB /* QBAssetsViewController.m in Sources */,
@@ -1367,6 +1384,7 @@
 				84796EF11FC677660040E2A7 /* LoanMarketViewController.m in Sources */,
 				8483F1771FBD848500EFD7EB /* MathUtils.m in Sources */,
 				8483F0B01FBD73A400EFD7EB /* MJRefreshNormalHeader.m in Sources */,
+				845D78D31FD7902700485530 /* MobClickEventManager.m in Sources */,
 				847A2D581FCD7F0700ABB430 /* NSString+FontAwesome.m in Sources */,
 				8483F13C1FBD7D5F00EFD7EB /* CircleNode.m in Sources */,
 				8483F0B41FBD73A400EFD7EB /* NSBundle+MJRefresh.m in Sources */,
@@ -1534,8 +1552,9 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = PsychicLoan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.loan.psychicloan;
+				PRODUCT_BUNDLE_IDENTIFIER = com.loan.ios.psychicloan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "df5f27f9-7578-495d-93dc-c24a4d8a69d0";
 			};
 			name = Debug;
 		};
@@ -1548,8 +1567,9 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = PsychicLoan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.loan.psychicloan;
+				PRODUCT_BUNDLE_IDENTIFIER = com.loan.ios.psychicloan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "df5f27f9-7578-495d-93dc-c24a4d8a69d0";
 			};
 			name = Release;
 		};

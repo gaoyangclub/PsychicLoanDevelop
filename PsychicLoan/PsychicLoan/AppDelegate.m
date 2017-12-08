@@ -7,96 +7,18 @@
 //
 
 #import "AppDelegate.h"
+#import "AppViewManager.h"
 #import "ViewController.h"
-#import "GYTabBarController.h"
 #import "IQKeyboardManager.h"
 
 #import "UMMobClick/MobClick.h"
-#import "DIYTabBarItem.h"
-#import "HomeViewController.h"
-#import "LoanMarketViewController.h"
-#import "UserHomeController.h"
-#import "LoginViewController.h"
-
+#import <YWFeedbackFMWK/YWFeedbackKit.h>
 
 @interface AppDelegate ()
 
 @end
 
 @implementation AppDelegate
-
-//获取当前屏幕显示的viewcontroller
-+ (UINavigationController *)getCurrentNavigationController{
-    UIViewController *rootViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
-    UINavigationController *currentVC = [self getCurrentVCFrom:rootViewController];
-    return currentVC;
-}
-
-+ (UINavigationController *)getCurrentVCFrom:(UIViewController *)rootVC{
-    UINavigationController *currentNaviVC;
-    if ([rootVC presentedViewController]) {
-        // 视图是被presented出来的
-        currentNaviVC = [rootVC presentedViewController].navigationController;
-    } else if ([rootVC isKindOfClass:[UITabBarController class]]) {
-        // 根视图为UITabBarController
-        currentNaviVC = [self getCurrentVCFrom:[(UITabBarController *)rootVC selectedViewController]];
-    } else if ([rootVC isKindOfClass:[UINavigationController class]]){
-        // 根视图为UINavigationController
-        if ([rootVC isMemberOfClass:[JKRootNavigationController class]]) {
-            currentNaviVC = [(UINavigationController *)rootVC visibleViewController].childViewControllers.firstObject;
-        }else{
-            currentNaviVC = (UINavigationController *)rootVC;
-        }
-    } else {
-        // 根视图为非导航类
-        currentNaviVC = rootVC.navigationController;
-    }
-    return currentNaviVC;
-}
-
--(void)popLoginViewController{
-    LoginViewController* loginViewController = [[LoginViewController alloc]init];
-    JKRootNavigationController* navigationController = [[JKRootNavigationController alloc]initWithRootViewController:loginViewController];
-    navigationController.automaticallyAdjustsScrollViewInsets = navigationController.navigationBar.translucent = NO;
-    [self.rootTabBarController presentViewController:navigationController animated:YES completion:nil];
-}
-
--(JKRootNavigationController*)createNavigationController:(UIViewController*)viewController{
-    JKRootNavigationController* navigationController = [[JKRootNavigationController alloc]initWithRootViewController:viewController];
-    navigationController.automaticallyAdjustsScrollViewInsets = navigationController.navigationBar.translucent = NO;
-    /// 全局效果
-    //    [navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
-    //    /// 只会设置当前控制器的navigationBar的颜色
-    //    [navigationController.navigationBar jk_setNavigationBarBackgroundColor:[UIColor orangeColor]];
-    ///  会设置所有子控制器的全屏手势使能状态，全局效果
-    navigationController.jk_fullScreenPopGestrueEnabled = YES;
-    return navigationController;
-}
-
--(GYTabBarController*)createNormalTabBar{
-    UINavigationController* itemCtrl1 = [self createNavigationController:[[HomeViewController alloc] init]];
-    UINavigationController* itemCtrl2 = [self createNavigationController:[[LoanMarketViewController alloc] init]];
-    itemCtrl2.title = @"测试标题2";
-    
-//    UINavigationController* itemCtrl3 = [self createNavigationController:[[SortViewController alloc] init]];
-//    itemCtrl3.title = @"测试标题3";
-    
-    UINavigationController* itemCtrl4 = [self createNavigationController:[[UserHomeController alloc] init]];
-    itemCtrl4.title = @"测试标题4";
-    
-    GYTabBarController* tabBarCtl = [[GYTabBarController alloc] init];
-    tabBarCtl.itemClass = [DIYTabBarItem class];
-    tabBarCtl.dataArray = @[[TabData initWithParams:[DIYBarData initWithParams:TABBAR_TITLE_HOME image:ICON_SHOU_YE selectedImage:ICON_SHOU_YE_SELECTED] controller:itemCtrl1],
-                            [TabData initWithParams:[DIYBarData initWithParams:TABBAR_TITLE_LOAN image:ICON_DAI_KUAN selectedImage:ICON_DAI_KUAN_SELECTED] controller:itemCtrl2],
-//                            [TabData initWithParams:[DIYBarData initWithParams:TABBAR_TITLE_LOAN image:ICON_XIAO_XI selectedImage:ICON_XIAO_XI_SELECTED] controller:itemCtrl3],
-                            [TabData initWithParams:[DIYBarData initWithParams:TABBAR_TITLE_USER image:ICON_WO_DE selectedImage:ICON_WO_DE_SELECTED] controller:itemCtrl4],
-                            ];
-//    [tabBarCtl setItemBadge:20 atIndex:0];
-//    [tabBarCtl setItemBadge:5 atIndex:1];
-    //    [tabBarCtl setItemBadge:80 atIndex:2];
-//    [tabBarCtl setItemBadge:100 atIndex:3];
-    return tabBarCtl;
-}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
@@ -110,18 +32,22 @@
     // 注册 APNs
     [self registerRemoteNotification];
     
-    self.rootTabBarController = [self createNormalTabBar];
+    [AppViewManager setRootTabBarController:[AppViewManager createTabBarController]];
     
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    self.window.rootViewController = self.rootTabBarController;//可替换
+    self.window.rootViewController = [AppViewManager getRootTabBarController];//可替换
     
-//    UMConfigInstance.appKey = UM_APPID;
+    UMConfigInstance.appKey = UM_APPID;
 //    //    UMConfigInstance.ChannelId = @"App Store";
-//    //    UMConfigInstance.eSType = E_UM_GAME; //仅适用于游戏场景，应用统计不用设置
-//    [MobClick startWithConfigure:UMConfigInstance];//配置以上参数后调用此方法初始化SDK！
+    //    UMConfigInstance.eSType = E_UM_GAME; //仅适用于游戏场景，应用统计不用设置
+    [MobClick startWithConfigure:UMConfigInstance];//配置以上参数后调用此方法初始化SDK！
+    
+    YWFeedbackKit* feedBackKit = [[YWFeedbackKit alloc]initWithAppKey:FEEDBACK_APPKEY appSecret:FEEDBACK_APPSECRET];
+    feedBackKit.extInfo = @{};//扩展数据
+    [AppViewManager setYWFeedbackKit:feedBackKit];
     
     return YES;
 }

@@ -17,8 +17,11 @@
 #import "LoanTitleSection.h"
 #import "HudManager.h"
 #import "UserDefaultsUtils.h"
-#import "AppDelegate.h"
 #import "WebViewController.h"
+#import "AppViewManager.h"
+
+#import "UMMobClick/MobClick.h"
+#import "MobClickEventManager.h"
 
 @interface DetailViewController (){
     LoanDetailModel* loanDetailResult;
@@ -79,21 +82,26 @@
 }
 
 -(void)clickSubmitButton:(UIView*)sender{
-    if (![UserDefaultsUtils getObject:PHONE_KEY]) {//重新登录
-        [((AppDelegate*)[UIApplication sharedApplication].delegate) popLoginViewController];
-        __weak __typeof(self) weakSelf = self;
-        [[[NSNotificationCenter defaultCenter] rac_addObserverForName:EVENT_LOGIN_COMPLETE object:nil] subscribeNext:^(id x) {
-            [weakSelf gotoWebViewController:NO];
-        }];
-    }else{
-        [self gotoWebViewController:YES];
+    if (self->loanDetailResult) {
+        [AppViewManager popLoginNextWebController:self->loanDetailResult navigationController:self.navigationController];
+        [MobClickEventManager detailSubmitClick:self.loanId];
     }
+//    if (![UserDefaultsUtils getObject:PHONE_KEY]) {//重新登录
+//        [AppViewManager popLoginViewController];
+//        __weak __typeof(self) weakSelf = self;
+//        [[[NSNotificationCenter defaultCenter] rac_addObserverForName:EVENT_LOGIN_COMPLETE object:nil] subscribeNext:^(id x) {
+//            [weakSelf gotoWebViewController:NO];
+//        }];
+//    }else{
+//        [self gotoWebViewController:YES];
+////        [MobClick event:@"Forward"];
+//    }
 }
 
 -(void)gotoWebViewController:(BOOL)animated{
     if (self->loanDetailResult) {
         WebViewController* viewController = [[WebViewController alloc]init];
-        viewController.isLoanRegister = YES;
+        viewController.loanId = self->loanDetailResult.loanid;
         viewController.navigationTitle = self.loanName;
         //    viewController.hidesBottomBarWhenPushed = YES;
         viewController.linkUrl = self->loanDetailResult.loanurl;
@@ -137,7 +145,7 @@
         [strongSelf.tableView addSource:svo];
         
         svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:LOAN_SECTION_HEIGHT headerClass:[LoanTitleSection class] headerData:@"客服信息"];
-        [svo.data addObject:[CellVo initWithParams:CUSTOM_SERVICE_HEIGHT cellClass:[CustomerServiceCell class] cellData:nil cellTag:CELL_TAG_NORMAL isUnique:YES]];
+        [svo.data addObject:[CellVo initWithParams:CUSTOM_SERVICE_HEIGHT cellClass:[CustomerServiceCell class] cellData:MOBCLICK_EVENT_DETAIL_CUSTOMER cellTag:CELL_TAG_NORMAL isUnique:YES]];
         [strongSelf.tableView addSource:svo];
         
         handler(YES);
@@ -155,6 +163,8 @@
     
     self.view.backgroundColor = COLOR_BACKGROUND;
     self.tableView.sectionGap = rpx(5);
+    
+    [MobClickEventManager detailViewControllerDidLoad:self.loanId];
 }
 
 - (void)didReceiveMemoryWarning {

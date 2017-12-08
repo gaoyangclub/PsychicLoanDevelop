@@ -35,7 +35,7 @@
 //    }
     NSString* baseName;
     if (DEBUG_MODE) {
-        baseName = ConcatStrings(@"v",[LocalBundleManager getAppVersion],@"(",@([LocalBundleManager getAppCode]),@")",mode);
+        baseName = ConcatStrings(@"debug v",[LocalBundleManager getAppVersion],@"(",@([LocalBundleManager getAppCode]),@")",mode);
     }else{
         baseName = ConcatStrings(@"v",[LocalBundleManager getAppVersion],@"(",@([LocalBundleManager getAppCode]),@")",mode);
     }
