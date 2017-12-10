@@ -37,4 +37,6 @@
 
 #import "JKNavigationController.h"
 
+#import "UIViewController+HidesBottomBar.h"
+
 #endif /* PrefixHeader_pch */

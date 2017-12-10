@@ -13,6 +13,8 @@
 
 #import "UMMobClick/MobClick.h"
 #import <YWFeedbackFMWK/YWFeedbackKit.h>
+#import "GeTuiSdk.h"
+#import "GeTuiDataSource.h"
 
 @interface AppDelegate ()
 
@@ -26,11 +28,13 @@
     
     [IQKeyboardManager sharedManager].enable = YES;
     
-    //    [self startGeTuiSdk];
+//    [self startGeTuiSdk];
+    GeTuiDataSource* geTuiDataSource = [[GeTuiDataSource alloc]init];
+    [geTuiDataSource start];
     
     //    [GeTuiSdk clientId];
     // 注册 APNs
-    [self registerRemoteNotification];
+//    [self registerRemoteNotification];
     
     [AppViewManager setRootTabBarController:[AppViewManager createTabBarController]];
     
@@ -49,47 +53,31 @@
     feedBackKit.extInfo = @{};//扩展数据
     [AppViewManager setYWFeedbackKit:feedBackKit];
     
+    [AppViewManager showSplashView];
+    
     return YES;
 }
 
-/** 注册 APNs */
-- (void)registerRemoteNotification {
-    /*
-     警告：Xcode8 需要手动开启"TARGETS -> Capabilities -> Push Notifications"
-     */
+//为了免除开发者维护DeviceToken的麻烦，个推SDK可以帮开发者管理好这些繁琐的事务。应用开发者只需调用个推SDK的接口汇报最新的DeviceToken，即可通过个推平台推送 APNs 消息。示例代码如下：
+/** 远程通知注册成功委托 */
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(nonnull NSData *)deviceToken{
+    NSString *token = [[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSLog(@"\n>>>[DeviceToken Success]:%@\n\n", token);
     
-    /*
-     警告：该方法需要开发者自定义，以下代码根据 APP 支持的 iOS 系统不同，代码可以对应修改。
-     以下为演示代码，注意根据实际需要修改，注意测试支持的 iOS 系统都能获取到 DeviceToken
-     */
-    if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0) {
-        //#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0 // Xcode 8编译会调用
-        ////        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
-        ////        center.delegate = self;
-        ////        [center requestAuthorizationWithOptions:(UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionCarPlay) completionHandler:^(BOOL granted, NSError *_Nullable error) {
-        ////            if (!error) {
-        ////                NSLog(@"request authorization succeeded!");
-        ////            }
-        ////        }];
-        ////
-        ////        [[UIApplication sharedApplication] registerForRemoteNotifications];
-        //#else // Xcode 7编译会调用
-        UIUserNotificationType types = (UIUserNotificationTypeAlert | UIUserNotificationTypeSound | UIUserNotificationTypeBadge);
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
-        [[UIApplication sharedApplication] registerForRemoteNotifications];
-        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-        //#endif
-    } else if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
-        UIUserNotificationType types = (UIUserNotificationTypeAlert | UIUserNotificationTypeSound | UIUserNotificationTypeBadge);
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
-        [[UIApplication sharedApplication] registerForRemoteNotifications];
-        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-    } else {
-        UIRemoteNotificationType apn_type = (UIRemoteNotificationType)(UIRemoteNotificationTypeAlert |
-                                                                       UIRemoteNotificationTypeSound |
-                                                                       UIRemoteNotificationTypeBadge);
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:apn_type];
-    }
+    // 向个推服务器注册deviceToken
+    [GeTuiSdk registerDeviceToken:token];
+}
+
+//在iOS 10 以前，为处理 APNs 通知点击事件，统计有效用户点击数，需在AppDelegate.m里的didReceiveRemoteNotification回调方法中调用个推SDK统计接口：
+/** APP已经接收到“远程”通知(推送) - 透传推送消息  */
+-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
+    // 处理APNs代码，通过userInfo可以取到推送的信息（包括内容，角标，自定义参数等）。如果需要弹窗等其他操作，则需要自行编码。
+    NSLog(@"\n>>>[Receive RemoteNotification - Background Fetch]:%@\n\n",userInfo);
+    
+    // 将收到的APNs信息传给个推统计
+    [GeTuiSdk handleRemoteNotification:userInfo];
+    completionHandler(UIBackgroundFetchResultNewData);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

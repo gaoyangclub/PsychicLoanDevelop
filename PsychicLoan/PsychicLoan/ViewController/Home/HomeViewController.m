@@ -23,6 +23,7 @@
 #import "HudManager.h"
 #import "AppViewManager.h"
 #import "MobClickEventManager.h"
+#import "PushModel.h"
 
 //@interface TestTableViewCell : MJTableViewCell
 //
@@ -193,6 +194,10 @@
 //    });
 //}
 
+-(BOOL)autoRefreshHeader{
+    return NO;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -211,8 +216,22 @@
                                              selector:@selector(checkLoginItem)
                                                  name:EVENT_LOGIN_COMPLETE
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(refreshHome)
+                                                 name:EVENT_REFRESH_HOME
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(eventShowHomePop:)
+                                                 name:EVENT_SHOW_HOME_POP
+                                               object:nil];
+    
+    
     
     [MobClickEventManager homeViewControllerDidLoad];
+}
+
+-(void)refreshHome{
+    [self.tableView headerBeginRefresh];
 }
 
 -(void)getHomePopInfo{
@@ -222,11 +241,22 @@
         if(!strongSelf){//界面已经被销毁
             return;
         }
-        strongSelf.homePopView.bannerModel = bannerModel;
-        [strongSelf.homePopView show];
-        [MobClickEventManager homePopWillShow];
+        [strongSelf showHomePopView:bannerModel];
         
     } failureBlock:nil];
+}
+
+-(void)showHomePopView:(BannerModel*)bannerModel{
+    self.homePopView.bannerModel = bannerModel;
+    [self.homePopView show];
+    [MobClickEventManager homePopWillShow];
+}
+
+-(void)eventShowHomePop:(NSNotification*)eventData{
+    if(self->isPopView){//已经显示过了 再显示
+        PushModel* pushModel = eventData.object;
+        [self showHomePopView:pushModel];
+    }
 }
 
 -(void)checkLoginItem{
@@ -244,6 +274,8 @@
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:EVENT_LOGIN_COMPLETE object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:EVENT_LOGOUT object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:EVENT_REFRESH_HOME object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:EVENT_SHOW_HOME_POP object:nil];
 }
 
 //- (void)didReceiveMemoryWarning {

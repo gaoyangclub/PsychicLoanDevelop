@@ -17,6 +17,9 @@
 #import "WebViewController.h"
 
 #import <YWFeedbackFMWK/YWFeedbackViewController.h>
+#import "SplashViewController.h"
+#import "SplashSourceLoan.h"
+#import "UseH5Model.h"
 
 //@property(nonatomic,strong) UIWindow *window;
 //@property(nonatomic,strong) GYTabBarController* rootTabBarController;
@@ -35,6 +38,37 @@ static YWFeedbackKit* feedBackKit;
 //    return rootWindow;
 //}
 
++(void)showSplashView{
+    SplashSourceView* sourceView = [[SplashSourceLoan alloc] init];
+    [SplashViewController initWithSourceView:sourceView superView:[[UIApplication sharedApplication].windows lastObject] waitingHandler:
+     //          nil
+     ^(SplashWillFinishHandler willFinishHandler) {
+             //故意弹出H5界面
+         [NetRequestClass NetRequestGETWithRequestURL:USE_H5_URL WithParameter:nil headers:nil WithReturnValeuBlock:
+          ^(id returnValue) {
+              UseH5Model* h5Model = [UseH5Model yy_modelWithJSON:returnValue];
+              if (h5Model.useH5) {
+                  [AppViewManager showH5PageView:h5Model];
+              }else{//抛出主页更新事件
+                  [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_REFRESH_HOME object:nil];
+              }
+              willFinishHandler();
+          } WithFailureBlock:^(NSString *errorCode, NSString *errorMsg) {
+              [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_REFRESH_HOME object:nil];//直接显示主页
+              willFinishHandler();
+          }];
+         
+     }];
+}
+
++(void)showH5PageView:(UseH5Model*)h5Model{
+    WebViewController* viewController = [[WebViewController alloc]init];
+    viewController.linkUrl = h5Model.html5URL;//LINK_URL_AGREEMENT;
+    viewController.soStatusBar = YES;
+    [rootTabBarController presentViewController:viewController animated:NO completion:nil];
+//    [[AppViewManager getCurrentNavigationController] pushViewController:viewController animated:YES];
+}
+
 +(void)setYWFeedbackKit:(YWFeedbackKit*)value{
     feedBackKit = value;
 }
@@ -43,7 +77,7 @@ static YWFeedbackKit* feedBackKit;
     
     [feedBackKit makeFeedbackViewControllerWithCompletionBlock:^(BCFeedbackViewController *viewController, NSError *error) {
 //        [navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
-//        viewController.hidesBottomBarWhenPushed = YES;
+        viewController.hidesBottomBarWhenPushed = YES;
         [navigationController pushViewController:viewController animated:YES];//点开反馈界面
         viewController.navigationItem.leftBarButtonItem = nil;
 //        viewController.edgesForExtendedLayout = UIRectEdgeNone;
@@ -110,8 +144,8 @@ static YWFeedbackKit* feedBackKit;
     WebViewController* viewController = [[WebViewController alloc]init];
     viewController.loanId = loanModel.loanid;
     viewController.navigationTitle = loanModel.loanname;
-    //    viewController.hidesBottomBarWhenPushed = YES;
     viewController.linkUrl = loanModel.loanurl;
+    viewController.hidesBottomBarWhenPushed = YES;
     [navigationController pushViewController:viewController animated:animated];
 }
 

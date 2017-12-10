@@ -219,9 +219,9 @@ typedef NS_ENUM(NSInteger,ItemPostion){
 
 -(void)clickAboutUsHandler{//关于我们
     WebViewController* viewController = [[WebViewController alloc]init];
-    viewController.hidesBottomBarWhenPushed = YES;
     viewController.linkUrl = LINK_URL_ABOUT_US;
     viewController.navigationTitle = @"关于我们";
+    viewController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:viewController animated:YES];
 }
 

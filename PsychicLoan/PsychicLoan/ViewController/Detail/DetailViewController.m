@@ -98,16 +98,16 @@
 //    }
 }
 
--(void)gotoWebViewController:(BOOL)animated{
-    if (self->loanDetailResult) {
-        WebViewController* viewController = [[WebViewController alloc]init];
-        viewController.loanId = self->loanDetailResult.loanid;
-        viewController.navigationTitle = self.loanName;
-        //    viewController.hidesBottomBarWhenPushed = YES;
-        viewController.linkUrl = self->loanDetailResult.loanurl;
-        [self.navigationController pushViewController:viewController animated:animated];
-    }
-}
+//-(void)gotoWebViewController:(BOOL)animated{
+//    if (self->loanDetailResult) {
+//        WebViewController* viewController = [[WebViewController alloc]init];
+//        viewController.loanId = self->loanDetailResult.loanid;
+//        viewController.navigationTitle = self.loanName;
+//        viewController.linkUrl = self->loanDetailResult.loanurl;
+//        viewController.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:viewController animated:animated];
+//    }
+//}
 
 -(CGRect)getTableViewFrame{
     CGFloat const BUTTON_AREA_HEIGHT = rpx(50);

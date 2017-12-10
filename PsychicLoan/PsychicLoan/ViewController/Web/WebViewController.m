@@ -15,6 +15,7 @@
 @property(nonatomic,retain)WKWebView* webView;
 @property(nonatomic,retain)UIProgressView* progressView;
 @property(nonatomic,retain)UILabel* titleLabel;
+@property(nonatomic,retain)UIView* statusArea;
 
 @end
 
@@ -30,6 +31,7 @@
 -(WKWebView *)webView{
     if (!_webView) {
         _webView = [[WKWebView alloc]init];
+        _webView.scrollView.bounces = false;
         __weak __typeof(self) weakSelf = self;
         [[_webView rac_valuesAndChangesForKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew observer:nil]subscribeNext:^(id x) {
             __strong typeof(weakSelf) strongSelf = weakSelf;
@@ -49,9 +51,25 @@
     return _progressView;
 }
 
+-(UIView *)statusArea{
+    if (!_statusArea) {
+        _statusArea = [[UIView alloc]init];
+        _statusArea.backgroundColor = COLOR_PRIMARY;
+        [self.view addSubview:_statusArea];
+    }
+    return _statusArea;
+}
+
 -(void)viewDidLayoutSubviews{
-    self.webView.frame = self.view.bounds;
-    self.progressView.frame = CGRectMake(0, 0, self.view.width, rpx(3));
+    CGFloat baseY = 0;
+    if (self.soStatusBar) {
+        CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
+        baseY = rectStatus.size.height;
+        self.statusArea.frame = rectStatus;
+    }
+    self.webView.frame = CGRectMake(0, baseY, self.view.width, self.view.height - baseY);
+//    self.view.bounds;
+    self.progressView.frame = CGRectMake(0, baseY, self.view.width, rpx(3));
 }
 
 -(void)initNavigationItem{
@@ -89,9 +107,16 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
 
-    [self initNavigationItem];
+//    if (self.hidesBottomBarWhenPushed) {
+////        self.edgesForExtendedLayout = UIRectEdgeNone;
+//        self.automaticallyAdjustsScrollViewInsets = NO;
+//    }
+//    CGFloat viewHeight = self.view.height;
+    self.webView.frame = self.view.bounds;
     
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.linkUrl]]];
+    
+    [self initNavigationItem];
     
 //    [self.webView loadRequest:[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:self.linkUrl]]];
     if (self.loanId) {

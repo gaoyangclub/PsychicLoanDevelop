@@ -16,6 +16,8 @@
 //+(void)setRootWindow:(UIWindow *)value;
 //+(UIWindow *)getRootWindow;
 
++(void)showSplashView;
+
 +(void)setYWFeedbackKit:(YWFeedbackKit*)value;
 
 +(void)openFeedbackViewController:(UINavigationController*)navigationController;

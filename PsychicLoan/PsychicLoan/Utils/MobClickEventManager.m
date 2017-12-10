@@ -17,7 +17,7 @@
 }
 
 +(void)homeBannerClick:(long)loanid{
-    [MobClick event:@"PL0002" attributes:@{@"loanid":@(loanid)}];
+    [MobClick event:@"PL0002" attributes:@{@"loanid":[NSString stringWithFormat:@"%ld",loanid]}];
 }
 
 +(void)homeFastClick:(NSInteger)loanType{
@@ -41,7 +41,7 @@
 }
 
 +(void)homePopClick:(long)loanid{
-    [MobClick event:@"PL0004_01" attributes:@{@"loanid":@(loanid)}];
+    [MobClick event:@"PL0004_01" attributes:@{@"loanid":[NSString stringWithFormat:@"%ld",loanid]}];
 }
 
 //+(void)loanTypeFastClick:(long)loanid isLink:(BOOL)isLink{
@@ -79,7 +79,7 @@
 }
 
 +(void)webViewControllerDidLoad:(long)loanid{
-    [MobClick event:@"PL0009" attributes:@{@"loanid":@(loanid)}];
+    [MobClick event:@"PL0009" attributes:@{@"loanid":[NSString stringWithFormat:@"%ld",loanid]}];
 }
 
 +(void)webViewAlertClick:(long)loanid isCancel:(BOOL)isCancel{
@@ -87,7 +87,7 @@
 }
 
 +(void)detailViewControllerDidLoad:(long)loanid{
-    [MobClick event:@"PL0010" attributes:@{@"loanid":@(loanid)}];
+    [MobClick event:@"PL0010" attributes:@{@"loanid":[NSString stringWithFormat:@"%ld",loanid]}];
 }
 
 +(void)detailSubmitClick:(long)loanid{

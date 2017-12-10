@@ -8,6 +8,7 @@
 
 #import "DetailBasicCell.h"
 #import "LoanDetailModel.h"
+#import "MeasureUnitConvert.h"
 
 @interface DetailBasicCell()
 
@@ -113,7 +114,8 @@
     
     CGFloat const areaWidth = self.width / 3.;
     
-    self.amountNode.attributedString = [NSString simpleAttributedString:COLOR_PRIMARY size:SIZE_TEXT_PRIMARY content:ConcatStrings(@"",@(detailModel.minamount),@"~",@(detailModel.maxamount),@"万")];
+    
+    self.amountNode.attributedString = [NSString simpleAttributedString:COLOR_PRIMARY size:SIZE_TEXT_PRIMARY content:ConcatStrings([MeasureUnitConvert amountConvert:detailModel.minamount],@"~",[MeasureUnitConvert amountConvert:detailModel.maxamount])];
     self.amountNode.size = [self.amountNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
     
     self.rateNode.attributedString = [NSString simpleAttributedString:COLOR_PRIMARY size:SIZE_TEXT_PRIMARY content:detailModel.rate];

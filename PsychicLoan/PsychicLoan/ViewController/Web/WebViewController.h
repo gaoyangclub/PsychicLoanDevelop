@@ -13,5 +13,6 @@
 @property(nonatomic,copy)NSString* linkUrl;
 @property(nonatomic,copy)NSString* navigationTitle;
 @property(nonatomic,assign)long loanId;
+@property(nonatomic,assign)BOOL soStatusBar;
 
 @end
