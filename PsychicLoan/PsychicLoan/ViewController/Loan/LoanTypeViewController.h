@@ -11,5 +11,6 @@
 @interface LoanTypeViewController : MJTableViewController
 
 @property(nonatomic,assign)int loanType;
+@property(nonatomic,copy)NSString* navigationTitle;
 
 @end

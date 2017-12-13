@@ -20,6 +20,7 @@
 #import "SplashViewController.h"
 #import "SplashSourceLoan.h"
 #import "UseH5Model.h"
+#import "SystemAuthorityUtils.h"
 
 //@property(nonatomic,strong) UIWindow *window;
 //@property(nonatomic,strong) GYTabBarController* rootTabBarController;
@@ -43,21 +44,25 @@ static YWFeedbackKit* feedBackKit;
     [SplashViewController initWithSourceView:sourceView superView:[[UIApplication sharedApplication].windows lastObject] waitingHandler:
      //          nil
      ^(SplashWillFinishHandler willFinishHandler) {
-             //故意弹出H5界面
-         [NetRequestClass NetRequestGETWithRequestURL:USE_H5_URL WithParameter:nil headers:nil WithReturnValeuBlock:
-          ^(id returnValue) {
-              UseH5Model* h5Model = [UseH5Model yy_modelWithJSON:returnValue];
-              if (h5Model.useH5) {
-                  [AppViewManager showH5PageView:h5Model];
-              }else{//抛出主页更新事件
-                  [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_REFRESH_HOME object:nil];
-              }
-              willFinishHandler();
-          } WithFailureBlock:^(NSString *errorCode, NSString *errorMsg) {
-              [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_REFRESH_HOME object:nil];//直接显示主页
-              willFinishHandler();
-          }];
-         
+         [SystemAuthorityUtils checkNetWorkReachability:^{
+             [AppViewManager loadH5PageView:willFinishHandler];
+         }];
+     }];
+}
+
++(void)loadH5PageView:(SplashWillFinishHandler)willFinishHandler{
+    [NetRequestClass NetRequestGETWithRequestURL:USE_H5_URL WithParameter:nil headers:nil WithReturnValeuBlock:
+     ^(id returnValue) {
+         UseH5Model* h5Model = [UseH5Model yy_modelWithJSON:returnValue];
+         if (h5Model.useH5) {
+             [AppViewManager showH5PageView:h5Model];
+         }else{//抛出主页更新事件
+             [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_REFRESH_HOME object:nil];
+         }
+         willFinishHandler();
+     } WithFailureBlock:^(NSString *errorCode, NSString *errorMsg) {
+         [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_REFRESH_HOME object:nil];//直接显示主页
+         willFinishHandler();
      }];
 }
 

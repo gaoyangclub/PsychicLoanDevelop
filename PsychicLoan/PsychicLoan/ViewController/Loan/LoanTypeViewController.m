@@ -102,7 +102,7 @@
 -(void)initNavigationItem{
     self.navigationItem.leftBarButtonItem =
     [UICreationUtils createNavigationNormalButtonItem:COLOR_NAVI_TITLE font:[UIFont fontWithName:ICON_FONT_NAME size:SIZE_LEFT_BACK_ICON] text:ICON_FAN_HUI target:self action:@selector(leftClick)];
-    self.titleLabel.text = [Config getLoanTypeNameByCode:self.loanType];//self.shipmentBean.code;//标题显示TO号
+    self.titleLabel.text = self.navigationTitle ? self.navigationTitle : @"";//[Config getLoanTypeNameByCode:self.loanType];//self.shipmentBean.code;//标题显示TO号
     [self.titleLabel sizeToFit];
     self.navigationItem.titleView = self.titleLabel;
     //    self.navigationController.navigationBar.jk_barBackgroundColor = [UIColor whiteColor];

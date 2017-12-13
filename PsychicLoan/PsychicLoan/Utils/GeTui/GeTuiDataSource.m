@@ -24,6 +24,7 @@
 -(void)start{
     [GeTuiSdk startSdkWithAppId:kGtAppId appKey:kGtAppKey appSecret:kGtAppSecret delegate:self];
     [GeTuiSdk runBackgroundEnable:YES];
+    NSString* clientId = [GeTuiSdk clientId];
     // 注册 APNs
     [self registerRemoteNotification];
 }

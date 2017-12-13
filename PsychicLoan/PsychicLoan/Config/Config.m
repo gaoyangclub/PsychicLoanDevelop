@@ -8,7 +8,26 @@
 
 #import "Config.h"
 
+static NSString* officialAccounts = @"牛逼的公众号";//客服公众号
+static NSString* wechat = @"牛逼的微信号";//客服微信
+
 @implementation Config
+
++(void)setOfficialAccounts:(NSString *)value{
+    officialAccounts = value;
+}
+
++(void)setWechat:(NSString *)value{
+    wechat = value;
+}
+
++(NSString *)getOfficialAccounts{
+    return officialAccounts;
+}
+
++(NSString *)getWechat{
+    return wechat;
+}
 
 +(NSString *)getLoanTypeNameByCode:(int)code{
     switch (code) {

@@ -17,6 +17,8 @@
 
 @interface GeTuiDataSource : NSObject
 
--(void)start;
+//-(void)start;//注:放弃在DataSource中初始化 收不到GeTuiSdkDidReceivePayloadData代理方法的反馈信息
+
++(void)addLocalNotification:(NSString*)msg;
 
 @end

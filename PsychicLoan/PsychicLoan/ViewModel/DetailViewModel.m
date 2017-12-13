@@ -8,18 +8,21 @@
 
 #import "DetailViewModel.h"
 #import "LoanDetailModel.h"
-#import "DetailModel.h"
 
 @implementation DetailViewModel
 
 -(void)getLoanDetailById:(long)loanId returnBlock:(ReturnValueBlock)returnBlock failureBlock:(FailureBlock)failureBlock{
     [NetRequestClass NetRequestGETWithRequestURL:LOAN_DETAIL_URL(loanId) WithParameter:nil headers:nil WithReturnValeuBlock:
      ^(id returnValue) {
-         DetailModel* detailModel = [DetailModel yy_modelWithJSON:returnValue];
-         if (detailModel.resultcode > 0 && detailModel.data) {//请求成功
-             returnBlock(detailModel.data);
+         NSString* resultcode = [returnValue valueForKey:@"resultcode"];
+//         DetailModel* detailModel = [DetailModel yy_modelWithJSON:returnValue];
+         NSObject* data = [returnValue valueForKey:@"data"];
+         if (resultcode > 0 && data) {//请求成功
+             LoanDetailModel* loanModel = [LoanDetailModel yy_modelWithJSON:data];
+             returnBlock(loanModel);
          }else{
-             failureBlock(nil,detailModel.msg);//请求失败描述
+             NSString* msg = [returnValue valueForKey:@"msg"];
+             failureBlock(nil,msg);//请求失败描述
          }
      } WithFailureBlock:failureBlock];
 }

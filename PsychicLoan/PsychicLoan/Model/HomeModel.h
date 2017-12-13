@@ -10,12 +10,15 @@
 #import "LoanModel.h"
 #import "BannerModel.h"
 #import "BaseModel.h"
+#import "LoanBtnModel.h"
+#import "LoanWechatModel.h"
 
 @interface HomeModel : BaseModel
 
 @property(nonatomic,retain)NSArray<BannerModel*>* banner;
 @property(nonatomic,retain)NSArray<LoanModel*>* hotloan;
 @property(nonatomic,retain)NSArray<LoanModel*>* recommend;
-@property(nonatomic,retain)NSArray* btntext;
+@property(nonatomic,retain)NSArray<LoanBtnModel*>* btntext;
+@property(nonatomic,retain)LoanWechatModel* wechat;
 
 @end

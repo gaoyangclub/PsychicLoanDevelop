@@ -24,6 +24,8 @@
 #import "AppViewManager.h"
 #import "MobClickEventManager.h"
 #import "PushModel.h"
+#import "HSUpdateApp.h"
+#import "OpenUrlUtils.h"
 
 //@interface TestTableViewCell : MJTableViewCell
 //
@@ -105,7 +107,7 @@
         [strongSelf.tableView addSource:svo];
         
         svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:0 headerClass:nil headerData:NULL];
-        [svo.data addObject:[CellVo initWithParams:HOME_FAST_CELL_HEIGHT cellClass:[HomeFastCell class] cellData:NULL cellTag:CELL_TAG_NORMAL isUnique:YES]];
+        [svo.data addObject:[CellVo initWithParams:HOME_FAST_CELL_HEIGHT cellClass:[HomeFastCell class] cellData:homeModel.btntext cellTag:CELL_TAG_NORMAL isUnique:YES]];
         [strongSelf.tableView addSource:svo];
         
         svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:LOAN_SECTION_HEIGHT headerClass:[LoanTitleSection class] headerData:[Config getLoanTypeNameByCode:LOAN_TYPE_HOT]];
@@ -129,6 +131,11 @@
         [svo.data addObject:[CellVo initWithParams:HOME_MORE_TIPS_CELL_HEIGHT cellClass:[HomeMoreTipsCell class] cellData:NULL cellTag:CELL_TAG_NORMAL isUnique:YES]];
         [strongSelf.tableView addSource:svo];
         
+        if (homeModel.wechat) {
+            [Config setOfficialAccounts:homeModel.wechat.official_accounts];
+            [Config setWechat:homeModel.wechat.wechat];
+        }
+        
         handler(YES);
         
         if (!strongSelf->isPopView) {
@@ -138,6 +145,7 @@
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, period * NSEC_PER_SEC);
             dispatch_after(popTime, queue, ^(void){
                 [strongSelf getHomePopInfo];
+                [strongSelf checkVersion];
             });
         }
         
@@ -234,6 +242,20 @@
     [self.tableView headerBeginRefresh];
 }
 
+-(void)checkVersion{
+    //@"1324404459"
+    [HSUpdateApp hs_updateWithAPPID:nil withBundleId:nil block:^(NSString *currentVersion, NSString *storeVersion, NSString *openUrl, BOOL isUpdate) {
+        if (isUpdate) {
+            UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"" message:ConcatStrings(APPLICATION_NAME,@"检测到新版本，是否立即下载?") preferredStyle:UIAlertControllerStyleAlert];
+            [alertController addAction:[UIAlertAction actionWithTitle:@"下载" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                [OpenUrlUtils openUrlByString:openUrl];
+            }]];
+            [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil]];
+            [[AppViewManager getRootTabBarController] presentViewController:alertController animated:YES completion:nil];
+        }
+    }];
+}
+
 -(void)getHomePopInfo{
     __weak __typeof(self) weakSelf = self;
     [self.viewModel getHomePopView:^(BannerModel* bannerModel) {
@@ -250,6 +272,13 @@
     self.homePopView.bannerModel = bannerModel;
     [self.homePopView show];
     [MobClickEventManager homePopWillShow];
+    [self showSystemBadge:0];//清空SystemBadge
+}
+
+-(void)showSystemBadge:(NSInteger)count{
+//    AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+//    [appDelegate.rootTabBarController setItemBadge:count atIndex:0];
+    [UIApplication sharedApplication].applicationIconBadgeNumber = count;
 }
 
 -(void)eventShowHomePop:(NSNotification*)eventData{

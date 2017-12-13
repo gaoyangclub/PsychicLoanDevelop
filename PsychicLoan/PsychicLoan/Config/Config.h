@@ -52,6 +52,11 @@
 #define FEEDBACK_APPSECRET @"f305e8b6515fd6b67830f7b0bf55eeaf"
 #define FEEDBACK_APPKEY @"24724689"
 
+//个推
+#define GETUI_APPID @"eQm4quft4tAjkfW3YKUXO7"
+#define GETUI_APPSECRET @"0va0OYjTBY6aEPMf3JpHZ8"
+#define GETUI_APPKEY @"GpwBMeI9ZJ8aEc6I5qEVG1"
+
 #define TABBAR_TITLE_HOME @"主页"
 #define TABBAR_TITLE_LOAN @"贷款"
 #define TABBAR_TITLE_USER @"我的"
@@ -76,11 +81,11 @@
 #define LOAN_TYPE_PAGE_NOTICE_TEXT @"公告:冲量阶段，审核放水，要借速度"
 #define LOAN_MARKET_PAGE_NOTICE_TEXT @"公告:经统计申请3个以上贷款产品，90%以上可以借款成功！"
 
-#define CUSTOMER_SERVICE_PUBLIC_TEXT @"牛逼的公众号" //客服公众号
-#define CUSTOMER_SERVICE_WECHAT_TEXT @"牛逼的微信号" //wechat
+#define CUSTOMER_SERVICE_PUBLIC_TEXT [Config getOfficialAccounts]//@"牛逼的公众号" //客服公众号
+#define CUSTOMER_SERVICE_WECHAT_TEXT [Config getWechat] //wechat
 
-#define LINK_URL_AGREEMENT @"http://www.baidu.com" //注册协议跳转H5
-#define LINK_URL_ABOUT_US @"http://www.baidu.com" //关于我们跳转H5
+#define LINK_URL_AGREEMENT @"http://47.100.15.41:8081/cnd/xieyi.html" //注册协议跳转H5
+#define LINK_URL_ABOUT_US @"http://47.100.15.41:8081/cnd/aboutUs.html" //关于我们跳转H5
 
 #define SYSTEM_SCALE [UIScreen mainScreen].scale
 #define SCREEN_WIDTH [UIScreen mainScreen].nativeBounds.size.width
@@ -151,10 +156,18 @@
 #define EVENT_REFRESH_HOME @"EVENT_REFRESH_HOME"
 #define EVENT_SHOW_HOME_POP @"EVENT_SHOW_HOME_POP"
 
+#define EVENT_APP_BECOME_ACTIVE @"EVENT_APP_BECOME_ACTIVE" //app从后台挂起后恢复
+
 #define USER_KEY @"user_key"
 #define PHONE_KEY @"phone_key"
 
 @interface Config : NSObject
+
+
++(void)setOfficialAccounts:(NSString*)value;
++(void)setWechat:(NSString*)value;
++(NSString*)getOfficialAccounts;
++(NSString*)getWechat;
 
 +(NSString*)getLoanTypeNameByCode:(int)code;
 

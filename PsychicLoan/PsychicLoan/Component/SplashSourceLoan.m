@@ -20,7 +20,7 @@
 
 -(UIImageView *)backImg{
     if (!_backImg) {
-        UIImage* image = [UIImage imageNamed:@"splashBackground.jpg"];
+        UIImage* image = [UIImage imageNamed:@"splashBackground"];
         _backImg = [[UIImageView alloc]initWithImage:image];
         _backImg.contentMode = UIViewContentModeScaleAspectFill;
         

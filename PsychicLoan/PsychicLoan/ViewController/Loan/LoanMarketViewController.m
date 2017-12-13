@@ -146,7 +146,7 @@
 -(void)loanFilterSelected:(LoanMarketFilterView *)view{
     [self.tableView headerBeginRefresh];//继续刷新
     
-    [MobClickEventManager loanMarketFilterSelected:ConcatStrings(@"",@(view.minamount),@"-",@(view.maxamount)) search:[NSString stringWithFormat:@"%d",view.search] time:ConcatStrings(@"",@(view.mintime),@"-",@(view.maxtime))];
+    [MobClickEventManager loanMarketFilterSelected:[NSString stringWithFormat:@"%d-%d",view.minamount,view.maxamount] search:[NSString stringWithFormat:@"%d",view.search] time:[NSString stringWithFormat:@"%d-%d",view.mintime,view.maxtime]];
 }
 
 -(void)didSelectRow:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

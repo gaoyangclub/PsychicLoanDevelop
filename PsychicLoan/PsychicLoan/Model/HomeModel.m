@@ -12,7 +12,7 @@
 
 #pragma 声明数组、字典或者集合里的元素类型时要重写
 + (nullable NSDictionary<NSString *, id> *)modelContainerPropertyGenericClass{
-    return @{@"hotloan":[LoanModel class],@"recommend":[LoanModel class],@"banner":[BannerModel class]};
+    return @{@"hotloan":[LoanModel class],@"recommend":[LoanModel class],@"banner":[BannerModel class],@"btntext":[LoanBtnModel class]};
 }
 
 

@@ -11,6 +11,7 @@
 #import "LoanTypeViewController.h"
 #import "AppViewManager.h"
 #import "MobClickEventManager.h"
+#import "LoanBtnModel.h"
 
 @interface HomeFastItem : UIControl
 
@@ -103,25 +104,33 @@ static NSArray<NSNumber*>* loanTpyes;
 //    NSArray<UIColor*>* itemImageColors = @[FlatWatermelon,FlatOrange,FlatSkyBlue];
     NSArray<NSString*>* itemImages = @[ICON_XIN_PIN_ZHUAN_QU,ICON_JI_SU_JIE_QIAN,ICON_GAO_TONG_GUO_LV];
     
-    CGFloat const itemWidth = self.contentView.width / loanTpyes.count;
+    NSArray<LoanBtnModel*>* btntext = self.data;
     
-    for (NSInteger i = 0; i < loanTpyes.count; i++) {
-        HomeFastItem* item = [[HomeFastItem alloc]init];
-        item.title = [Config getLoanTypeNameByCode:[loanTpyes[i] intValue]];
-//        item.imageColor = itemImageColors[i];
-        item.image = itemImages[i];
-        [self.contentView addSubview:item];
-        item.frame = CGRectMake(i * itemWidth, 0, itemWidth, self.contentView.height);
-        item.tag = i;
-        [item addTarget:self action:@selector(fastItemClick:) forControlEvents:UIControlEventTouchUpInside];
+    if (btntext && btntext.count > 0) {
+        
+        CGFloat const itemWidth = self.contentView.width / btntext.count;
+        
+        for (NSInteger i = 0; i < btntext.count; i++) {
+            LoanBtnModel* btnModel = btntext[i];
+            HomeFastItem* item = [[HomeFastItem alloc]init];
+            item.title = btnModel.btntext;//[Config getLoanTypeNameByCode:[loanTpyes[i] intValue]];
+            //        item.imageColor = itemImageColors[i];
+            item.image = i < itemImages.count ? itemImages[i] : itemImages.lastObject;
+            
+            [self.contentView addSubview:item];
+            item.frame = CGRectMake(i * itemWidth, 0, itemWidth, self.contentView.height);
+            item.tag = i;
+            [item addTarget:self action:@selector(fastItemClick:) forControlEvents:UIControlEventTouchUpInside];
+        }
     }
 }
 
--(void)fastItemClick:(UIView*)sender{
-    int loanType = [loanTpyes[sender.tag] intValue];
+-(void)fastItemClick:(HomeFastItem*)item{
+    int loanType = [loanTpyes[item.tag] intValue];
     LoanTypeViewController* viewController = [[LoanTypeViewController alloc]init];
     viewController.hidesBottomBarWhenPushed = YES;
     viewController.loanType = loanType;
+    viewController.navigationTitle = item.title;
     [[AppViewManager getCurrentNavigationController]pushViewController:viewController animated:YES];
     
     [MobClickEventManager homeFastClick:loanType];
