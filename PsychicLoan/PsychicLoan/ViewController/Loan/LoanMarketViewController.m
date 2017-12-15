@@ -14,6 +14,7 @@
 #import "DetailViewController.h"
 #import "HudManager.h"
 #import "MobClickEventManager.h"
+#import "DiyRotateRefreshHeader.h"
 
 @interface LoanMarketViewController()<LoanMarketFilterDelegate>
 
@@ -43,6 +44,10 @@
 //-(BOOL)getShowHeader{
 //    return NO;
 //}
+
+-(MJRefreshHeader *)getHeader{
+    return [[DiyRotateRefreshHeader alloc]init];
+}
 
 -(UILabel *)titleLabel{
     if (!_titleLabel) {

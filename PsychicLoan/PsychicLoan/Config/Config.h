@@ -39,7 +39,12 @@
 
 #define ICON_FONT_NAME @"iconfont"
 
+#ifdef DEBUG
 #define DEBUG_MODE YES
+#else
+#define DEBUG_MODE NO
+#endif
+
 
 #define AUTH_CODE_LENGTH 6
 
@@ -149,7 +154,11 @@
 #define ICON_FU_ZHI @"\U0000e611"
 #define ICON_DA_GOU @"\U0000e61c"
 
+#define ICON_LOADING @"\U0000e60e"
+
 #define ICON_CLOSE @"\U0000e60c"
+
+
 
 #define EVENT_LOGIN_COMPLETE @"EVENT_LOGIN_COMPLETE"
 #define EVENT_LOGOUT @"EVENT_LOGOUT"

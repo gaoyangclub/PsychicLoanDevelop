@@ -29,6 +29,9 @@
 		846F4DA21FCFF0C50015BBAA /* logout_avatar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 846F4D9E1FCFF0C50015BBAA /* logout_avatar@2x.png */; };
 		846F4DA31FCFF0C50015BBAA /* logout_avatar@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 846F4D9F1FCFF0C50015BBAA /* logout_avatar@3x.png */; };
 		8470AE4B1FD54FEF00410058 /* AppViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8470AE4A1FD54FEF00410058 /* AppViewManager.m */; };
+		847288311FE22A6F0020C0D9 /* DiyRotateRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 847288301FE22A6F0020C0D9 /* DiyRotateRefreshHeader.m */; };
+		847288391FE2506B0020C0D9 /* banner_line_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 847288371FE2506B0020C0D9 /* banner_line_selected@2x.png */; };
+		8472883A1FE2506B0020C0D9 /* banner_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 847288381FE2506B0020C0D9 /* banner_line@2x.png */; };
 		8476496D1FBD6E7500E9B4F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8476496C1FBD6E7500E9B4F2 /* main.m */; };
 		847649701FBD6E7500E9B4F2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8476496F1FBD6E7500E9B4F2 /* AppDelegate.m */; };
 		847649731FBD6E7500E9B4F2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 847649721FBD6E7500E9B4F2 /* ViewController.m */; };
@@ -210,6 +213,10 @@
 		846F4D9F1FCFF0C50015BBAA /* logout_avatar@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logout_avatar@3x.png"; sourceTree = "<group>"; };
 		8470AE491FD54FEF00410058 /* AppViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppViewManager.h; sourceTree = "<group>"; };
 		8470AE4A1FD54FEF00410058 /* AppViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppViewManager.m; sourceTree = "<group>"; };
+		8472882F1FE22A6F0020C0D9 /* DiyRotateRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiyRotateRefreshHeader.h; sourceTree = "<group>"; };
+		847288301FE22A6F0020C0D9 /* DiyRotateRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiyRotateRefreshHeader.m; sourceTree = "<group>"; };
+		847288371FE2506B0020C0D9 /* banner_line_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banner_line_selected@2x.png"; sourceTree = "<group>"; };
+		847288381FE2506B0020C0D9 /* banner_line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banner_line@2x.png"; sourceTree = "<group>"; };
 		847649681FBD6E7500E9B4F2 /* PsychicLoan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PsychicLoan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8476496C1FBD6E7500E9B4F2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8476496E1FBD6E7500E9B4F2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -553,6 +560,15 @@
 				846F4D9F1FCFF0C50015BBAA /* logout_avatar@3x.png */,
 			);
 			path = login;
+			sourceTree = "<group>";
+		};
+		847288321FE24AFA0020C0D9 /* banner */ = {
+			isa = PBXGroup;
+			children = (
+				847288371FE2506B0020C0D9 /* banner_line_selected@2x.png */,
+				847288381FE2506B0020C0D9 /* banner_line@2x.png */,
+			);
+			path = banner;
 			sourceTree = "<group>";
 		};
 		8476495F1FBD6E7500E9B4F2 = {
@@ -1020,6 +1036,8 @@
 				8483F11C1FBD7D5F00EFD7EB /* DiyNumberAddView.m */,
 				8483F11D1FBD7D5F00EFD7EB /* DIYTabBarItem.h */,
 				8483F11E1FBD7D5F00EFD7EB /* DIYTabBarItem.m */,
+				8472882F1FE22A6F0020C0D9 /* DiyRotateRefreshHeader.h */,
+				847288301FE22A6F0020C0D9 /* DiyRotateRefreshHeader.m */,
 				8483F11F1FBD7D5F00EFD7EB /* FlatButton.h */,
 				8483F1201FBD7D5F00EFD7EB /* FlatButton.m */,
 				8483F1211FBD7D5F00EFD7EB /* HotMarkView.h */,
@@ -1168,6 +1186,7 @@
 		A9D934D61FBFD20200FAC005 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				847288321FE24AFA0020C0D9 /* banner */,
 				A9DB54F71FDBD5310082A2E5 /* default */,
 				A9DB54FE1FDBD5310082A2E5 /* splash */,
 				846F4D9B1FCFF0C50015BBAA /* login */,
@@ -1328,8 +1347,10 @@
 				8483F0951FBD73A400EFD7EB /* QBImagePicker.strings in Resources */,
 				8483F0E11FBD76E600EFD7EB /* jk_icon_system_backIndicator.png in Resources */,
 				A9DB55061FDBD5310082A2E5 /* Default640x1136.png in Resources */,
+				847288391FE2506B0020C0D9 /* banner_line_selected@2x.png in Resources */,
 				8483F0B21FBD73A400EFD7EB /* MJRefresh.bundle in Resources */,
 				A9D934DA1FBFD20200FAC005 /* demo_unicode.html in Resources */,
+				8472883A1FE2506B0020C0D9 /* banner_line@2x.png in Resources */,
 				846F4DA11FCFF0C50015BBAA /* login_avatar@3x.png in Resources */,
 				844F47C41FDE7A2100E79E1E /* splashBackground@3x.png in Resources */,
 				A9DB55051FDBD5310082A2E5 /* Default320x480.png in Resources */,
@@ -1512,6 +1533,7 @@
 				8483F0A41FBD73A400EFD7EB /* MJRefreshAutoFooter.m in Sources */,
 				8483F0A01FBD73A400EFD7EB /* QBVideoIndicatorView.m in Sources */,
 				A9DB54F61FDBD3AF0082A2E5 /* SplashSourceLoan.m in Sources */,
+				847288311FE22A6F0020C0D9 /* DiyRotateRefreshHeader.m in Sources */,
 				8483F0C11FBD73A400EFD7EB /* SplashViewController.m in Sources */,
 				843A9FB91FC2AF26006C27F7 /* DetailViewController.m in Sources */,
 				8483F0AE1FBD73A400EFD7EB /* MJRefreshBackStateFooter.m in Sources */,

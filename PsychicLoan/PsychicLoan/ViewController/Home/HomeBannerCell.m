@@ -28,6 +28,9 @@
         _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:nil];
         _cycleScrollView.autoScrollTimeInterval = 5.0;//间隔5秒轮播
         _cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
+        _cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"banner_line_selected"];
+        _cycleScrollView.pageDotImage = [UIImage imageNamed:@"banner_line"];
+        _cycleScrollView.pageControlDotSize = CGSizeMake(rpx(20), rpx(20));
         [self.contentView addSubview:_cycleScrollView];
     }
     return _cycleScrollView;

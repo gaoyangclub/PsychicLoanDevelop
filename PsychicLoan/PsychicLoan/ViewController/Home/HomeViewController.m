@@ -26,6 +26,7 @@
 #import "PushModel.h"
 #import "HSUpdateApp.h"
 #import "OpenUrlUtils.h"
+#import "DiyRotateRefreshHeader.h"
 
 //@interface TestTableViewCell : MJTableViewCell
 //
@@ -53,6 +54,10 @@
 
 -(BOOL)getShowFooter{
     return NO;
+}
+
+-(MJRefreshHeader *)getHeader{
+    return [[DiyRotateRefreshHeader alloc]init];
 }
 
 -(UILabel *)titleLabel{

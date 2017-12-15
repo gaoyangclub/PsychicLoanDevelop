@@ -15,6 +15,7 @@
 #import "DetailViewController.h"
 #import "HudManager.h"
 #import "MobClickEventManager.h"
+#import "DiyRotateRefreshHeader.h"
 
 @interface LoanTypeViewController()
 
@@ -97,6 +98,10 @@
 
 -(BOOL)getShowFooter{
     return NO;
+}
+
+-(MJRefreshHeader *)getHeader{
+    return [[DiyRotateRefreshHeader alloc]init];
 }
 
 -(void)initNavigationItem{

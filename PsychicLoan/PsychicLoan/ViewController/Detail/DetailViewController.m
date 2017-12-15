@@ -22,6 +22,7 @@
 
 #import "UMMobClick/MobClick.h"
 #import "MobClickEventManager.h"
+#import "DiyRotateRefreshHeader.h"
 
 @interface DetailViewController (){
     LoanDetailModel* loanDetailResult;
@@ -71,6 +72,10 @@
 
 -(BOOL)getShowFooter{
     return NO;
+}
+
+-(MJRefreshHeader *)getHeader{
+    return [[DiyRotateRefreshHeader alloc]init];
 }
 
 -(void)initNavigationItem{
