@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PsychicLoan/ViewController/Home/HomeViewController.m"
-            timestampString = "534915812.748683"
+            timestampString = "535606869.116388"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
             landmarkName = "-initNavigationItem"
             landmarkType = "5">
          </BreakpointContent>

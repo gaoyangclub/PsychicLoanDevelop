@@ -27,6 +27,7 @@
 #import "HSUpdateApp.h"
 #import "OpenUrlUtils.h"
 #import "DiyRotateRefreshHeader.h"
+#import "SDWebImageDownloader.h"
 
 //@interface TestTableViewCell : MJTableViewCell
 //
@@ -274,10 +275,21 @@
 }
 
 -(void)showHomePopView:(BannerModel*)bannerModel{
-    self.homePopView.bannerModel = bannerModel;
-    [self.homePopView show];
-    [MobClickEventManager homePopWillShow];
-    [self showSystemBadge:0];//清空SystemBadge
+    if (bannerModel.loanimg) {
+        __weak __typeof(self) weakSelf = self;
+        [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:bannerModel.loanimg] options:0 progress:nil completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+            dispatch_main_sync_safe(^{
+                __strong typeof(weakSelf) strongSelf = weakSelf;
+                if(!strongSelf){//界面已经被销毁
+                    return;
+                }
+                strongSelf.homePopView.bannerModel = bannerModel;
+                [strongSelf.homePopView show];
+                [MobClickEventManager homePopWillShow];
+                [strongSelf showSystemBadge:0];//清空SystemBadge
+            });
+        }];
+    }
 }
 
 -(void)showSystemBadge:(NSInteger)count{
