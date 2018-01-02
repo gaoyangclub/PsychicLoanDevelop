@@ -30,7 +30,6 @@ PODS:
     - ChameleonFramework/Default (= 2.0.4)
   - ChameleonFramework/Default (2.0.4)
   - DZNEmptyDataSet (1.8.1)
-  - GTSDK (1.5.0)
   - IQKeyboardManager (3.3.7)
   - MBProgressHUD (1.0.0)
   - MMDrawerController (0.5.7):
@@ -45,7 +44,7 @@ PODS:
     - MMDrawerController/Core
   - MMDrawerController/Subclass (0.5.7):
     - MMDrawerController/Core
-  - pop (1.0.9)
+  - pop (1.0.10)
   - ReactiveCocoa (2.5):
     - ReactiveCocoa/UI (= 2.5)
   - ReactiveCocoa/Core (2.5):
@@ -53,13 +52,13 @@ PODS:
   - ReactiveCocoa/no-arc (2.5)
   - ReactiveCocoa/UI (2.5):
     - ReactiveCocoa/Core
-  - SDCycleScrollView (1.65):
-    - SDWebImage (~> 3.7)
-  - SDWebImage (3.8.2):
-    - SDWebImage/Core (= 3.8.2)
-  - SDWebImage/Core (3.8.2)
-  - SVProgressHUD (2.0.3)
-  - UMengAnalytics (4.1.2)
+  - SDCycleScrollView (1.75):
+    - SDWebImage (>= 4.0.0)
+  - SDWebImage (4.2.2):
+    - SDWebImage/Core (= 4.2.2)
+  - SDWebImage/Core (4.2.2)
+  - SVProgressHUD (2.1.2)
+  - UMengAnalytics (4.2.4)
   - YYModel (1.0.4)
 
 DEPENDENCIES:
@@ -68,11 +67,10 @@ DEPENDENCIES:
   - AsyncDisplayKit (= 1.9.5)
   - ChameleonFramework
   - DZNEmptyDataSet
-  - GTSDK
   - IQKeyboardManager
   - MBProgressHUD
   - MMDrawerController (~> 0.5.7)
-  - pop (~> 1.0)
+  - pop
   - ReactiveCocoa
   - SDCycleScrollView
   - SDWebImage
@@ -89,18 +87,17 @@ SPEC CHECKSUMS:
   AsyncDisplayKit: 9c55f1aadf4edc3eab9e27812171f500c13882c7
   ChameleonFramework: 5abe69b1f2a6cc79c3c435fcd9d3d855748225ee
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
-  GTSDK: 4380de452178d8ba2a67189f10c6743d0f9536b9
   IQKeyboardManager: 249c3946acf61345c18b038eb50863fe2793e3a8
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MMDrawerController: 7a4cf8e25596bf2434e03ce50d22a8608ddee6a1
-  pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
+  pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
-  SDCycleScrollView: f72904c77698a7f93a41bcbbc2d78b073bf7326c
-  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
-  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
-  UMengAnalytics: 8d95752776c32f5b954d40edc7f23944882a7c14
+  SDCycleScrollView: 884b88f0266dd4708a0e1934975c69cb971707b1
+  SDWebImage: 89a9d32cd520bbb46eb14e541d5109b3564af198
+  SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
+  UMengAnalytics: ef8d45f94c0e5771dc364cf6a5731d9d3b101da2
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 1fe8c120587af083d2a0fcbe18d0ae577097461a
+PODFILE CHECKSUM: 52e7bfc58e24c6077f6160f7905022d12dcc17c6
 
 COCOAPODS: 1.1.1

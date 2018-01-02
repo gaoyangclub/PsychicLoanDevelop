@@ -14,13 +14,14 @@ pod 'MMDrawerController', '~> 0.5.7'
 
 pod 'SDWebImage'
 
-pod "AsyncDisplayKit", ’1.9.5’
+pod 'AsyncDisplayKit', ’1.9.5’
 
 pod 'DZNEmptyDataSet'#空白填充指引页
 
 pod 'SDCycleScrollView'
 
-pod 'pop', '~> 1.0'
+pod 'pop'
+#, '~> 1.0'
 #pod 'MLeaksFinder'
 
 pod 'YYModel'
@@ -40,7 +41,7 @@ pod 'UMengAnalytics'#标准SDK，含IDFA
 #pod 'AMapNavi' #已包含3D地图，无需单独引入3D地图
 
 #个推开放平台
-pod 'GTSDK'#标准SDK，含IDFA
+#pod 'GTSDK'#标准SDK，含IDFA
 #阿里云 反馈sdk
 pod 'AlicloudFeedback', '~> 3.2.0'
 

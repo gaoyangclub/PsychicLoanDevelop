@@ -278,7 +278,7 @@
     if (bannerModel.loanimg) {
         __weak __typeof(self) weakSelf = self;
         [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:bannerModel.loanimg] options:0 progress:nil completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
-            dispatch_main_sync_safe(^{
+            dispatch_main_async_safe(^{
                 __strong typeof(weakSelf) strongSelf = weakSelf;
                 if(!strongSelf){//界面已经被销毁
                     return;

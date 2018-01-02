@@ -13,11 +13,11 @@
 
 #import "UMMobClick/MobClick.h"
 #import <YWFeedbackFMWK/YWFeedbackKit.h>
-#import "GeTuiSdk.h"
-#import "GeTuiDataSource.h"
+//#import <GTSDK/GeTuiSdk.h>
+//#import "GeTuiDataSource.h"
 #import "PushModel.h"
 
-@interface AppDelegate()<GeTuiSdkDelegate>
+@interface AppDelegate()//<GeTuiSdkDelegate>
 
 @end
 
@@ -35,7 +35,7 @@
     //    [GeTuiSdk clientId];
     // 注册 APNs
     [self registerRemoteNotification];
-    [self startGeTuiSdk];
+//    [self startGeTuiSdk];
     
     [AppViewManager setRootTabBarController:[AppViewManager createTabBarController]];
     
@@ -99,66 +99,66 @@
     }
 }
 
--(void)startGeTuiSdk{
-    [GeTuiSdk startSdkWithAppId:GETUI_APPID appKey:GETUI_APPKEY appSecret:GETUI_APPSECRET delegate:self];//开启推送
-//    [GeTuiSdk runBackgroundEnable:YES];
-    
-    NSString* clientId = [GeTuiSdk clientId];
-    if(clientId){//sdk早就注册了
-//        [self registerGeTuiAppClient:clientId];
-    }
-}
+//-(void)startGeTuiSdk{
+//    [GeTuiSdk startSdkWithAppId:GETUI_APPID appKey:GETUI_APPKEY appSecret:GETUI_APPSECRET delegate:self];//开启推送
+////    [GeTuiSdk runBackgroundEnable:YES];
+//    
+//    NSString* clientId = [GeTuiSdk clientId];
+//    if(clientId){//sdk早就注册了
+////        [self registerGeTuiAppClient:clientId];
+//    }
+//}
 
 #pragma GeTuiSdkDelegate
 /** SDK启动成功返回cid */
--(void)GeTuiSdkDidRegisterClient:(NSString *)clientId{
-    //    //个推SDK已注册，返回clientId
-    NSLog(@"\n>>>[GeTuiSdk RegisterClient]:%@\n\n", clientId);
-//    [self registerGeTuiAppClient:clientId];
-}
-
-#pragma GeTuiSdkDelegate
--(void)GeTuiSdkDidReceivePayloadData:(NSData *)payloadData andTaskId:(NSString *)taskId andMsgId:(NSString *)msgId andOffLine:(BOOL)offLine fromGtAppId:(NSString *)appId{
-    if (payloadData) {
-        NSString *payloadMsg = [[NSString alloc] initWithBytes:payloadData.bytes
-                                                        length:payloadData.length
-                                                      encoding:NSUTF8StringEncoding];
-        NSLog(@"Payload Msg:%@", payloadMsg);
-        PushModel* pushMsg = [PushModel yy_modelWithJSON:payloadData];
-        if(pushMsg){
-            [GeTuiDataSource addLocalNotification:pushMsg.pushmessage];
-            if (pushMsg.type == 1) {
-                [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_SHOW_HOME_POP object:pushMsg];
-            }
-        }else{
-            [GeTuiDataSource addLocalNotification:payloadMsg];
-        }
-    }
-    // 汇报个推自定义事件
-    [GeTuiSdk sendFeedbackMessage:90001 andTaskId:taskId andMsgId:msgId];
-}
-
-//为了免除开发者维护DeviceToken的麻烦，个推SDK可以帮开发者管理好这些繁琐的事务。应用开发者只需调用个推SDK的接口汇报最新的DeviceToken，即可通过个推平台推送 APNs 消息。示例代码如下：
-/** 远程通知注册成功委托 */
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(nonnull NSData *)deviceToken{
-    NSString *token = [[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
-    token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
-    NSLog(@"\n>>>[DeviceToken Success]:%@\n\n", token);
-    
-    // 向个推服务器注册deviceToken
-    [GeTuiSdk registerDeviceToken:token];
-}
-
-//在iOS 10 以前，为处理 APNs 通知点击事件，统计有效用户点击数，需在AppDelegate.m里的didReceiveRemoteNotification回调方法中调用个推SDK统计接口：
-/** APP已经接收到“远程”通知(推送) - 透传推送消息  */
--(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
-    // 处理APNs代码，通过userInfo可以取到推送的信息（包括内容，角标，自定义参数等）。如果需要弹窗等其他操作，则需要自行编码。
-    NSLog(@"\n>>>[Receive RemoteNotification - Background Fetch]:%@\n\n",userInfo);
-    
-    // 将收到的APNs信息传给个推统计
-    [GeTuiSdk handleRemoteNotification:userInfo];
-    completionHandler(UIBackgroundFetchResultNewData);
-}
+//-(void)GeTuiSdkDidRegisterClient:(NSString *)clientId{
+//    //    //个推SDK已注册，返回clientId
+//    NSLog(@"\n>>>[GeTuiSdk RegisterClient]:%@\n\n", clientId);
+////    [self registerGeTuiAppClient:clientId];
+//}
+//
+//#pragma GeTuiSdkDelegate
+//-(void)GeTuiSdkDidReceivePayloadData:(NSData *)payloadData andTaskId:(NSString *)taskId andMsgId:(NSString *)msgId andOffLine:(BOOL)offLine fromGtAppId:(NSString *)appId{
+//    if (payloadData) {
+//        NSString *payloadMsg = [[NSString alloc] initWithBytes:payloadData.bytes
+//                                                        length:payloadData.length
+//                                                      encoding:NSUTF8StringEncoding];
+//        NSLog(@"Payload Msg:%@", payloadMsg);
+//        PushModel* pushMsg = [PushModel yy_modelWithJSON:payloadData];
+//        if(pushMsg){
+//            [GeTuiDataSource addLocalNotification:pushMsg.pushmessage];
+//            if (pushMsg.type == 1) {
+//                [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_SHOW_HOME_POP object:pushMsg];
+//            }
+//        }else{
+//            [GeTuiDataSource addLocalNotification:payloadMsg];
+//        }
+//    }
+//    // 汇报个推自定义事件
+//    [GeTuiSdk sendFeedbackMessage:90001 andTaskId:taskId andMsgId:msgId];
+//}
+//
+////为了免除开发者维护DeviceToken的麻烦，个推SDK可以帮开发者管理好这些繁琐的事务。应用开发者只需调用个推SDK的接口汇报最新的DeviceToken，即可通过个推平台推送 APNs 消息。示例代码如下：
+///** 远程通知注册成功委托 */
+//- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(nonnull NSData *)deviceToken{
+//    NSString *token = [[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+//    token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
+//    NSLog(@"\n>>>[DeviceToken Success]:%@\n\n", token);
+//    
+//    // 向个推服务器注册deviceToken
+//    [GeTuiSdk registerDeviceToken:token];
+//}
+//
+////在iOS 10 以前，为处理 APNs 通知点击事件，统计有效用户点击数，需在AppDelegate.m里的didReceiveRemoteNotification回调方法中调用个推SDK统计接口：
+///** APP已经接收到“远程”通知(推送) - 透传推送消息  */
+//-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
+//    // 处理APNs代码，通过userInfo可以取到推送的信息（包括内容，角标，自定义参数等）。如果需要弹窗等其他操作，则需要自行编码。
+//    NSLog(@"\n>>>[Receive RemoteNotification - Background Fetch]:%@\n\n",userInfo);
+//    
+//    // 将收到的APNs信息传给个推统计
+//    [GeTuiSdk handleRemoteNotification:userInfo];
+//    completionHandler(UIBackgroundFetchResultNewData);
+//}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

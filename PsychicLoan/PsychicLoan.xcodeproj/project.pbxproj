@@ -175,6 +175,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8400E9891FFB623100D27E65 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		843A9FB71FC2AF26006C27F7 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		843A9FB81FC2AF26006C27F7 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		843A9FBA1FC2B451006C27F7 /* DetailLogoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailLogoCell.h; sourceTree = "<group>"; };
@@ -445,6 +446,7 @@
 		84B96DC81FD0F54F007396E9 /* PasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordViewController.m; sourceTree = "<group>"; };
 		84B96DCD1FD0FA5C007396E9 /* TimerUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerUtils.h; sourceTree = "<group>"; };
 		84B96DCE1FD0FA5C007396E9 /* TimerUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerUtils.m; sourceTree = "<group>"; };
+		84DC654E1FFB74EC00223EBD /* PsychicLoan.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PsychicLoan.entitlements; sourceTree = "<group>"; };
 		84E7B19C1FC57BD700F19C20 /* DetailBasicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailBasicCell.h; sourceTree = "<group>"; };
 		84E7B19D1FC57BD700F19C20 /* DetailBasicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailBasicCell.m; sourceTree = "<group>"; };
 		A9D70ADD1FDD06B80045481D /* UIViewController+HidesBottomBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+HidesBottomBar.h"; sourceTree = "<group>"; };
@@ -592,6 +594,7 @@
 		8476496A1FBD6E7500E9B4F2 /* PsychicLoan */ = {
 			isa = PBXGroup;
 			children = (
+				84DC654E1FFB74EC00223EBD /* PsychicLoan.entitlements */,
 				843A9FC01FC2BD28006C27F7 /* ViewModel */,
 				A9D934DF1FC0070E00FAC005 /* Model */,
 				8483F1521FBD837400EFD7EB /* Utils */,
@@ -1147,6 +1150,7 @@
 		A8614B8FE3BAAECEB35F2D85 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8400E9891FFB623100D27E65 /* UserNotifications.framework */,
 				A9D934EB1FC03F3D00FAC005 /* WebKit.framework */,
 				BC1525BC4E9F08DE81E84B09 /* libPods-PsychicLoan.a */,
 			);
@@ -1306,6 +1310,7 @@
 					847649671FBD6E7500E9B4F2 = {
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = RTG2797NE5;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -1683,13 +1688,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = PsychicLoan/PsychicLoan.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = PsychicLoan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.loan.ios.psychicloan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "64a1d694-dabf-4843-bc88-dc1d8d3e9458";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -1699,13 +1708,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = PsychicLoan/PsychicLoan.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = PsychicLoan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.loan.ios.psychicloan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "64a1d694-dabf-4843-bc88-dc1d8d3e9458";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
