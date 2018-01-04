@@ -29,6 +29,7 @@
 		846F4DA21FCFF0C50015BBAA /* logout_avatar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 846F4D9E1FCFF0C50015BBAA /* logout_avatar@2x.png */; };
 		846F4DA31FCFF0C50015BBAA /* logout_avatar@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 846F4D9F1FCFF0C50015BBAA /* logout_avatar@3x.png */; };
 		8470AE4B1FD54FEF00410058 /* AppViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8470AE4A1FD54FEF00410058 /* AppViewManager.m */; };
+		8471A6521FFE021F001288D8 /* PsychicLoan.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 8471A6511FFE021F001288D8 /* PsychicLoan.entitlements */; };
 		847288311FE22A6F0020C0D9 /* DiyRotateRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 847288301FE22A6F0020C0D9 /* DiyRotateRefreshHeader.m */; };
 		847288391FE2506B0020C0D9 /* banner_line_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 847288371FE2506B0020C0D9 /* banner_line_selected@2x.png */; };
 		8472883A1FE2506B0020C0D9 /* banner_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 847288381FE2506B0020C0D9 /* banner_line@2x.png */; };
@@ -214,6 +215,7 @@
 		846F4D9F1FCFF0C50015BBAA /* logout_avatar@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logout_avatar@3x.png"; sourceTree = "<group>"; };
 		8470AE491FD54FEF00410058 /* AppViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppViewManager.h; sourceTree = "<group>"; };
 		8470AE4A1FD54FEF00410058 /* AppViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppViewManager.m; sourceTree = "<group>"; };
+		8471A6511FFE021F001288D8 /* PsychicLoan.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PsychicLoan.entitlements; sourceTree = "<group>"; };
 		8472882F1FE22A6F0020C0D9 /* DiyRotateRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiyRotateRefreshHeader.h; sourceTree = "<group>"; };
 		847288301FE22A6F0020C0D9 /* DiyRotateRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiyRotateRefreshHeader.m; sourceTree = "<group>"; };
 		847288371FE2506B0020C0D9 /* banner_line_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banner_line_selected@2x.png"; sourceTree = "<group>"; };
@@ -446,7 +448,6 @@
 		84B96DC81FD0F54F007396E9 /* PasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordViewController.m; sourceTree = "<group>"; };
 		84B96DCD1FD0FA5C007396E9 /* TimerUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerUtils.h; sourceTree = "<group>"; };
 		84B96DCE1FD0FA5C007396E9 /* TimerUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerUtils.m; sourceTree = "<group>"; };
-		84DC654E1FFB74EC00223EBD /* PsychicLoan.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PsychicLoan.entitlements; sourceTree = "<group>"; };
 		84E7B19C1FC57BD700F19C20 /* DetailBasicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailBasicCell.h; sourceTree = "<group>"; };
 		84E7B19D1FC57BD700F19C20 /* DetailBasicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailBasicCell.m; sourceTree = "<group>"; };
 		A9D70ADD1FDD06B80045481D /* UIViewController+HidesBottomBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+HidesBottomBar.h"; sourceTree = "<group>"; };
@@ -594,7 +595,7 @@
 		8476496A1FBD6E7500E9B4F2 /* PsychicLoan */ = {
 			isa = PBXGroup;
 			children = (
-				84DC654E1FFB74EC00223EBD /* PsychicLoan.entitlements */,
+				8471A6511FFE021F001288D8 /* PsychicLoan.entitlements */,
 				843A9FC01FC2BD28006C27F7 /* ViewModel */,
 				A9D934DF1FC0070E00FAC005 /* Model */,
 				8483F1521FBD837400EFD7EB /* Utils */,
@@ -1352,6 +1353,7 @@
 				8483F0951FBD73A400EFD7EB /* QBImagePicker.strings in Resources */,
 				8483F0E11FBD76E600EFD7EB /* jk_icon_system_backIndicator.png in Resources */,
 				A9DB55061FDBD5310082A2E5 /* Default640x1136.png in Resources */,
+				8471A6521FFE021F001288D8 /* PsychicLoan.entitlements in Resources */,
 				847288391FE2506B0020C0D9 /* banner_line_selected@2x.png in Resources */,
 				8483F0B21FBD73A400EFD7EB /* MJRefresh.bundle in Resources */,
 				A9D934DA1FBFD20200FAC005 /* demo_unicode.html in Resources */,
@@ -1688,9 +1690,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_ENTITLEMENTS = PsychicLoan/PsychicLoan.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = PsychicLoan/Info.plist;
@@ -1708,7 +1709,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_ENTITLEMENTS = PsychicLoan/PsychicLoan.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
