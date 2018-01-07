@@ -39,6 +39,7 @@
 +(UIBarButtonItem*)createNavigationNormalButtonItem:(UIColor*)themeColor font:(UIFont*)font text:(NSString*)text target:(id)target action:(SEL)action{
     UIBarButtonItem* buttonItem = [[UIBarButtonItem alloc]initWithTitle:text style:(UIBarButtonItemStylePlain) target:target action:action];
     [buttonItem setTitleTextAttributes:@{NSFontAttributeName:font} forState:(UIControlStateNormal)];
+    [buttonItem setTitleTextAttributes:@{NSFontAttributeName:font} forState:(UIControlStateSelected)];
     [buttonItem setTintColor:themeColor];
     return buttonItem;
 }
