@@ -75,8 +75,8 @@ static NSArray<NSNumber*>* loanTpyes;
     
     self.showTouch = YES;
     
-    self.titleNode.attributedString = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_PRIMARY content:self.title];
-    self.titleNode.size = [self.titleNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+    self.titleNode.attributedText = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_PRIMARY content:self.title];
+    [self.titleNode sizeToFit];
 
     self.imageNode.title = self.image;
 //    self.imageNode.fillColor = self.imageColor;

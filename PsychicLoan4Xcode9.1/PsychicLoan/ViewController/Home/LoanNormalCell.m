@@ -149,22 +149,21 @@
     NSMutableParagraphStyle* style = [[NSMutableParagraphStyle alloc]init];
     style.alignment = NSTextAlignmentLeft;//左对齐
     [textString addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, loanModel.loanname.length)];
-    self.titleNode.attributedString = textString;
-    
-    self.titleNode.size = [self.titleNode measure:CGSizeMake(maxTitleWidth, FLT_MAX)];
+    self.titleNode.attributedText = textString;
+    self.titleNode.size = [self.titleNode sizeThatFits:CGSizeMake(maxTitleWidth, FLT_MAX)];
     
     NSString* timeStr = [MeasureUnitConvert timeConvert:loanModel.time];
     
-    self.amountNode.attributedString = [NSString simpleAttributedString:COLOR_TEXT_SECONDARY size:SIZE_TEXT_SECONDARY content:
+    self.amountNode.attributedText = [NSString simpleAttributedString:COLOR_TEXT_SECONDARY size:SIZE_TEXT_SECONDARY content:
                                         ConcatStrings([MeasureUnitConvert amountConvert:loanModel.maxamount],@" | ",timeStr)
                                         ];
 //                                        [NSString stringWithFormat:@"%ld",loanModel.maxamount]];
-    self.amountNode.size = [self.amountNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+    [self.amountNode sizeToFit];
     
     textString = (NSMutableAttributedString*)[NSString simpleAttributedString:COLOR_PRIMARY size:SIZE_TEXT_SECONDARY content:loanModel.loandes];
     [textString addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, loanModel.loandes.length)];
-    self.describeNode.attributedString = textString;
-    self.describeNode.size = [self.describeNode measure:CGSizeMake(maxTitleWidth, FLT_MAX)];
+    self.describeNode.attributedText = textString;
+    self.describeNode.size = [self.describeNode sizeThatFits:CGSizeMake(maxTitleWidth, FLT_MAX)];
     
     self.titleNode.x = self.amountNode.x = self.describeNode.x = baseX;
     

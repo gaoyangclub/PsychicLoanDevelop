@@ -56,8 +56,8 @@
     
     self.square.frame = CGRectMake(0, 0, rpx(6), self.height);
     
-    self.titleNode.attributedString = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_PRIMARY content:title isBold:YES];
-    self.titleNode.size = [self.titleNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+    self.titleNode.attributedText = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_PRIMARY content:title isBold:YES];
+    [self.titleNode sizeToFit];
     self.titleNode.centerY = self.height / 2.;
     self.titleNode.x = self.square.maxX + titleGap;
     

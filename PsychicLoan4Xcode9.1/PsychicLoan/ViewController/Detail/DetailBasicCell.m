@@ -30,8 +30,8 @@
         _amountLabel = [[ASTextNode alloc]init];
         _amountLabel.layerBacked = YES;
         [self.contentView.layer addSublayer:_amountLabel.layer];
-        _amountLabel.attributedString = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_PRIMARY content:@"借款额度"];
-        _amountLabel.size = [_amountLabel measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+        _amountLabel.attributedText = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_PRIMARY content:@"借款额度"];
+        [_amountLabel sizeToFit];
     }
     return _amountLabel;
 }
@@ -50,8 +50,8 @@
         _rateLabel = [[ASTextNode alloc]init];
         _rateLabel.layerBacked = YES;
         [self.contentView.layer addSublayer:_rateLabel.layer];
-        _rateLabel.attributedString = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_PRIMARY content:@"日利率(%)"];
-        _rateLabel.size = [_rateLabel measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+        _rateLabel.attributedText = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_PRIMARY content:@"日利率(%)"];
+        [_rateLabel sizeToFit];
     }
     return _rateLabel;
 }
@@ -70,8 +70,8 @@
         _timeLabel = [[ASTextNode alloc]init];
         _timeLabel.layerBacked = YES;
         [self.contentView.layer addSublayer:_timeLabel.layer];
-        _timeLabel.attributedString = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_PRIMARY content:@"借款期限"];
-        _timeLabel.size = [_timeLabel measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+        _timeLabel.attributedText = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_PRIMARY content:@"借款期限"];
+        [_timeLabel sizeToFit];
     }
     return _timeLabel;
 }
@@ -115,15 +115,15 @@
     CGFloat const areaWidth = self.width / 3.;
     
     
-    self.amountNode.attributedString = [NSString simpleAttributedString:COLOR_PRIMARY size:SIZE_TEXT_PRIMARY content:ConcatStrings([MeasureUnitConvert amountConvert:detailModel.minamount],@"~",[MeasureUnitConvert amountConvert:detailModel.maxamount])];
-    self.amountNode.size = [self.amountNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+    self.amountNode.attributedText = [NSString simpleAttributedString:COLOR_PRIMARY size:SIZE_TEXT_PRIMARY content:ConcatStrings([MeasureUnitConvert amountConvert:detailModel.minamount],@"~",[MeasureUnitConvert amountConvert:detailModel.maxamount])];
+    [self.amountNode sizeToFit];
     
-    self.rateNode.attributedString = [NSString simpleAttributedString:COLOR_PRIMARY size:SIZE_TEXT_PRIMARY content:detailModel.rate];
-    self.rateNode.size = [self.rateNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+    self.rateNode.attributedText = [NSString simpleAttributedString:COLOR_PRIMARY size:SIZE_TEXT_PRIMARY content:detailModel.rate];
+    [self.rateNode sizeToFit];
     
-    self.timeNode.attributedString = [NSString simpleAttributedString:COLOR_PRIMARY size:SIZE_TEXT_PRIMARY content:
+    self.timeNode.attributedText = [NSString simpleAttributedString:COLOR_PRIMARY size:SIZE_TEXT_PRIMARY content:
                                       ConcatStrings(@"",@(detailModel.mintime),@"~",@(detailModel.maxtime),@"天")];
-    self.timeNode.size = [self.timeNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+    [self.timeNode sizeToFit];
     
 //    CGFloat const topMargin = 0;
     CGFloat const nodeGap = rpx(5);

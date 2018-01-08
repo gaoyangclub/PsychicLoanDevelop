@@ -91,12 +91,13 @@
         UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
         [[UIApplication sharedApplication] registerForRemoteNotifications];
         [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-    } else {
-        UIRemoteNotificationType apn_type = (UIRemoteNotificationType)(UIRemoteNotificationTypeAlert |
-                                                                       UIRemoteNotificationTypeSound |
-                                                                       UIRemoteNotificationTypeBadge);
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:apn_type];
     }
+//    else {
+//        UIRemoteNotificationType apn_type = (UIRemoteNotificationType)(UIRemoteNotificationTypeAlert |
+//                                                                       UIRemoteNotificationTypeSound |
+//                                                                       UIRemoteNotificationTypeBadge);
+//        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:apn_type];
+//    }
 }
 
 -(void)startGeTuiSdk{

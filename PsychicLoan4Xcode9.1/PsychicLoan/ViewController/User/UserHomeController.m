@@ -58,8 +58,8 @@ typedef NS_ENUM(NSInteger,ItemPostion){
     if (!_versionLabel) {
         _versionLabel = [[ASTextNode alloc]init];
         _versionLabel.layerBacked = YES;
-        _versionLabel.attributedString = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_PRIMARY content:[Config getVersionDescription]];
-        _versionLabel.size = [_versionLabel measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+        _versionLabel.attributedText = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_PRIMARY content:[Config getVersionDescription]];
+        [_versionLabel sizeToFit];
         [self.view.layer addSublayer:_versionLabel.layer];
     }
     return _versionLabel;

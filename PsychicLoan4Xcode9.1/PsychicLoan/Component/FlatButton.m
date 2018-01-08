@@ -140,15 +140,15 @@
     self.backArea.frame = self.bounds;
     
     if(self.icon){
-        self.iconNode.attributedString = [NSString simpleAttributedString:ICON_FONT_NAME color:self.iconColor size:self.iconSize content:self.icon];
-        self.iconNode.size = [self.iconNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+        self.iconNode.attributedText = [NSString simpleAttributedString:ICON_FONT_NAME color:self.iconColor size:self.iconSize content:self.icon];
+        [self.iconNode sizeToFit];
     }
     if (self.titleFontName) {
-        self.titleLabel.attributedString = [NSString simpleAttributedString:self.titleFontName color:self.titleColor  size:self.titleSize content:self.title];
+        self.titleLabel.attributedText = [NSString simpleAttributedString:self.titleFontName color:self.titleColor  size:self.titleSize content:self.title];
     }else{
-        self.titleLabel.attributedString = [NSString simpleAttributedString:self.titleColor  size:self.titleSize content:self.title];
+        self.titleLabel.attributedText = [NSString simpleAttributedString:self.titleColor  size:self.titleSize content:self.title];
     }
-    self.titleLabel.size = [self.titleLabel measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+    [self.titleLabel sizeToFit];
     if (self.icon && self.titleLabel) {
         switch (self.iconAlignment) {
             case IconAlignmentLeft:

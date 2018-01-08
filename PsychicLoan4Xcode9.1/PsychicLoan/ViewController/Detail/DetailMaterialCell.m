@@ -48,8 +48,8 @@
     style.lineSpacing = rpx(5);
     [textString addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, detailInfo.length)];
     
-    self.textStart.attributedString = textString;
-    self.textStart.size = [self.textStart measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+    self.textStart.attributedText = textString;
+    [self.textStart sizeToFit];
     self.textStart.x = leftMargin;
     self.textStart.y = topMargin;
     

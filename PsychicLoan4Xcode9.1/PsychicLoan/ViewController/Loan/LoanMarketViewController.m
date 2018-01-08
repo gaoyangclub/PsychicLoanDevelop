@@ -79,8 +79,8 @@
     if (!_noticeIcon) {
         _noticeIcon = [[ASTextNode alloc]init];
         _noticeIcon.layerBacked = YES;
-        _noticeIcon.attributedString = [NSString simpleAttributedString:ICON_FONT_NAME color:[UIColor whiteColor] size:rpx(16) content:ICON_GONG_GAO];
-        _noticeIcon.size = [_noticeIcon measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+        _noticeIcon.attributedText = [NSString simpleAttributedString:ICON_FONT_NAME color:[UIColor whiteColor] size:rpx(16) content:ICON_GONG_GAO];
+        [_noticeIcon sizeToFit];
         [self.noticeBack addSubnode:_noticeIcon];
     }
     return _noticeIcon;
@@ -90,8 +90,8 @@
     if (!_noticeLabel) {
         _noticeLabel = [[ASTextNode alloc]init];
         _noticeLabel.layerBacked = YES;
-        _noticeLabel.attributedString = [NSString simpleAttributedString:[UIColor whiteColor] size:SIZE_TEXT_SECONDARY content:LOAN_MARKET_PAGE_NOTICE_TEXT];
-        _noticeLabel.size = [_noticeLabel measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+        _noticeLabel.attributedText = [NSString simpleAttributedString:[UIColor whiteColor] size:SIZE_TEXT_SECONDARY content:LOAN_MARKET_PAGE_NOTICE_TEXT];
+        [_noticeLabel sizeToFit];
         [self.noticeBack addSubnode:_noticeLabel];
     }
     return _noticeLabel;

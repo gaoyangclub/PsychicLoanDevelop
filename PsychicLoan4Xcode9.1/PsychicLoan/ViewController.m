@@ -15,6 +15,9 @@
 @implementation ViewController
 
 - (void)viewDidLoad {
+//    UILabel* label;
+//    [label sizeThatFits:CGSizeZero];
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 }

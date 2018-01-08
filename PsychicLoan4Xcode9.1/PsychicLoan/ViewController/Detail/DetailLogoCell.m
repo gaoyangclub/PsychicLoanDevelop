@@ -81,8 +81,8 @@
     if (!_passRateLabel) {
         _passRateLabel = [[ASTextNode alloc]init];
         _passRateLabel.layerBacked = YES;
-        _passRateLabel.attributedString = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_PRIMARY content:@"通过率"];
-        _passRateLabel.size = [_passRateLabel measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+        _passRateLabel.attributedText = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_PRIMARY content:@"通过率"];
+        [_passRateLabel sizeToFit];
         [self.contentView.layer addSublayer:_passRateLabel.layer];
     }
     return _passRateLabel;
@@ -122,18 +122,18 @@
     style.alignment = NSTextAlignmentLeft;//左对齐
     [textString addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, loanModel.loanname.length)];
     
-    self.titleNode.attributedString = textString;
-    self.titleNode.size = [self.titleNode measure:CGSizeMake(maxTitleWidth, FLT_MAX)];
+    self.titleNode.attributedText = textString;
+    self.titleNode.size = [self.titleNode sizeThatFits:CGSizeMake(maxTitleWidth, FLT_MAX)];
     
-    self.amountNode.attributedString = [NSString simpleAttributedString:COLOR_TEXT_SECONDARY size:SIZE_TEXT_PRIMARY content:
+    self.amountNode.attributedText = [NSString simpleAttributedString:COLOR_TEXT_SECONDARY size:SIZE_TEXT_PRIMARY content:
                                         ConcatStrings(@"放款时间:",[MeasureUnitConvert timeConvert:loanModel.time])];
 //                                        [NSString stringWithFormat:@"%ld",loanModel.maxamount]];
-    self.amountNode.size = [self.amountNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+    [self.amountNode sizeToFit];
     
     textString = (NSMutableAttributedString*)[NSString simpleAttributedString:COLOR_PRIMARY size:SIZE_TEXT_PRIMARY content:loanModel.loandes];
     [textString addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, loanModel.loanname.length)];
-    self.describeNode.attributedString = textString;
-    self.describeNode.size = [self.describeNode measure:CGSizeMake(maxTitleWidth, FLT_MAX)];
+    self.describeNode.attributedText = textString;
+    self.describeNode.size = [self.describeNode sizeThatFits:CGSizeMake(maxTitleWidth, FLT_MAX)];
     
     self.titleNode.x = self.amountNode.x = self.describeNode.x = baseX;
     
@@ -142,8 +142,8 @@
     self.amountNode.y = self.titleNode.maxY + textGap;
     self.describeNode.y = self.amountNode.maxY + textGap;
     
-    self.passRateNode.attributedString = [NSString simpleAttributedString:FlatRed size:rpx(24) content:ConcatStrings(loanModel.passrate,@"%")];
-    self.passRateNode.size = [self.passRateNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+    self.passRateNode.attributedText = [NSString simpleAttributedString:FlatRed size:rpx(24) content:ConcatStrings(loanModel.passrate,@"%")];
+    [self.passRateNode sizeToFit];
     
     CGFloat const passY = (self.height - self.passRateLabel.height - self.passRateNode.height - textGap) / 2.;
     

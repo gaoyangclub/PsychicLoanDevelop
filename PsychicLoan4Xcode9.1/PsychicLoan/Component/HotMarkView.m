@@ -71,8 +71,8 @@
     self.arrowLayer.path = linePath.CGPath;
     self.arrowLayer.fillColor = self.fillColor.CGColor;
     
-    self.markLabel.attributedString = [NSString simpleAttributedString:self.titleColor size:self.titleSize content:self.title];
-    self.markLabel.size = [self.markLabel measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+    self.markLabel.attributedText = [NSString simpleAttributedString:self.titleColor size:self.titleSize content:self.title];
+    [self.markLabel sizeToFit];
     
     CGPoint centerPoint = [MathUtils getTriangleInnerCenter:point1.x _:point1.y _:point2.x _:point2.y _:point3.x _:point3.y];
 //    CGPoint centerPoint = (CGPoint){

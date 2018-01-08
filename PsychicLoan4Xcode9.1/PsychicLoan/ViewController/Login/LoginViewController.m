@@ -103,8 +103,8 @@
     if (!_usernameIcon) {
         _usernameIcon = [[ASTextNode alloc]init];
         _usernameIcon.layerBacked = YES;
-        _usernameIcon.attributedString = [NSString simpleAttributedString:ICON_FONT_NAME color:[COLOR_PRIMARY colorWithAlphaComponent:0.5] size:rpx(24) content:ICON_YONG_HU];
-        _usernameIcon.size = [_usernameIcon measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+        _usernameIcon.attributedText = [NSString simpleAttributedString:ICON_FONT_NAME color:[COLOR_PRIMARY colorWithAlphaComponent:0.5] size:rpx(24) content:ICON_YONG_HU];
+        [_usernameIcon sizeToFit];
         [self.inputArea.layer addSublayer:_usernameIcon.layer];
     }
     return _usernameIcon;
@@ -138,8 +138,8 @@
     if (!_authcodeIcon) {
         _authcodeIcon = [[ASTextNode alloc]init];
         _authcodeIcon.layerBacked = YES;
-        _authcodeIcon.attributedString = [NSString simpleAttributedString:ICON_FONT_NAME color:[COLOR_PRIMARY colorWithAlphaComponent:0.5] size:rpx(24) content:ICON_YAN_ZHENG_MA];
-        _authcodeIcon.size = [_authcodeIcon measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+        _authcodeIcon.attributedText = [NSString simpleAttributedString:ICON_FONT_NAME color:[COLOR_PRIMARY colorWithAlphaComponent:0.5] size:rpx(24) content:ICON_YAN_ZHENG_MA];
+        [_authcodeIcon sizeToFit];
         [self.inputArea.layer addSublayer:_authcodeIcon.layer];
     }
     return _authcodeIcon;

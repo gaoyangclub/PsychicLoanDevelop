@@ -199,12 +199,14 @@
     
     self.labelText.hidden = !self.showLabel;
     if (self.showLabel) {
-        self.labelText.attributedString = [NSString simpleAttributedString:ICON_FONT_NAME color:self.labelColor size:self.labelSize content:self.labelName];
-        CGSize labelSize = [self.labelText measure:CGSizeMake(FLT_MAX, FLT_MAX)];
-        self.labelText.frame = (CGRect){
-            CGPointMake(self.iconMargin * 2 + iconHeight, (viewHeight - labelSize.height) / 2.),
-            labelSize
-        };
+        self.labelText.attributedText = [NSString simpleAttributedString:ICON_FONT_NAME color:self.labelColor size:self.labelSize content:self.labelName];
+        [self.labelText sizeToFit];
+        self.labelText.x = self.iconMargin * 2 + iconHeight;
+        self.labelText.centerY = viewHeight / 2.;
+//        self.labelText.frame = (CGRect){
+//            CGPointMake(self.iconMargin * 2 + iconHeight, (viewHeight - labelSize.height) / 2.),
+//            labelSize
+//        };
     }
     
     self.rightArrow.hidden = !self.showRightArrow;

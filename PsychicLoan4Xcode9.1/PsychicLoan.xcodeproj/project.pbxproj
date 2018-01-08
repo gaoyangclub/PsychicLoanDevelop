@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		28E3CAD521DDA9DFFB33D858 /* Pods_PsychicLoan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF4AC91BE090AD9EFA1457D /* Pods_PsychicLoan.framework */; };
+		8422BDF72003792E001171C8 /* ASTextNode+Measure.m in Sources */ = {isa = PBXBuildFile; fileRef = 8422BDF62003792E001171C8 /* ASTextNode+Measure.m */; };
 		843A9FB91FC2AF26006C27F7 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 843A9FB81FC2AF26006C27F7 /* DetailViewController.m */; };
 		843A9FBC1FC2B451006C27F7 /* DetailLogoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 843A9FBB1FC2B451006C27F7 /* DetailLogoCell.m */; };
 		843A9FBF1FC2B73D006C27F7 /* LoanDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 843A9FBE1FC2B73D006C27F7 /* LoanDetailModel.m */; };
@@ -179,6 +180,8 @@
 
 /* Begin PBXFileReference section */
 		8400E9891FFB623100D27E65 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		8422BDF52003792E001171C8 /* ASTextNode+Measure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ASTextNode+Measure.h"; sourceTree = "<group>"; };
+		8422BDF62003792E001171C8 /* ASTextNode+Measure.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "ASTextNode+Measure.m"; sourceTree = "<group>"; };
 		843A9FB71FC2AF26006C27F7 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		843A9FB81FC2AF26006C27F7 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		843A9FBA1FC2B451006C27F7 /* DetailLogoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailLogoCell.h; sourceTree = "<group>"; };
@@ -1028,6 +1031,8 @@
 				8483F10B1FBD787F00EFD7EB /* UIControl+TouchEffect.m */,
 				8483F10C1FBD787F00EFD7EB /* UIView+GY.h */,
 				8483F10D1FBD787F00EFD7EB /* UIView+GY.m */,
+				8422BDF52003792E001171C8 /* ASTextNode+Measure.h */,
+				8422BDF62003792E001171C8 /* ASTextNode+Measure.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1594,6 +1599,7 @@
 				846994951FCED0D800D9F116 /* LoanViewModel.m in Sources */,
 				8476496D1FBD6E7500E9B4F2 /* main.m in Sources */,
 				84796EEE1FC670B30040E2A7 /* CustomerServiceCell.m in Sources */,
+				8422BDF72003792E001171C8 /* ASTextNode+Measure.m in Sources */,
 				8483F0BD1FBD73A400EFD7EB /* CAPSPageMenu.m in Sources */,
 				8483F10F1FBD787F00EFD7EB /* NSString+YCI.m in Sources */,
 				8483F1431FBD7D5F00EFD7EB /* PageListViewController.m in Sources */,

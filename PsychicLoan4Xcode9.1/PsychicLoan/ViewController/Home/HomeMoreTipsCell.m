@@ -46,8 +46,8 @@
     if (!_tipsNode) {
         _tipsNode = [[ASTextNode alloc]init];
         _tipsNode.layerBacked = YES;
-        _tipsNode.attributedString = [NSString simpleAttributedString:COLOR_TEXT_SECONDARY size:SIZE_TEXT_SECONDARY content:HOME_MOER_TIPS];
-        _tipsNode.size = [_tipsNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+        _tipsNode.attributedText = [NSString simpleAttributedString:COLOR_TEXT_SECONDARY size:SIZE_TEXT_SECONDARY content:HOME_MOER_TIPS];
+        [_tipsNode sizeToFit];
         [self.contentView.layer addSublayer:_tipsNode.layer];
     }
     return _tipsNode;

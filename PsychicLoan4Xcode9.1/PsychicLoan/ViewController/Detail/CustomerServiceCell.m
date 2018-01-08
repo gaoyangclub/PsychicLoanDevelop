@@ -31,8 +31,8 @@
     if (!_publicLabel) {
         _publicLabel = [[ASTextNode alloc]init];
         _publicLabel.layerBacked = YES;
-        _publicLabel.attributedString = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_PRIMARY content:@"客服公众号"];
-        _publicLabel.size = [_publicLabel measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+        _publicLabel.attributedText = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_PRIMARY content:@"客服公众号"];
+        [_publicLabel sizeToFit];
         [self.contentView.layer addSublayer:_publicLabel.layer];
     }
     return _publicLabel;
@@ -42,8 +42,8 @@
     if (!_wechatLabel) {
         _wechatLabel = [[ASTextNode alloc]init];
         _wechatLabel.layerBacked = YES;
-        _wechatLabel.attributedString = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_PRIMARY content:@"客服微信号"];
-        _wechatLabel.size = [_wechatLabel measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+        _wechatLabel.attributedText = [NSString simpleAttributedString:COLOR_TEXT_PRIMARY size:SIZE_TEXT_PRIMARY content:@"客服微信号"];
+        [_wechatLabel sizeToFit];
         [self.contentView.layer addSublayer:_wechatLabel.layer];
     }
     return _wechatLabel;
@@ -53,8 +53,8 @@
     if (!_publicNode) {
         _publicNode = [[ASTextNode alloc]init];
         _publicNode.layerBacked = YES;
-        _publicNode.attributedString = [NSString simpleAttributedString:COLOR_PRIMARY size:SIZE_TEXT_PRIMARY content:CUSTOMER_SERVICE_PUBLIC_TEXT];
-        _publicNode.size = [_publicNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+        _publicNode.attributedText = [NSString simpleAttributedString:COLOR_PRIMARY size:SIZE_TEXT_PRIMARY content:CUSTOMER_SERVICE_PUBLIC_TEXT];
+        [_publicNode sizeToFit];
         [self.contentView.layer addSublayer:_publicNode.layer];
     }
     return _publicNode;
@@ -64,8 +64,8 @@
     if (!_wechatNode) {
         _wechatNode = [[ASTextNode alloc]init];
         _wechatNode.layerBacked = YES;
-        _wechatNode.attributedString = [NSString simpleAttributedString:COLOR_PRIMARY size:SIZE_TEXT_PRIMARY content:CUSTOMER_SERVICE_WECHAT_TEXT];
-        _wechatNode.size = [_wechatNode measure:CGSizeMake(FLT_MAX, FLT_MAX)];
+        _wechatNode.attributedText = [NSString simpleAttributedString:COLOR_PRIMARY size:SIZE_TEXT_PRIMARY content:CUSTOMER_SERVICE_WECHAT_TEXT];
+        [_wechatNode sizeToFit];
         [self.contentView.layer addSublayer:_wechatNode.layer];
     }
     return _wechatNode;
