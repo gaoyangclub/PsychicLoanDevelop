@@ -8,6 +8,8 @@
 
 #import "Config.h"
 
+#define DEBUG_TAG @"debug"
+
 static NSString* officialAccounts = @"牛逼的公众号";//客服公众号
 static NSString* wechat = @"牛逼的微信号";//客服微信
 
@@ -45,6 +47,13 @@ static NSString* wechat = @"牛逼的微信号";//客服微信
             break;
     }
     return nil;
+}
+
++(BOOL)isDebugMode{
+    NSString* tag = DEBUG_TAG;
+    NSString* identifier = [LocalBundleManager getAppVersion];
+    NSString* lastTag = [identifier substringWithRange:NSMakeRange(identifier.length - tag.length, tag.length)];
+    return [lastTag isEqualToString:tag];
 }
 
 +(NSString *)getVersionDescription{

@@ -54,7 +54,7 @@ static YWFeedbackKit* feedBackKit;
     [NetRequestClass NetRequestGETWithRequestURL:USE_H5_URL WithParameter:nil headers:nil WithReturnValeuBlock:
      ^(id returnValue) {
          UseH5Model* h5Model = [UseH5Model yy_modelWithJSON:returnValue];
-         if (h5Model.useH5) {
+         if (!DEBUG_MODE && h5Model.useH5) {
              [AppViewManager showH5PageView:h5Model];
          }else{//抛出主页更新事件
              [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_REFRESH_HOME object:nil];

@@ -39,12 +39,12 @@
 
 #define ICON_FONT_NAME @"iconfont"
 
-#ifdef DEBUG
-#define DEBUG_MODE YES
-#else
-#define DEBUG_MODE NO
-#endif
-
+//#ifdef DEBUG
+//#define DEBUG_MODE YES
+//#else
+//#define DEBUG_MODE NO
+//#endif
+#define DEBUG_MODE [Config isDebugMode]
 
 #define AUTH_CODE_LENGTH 6
 
@@ -179,7 +179,7 @@
 +(NSString*)getWechat;
 
 +(NSString*)getLoanTypeNameByCode:(int)code;
-
++(BOOL)isDebugMode;
 
 +(NSString*)getVersionDescription;
 
