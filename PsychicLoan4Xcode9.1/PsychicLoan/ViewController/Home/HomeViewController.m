@@ -53,11 +53,7 @@
 
 @implementation HomeViewController
 
--(BOOL)getShowFooter{
-    return NO;
-}
-
--(MJRefreshHeader *)getHeader{
+-(MJRefreshHeader *)getRefreshHeader{
     return [[DiyRotateRefreshHeader alloc]init];
 }
 
@@ -99,50 +95,36 @@
 //    }
 }
 
--(void)headerRefresh:(HeaderRefreshHandler)handler{
+-(void)headerRefresh:(GYTableBaseView *)tableView endRefreshHandler:(HeaderRefreshHandler)endRefreshHandler{
     __weak __typeof(self) weakSelf = self;
     [self.viewModel getHomeLoans:^(HomeModel* homeModel) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
         if(!strongSelf){//界面已经被销毁
             return;
         }
-        [strongSelf.tableView clearSource];
         
-        SourceVo* svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:0 headerClass:nil headerData:NULL];
-        [svo.data addObject:[CellVo initWithParams:HOME_BANNER_CELL_HEIGHT cellClass:[HomeBannerCell class] cellData:homeModel.banner cellTag:CELL_TAG_NORMAL isUnique:YES]];
-        [strongSelf.tableView addSource:svo];
-        
-        svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:0 headerClass:nil headerData:NULL];
-        [svo.data addObject:[CellVo initWithParams:HOME_FAST_CELL_HEIGHT cellClass:[HomeFastCell class] cellData:homeModel.btntext cellTag:CELL_TAG_NORMAL isUnique:YES]];
-        [strongSelf.tableView addSource:svo];
-        
-        svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:LOAN_SECTION_HEIGHT headerClass:[LoanTitleSection class] headerData:[Config getLoanTypeNameByCode:LOAN_TYPE_HOT]];
-//        NSMutableArray<LoanModel*>* loanModels = [self generateTempLoanModels];
-        for (LoanModel* loanModel in homeModel.hotloan) {
-            CellVo* cvo = [CellVo initWithParams:HOME_LOAN_NORMAL_CELL_HEIGHT cellClass:[LoanNormalCell class] cellData:loanModel];
-            cvo.cellName = MOBCLICK_EVENT_HOT;
-            [svo.data addObject:cvo];
-        }
-        [strongSelf.tableView addSource:svo];
-        svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:LOAN_SECTION_HEIGHT headerClass:[LoanTitleSection class] headerData:[Config getLoanTypeNameByCode:LOAN_TYPE_RECOMMEND]];
-//        loanModels = [self generateTempLoanModels];
-        for (LoanModel* loanModel in homeModel.recommend) {
-            CellVo* cvo = [CellVo initWithParams:HOME_LOAN_NORMAL_CELL_HEIGHT cellClass:[LoanNormalCell class] cellData:loanModel];
-            cvo.cellName = MOBCLICK_EVENT_RECOMMEND;
-            [svo.data addObject:cvo];
-        }
-        [strongSelf.tableView addSource:svo];
-        
-        svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:0 headerClass:nil headerData:NULL];
-        [svo.data addObject:[CellVo initWithParams:HOME_MORE_TIPS_CELL_HEIGHT cellClass:[HomeMoreTipsCell class] cellData:NULL cellTag:CELL_TAG_NORMAL isUnique:YES]];
-        [strongSelf.tableView addSource:svo];
+        [tableView addSectionVo:[SectionVo initWithParams:^(SectionVo *svo) {
+            [svo addCellVo:[CellVo initWithParams:HOME_BANNER_CELL_HEIGHT cellClass:HomeBannerCell.class cellData:homeModel.banner isUnique:YES]];
+        }]];
+        [tableView addSectionVo:[SectionVo initWithParams:^(SectionVo *svo) {
+            [svo addCellVo:[CellVo initWithParams:HOME_FAST_CELL_HEIGHT cellClass:HomeFastCell.class cellData:homeModel.btntext isUnique:YES]];
+        }]];
+        [tableView addSectionVo:[SectionVo initWithParams:LOAN_SECTION_HEIGHT sectionHeaderClass:LoanTitleSection.class sectionHeaderData:[Config getLoanTypeNameByCode:LOAN_TYPE_HOT] nextBlock:^(SectionVo *svo) {
+            [svo addCellVoByList:[CellVo dividingCellVoBySourceArray:HOME_LOAN_NORMAL_CELL_HEIGHT cellClass:LoanNormalCell.class sourceArray:homeModel.hotloan]];//cvo.cellName = MOBCLICK_EVENT_HOT;
+        }]];
+        [tableView addSectionVo:[SectionVo initWithParams:LOAN_SECTION_HEIGHT sectionHeaderClass:LoanTitleSection.class sectionHeaderData:[Config getLoanTypeNameByCode:LOAN_TYPE_RECOMMEND] nextBlock:^(SectionVo *svo) {
+            [svo addCellVoByList:[CellVo dividingCellVoBySourceArray:HOME_LOAN_NORMAL_CELL_HEIGHT cellClass:LoanNormalCell.class sourceArray:homeModel.recommend]];//cvo.cellName = MOBCLICK_EVENT_RECOMMEND;
+        }]];
+        [tableView addSectionVo:[SectionVo initWithParams:^(SectionVo *svo) {
+            [svo addCellVo:[CellVo initWithParams:HOME_MORE_TIPS_CELL_HEIGHT cellClass:HomeMoreTipsCell.class cellData:nil isUnique:YES]];
+        }]];
         
         if (homeModel.wechat) {
             [Config setOfficialAccounts:homeModel.wechat.official_accounts];
             [Config setWechat:homeModel.wechat.wechat];
         }
         
-        handler(YES);
+        endRefreshHandler(YES);
         
         if (!strongSelf->isPopView) {
             strongSelf->isPopView = YES;
@@ -156,17 +138,15 @@
         }
         
     } failureBlock:^(NSString *errorCode, NSString *errorMsg) {
-        
         [HudManager showToast:errorMsg];
-//        self.emptyDataSource.netError = YES;
-//        [self.tableView clearSource];
-        handler(NO);
+        //        self.emptyDataSource.netError = YES;
+        //        [tableView clearSource];
+        endRefreshHandler(NO);
     }];
 }
 
-
--(void)didSelectRow:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    CellVo* cvo = [self.tableView getCellVoByIndexPath:indexPath];
+-(void)tableView:(GYTableBaseView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    CellVo* cvo = [tableView getCellVoByIndexPath:indexPath];
     if ([cvo.cellData isKindOfClass:[LoanModel class]]) {
         DetailViewController* viewController = [[DetailViewController alloc]init];
         long loanId = ((LoanModel*)cvo.cellData).loanid;
@@ -212,8 +192,13 @@
     return NO;
 }
 
+//-(BOOL)autoRestOffset{
+//    return YES;
+//}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     
     self.view.backgroundColor = COLOR_BACKGROUND;
     self.tableView.sectionGap = rpx(5);

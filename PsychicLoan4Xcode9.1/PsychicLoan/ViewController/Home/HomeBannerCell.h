@@ -6,8 +6,8 @@
 //  Copyright © 2017年 GaoYang. All rights reserved.
 //
 
-#import "MJTableViewCell.h"
+#import "GYTableViewCell.h"
 
-@interface HomeBannerCell : MJTableViewCell
+@interface HomeBannerCell : GYTableViewCell
 
 @end

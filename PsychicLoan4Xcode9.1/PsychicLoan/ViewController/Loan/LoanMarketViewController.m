@@ -37,15 +37,11 @@
     return _viewModel;
 }
 
--(BOOL)getShowFooter{
-    return NO;
-}
-
 //-(BOOL)getShowHeader{
 //    return NO;
 //}
 
--(MJRefreshHeader *)getHeader{
+-(MJRefreshHeader *)getRefreshHeader{
     return [[DiyRotateRefreshHeader alloc]init];
 }
 
@@ -115,6 +111,8 @@
     [self initNavigationItem];
     self.view.backgroundColor = COLOR_BACKGROUND;
     
+//    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     CGFloat const leftMargin = rpx(10);
     self.noticeLabel.centerY = self.noticeIcon.centerY = NOTICE_BACK_HEIGHT / 2.;
     self.noticeIcon.x = leftMargin;
@@ -123,28 +121,24 @@
     [MobClickEventManager loanMarketControllerDidLoad];
 }
 
--(void)headerRefresh:(HeaderRefreshHandler)handler{
+-(void)headerRefresh:(GYTableBaseView *)tableView endRefreshHandler:(HeaderRefreshHandler)endRefreshHandler{
     __weak __typeof(self) weakSelf = self;
     [self.viewModel getLoansByFilter:self.filterView.mintime maxtime:self.filterView.maxtime search:self.filterView.search minamount:self.filterView.minamount maxamount:self.filterView.maxamount returnBlock:^(NSArray<LoanModel*>* loanModels) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
         if(!strongSelf){//界面已经被销毁
             return;
         }
-        [strongSelf.tableView clearSource];
-        SourceVo* svo = svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:0 headerClass:nil headerData:nil];
-        for (LoanModel* loanModel in loanModels) {
-            CellVo* cvo = [CellVo initWithParams:HOME_LOAN_NORMAL_CELL_HEIGHT cellClass:[LoanNormalCell class] cellData:loanModel];
-            cvo.cellName = MOBCLICK_EVENT_MARKET;
-            [svo.data addObject:cvo];
-        }
-        [strongSelf.tableView addSource:svo];
+        [tableView addSectionVo:[SectionVo initWithParams:^(SectionVo *svo) {
+            [svo addCellVoByList:[CellVo dividingCellVoBySourceArray:HOME_LOAN_NORMAL_CELL_HEIGHT cellClass:LoanNormalCell.class sourceArray:loanModels]];
+//            cvo.cellName = MOBCLICK_EVENT_MARKET;
+        }]];
         
-        handler(YES);
+        endRefreshHandler(YES);
     } failureBlock:^(NSString *errorCode, NSString *errorMsg) {
         [HudManager showToast:errorMsg];
         //        self.emptyDataSource.netError = YES;
         //        [self.tableView clearSource];
-        handler(NO);
+        endRefreshHandler(NO);
     }];
 }
 
@@ -154,8 +148,8 @@
     [MobClickEventManager loanMarketFilterSelected:[NSString stringWithFormat:@"%d-%d",view.minamount,view.maxamount] search:[NSString stringWithFormat:@"%d",view.search] time:[NSString stringWithFormat:@"%d-%d",view.mintime,view.maxtime]];
 }
 
--(void)didSelectRow:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    CellVo* cvo = [self.tableView getCellVoByIndexPath:indexPath];
+-(void)tableView:(GYTableBaseView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    CellVo* cvo = [tableView getCellVoByIndexPath:indexPath];
     DetailViewController* viewController = [[DetailViewController alloc]init];
     long loanId = ((LoanModel*)cvo.cellData).loanid;
     viewController.loanId = loanId;

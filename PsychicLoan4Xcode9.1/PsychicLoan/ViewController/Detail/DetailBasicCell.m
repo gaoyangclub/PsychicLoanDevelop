@@ -110,7 +110,7 @@
 -(void)showSubviews{
     self.contentView.backgroundColor = [UIColor whiteColor];
     
-    LoanDetailModel* detailModel = self.data;
+    LoanDetailModel* detailModel = GET_CELL_DATA(LoanDetailModel.class);
     
     CGFloat const areaWidth = self.width / 3.;
     

@@ -96,11 +96,7 @@
     return CGRectMake(0, NOTICE_BACK_HEIGHT, self.view.width, self.view.height - NOTICE_BACK_HEIGHT);
 }
 
--(BOOL)getShowFooter{
-    return NO;
-}
-
--(MJRefreshHeader *)getHeader{
+-(MJRefreshHeader *)getRefreshHeader{
     return [[DiyRotateRefreshHeader alloc]init];
 }
 
@@ -133,7 +129,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)headerRefresh:(HeaderRefreshHandler)handler{
+-(void)headerRefresh:(GYTableBaseView *)tableView endRefreshHandler:(HeaderRefreshHandler)endRefreshHandler{
 //    double delayInSeconds = 1.0;
     __weak __typeof(self) weakSelf = self;
     [self.viewModel getLoansByType:self.loanType returnBlock:^(NSArray<LoanModel*>* loanModels) {
@@ -141,21 +137,17 @@
         if(!strongSelf){//界面销毁了
             return;
         }
-        [strongSelf.tableView clearSource];
-        SourceVo* svo = svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:0 headerClass:nil headerData:nil];
-        for (LoanModel* loanModel in loanModels) {
-            CellVo* cvo = [CellVo initWithParams:HOME_LOAN_NORMAL_CELL_HEIGHT cellClass:[LoanNormalCell class] cellData:loanModel];
-            cvo.cellName = MOBCLICK_EVENT_FAST;
-            [svo.data addObject:cvo];
-        }
-        [strongSelf.tableView addSource:svo];
+        [tableView addSectionVo:[SectionVo initWithParams:^(SectionVo *svo) {
+            [svo addCellVoByList:[CellVo dividingCellVoBySourceArray:HOME_LOAN_NORMAL_CELL_HEIGHT cellClass:LoanNormalCell.class sourceArray:loanModels]];
+            //cvo.cellName = MOBCLICK_EVENT_FAST;
+        }]];
         
-        handler(YES);
+        endRefreshHandler(YES);
     } failureBlock:^(NSString *errorCode, NSString *errorMsg) {
         [HudManager showToast:errorMsg];
         //        self.emptyDataSource.netError = YES;
         //        [self.tableView clearSource];
-        handler(NO);
+        endRefreshHandler(NO);
     }];
 }
 
@@ -194,9 +186,9 @@
     self.noticeIcon.x = leftMargin;
     self.noticeLabel.x = self.noticeIcon.maxX + leftMargin;
 }
-
--(void)didSelectRow:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    CellVo* cvo = [self.tableView getCellVoByIndexPath:indexPath];
+-(void)tableView:(GYTableBaseView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CellVo* cvo = [tableView getCellVoByIndexPath:indexPath];
     DetailViewController* viewController = [[DetailViewController alloc]init];
     long loanId = ((LoanModel*)cvo.cellData).loanid;
     viewController.loanId = loanId;

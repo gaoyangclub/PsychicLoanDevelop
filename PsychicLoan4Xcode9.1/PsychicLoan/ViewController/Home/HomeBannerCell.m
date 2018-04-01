@@ -38,7 +38,7 @@
 
 //点击选中后回调
 -(void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
-    NSArray<BannerModel*>* banners = self.data;
+    NSArray<BannerModel*>* banners = GET_CELL_ARRAY_DATA(BannerModel.class);
     //跳转到对应的数据id
 //    NSLog(@"选中banner index:%ld",(long)index);
     if (index < banners.count) {
@@ -53,7 +53,7 @@
 }
 
 -(void)showSubviews{
-    NSArray<BannerModel*>* banners = self.data;
+    NSArray<BannerModel*>* banners = GET_CELL_ARRAY_DATA(BannerModel.class);
     NSMutableArray* imageURLStringsGroup = [[NSMutableArray alloc]init];
     for (BannerModel* bannerModel in banners) {
         [imageURLStringsGroup addObject:bannerModel.loanimg];

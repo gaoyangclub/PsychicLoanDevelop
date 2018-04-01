@@ -8,9 +8,9 @@
 
 #import "CustomPopListView.h"
 #import "FlatButton.h"
-#import "MJTableBaseView.h"
+#import "GYTableBaseView.h"
 
-@interface PopTableViewCell : MJTableViewCell
+@interface PopTableViewCell : GYTableViewCell
 
 @end
 @implementation PopTableViewCell
@@ -18,7 +18,7 @@
 -(void)showSubviews{
     //    self.backgroundColor = [UIColor magentaColor];
     self.textLabel.textColor = [UIColor blackColor];//COLOR_BLACK_ORIGINAL;
-    self.textLabel.text = (NSString*)self.data;
+    self.textLabel.text = GET_CELL_DATA([NSString class]);
     self.textLabel.textAlignment = NSTextAlignmentCenter;
 }
 
@@ -27,7 +27,7 @@
 @interface CustomPopListView()<UITableViewDelegate>
 
 //@property(nonatomic,retain)UIScrollView* scrollView;
-@property(nonatomic,retain)MJTableBaseView* tableView;
+@property(nonatomic,retain)GYTableBaseView* tableView;
 
 @end
 
@@ -46,9 +46,9 @@
     return self;
 }
 
--(MJTableBaseView *)tableView{
+-(GYTableBaseView *)tableView{
     if (!_tableView) {
-        _tableView = [[MJTableBaseView alloc]initWithFrameAndParams:CGRectZero showHeader:NO showFooter:NO useCellIdentifer:YES topEdgeDiverge:NO];
+        _tableView = [[GYTableBaseView alloc]initWithFrameAndParams:CGRectZero showHeader:NO showFooter:NO useCellIdentifer:YES topEdgeDiverge:NO];
         [self.contentView addSubview:_tableView];
     }
     return _tableView;
@@ -72,44 +72,31 @@
 //    CGFloat buttonWidth = CGRectGetWidth(self.contentView.bounds);
 //    CGFloat buttonHeight = 50;
 
-    //为null或者前后时间不一致
-    NSMutableArray<CellVo*>* sourceData = [NSMutableArray<CellVo*> array];
-    SourceVo* svo = [SourceVo initWithParams:sourceData headerHeight:0 headerClass:NULL headerData:NULL];
-    [self.tableView addSource:svo];
-    self.tableView.delegate = self;
-    
     Class viewClass;
     if (self.cellClass) {
         viewClass = self.cellClass;
     }else{
         viewClass = [PopTableViewCell class];
     }
-    NSInteger count = self.dataArray.count;
-    for (NSInteger i = 0 ; i < count; i ++) {
-        NSObject* data = self.dataArray[i];
-        NSObject* viewData;
-        if(viewClass || [data isKindOfClass:[NSString class]]){
-            viewData = data;
-        }else{
-            viewData = [data valueForKey:self.dataField];
+    self.tableView.delegate = self;
+    __weak __typeof(self) weakSelf = self;
+    //为null或者前后时间不一致
+    [self.tableView addSectionVo:[SectionVo initWithParams:^(SectionVo *svo) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        NSInteger count = strongSelf.dataArray.count;
+        for (NSInteger i = 0 ; i < count; i ++) {
+            NSObject* data = strongSelf.dataArray[i];
+            NSObject* viewData;
+            if(viewClass || [data isKindOfClass:[NSString class]]){
+                viewData = data;
+            }else{
+                viewData = [data valueForKey:strongSelf.dataField];
+            }
+            [svo addCellVo:
+             [CellVo initWithParams:50 cellClass:viewClass cellData:viewData]];
         }
-        [sourceData addObject:
-         [CellVo initWithParams:50 cellClass:viewClass cellData:viewData]];
-//        FlatButton* button = [[FlatButton alloc]init];
-//        
-//        button.title = title;
-//        button.titleColor = COLOR_BLACK_ORIGINAL;
-//        button.fillColor = [UIColor clearColor];
-//        
-//        button.frame = CGRectMake(0, i * buttonHeight, buttonWidth, buttonHeight);
-//        button.tag = i;
-//        [self.scrollView addSubview:button];
-//        
-//        [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-    }
-//    self.scrollView.contentSize = CGSizeMake(buttonWidth, buttonHeight * count);
-    
-    [self.tableView reloadMJData];
+    }]];
+    [self.tableView reloadGYData];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

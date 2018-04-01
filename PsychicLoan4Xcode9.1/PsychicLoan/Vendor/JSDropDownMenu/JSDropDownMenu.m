@@ -6,6 +6,8 @@
 //  Copyright (c) 2015年 jsfu. All rights reserved.
 //
 
+#define CELL_HEIGHT 38
+
 #import "JSDropDownMenu.h"
 
 //#define BackColor [UIColor whiteColor]//[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0]
@@ -327,7 +329,7 @@
         
         //tableView init
         _leftTableView = [[UITableView alloc] initWithFrame:CGRectMake(origin.x, self.frame.origin.y + self.frame.size.height, 0, 0) style:UITableViewStyleGrouped];
-        _leftTableView.rowHeight = 38;
+        _leftTableView.rowHeight = CELL_HEIGHT;
 //        _leftTableView.separatorColor = [UIColor colorWithRed:220.f/255.0f green:220.f/255.0f blue:220.f/255.0f alpha:1.0];
         _leftTableView.dataSource = self;
         _leftTableView.delegate = self;
@@ -335,10 +337,9 @@
         if ([_leftTableView respondsToSelector:@selector(setSeparatorInset:)]) {
             [_leftTableView setSeparatorInset:UIEdgeInsetsZero];
         }
-        _leftTableView.scrollEnabled = NO;//无法滚动 只能显示
         
         _rightTableView = [[UITableView alloc] initWithFrame:CGRectMake(self.frame.size.width, self.frame.origin.y + self.frame.size.height, 0, 0) style:UITableViewStyleGrouped];
-        _rightTableView.rowHeight = 38;
+        _rightTableView.rowHeight = CELL_HEIGHT;
 //        _rightTableView.separatorColor = [UIColor colorWithRed:220.f/255.0f green:220.f/255.0f blue:220.f/255.0f alpha:1.0];
         _rightTableView.dataSource = self;
         _rightTableView.delegate = self;
@@ -563,6 +564,7 @@
             if (_leftTableView) {
                 
                 _leftTableView.frame = CGRectMake(_leftTableView.frame.origin.x, self.frame.origin.y + self.frame.size.height, self.frame.size.width*ratio, 0);
+                _leftTableView.scrollEnabled = NO;//无法滚动 只能显示
             }
             
             if (_rightTableView) {
@@ -669,7 +671,6 @@
             
             leftTableView.frame = CGRectMake(_origin.x, self.frame.origin.y + self.frame.size.height, self.frame.size.width*ratio, 0);
             [self.superview addSubview:leftTableView];
-            
             leftTableViewHeight = ([leftTableView numberOfRowsInSection:0] > 5) ? (5 * leftTableView.rowHeight) : ([leftTableView numberOfRowsInSection:0] * leftTableView.rowHeight);
 
         }
@@ -732,7 +733,7 @@
             collectionView.frame = CGRectMake(_origin.x, self.frame.origin.y + self.frame.size.height, self.frame.size.width, 0);
             [self.superview addSubview:collectionView];
             
-            collectionViewHeight = ([collectionView numberOfItemsInSection:0] > 10) ? (5 * 38) : (ceil([collectionView numberOfItemsInSection:0]/2.0) * 38);
+            collectionViewHeight = ([collectionView numberOfItemsInSection:0] > 10) ? (5 * CELL_HEIGHT) : (ceil([collectionView numberOfItemsInSection:0]/2.0) * CELL_HEIGHT);
         }
         
         [UIView animateWithDuration:0.2 animations:^{
@@ -808,6 +809,15 @@
         NSAssert(0 == 1, @"required method of dataSource protocol should be implemented");
         return 0;
     }
+}
+
+    //注:坑爹 不实现此方法就会有顶部留白
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    return nil;
+}
+    //注:坑爹 不实现此方法就会有底部留白
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    return nil;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -1014,11 +1024,11 @@
     
     return cell;
 }
-
+    
 #pragma mark --UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake((collectionView.frame.size.width-1)/2, 38);
+    return CGSizeMake((collectionView.frame.size.width-1)/2, CELL_HEIGHT);
 }
 
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section

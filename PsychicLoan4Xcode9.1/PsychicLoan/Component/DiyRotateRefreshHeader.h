@@ -1,9 +1,9 @@
 //
 //  DiyRotateRefreshHeader.h
-//  MJRefreshTest
+//  GYTableViewController
 //
-//  Created by admin on 2017/12/14.
-//  Copyright © 2017年 admin. All rights reserved.
+//  Created by 高扬 on 2017/12/14.
+//  Copyright © 2017年 高扬. All rights reserved.
 //
 
 #import "MJRefreshHeader.h"

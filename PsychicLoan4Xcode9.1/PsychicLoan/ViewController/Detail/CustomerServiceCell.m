@@ -113,9 +113,10 @@
     }else{
         [self showCopyAlert:CUSTOMER_SERVICE_WECHAT_TEXT alertMessage:@"已复制客服微信号，去微信添加客服好友！"];
     }
-    if (self.data && [MOBCLICK_EVENT_DETAIL_CUSTOMER isEqual:self.data]) {
+    NSString* cellData = GET_CELL_DATA([NSString class]);
+    if (cellData && [MOBCLICK_EVENT_DETAIL_CUSTOMER isEqual:cellData]) {
         [MobClickEventManager detailCustomerClick];
-    }else if(self.data && [MOBCLICK_EVENT_USER_CUSTOMER isEqual:self.data]){
+    }else if(cellData && [MOBCLICK_EVENT_USER_CUSTOMER isEqual:cellData]){
         [MobClickEventManager userCustomerClick];
     }
 }

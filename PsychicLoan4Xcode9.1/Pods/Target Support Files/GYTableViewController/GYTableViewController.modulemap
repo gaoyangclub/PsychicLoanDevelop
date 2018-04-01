@@ -1,0 +1,6 @@
+framework module GYTableViewController {
+  umbrella header "GYTableViewController-umbrella.h"
+
+  export *
+  module * { export * }
+}

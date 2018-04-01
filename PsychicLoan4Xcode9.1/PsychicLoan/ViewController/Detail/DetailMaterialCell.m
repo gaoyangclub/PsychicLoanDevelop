@@ -34,7 +34,7 @@
     
     CGFloat const topMargin = rpx(10);
     
-    LoanDetailModel* detailModel = self.data;
+    LoanDetailModel* detailModel = GET_CELL_DATA(LoanDetailModel.class);
     if (!detailModel.information) {
         return topMargin * 2;
     }

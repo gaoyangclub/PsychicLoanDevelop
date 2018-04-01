@@ -6,8 +6,8 @@
 //  Copyright © 2017年 GaoYang. All rights reserved.
 //
 
-#import "MJTableViewSection.h"
+#import "GYTableViewSection.h"
 
-@interface LoanTitleSection : MJTableViewSection
+@interface LoanTitleSection : GYTableViewSection
 
 @end

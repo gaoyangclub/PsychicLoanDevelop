@@ -107,7 +107,7 @@
 }
 
 -(void)clickLinkButton:(UIView*)sender{
-    LoanModel* loanModel = self.data;
+    LoanModel* loanModel = GET_CELL_DATA(LoanModel.class);
 //    WebViewController* viewController = [[WebViewController alloc\]init];
 //    viewController.navigationTitle = loanModel.loanname;
 //    viewController.isLoanRegister = YES;
@@ -124,7 +124,7 @@
     
     self.contentView.backgroundColor = [UIColor whiteColor];
     
-    LoanModel* loanModel = self.data;
+    LoanModel* loanModel = GET_CELL_DATA(LoanModel.class);
     
     CGFloat const leftMargin = rpx(10);
     

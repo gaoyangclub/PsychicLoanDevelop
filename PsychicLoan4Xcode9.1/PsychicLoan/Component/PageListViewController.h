@@ -6,10 +6,10 @@
 //  Copyright © 2017年 admin. All rights reserved.
 //
 
-#import "MJTableViewController.h"
+#import "GYTableViewController.h"
 #import "EmptyDataSource.h"
 
-@interface PageListViewController : MJTableViewController
+@interface PageListViewController : GYTableViewController
 
 @property(nonatomic,retain)EmptyDataSource* emptyDataSource;
 

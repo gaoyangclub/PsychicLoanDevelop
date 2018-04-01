@@ -6,9 +6,9 @@
 //  Copyright © 2017年 GaoYang. All rights reserved.
 //
 
-#import "MJTableViewController.h"
+#import "GYTableViewController.h"
 
-@interface DetailViewController : MJTableViewController
+@interface DetailViewController : GYTableViewController
 
 @property(nonatomic,assign)long loanId;
 @property(nonatomic,assign)NSString* loanName;

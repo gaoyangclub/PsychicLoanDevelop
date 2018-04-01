@@ -70,11 +70,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(BOOL)getShowFooter{
-    return NO;
-}
-
--(MJRefreshHeader *)getHeader{
+-(MJRefreshHeader *)getRefreshHeader{
     return [[DiyRotateRefreshHeader alloc]init];
 }
 
@@ -127,7 +123,7 @@
     return CGRectMake(0, viewGap, viewWidth, viewHeight - BUTTON_AREA_HEIGHT - viewGap * 2);
 }
 
--(void)headerRefresh:(HeaderRefreshHandler)handler{
+-(void)headerRefresh:(GYTableBaseView *)tableView endRefreshHandler:(HeaderRefreshHandler)endRefreshHandler{
     __weak __typeof(self) weakSelf = self;
     [self.viewModel getLoanDetailById:self.loanId returnBlock:^(LoanDetailModel* loanDetailModel) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
@@ -136,37 +132,35 @@
         }
         strongSelf->loanDetailResult = loanDetailModel;
         
-        [strongSelf.tableView clearSource];
+        [tableView addSectionVo:[SectionVo initWithParams:^(SectionVo *svo) {
+            [svo addCellVo:[CellVo initWithParams:DETAIL_LOGO_CELL_HEIGHT cellClass:DetailLogoCell.class cellData:loanDetailModel isUnique:YES]];
+        }]];
         
-        SourceVo* svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:0 headerClass:nil headerData:nil];
-        [svo.data addObject:[CellVo initWithParams:DETAIL_LOGO_CELL_HEIGHT cellClass:[DetailLogoCell class] cellData:loanDetailModel cellTag:CELL_TAG_NORMAL isUnique:YES]];
-        [strongSelf.tableView addSource:svo];
+        [tableView addSectionVo:[SectionVo initWithParams:LOAN_SECTION_HEIGHT sectionHeaderClass:LoanTitleSection.class sectionHeaderData:@"基本信息" nextBlock:^(SectionVo *svo) {
+            [svo addCellVo:[CellVo initWithParams:DETAIL_BASIC_CELL_HEIGHT cellClass:DetailBasicCell.class cellData:loanDetailModel isUnique:YES]];
+        }]];
         
-        svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:LOAN_SECTION_HEIGHT headerClass:[LoanTitleSection class] headerData:@"基本信息"];
-        [svo.data addObject:[CellVo initWithParams:DETAIL_BASIC_CELL_HEIGHT cellClass:[DetailBasicCell class] cellData:loanDetailModel cellTag:CELL_TAG_NORMAL isUnique:YES]];
-        [strongSelf.tableView addSource:svo];
+        [tableView addSectionVo:[SectionVo initWithParams:LOAN_SECTION_HEIGHT sectionHeaderClass:LoanTitleSection.class sectionHeaderData:@"申请资料" nextBlock:^(SectionVo *svo) {
+            [svo addCellVo:[CellVo initWithParams:CELL_AUTO_HEIGHT cellClass:DetailMaterialCell.class cellData:loanDetailModel isUnique:YES]];
+        }]];
         
-        svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:LOAN_SECTION_HEIGHT headerClass:[LoanTitleSection class] headerData:@"申请资料"];
-        [svo.data addObject:[CellVo initWithParams:1 cellClass:[DetailMaterialCell class] cellData:loanDetailModel cellTag:CELL_TAG_NORMAL isUnique:YES]];
-        [strongSelf.tableView addSource:svo];
+        [tableView addSectionVo:[SectionVo initWithParams:LOAN_SECTION_HEIGHT sectionHeaderClass:LoanTitleSection.class sectionHeaderData:@"客服信息" nextBlock:^(SectionVo *svo) {
+            [svo addCellVo:[CellVo initWithParams:CUSTOM_SERVICE_HEIGHT cellClass:CustomerServiceCell.class cellData:MOBCLICK_EVENT_DETAIL_CUSTOMER isUnique:YES]];
+        }]];
         
-        svo = [SourceVo initWithParams:[NSMutableArray<CellVo*> array] headerHeight:LOAN_SECTION_HEIGHT headerClass:[LoanTitleSection class] headerData:@"客服信息"];
-        [svo.data addObject:[CellVo initWithParams:CUSTOM_SERVICE_HEIGHT cellClass:[CustomerServiceCell class] cellData:MOBCLICK_EVENT_DETAIL_CUSTOMER cellTag:CELL_TAG_NORMAL isUnique:YES]];
-        [strongSelf.tableView addSource:svo];
-        
-        handler(YES);
+        endRefreshHandler(YES);
     } failureBlock:^(NSString *errorCode, NSString *errorMsg) {
         [HudManager showToast:errorMsg];
 //        self.emptyDataSource.netError = YES;
 //        [self.tableView clearSource];
-        handler(NO);
+        endRefreshHandler(NO);
     }];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initNavigationItem];
-    
+//    self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view.backgroundColor = COLOR_BACKGROUND;
     self.tableView.sectionGap = rpx(5);
     

@@ -39,7 +39,9 @@
                    @{@"mintime":@(1),@"maxtime":@(30),@"title":@"1~30天"},
                    @{@"mintime":@(30),@"maxtime":@(180),@"title":@"1月~6月"},
                    @{@"mintime":@(180),@"maxtime":@(360),@"title":@"6月~12月"},
-                   @{@"mintime":@(360),@"maxtime":@(0),@"title":@"12月以上"}];
+                   @{@"mintime":@(360),@"maxtime":@(0),@"title":@"12月以上"},
+                   @{@"mintime":@(360),@"maxtime":@(0),@"title":@"13月以上"}
+                   ];
         
         self.selectedTextColor = COLOR_PRIMARY;
         self.normalTextColor = COLOR_TEXT_PRIMARY;

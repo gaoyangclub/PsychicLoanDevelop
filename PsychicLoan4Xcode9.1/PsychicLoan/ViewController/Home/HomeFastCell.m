@@ -104,7 +104,7 @@ static NSArray<NSNumber*>* loanTpyes;
 //    NSArray<UIColor*>* itemImageColors = @[FlatWatermelon,FlatOrange,FlatSkyBlue];
     NSArray<NSString*>* itemImages = @[ICON_XIN_PIN_ZHUAN_QU,ICON_JI_SU_JIE_QIAN,ICON_GAO_TONG_GUO_LV];
     
-    NSArray<LoanBtnModel*>* btntext = self.data;
+    NSArray<LoanBtnModel*>* btntext = GET_CELL_ARRAY_DATA(LoanBtnModel.class);
     
     if (btntext && btntext.count > 0) {
         

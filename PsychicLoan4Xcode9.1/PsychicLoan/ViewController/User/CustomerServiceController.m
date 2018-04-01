@@ -29,7 +29,7 @@
 -(CustomerServiceCell *)customerServiceCell{
     if (!_customerServiceCell) {
         _customerServiceCell = [[CustomerServiceCell alloc]init];
-        _customerServiceCell.data = MOBCLICK_EVENT_USER_CUSTOMER;
+        _customerServiceCell.cellVo = [CellVo initWithParams:CELL_AUTO_HEIGHT cellClass:CustomerServiceCell.class cellData:MOBCLICK_EVENT_USER_CUSTOMER];
         [self.view addSubview:_customerServiceCell];
     }
     return _customerServiceCell;

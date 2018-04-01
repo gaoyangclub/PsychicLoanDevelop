@@ -48,6 +48,8 @@ pod 'GTSDK'#标准SDK，含IDFA
 #阿里云 反馈sdk
 pod 'AlicloudFeedback', '~> 3.2.0'
 
+pod 'GYTableViewController'
+
 end
 
 #target 'NotificationService' do

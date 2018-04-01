@@ -6,8 +6,8 @@
 //  Copyright © 2017年 GaoYang. All rights reserved.
 //
 
-#import "MJTableViewController.h"
+#import "GYTableViewController.h"
 
-@interface LoanMarketViewController : MJTableViewController
+@interface LoanMarketViewController : GYTableViewController
 
 @end

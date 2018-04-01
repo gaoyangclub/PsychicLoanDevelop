@@ -36,7 +36,7 @@
 -(void)headerNetError:(HeaderRefreshHandler)handler toast:(NSString*)toast{
     [HudManager showToast:toast];
     self.emptyDataSource.netError = YES;
-    [self.tableView clearSource];
+    [self.tableView clearAllSectionVo];
     handler(NO);
 }
 

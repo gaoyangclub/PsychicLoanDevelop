@@ -100,7 +100,7 @@
 -(void)showSubviews{
     self.contentView.backgroundColor = [UIColor whiteColor];
     
-    LoanDetailModel* loanModel = self.data;
+    LoanDetailModel* loanModel = GET_CELL_DATA(LoanDetailModel.class);
     
     CGFloat const leftMargin = rpx(20);
 //    self.backNode.frame = CGRectMake(leftMargin, 0, self.contentView.width - leftMargin * 2, self.contentView.height);

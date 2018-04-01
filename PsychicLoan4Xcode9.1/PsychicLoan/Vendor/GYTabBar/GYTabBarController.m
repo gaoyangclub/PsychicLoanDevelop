@@ -126,7 +126,16 @@
 //    self.tabBarView.frame = self.tabBar.bounds;//CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
     
     self.tabBarView.itemClass = _itemClass;
+    
+    //注:坑爹iphoneX跳转坐标修正 iphoneX上跳转界面使用hidesBottomBarWhenPushed会出现上移的bug 如下方法进行修复
+    CGRect tabFrame = self.tabBar.frame;
+    if(tabFrame.origin.y < [UIScreen mainScreen].bounds.size.height - tabFrame.size.height){
+        tabFrame.origin.y = [UIScreen mainScreen].bounds.size.height - tabFrame.size.height;
+        self.tabBar.frame = tabFrame;
+    }
+    
     self.tabBarView.frame = self.tabBar.bounds;
+    
     [self.tabBar bringSubviewToFront:self.tabBarView];
     self.lineView.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 1);
     [self.tabBar bringSubviewToFront:self.lineView];

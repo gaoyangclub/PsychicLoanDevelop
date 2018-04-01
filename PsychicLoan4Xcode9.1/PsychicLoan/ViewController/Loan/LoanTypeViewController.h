@@ -6,9 +6,9 @@
 //  Copyright © 2017年 GaoYang. All rights reserved.
 //
 
-#import "MJTableViewController.h"
+#import "GYTableViewController.h"
 
-@interface LoanTypeViewController : MJTableViewController
+@interface LoanTypeViewController : GYTableViewController
 
 @property(nonatomic,assign)int loanType;
 @property(nonatomic,copy)NSString* navigationTitle;
