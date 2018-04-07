@@ -89,7 +89,7 @@
     self.titleLabel.text = NAVIGATION_TITLE_HOME;//self.shipmentBean.code;//标题显示TO号
     [self.titleLabel sizeToFit];
     self.navigationItem.titleView = self.titleLabel;
-    self.navigationController.navigationBar.jk_barBackgroundColor = COLOR_PRIMARY;//[UIColor whiteColor];
+//    self.navigationController.navigationBar.jk_barBackgroundColor = COLOR_PRIMARY;//[UIColor whiteColor];
 //    if (!self.hidesBottomBarWhenPushed) {
 //        self.edgesForExtendedLayout = UIRectEdgeNone;
 //    }
@@ -198,8 +198,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.edgesForExtendedLayout = UIRectEdgeNone;
+//    self.edgesForExtendedLayout = UIRectEdgeNone;
     
+    if (@available(iOS 11.0, *)) {
+        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
     self.view.backgroundColor = COLOR_BACKGROUND;
     self.tableView.sectionGap = rpx(5);
     

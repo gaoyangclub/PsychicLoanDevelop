@@ -41,7 +41,7 @@
     self.titleLabel.text = NAVIGATION_TITLE_CUSTOMER_SERVICE;
     [self.titleLabel sizeToFit];
     self.navigationItem.titleView = self.titleLabel;
-    [self.navigationController.navigationBar jk_setNavigationBarBackgroundColor:COLOR_PRIMARY];
+//    [self.navigationController.navigationBar jk_setNavigationBarBackgroundColor:COLOR_PRIMARY];
 }
 
 //返回上层

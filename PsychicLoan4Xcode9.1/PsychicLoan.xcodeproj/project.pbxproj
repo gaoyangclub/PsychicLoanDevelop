@@ -83,11 +83,6 @@
 		8483F0CF1FBD758B00EFD7EB /* GYTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8483F0CA1FBD758B00EFD7EB /* GYTabBarController.m */; };
 		8483F0D01FBD758B00EFD7EB /* GYTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8483F0CC1FBD758B00EFD7EB /* GYTabBarItem.m */; };
 		8483F0D11FBD758B00EFD7EB /* GYTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8483F0CE1FBD758B00EFD7EB /* GYTabBarView.m */; };
-		8483F0E11FBD76E600EFD7EB /* jk_icon_system_backIndicator.png in Resources */ = {isa = PBXBuildFile; fileRef = 8483F0D31FBD76E600EFD7EB /* jk_icon_system_backIndicator.png */; };
-		8483F0E21FBD76E600EFD7EB /* JKBackIndicatorButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8483F0D51FBD76E600EFD7EB /* JKBackIndicatorButton.m */; };
-		8483F0E31FBD76E600EFD7EB /* JKRootNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8483F0D81FBD76E600EFD7EB /* JKRootNavigationController.m */; };
-		8483F0E41FBD76E600EFD7EB /* UINavigationBar+JKTransparentize.m in Sources */ = {isa = PBXBuildFile; fileRef = 8483F0DA1FBD76E600EFD7EB /* UINavigationBar+JKTransparentize.m */; };
-		8483F0E51FBD76E600EFD7EB /* UIViewController+JKNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8483F0DC1FBD76E600EFD7EB /* UIViewController+JKNavigationController.m */; };
 		8483F0E61FBD76E600EFD7EB /* ico_make.png in Resources */ = {isa = PBXBuildFile; fileRef = 8483F0DE1FBD76E600EFD7EB /* ico_make.png */; };
 		8483F0E71FBD76E600EFD7EB /* JSDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 8483F0E01FBD76E600EFD7EB /* JSDropDownMenu.m */; };
 		8483F10E1FBD787F00EFD7EB /* ASDisplayNode+GY.m in Sources */ = {isa = PBXBuildFile; fileRef = 8483F1051FBD787F00EFD7EB /* ASDisplayNode+GY.m */; };
@@ -294,23 +289,12 @@
 		8483F0851FBD73A400EFD7EB /* YYFPSLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYFPSLabel.m; sourceTree = "<group>"; };
 		8483F0861FBD73A400EFD7EB /* YYWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYWeakProxy.h; sourceTree = "<group>"; };
 		8483F0871FBD73A400EFD7EB /* YYWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYWeakProxy.m; sourceTree = "<group>"; };
-		8483F0C71FBD73F300EFD7EB /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		8483F0C91FBD758B00EFD7EB /* GYTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GYTabBarController.h; sourceTree = "<group>"; };
 		8483F0CA1FBD758B00EFD7EB /* GYTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GYTabBarController.m; sourceTree = "<group>"; };
 		8483F0CB1FBD758B00EFD7EB /* GYTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GYTabBarItem.h; sourceTree = "<group>"; };
 		8483F0CC1FBD758B00EFD7EB /* GYTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GYTabBarItem.m; sourceTree = "<group>"; };
 		8483F0CD1FBD758B00EFD7EB /* GYTabBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GYTabBarView.h; sourceTree = "<group>"; };
 		8483F0CE1FBD758B00EFD7EB /* GYTabBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GYTabBarView.m; sourceTree = "<group>"; };
-		8483F0D31FBD76E600EFD7EB /* jk_icon_system_backIndicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jk_icon_system_backIndicator.png; sourceTree = "<group>"; };
-		8483F0D41FBD76E600EFD7EB /* JKBackIndicatorButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKBackIndicatorButton.h; sourceTree = "<group>"; };
-		8483F0D51FBD76E600EFD7EB /* JKBackIndicatorButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKBackIndicatorButton.m; sourceTree = "<group>"; };
-		8483F0D61FBD76E600EFD7EB /* JKNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKNavigationController.h; sourceTree = "<group>"; };
-		8483F0D71FBD76E600EFD7EB /* JKRootNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKRootNavigationController.h; sourceTree = "<group>"; };
-		8483F0D81FBD76E600EFD7EB /* JKRootNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKRootNavigationController.m; sourceTree = "<group>"; };
-		8483F0D91FBD76E600EFD7EB /* UINavigationBar+JKTransparentize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+JKTransparentize.h"; sourceTree = "<group>"; };
-		8483F0DA1FBD76E600EFD7EB /* UINavigationBar+JKTransparentize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+JKTransparentize.m"; sourceTree = "<group>"; };
-		8483F0DB1FBD76E600EFD7EB /* UIViewController+JKNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+JKNavigationController.h"; sourceTree = "<group>"; };
-		8483F0DC1FBD76E600EFD7EB /* UIViewController+JKNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+JKNavigationController.m"; sourceTree = "<group>"; };
 		8483F0DE1FBD76E600EFD7EB /* ico_make.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_make.png; sourceTree = "<group>"; };
 		8483F0DF1FBD76E600EFD7EB /* JSDropDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSDropDownMenu.h; sourceTree = "<group>"; };
 		8483F0E01FBD76E600EFD7EB /* JSDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSDropDownMenu.m; sourceTree = "<group>"; };
@@ -552,7 +536,6 @@
 			isa = PBXGroup;
 			children = (
 				8476496C1FBD6E7500E9B4F2 /* main.m */,
-				8483F0C71FBD73F300EFD7EB /* PrefixHeader.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -604,7 +587,6 @@
 			children = (
 				84B0C56F1FDF7F1900B6206F /* HSUpdateApp */,
 				847A2D4B1FCD7F0700ABB430 /* Segmented */,
-				8483F0D21FBD76E600EFD7EB /* JKNavigationController */,
 				8483F0DD1FBD76E600EFD7EB /* JSDropDownMenu */,
 				8483EFE31FBD73A400EFD7EB /* Arrow */,
 				8483EFE61FBD73A400EFD7EB /* Badge */,
@@ -800,23 +782,6 @@
 				8483F0CE1FBD758B00EFD7EB /* GYTabBarView.m */,
 			);
 			path = GYTabBar;
-			sourceTree = "<group>";
-		};
-		8483F0D21FBD76E600EFD7EB /* JKNavigationController */ = {
-			isa = PBXGroup;
-			children = (
-				8483F0D31FBD76E600EFD7EB /* jk_icon_system_backIndicator.png */,
-				8483F0D41FBD76E600EFD7EB /* JKBackIndicatorButton.h */,
-				8483F0D51FBD76E600EFD7EB /* JKBackIndicatorButton.m */,
-				8483F0D61FBD76E600EFD7EB /* JKNavigationController.h */,
-				8483F0D71FBD76E600EFD7EB /* JKRootNavigationController.h */,
-				8483F0D81FBD76E600EFD7EB /* JKRootNavigationController.m */,
-				8483F0D91FBD76E600EFD7EB /* UINavigationBar+JKTransparentize.h */,
-				8483F0DA1FBD76E600EFD7EB /* UINavigationBar+JKTransparentize.m */,
-				8483F0DB1FBD76E600EFD7EB /* UIViewController+JKNavigationController.h */,
-				8483F0DC1FBD76E600EFD7EB /* UIViewController+JKNavigationController.m */,
-			);
-			path = JKNavigationController;
 			sourceTree = "<group>";
 		};
 		8483F0DD1FBD76E600EFD7EB /* JSDropDownMenu */ = {
@@ -1174,7 +1139,6 @@
 				8476497B1FBD6E7500E9B4F2 /* LaunchScreen.storyboard in Resources */,
 				8459AA891FFF78B400F477D3 /* Default1125x2436.png in Resources */,
 				8483F0951FBD73A400EFD7EB /* QBImagePicker.strings in Resources */,
-				8483F0E11FBD76E600EFD7EB /* jk_icon_system_backIndicator.png in Resources */,
 				A9DB55061FDBD5310082A2E5 /* Default640x1136.png in Resources */,
 				8471A6521FFE021F001288D8 /* PsychicLoan.entitlements in Resources */,
 				847288391FE2506B0020C0D9 /* banner_line_selected@2x.png in Resources */,
@@ -1340,14 +1304,11 @@
 				847649731FBD6E7500E9B4F2 /* ViewController.m in Sources */,
 				8483F1761FBD848500EFD7EB /* LocalBundleManager.m in Sources */,
 				8483F09A1FBD73A400EFD7EB /* QBAssetsViewController.m in Sources */,
-				8483F0E51FBD76E600EFD7EB /* UIViewController+JKNavigationController.m in Sources */,
 				8483F14D1FBD7D5F00EFD7EB /* SplashSourceDaDa.m in Sources */,
 				848B68931FBF0135008D38C0 /* HomeFastCell.m in Sources */,
 				A9DB550F1FDBEEEF0082A2E5 /* UseH5Model.m in Sources */,
-				8483F0E31FBD76E600EFD7EB /* JKRootNavigationController.m in Sources */,
 				84E7B19E1FC57BD700F19C20 /* DetailBasicCell.m in Sources */,
 				A9DB54F21FDBAD590082A2E5 /* GeTuiDataSource.m in Sources */,
-				8483F0E41FBD76E600EFD7EB /* UINavigationBar+JKTransparentize.m in Sources */,
 				8483F0C21FBD73A400EFD7EB /* ZXPUnicode.m in Sources */,
 				847A2D481FCD58E100ABB430 /* UserHomeController.m in Sources */,
 				8483F17D1FBD867400EFD7EB /* EmptyDataSource.m in Sources */,
@@ -1409,7 +1370,6 @@
 				8483F0C61FBD73A400EFD7EB /* YYWeakProxy.m in Sources */,
 				84B0C5751FDFD98100B6206F /* LoanBtnModel.m in Sources */,
 				8483F0C41FBD73A400EFD7EB /* UICreationUtils.m in Sources */,
-				8483F0E21FBD76E600EFD7EB /* JKBackIndicatorButton.m in Sources */,
 				A9D8EF7A1FC14BA2000CCEBC /* LoanTypeViewController.m in Sources */,
 				A9D78E321FD28F2F005C87E1 /* CustomModalViewController.m in Sources */,
 				843A9FD61FC2E82A006C27F7 /* BaseModel.m in Sources */,

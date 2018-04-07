@@ -107,7 +107,7 @@
     [self.titleLabel sizeToFit];
     self.navigationItem.titleView = self.titleLabel;
     //    self.navigationController.navigationBar.jk_barBackgroundColor = [UIColor whiteColor];
-    [self.navigationController.navigationBar jk_setNavigationBarBackgroundColor:COLOR_PRIMARY];
+//    [self.navigationController.navigationBar jk_setNavigationBarBackgroundColor:COLOR_PRIMARY];
     
 //    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
 //                                              initWithTitle:@"下一个"

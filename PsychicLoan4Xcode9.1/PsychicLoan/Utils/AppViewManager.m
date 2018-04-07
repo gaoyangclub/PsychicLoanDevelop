@@ -121,11 +121,11 @@ static YWFeedbackKit* feedBackKit;
         currentNaviVC = [self getCurrentVCFrom:[(UITabBarController *)rootVC selectedViewController]];
     } else if ([rootVC isKindOfClass:[UINavigationController class]]){
         // 根视图为UINavigationController
-        if ([rootVC isMemberOfClass:[JKRootNavigationController class]]) {
-            currentNaviVC = [(UINavigationController *)rootVC visibleViewController].childViewControllers.firstObject;
-        }else{
+//        if ([rootVC isMemberOfClass:[JKRootNavigationController class]]) {
+//            currentNaviVC = [(UINavigationController *)rootVC visibleViewController].childViewControllers.firstObject;
+//        }else{
             currentNaviVC = (UINavigationController *)rootVC;
-        }
+//        }
     } else {
         // 根视图为非导航类
         currentNaviVC = rootVC.navigationController;
@@ -156,21 +156,40 @@ static YWFeedbackKit* feedBackKit;
 
 + (void)popLoginViewController{
     LoginViewController* loginViewController = [[LoginViewController alloc]init];
-    JKRootNavigationController* navigationController = [[JKRootNavigationController alloc]initWithRootViewController:loginViewController];
-    navigationController.automaticallyAdjustsScrollViewInsets = navigationController.navigationBar.translucent = NO;
-    [rootTabBarController presentViewController:navigationController animated:YES completion:nil];
+//    UINavigationController* navigationController = [[UINavigationController alloc]initWithRootViewController:loginViewController];
+//   navigationController.navigationBar.translucent = NO;
+//     navigationController.automaticallyAdjustsScrollViewInsets =
+    [rootTabBarController presentViewController:[AppViewManager createNavigationController:loginViewController] animated:YES completion:nil];
 }
 
-+ (JKRootNavigationController*)createNavigationController:(UIViewController*)viewController{
-    JKRootNavigationController* navigationController = [[JKRootNavigationController alloc]initWithRootViewController:viewController];
-    navigationController.automaticallyAdjustsScrollViewInsets = navigationController.navigationBar.translucent = NO;
++ (UINavigationController*)createNavigationController:(UIViewController*)viewController{
+    UINavigationController* navigationController = [[UINavigationController alloc]initWithRootViewController:viewController];//[[JKRootNavigationController alloc]initWithRootViewController:viewController];
+    navigationController.navigationBar.translucent = NO;
+    navigationController.navigationBar.barTintColor = COLOR_PRIMARY;
+//    navigationController.automaticallyAdjustsScrollViewInsets = 
     /// 全局效果
     //    [navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     //    /// 只会设置当前控制器的navigationBar的颜色
     //    [navigationController.navigationBar jk_setNavigationBarBackgroundColor:[UIColor orangeColor]];
     ///  会设置所有子控制器的全屏手势使能状态，全局效果
-    navigationController.jk_fullScreenPopGestrueEnabled = YES;
+//    navigationController.jk_fullScreenPopGestrueEnabled = YES;
+    UIImageView * hailline = [self findHairlineImageViewUnder:navigationController.navigationBar];
+    hailline.hidden = YES;//去掉底部线
     return navigationController;
+}
+
++(UIImageView *)findHairlineImageViewUnder:(UIView*)view{
+    //    [view isKindOfClass:[UIImageView class];
+    if([view isKindOfClass:[UIImageView class]] && CGRectGetHeight(view.bounds) <= 1.0) {
+        return (UIImageView*)view;
+    }
+    for (UIView* subView in view.subviews) {
+        UIImageView* imageView = [self findHairlineImageViewUnder:subView];
+        if (imageView != nil) {
+            return imageView;
+        }
+    }
+    return nil;
 }
 
 + (GYTabBarController*)createTabBarController{

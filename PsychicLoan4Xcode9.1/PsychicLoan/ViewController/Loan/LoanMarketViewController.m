@@ -103,7 +103,7 @@
     self.titleLabel.text = NAVIGATION_TITLE_LOAN;
     [self.titleLabel sizeToFit];
     self.navigationItem.titleView = self.titleLabel;
-    self.navigationController.navigationBar.jk_barBackgroundColor = COLOR_PRIMARY;//[UIColor whiteColor];
+//    self.navigationController.navigationBar.jk_barBackgroundColor = COLOR_PRIMARY;//[UIColor whiteColor];
 }
 
 - (void)viewDidLoad {

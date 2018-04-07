@@ -8,6 +8,9 @@
 
 #import "GYTableBaseView.h"
 #import "GYRefreshAutoFooter.h"
+//#import <Foundation/Foundation.h>
+
+//#define iOS9+ [UIDevice currentDevice].systemVersion.doubleValue >= 9.0
 
 typedef enum {
     CellTypeNormal,//除头尾中间段的
@@ -158,7 +161,7 @@ typedef enum {
 -(NSUInteger)getTotalCellVoCount{
     NSInteger cellCount = 0;
     for (SectionVo* svo in self.dataArray) {
-        for (CellVo* cvo in svo.cellVoList) {
+        for (__unused CellVo* cvo in svo.cellVoList) {
             cellCount ++;
         }
     }
@@ -206,46 +209,16 @@ typedef enum {
         }
         
         if (self.showFooter) {
-            __weak __typeof(self) weakSelf = self;
-            MJRefreshAutoNormalFooter* footer = [GYRefreshAutoFooter footerWithRefreshingBlock:^{
-                __strong typeof(weakSelf) strongSelf = weakSelf;
-                if (strongSelf.refreshDelegate && [strongSelf.refreshDelegate respondsToSelector:@selector(footerLoadMore:endLoadMoreHandler:lastSectionVo:)]){
-                    [strongSelf.refreshDelegate footerLoadMore:strongSelf endLoadMoreHandler:^(BOOL hasData){
-//                        [strongSelf footerLoaded:hasData];
-                        if (hasData) {
-                            [strongSelf checkGaps];
-//                            strongSelf.refreshAll = NO;
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                [strongSelf reloadData];
-                                if (strongSelf.refreshDelegate && [strongSelf.refreshDelegate respondsToSelector:@selector(didLoadMoreComplete:)]){
-                                    [strongSelf.refreshDelegate didLoadMoreComplete:strongSelf];
-                                }
-                            });
-                            [strongSelf.mj_footer endRefreshing];
-                        }else{
-                            [strongSelf.mj_footer endRefreshingWithNoMoreData];
-                        }
-                    } lastSectionVo:[strongSelf getLastSectionVo]];
-                }
-            }];
-//            footer.automaticallyHidden = YES;
+            MJRefreshAutoNormalFooter* footer = [[GYRefreshAutoFooter alloc]init];
+            //            footer.automaticallyHidden = YES;
             footer.stateLabel.userInteractionEnabled = NO;//无法点击交互
             [footer setTitle:@"上拉加载更多" forState:MJRefreshStateIdle];
-            
-//            footer.ignoredScrollViewContentInsetBottom = 0;
-//            UIEdgeInsets insets = footer.scrollViewOriginalInset;
-//            insets.bottom = insets.top = 0;
-//            footer.scrollViewOriginalInset = insets;
-            self.mj_footer = footer;// 上拉刷新
+            self.footer = footer;
         }
         
 //    });
 
 }
-
-//-(void)footerLoaded:(BOOL)hasData{
-//    
-//}
 
 -(void)setHeader:(MJRefreshHeader *)header{
     if (self.showHeader) {
@@ -274,6 +247,34 @@ typedef enum {
             [self moveSelectedIndexPathToCenter];
         };
         self.mj_header = header;
+    }
+}
+
+-(void)setFooter:(MJRefreshFooter *)footer{
+    if (self.showFooter) {
+        __weak __typeof(self) weakSelf = self;
+        footer.refreshingBlock = ^{
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            if (strongSelf.refreshDelegate && [strongSelf.refreshDelegate respondsToSelector:@selector(footerLoadMore:endLoadMoreHandler:lastSectionVo:)]){
+                [strongSelf.refreshDelegate footerLoadMore:strongSelf endLoadMoreHandler:^(BOOL hasData){
+                    //                        [strongSelf footerLoaded:hasData];
+                    if (hasData) {
+                        [strongSelf checkGaps];
+                        //                            strongSelf.refreshAll = NO;
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [strongSelf reloadData];
+                            if (strongSelf.refreshDelegate && [strongSelf.refreshDelegate respondsToSelector:@selector(didLoadMoreComplete:)]){
+                                [strongSelf.refreshDelegate didLoadMoreComplete:strongSelf];
+                            }
+                        });
+                        [strongSelf.mj_footer endRefreshing];
+                    }else{
+                        [strongSelf.mj_footer endRefreshingWithNoMoreData];
+                    }
+                } lastSectionVo:[strongSelf getLastSectionVo]];
+            }
+        };
+        self.mj_footer = footer;// 上拉刷新
     }
 }
 
@@ -523,13 +524,13 @@ typedef enum {
     }
 }
 
-//-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-//    if (self.refreshDelegate && [self.refreshDelegate respondsToSelector:@selector(didScrollToRow:indexPath:)]) {
-//        NSIndexPath *path =  [self indexPathForRowAtPoint:CGPointMake(scrollView.contentOffset.x, scrollView.contentOffset.y)];
-////        NSLog(@"这是第%li栏目",(long)path.section);
-//        [self.refreshDelegate didScrollToRow:self indexPath:path];
-//    }
-//}
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    NSIndexPath *path =  [self indexPathForRowAtPoint:CGPointMake(scrollView.contentOffset.x, scrollView.contentOffset.y)];
+    if (self.refreshDelegate && [self.refreshDelegate respondsToSelector:@selector(didScrollToRow:indexPath:)]) {
+//        NSLog(@"这是第%li栏目",(long)path.section);
+        [self.refreshDelegate didScrollToRow:self indexPath:path];
+    }
+}
 
 -(void)checkGaps {
     //遍历整个数据链 判断头尾标记和gap是否存在
@@ -752,6 +753,7 @@ typedef enum {
         [self.refreshDelegate tableView:tableView performAction:action forRowAtIndexPath:indexPath withSender:sender];
     }
 }
+
 - (BOOL)tableView:(UITableView *)tableView canFocusRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.refreshDelegate && [self.refreshDelegate respondsToSelector:@selector(tableView:canFocusRowAtIndexPath:)]) {
         [self.refreshDelegate tableView:tableView canFocusRowAtIndexPath:indexPath];
@@ -775,6 +777,7 @@ typedef enum {
     }
     return nil;
 }
+
 
 @end
 

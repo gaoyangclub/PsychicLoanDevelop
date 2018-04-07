@@ -80,7 +80,7 @@
     self.titleLabel.text = self.loanName;//self.shipmentBean.code;//标题显示TO号
     [self.titleLabel sizeToFit];
     self.navigationItem.titleView = self.titleLabel;
-    [self.navigationController.navigationBar jk_setNavigationBarBackgroundColor:COLOR_PRIMARY];
+//    [self.navigationController.navigationBar jk_setNavigationBarBackgroundColor:COLOR_PRIMARY];
 }
 
 -(void)clickSubmitButton:(UIView*)sender{
@@ -159,6 +159,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if (@available(iOS 11.0, *)) {
+        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
+    
     [self initNavigationItem];
 //    self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view.backgroundColor = COLOR_BACKGROUND;

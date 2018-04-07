@@ -15,10 +15,9 @@
 }
 
 -(void)gy_viewDidLoad{
-    if (self.hidesBottomBarWhenPushed) {
-        //        self.edgesForExtendedLayout = UIRectEdgeNone;
-        self.automaticallyAdjustsScrollViewInsets = NO;
-    }
+//    if (self.hidesBottomBarWhenPushed) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+//    }
     [self gy_viewDidLoad];
 }
 

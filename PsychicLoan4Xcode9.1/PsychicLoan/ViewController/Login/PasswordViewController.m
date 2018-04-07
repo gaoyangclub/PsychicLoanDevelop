@@ -174,7 +174,7 @@
     self.titleLabel.text = NAVIGATION_TITLE_REGISTER;
     [self.titleLabel sizeToFit];
     self.navigationItem.titleView = self.titleLabel;
-    self.navigationController.navigationBar.jk_barBackgroundColor = COLOR_PRIMARY;
+//    self.navigationController.navigationBar.jk_barBackgroundColor = COLOR_PRIMARY;
     self.navigationItem.leftBarButtonItem =
     [UICreationUtils createNavigationNormalButtonItem:COLOR_NAVI_TITLE font:[UIFont fontWithName:ICON_FONT_NAME size:SIZE_LEFT_BACK_ICON] text:ICON_FAN_HUI target:self action:@selector(leftClick)];
     self.navigationItem.rightBarButtonItem = [UICreationUtils createNavigationNormalButtonItem:[UIColor whiteColor] font:[UIFont boldSystemFontOfSize:SIZE_TEXT_PRIMARY] text:@"关闭" target:self action:@selector(clickClose)];

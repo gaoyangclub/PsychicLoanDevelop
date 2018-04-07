@@ -247,7 +247,8 @@
     self.titleLabel.text = NAVIGATION_TITLE_LOGIN;//self.shipmentBean.code;//标题显示TO号
     [self.titleLabel sizeToFit];
     self.navigationItem.titleView = self.titleLabel;
-    self.navigationController.navigationBar.jk_barBackgroundColor = COLOR_PRIMARY;
+    self.navigationController.navigationBar.barTintColor = COLOR_PRIMARY;
+//    jk_barBackgroundColor = COLOR_PRIMARY;
     self.navigationItem.rightBarButtonItem = [UICreationUtils createNavigationNormalButtonItem:[UIColor whiteColor] font:[UIFont boldSystemFontOfSize:SIZE_TEXT_PRIMARY] text:@"关闭" target:self action:@selector(clickClose)];
 }
 

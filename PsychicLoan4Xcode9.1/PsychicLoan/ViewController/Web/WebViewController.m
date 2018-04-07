@@ -78,7 +78,7 @@
     self.titleLabel.text = self.navigationTitle ? self.navigationTitle : @"";//self.shipmentBean.code;//标题显示TO号
     [self.titleLabel sizeToFit];
     self.navigationItem.titleView = self.titleLabel;
-    [self.navigationController.navigationBar jk_setNavigationBarBackgroundColor:COLOR_PRIMARY];
+//    [self.navigationController.navigationBar jk_setNavigationBarBackgroundColor:COLOR_PRIMARY];
 //    self.navigationController.navigationBar.jk_barBackgroundColor = [UIColor whiteColor];
 }
 

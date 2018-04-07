@@ -133,7 +133,7 @@ typedef NS_ENUM(NSInteger,ItemPostion){
     self.titleLabel.text = NAVIGATION_TITLE_USER;//self.shipmentBean.code;//标题显示TO号
     [self.titleLabel sizeToFit];
     self.navigationItem.titleView = self.titleLabel;
-    self.navigationController.navigationBar.jk_barBackgroundColor = COLOR_PRIMARY;//[UIColor whiteColor];
+//    self.navigationController.navigationBar.jk_barBackgroundColor = COLOR_PRIMARY;//[UIColor whiteColor];
 }
 
 #pragma 坑爹!!! 必须时时跟随主view的frame
